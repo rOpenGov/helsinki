@@ -32,7 +32,7 @@ Further installation and development instructions at the [home
 page](http://ropengov.github.com/helsinki).
 
 
-### Listing available indicators
+### Examples
 
 For further usage examples, see
 [Louhos-blog](http://louhos.wordpress.com) and

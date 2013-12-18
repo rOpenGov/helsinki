@@ -38,47 +38,6 @@ page](http://ropengov.github.com/helsinki).
 
 ### Listing available indicators
 
-List available Helsinki indicators:
-
-
-```r
-library(helsinki)
-helsinki.indicators <- HelsinkiIndicators(type = "table")
-```
-
-```
-## Error: could not find function "HelsinkiIndicators"
-```
-
-```r
-head(helsinki.indicators)
-```
-
-```
-## Error: object 'helsinki.indicators' not found
-```
-
-
-List geographical regions with available indicators:
-
-
-```r
-helsinki.regions <- HelsinkiRegions(type = "table")
-```
-
-```
-## Error: could not find function "HelsinkiRegions"
-```
-
-```r
-head(helsinki.regions)
-```
-
-```
-## Error: object 'helsinki.regions' not found
-```
-
-
 For further usage examples, see
 [Louhos-blog](http://louhos.wordpress.com) and
 [Datawiki](https://github.com/louhos/sorvi/wiki/Data), and
@@ -129,4 +88,5 @@ sessionInfo()
 ## [1] digest_0.6.3    evaluate_0.4.3  formatR_0.7     grid_3.0.1     
 ## [5] lattice_0.20-15 sorvi_0.4.14    stringr_0.6.2   tools_3.0.1
 ```
+
 

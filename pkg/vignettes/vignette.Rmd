@@ -34,21 +34,6 @@ page](http://ropengov.github.com/helsinki).
 
 ### Listing available indicators
 
-List available Helsinki indicators:
-
-```{r helsinkiIndicators, warning=FALSE, message=FALSE}
-library(helsinki) 
-helsinki.indicators <- HelsinkiIndicators(type = "table")
-head(helsinki.indicators)
-```
-
-List geographical regions with available indicators:
-
-```{r helsinkiRegions, warning=FALSE, message=FALSE}
-helsinki.regions <- HelsinkiRegions(type = "table")
-head(helsinki.regions)
-```
-
 For further usage examples, see
 [Louhos-blog](http://louhos.wordpress.com) and
 [Datawiki](https://github.com/louhos/sorvi/wiki/Data), and
@@ -74,3 +59,4 @@ This vignette was created with
 ```{r sessioninfo, message=FALSE, warning=FALSE}
 sessionInfo()
 ```
+

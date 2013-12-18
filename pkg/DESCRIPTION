@@ -1,0 +1,26 @@
+Package: helsinki
+Type: Package
+Title: Helsinki R Tools
+Version: 0.9.01
+Date: 2013-12-17
+Author: Leo Lahti, Juuso Parkkinen, Joona Lehtomaki
+Maintainer: Leo Lahti <louhos@googlegroups.com>
+Description: Helsinki R Tools
+License: BSD_2_clause + file LICENSE
+Depends:
+    R (>= 3.0.1),
+    methods,
+    rjson,
+    rgdal,
+    RCurl
+Imports:
+    sorvi
+URL: http://ropengov.github.com/helsinki
+LazyLoad: yes
+Collate:
+    'HKK.R'
+    'HRI.R'
+    'HSY.R'
+    'firstlib.R'
+    'helsinki-package.R'
+    'internal.R'

@@ -1,0 +1,7 @@
+export(.InstallMarginal)
+export(GetHKK)
+export(GetHRIaluejakokartat)
+export(GetHSY)
+export(GetOmakaupunki)
+export(GetPalvelukartta)
+importFrom(sorvi,ReadShape)

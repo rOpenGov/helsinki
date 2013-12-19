@@ -19,6 +19,6 @@
   # Sys.setlocale(locale = "UTF-8")
   # Sys.setlocale(locale = "WINDOWS-1252")
 
-  packageStartupMessage("Helsinki rOpenGov R tools. Copyright (C) 2010-2013 Leo Lahti, Juuso Parkkinen and Joona Lehtomaki <ropengov.github.io>. This is free software. You are free to use, modify and redistribute it under the FreeBSD license.")
+  packageStartupMessage("helsinki R package: tools for open data from Helsinki, Finland capital region. This R package is part of rOpenGov <ropengov.github.io>. Copyright (C) 2010-2013 Leo Lahti, Juuso Parkkinen and Joona Lehtomaki. This is free software. You are free to use, modify and redistribute it under the FreeBSD license.")
 
 }

@@ -4,26 +4,30 @@
 
 #' Retrieve HSY data 
 #'
-#' This script retrieves data from Helsinki Region Environmental
-#' Services Authority (Helsingin seudun ymparistopalvelu HSY) through
-#' the HSY website
+#' Retrieves data from Helsinki Region Environmental
+#' Services Authority (Helsingin seudun ymparistopalvelu HSY) 
 #' http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx
-#' For details, see the HSY website, in particular the data description (in Finnish) at:
+#' For data description (in Finnish) see:
 #' http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf. 
-#' The data copyright is on (C) HSY 2011.
-#' @aliases get.hsy
-#' @param which.data  A string. Specify the name of the HSY data set to retrieve. Currently available options: Vaestoruudukko; Rakennustietoruudukko; SeutuRAMAVA; key.KATAKER. The first three are documented in HSY data description document (see above). The key.KATAKER contains manually parsed mapping for building categories from the HSY documentation.
+#' The data copyright (C) HSY 2011.
+#'
+#' Arguments:
+#' @param which.data A string. Specify the name of the retrieved HSY data set. Options: Vaestoruudukko; Rakennustietoruudukko; SeutuRAMAVA; key.KATAKER. The first three are documented in HSY data description document (see above). The key.KATAKER contains manually parsed mapping for building categories from the HSY documentation.
 #'
 #' @return Shape object (from SpatialPolygonsDataFrame class)
 #' @export
 #' @importFrom sorvi ReadShape
+#' @importFrom rgdal readOGR
 #' @references
-#' See citation("sorvi") 
+#' See citation("helsinki") 
 #' @author Leo Lahti \email{louhos@@googlegroups.com}
 #' @examples # sp <- get.hsy("Vaestoruudukko")
 #' @keywords utilities
 
 GetHSY <- function (which.data = "Vaestoruudukko") {
+
+  # FIXME valiaikaistiedostojen poisto ajon jalkeen, 
+  # ja/tai haku valiaikaiskansioon.
 
   data.path <- "http://www.hsy.fi/seututieto/Documents/Paikkatiedot/"
 
@@ -51,6 +55,47 @@ GetHSY <- function (which.data = "Vaestoruudukko") {
     # http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf
     # (C) HSY 2011 (http://www.hsy.fi)
 
+    # Get ID descriptions
+    KATAKER.key <- kataker.key()
+
+    res <- data.frame(list(key = as.integer(names(KATAKER.key)), 
+    	   		   description = KATAKER.key))
+    return(res)
+
+  } else {
+    stop("Provide proper data name.")
+  }
+
+  # Unzip the files
+
+  .InstallMarginal("utils")
+
+  unzip(destfile)
+
+  if (which.data == "SeutuRAMAVA") {
+
+    # Need to read with rgdal, the readShapePoly had problems in
+    # handling this file
+    .InstallMarginal("rgdal")
+
+    sp <- rgdal::readOGR(".", layer = "SeutuRAMAVA_2010")
+    # Convert to UTF-8 where needed 
+    nams <- c("OMLAJI_1S", "OMLAJI_2S", "OMLAJI_3S", "NIMI", "NIMI_SE")
+    for (nam in nams) {    
+      sp[[nam]] <-  factor(iconv(sp[[nam]], from = "latin1", to = "UTF-8"))
+    }
+  } else if (which.data == "Rakennustietoruudukko") {
+    sp <- sorvi::ReadShape("Rakennustietoruudukko_2010_region.shp")
+  } else if (which.data == "Vaestoruudukko") {
+    sp <- sorvi::ReadShape("Vaestoruudukko_2010_region.shp")
+  }
+
+  sp
+}
+
+
+
+kataker.key <- function () {
     KATAKER.key <- c(
     "1"   = "Yhden asunnon talot", 
     "12"  = "Kahden asunnon talot", 
@@ -133,37 +178,5 @@ GetHSY <- function (which.data = "Vaestoruudukko") {
     "999" = "Muut rakennukset", 
     "999999999" = "Puuttuvan tiedon merkki")
 
-    res <- data.frame(list(key = as.integer(names(KATAKER.key)), description = KATAKER.key))
-    return(res)
-
-  } else {
-    stop("Provide proper data name.")
-  }
-
-  # Unzip the files
-
-  .InstallMarginal("utils")
-
-  unzip(destfile)
-
-  if (which.data == "SeutuRAMAVA") {
-
-    # Need to read with rgdal, the readShapePoly had problems in
-    # handling this file
-    .InstallMarginal("rgdal")
-
-    sp <- rgdal::readOGR(".", layer = "SeutuRAMAVA_2010")
-    # Convert to UTF-8 where needed 
-    nams <- c("OMLAJI_1S", "OMLAJI_2S", "OMLAJI_3S", "NIMI", "NIMI_SE")
-    for (nam in nams) {    
-      sp[[nam]] <-  factor(iconv(sp[[nam]], from = "latin1", to = "UTF-8"))
-    }
-  } else if (which.data == "Rakennustietoruudukko") {
-    sp <- sorvi::ReadShape("Rakennustietoruudukko_2010_region.shp")
-  } else if (which.data == "Vaestoruudukko") {
-    sp <- sorvi::ReadShape("Vaestoruudukko_2010_region.shp")
-  }
-
-  sp
+    KATAKER.key
 }
-

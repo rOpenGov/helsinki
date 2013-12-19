@@ -31,13 +31,86 @@ library(helsinki)
 Further installation and development instructions at the [home
 page](http://ropengov.github.com/helsinki).
 
+## Helsinki Region Infoshare (HRI)
 
-### Examples
+### Municipality maps (Aluejakokartat)
+
+Get [Helsinki Region Infoshare](http://www.hri.fi) (HRI) municipality maps:
+
+```{r hri-1, warning=FALSE, message=FALSE}
+# Load library
+#  http://ropengov.github.com/helsinki/
+library(helsinki)
+
+# Get the maps
+pienalue <- GetHRIaluejakokartat()
+
+# Inspect the data
+head(pienalue$pienalue.df)
+```
+
+
+## Helsinki region environmental services (Helsingin seudun ympäristöpalvelut HSY)
+
+
+### Population grid
+
+Download population information from [HSY database](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) ((C) 2011 HSY) and visualize on the Helsinki map. For data documentation, see [HSY website](http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf).
+
+
+```{r hsy-example, fig.width=8, fig.height=8, message=FALSE}
+# http://ropengov.github.com/helsinki
+library(helsinki)
+
+# Get population grid (Vaestoruudukko) 
+sp <- GetHSY("Vaestoruudukko")  
+
+# Define limits of the color scale
+at <- c(seq(0, 2000, 250), Inf) 
+
+# Visualize population grid
+q <- PlotShape(sp, "ASUKKAITA", type = "oneway", at = at, ncol = length(at)) 
+```
+
+The following data sets are available (specified in the GetHSY argument):
+
+ * Vaestotietoruudukko: population size, density, and age structure per grid
+
+ * Rakennustietoruudukko: Grid-level (500mx500m) information on
+   building counts (lukumaara), area (kerrosala), usage
+   (kayttotarkoitus), region efficiency (aluetehokkuus).
+
+ * seutuRAMAVA: building area capacity per municipality region
+   (kaupunginosittain summattu tieto rakennusmaavarannosta)
+
+
+
+Inspect data manually. Some rarely populated grids are censored with
+'99' to guarantee privacy.
+
+```{r hsy-example2, message=FALSE}
+df <- as.data.frame(sp)   
+head(df)
+```
+
+
+### Further HSY data
+
+[HSY website](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) has data for 2010-2011. More is coming, add later and allow temporal analysis.
 
 For further usage examples, see
 [Louhos-blog](http://louhos.wordpress.com) and
-[Datawiki](https://github.com/louhos/sorvi/wiki/Data), and
 [takomo](https://github.com/louhos/takomo/tree/master/Helsinki).
+
+
+## Helsinki Real Estate Department (Helsingin kaupungin kiinteistövirasto, HKK)
+
+Retrieve [HKK](http://kartta.hel.fi/avoindata/index.html) data sets.
+
+```{r hkk-example2, message=FALSE}
+sp <- GetHKK("Aanestysaluejako", data.dir=".")
+```
+
 
 
 ### Licensing and Citations

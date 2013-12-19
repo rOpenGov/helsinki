@@ -1,6 +1,7 @@
-# This file is a part of the sorvi program (http://louhos.github.com/sorvi/)
+# This file is a part of rOpenGov (http://ropengov.github.com/)
 
-# Copyright (C) 2010-2013 Louhos <louhos.github.com>. All rights reserved.
+# Copyright (C) 2010-2013 Leo Lahti, Juuso Parkkinen, Joona Lehtomaki. 
+# All rights reserved.
 
 # This program is open source software; you can redistribute it and/or modify 
 # it under the terms of the FreeBSD License (keep this notice): 
@@ -15,12 +16,12 @@
 #'
 #' This data set contains information about area boundaries for Helsinki Region
 #' Helsinki Region maps from Helsinki Region Infoshare
-#' Contents: pks.pienalue: Detailed area boundary data
+#' Contents: pks.pienalue: Detailed area boundary data.
 #' 
 #' @name HRI.aluejakokartat
 #' @docType data
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com} 
-#' @references See cite(sorvi)
+#' @references See citation("helsinki")
 #' @usage LoadData("HRI.aluejakokartat")
 #' @format list of SpatialPolygonsDataFrames
 #' @keywords data misc
@@ -39,12 +40,14 @@ GetHRIaluejakokartat <- function() {
   pks.pienalue <- NULL  
   pks.df <- NULL
 
-  # stop("Function GetHRIaluejakokartat is currently broken, we are working on it...")
   message("Loading aluejakokartat from HRI...")
+
   # Need to install package rgdal
   # Mac users, see http://www.r-bloggers.com/installing-rgdal-on-mac-os-x-2/
 
-  # NOTE! Changed to read data directly from my Dropbox, as the original code has strange problems - Juuso 26.10.2012
+  # FIXME: move the data to OKFFI site
+  # NOTE! Changed to read data directly from my Dropbox, 
+  # as the original code has strange problems - Juuso 26.10.2012
   con <- url("http://dl.dropbox.com/u/792906/data/PKS_aluejakokartat_20111023.RData")
   load(con)
   close(con)
@@ -129,6 +132,7 @@ GetOmakaupunki <- function(query, login, password, api_key, ...) {
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
 #' @export
 #' @examples # pk.services <- GetPalvelukartta("service")
+
 GetPalvelukartta <- function(category, ...) {
   
   api.url <- paste("http://www.hel.fi/palvelukarttaws/rest/v2/", category, "/", sep="")

@@ -108,8 +108,10 @@ For further usage examples, see
 Retrieve [HKK](http://kartta.hel.fi/avoindata/index.html) data sets.
 
 ```{r hkk-example2, message=FALSE}
-sp <- GetHKK("Aanestysaluejako", data.dir=".")
+sp <- GetHKK("Aanestysaluejako")
 ```
+
+ * Aanestysaluejako: data set includes the elections districts for the cities of the capital region (Helsinki, Espoo, Kauniainen and Vantaa) in MapInfo-format. CRS is Finland KKJ2 (EPSG: 2392). All feature datasets have different schemas with varying amount of information. Additionally in HKK database there is an Excel file (Aanestyaluekoodit.xls) with information for all cities, such as voting district names and codes.
 
 
 

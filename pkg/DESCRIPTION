@@ -1,8 +1,8 @@
 Package: helsinki
 Type: Package
 Title: Helsinki R Tools
-Version: 0.9.03
-Date: 2013-12-21
+Version: 0.9.04
+Date: 2013-12-24
 Author: Leo Lahti, Juuso Parkkinen, Joona Lehtomaki
 Maintainer: Leo Lahti <louhos@googlegroups.com>
 Description: Helsinki R Tools

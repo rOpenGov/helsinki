@@ -7,13 +7,13 @@
   This data set contains information about area boundaries
   for Helsinki Region Helsinki Region maps from Helsinki
   Region Infoshare Contents: pks.pienalue: Detailed area
-  boundary data
+  boundary data.
 }
 \author{
   Juuso Parkkinen \email{louhos@googlegroups.com}
 }
 \references{
-  See cite(sorvi)
+  See citation("helsinki")
 }
 \keyword{data}
 \keyword{datasets}

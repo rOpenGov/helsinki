@@ -1,8 +1,8 @@
 Package: helsinki
 Type: Package
 Title: Helsinki R Tools
-Version: 0.9.04
-Date: 2013-12-24
+Version: 0.9.05
+Date: 2013-12-25
 Author: Leo Lahti, Juuso Parkkinen, Joona Lehtomaki
 Maintainer: Leo Lahti <louhos@googlegroups.com>
 Description: Helsinki R Tools
@@ -18,6 +18,7 @@ Imports:
 URL: http://ropengov.github.com/helsinki
 LazyLoad: yes
 Collate:
+    'TODO.R'
     'HKK.R'
     'HRI.R'
     'HSY.R'

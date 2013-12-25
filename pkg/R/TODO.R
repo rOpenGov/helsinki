@@ -1,3 +1,62 @@
+#' Access Omakaupunki data
+#'
+#' Access Omakaupunki data through the API. Using the API requireds a password 
+#' and an API key. For more details and API documentation see
+#' http://blogit.hs.fi/hsnext/omakaupungin-meno-ja-palvelutiedot-avoimena-rajapintana
+#' 
+#' @param query API query, e.g. "event" or "directory" (services)
+#' @param login Personal username (required)
+#' @param password Personal password (required)
+#' @param api_key Personal API key (required)
+#' @param ... Additional parameters to the API (optional). See details from the API documentation
+#' The data is licensed under CC BY-NC-SA 3.0. 
+#'
+#' @return List of results
+#'
+#' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
+#' @examples # event.categories <- GetOmakaupunki("event/categories", LOGIN, PASSWORD, API)
+GetOmakaupunki <- function(query, login, password, api_key, ...) {
+  
+  .InstallMarginal("RCurl")
+  .InstallMarginal("rjson")
+
+  api.url <- "http://api.omakaupunki.fi/v1/"
+  query.url <- paste(api.url, query, sep="")
+  curl <- RCurl::getCurlHandle(cookiefile = "")
+  params <- list(login=login, password=password, api_key=api_key, ...)
+  val <- RCurl::getForm(query.url, .params=params, curl=curl, binary=FALSE)
+  res <- rjson::fromJSON(val)
+  return(res)
+}
+
+#' Access Paakaupunkiseudun Palvelukartta data
+#'
+#' Access Paakaupunkiseudun Palvelukartta data from the it's API (version 2). 
+#' Using the API is free. For more details and API documentation see
+#' http://www.hel.fi/palvelukarttaws/rest/ver2.html.
+#' For licensing terms pf the data see http://www.hel2.fi/palvelukartta/REST.html.
+#' 
+#' @param category API query category, e.g. "service"
+#' @param ... Additional parameters to the API (optional). See details from the API documentation
+#'
+#' @return List of results
+#'
+#' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
+#' @examples # pk.services <- GetPalvelukartta("service")
+
+GetPalvelukartta <- function(category, ...) {
+  
+  api.url <- paste("http://www.hel.fi/palvelukarttaws/rest/v2/", category, "/", sep="")
+  curl <- RCurl::getCurlHandle(cookiefile = "")
+  params <- list(...)
+  val <- RCurl::getForm(api.url, .params=params, curl=curl)
+  res <- rjson::fromJSON(val)
+  return(res)
+}
+
+
+
+
 #' Retrieve HKK data: Helsingin kaupungin rakennusrekisterin ote 
 #'
 #' Retrieves data from Helsinki Real Estate Department (Helsingin 

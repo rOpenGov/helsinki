@@ -1,4 +1,4 @@
 ~/bin/R-3.0.1/bin/R CMD BATCH document.R
 ~/bin/R-3.0.1/bin/R CMD check pkg --as-cran
 ~/bin/R-3.0.1/bin/R CMD build pkg
-~/bin/R-3.0.1/bin/R CMD INSTALL helsinki_0.9.05.tar.gz
+~/bin/R-3.0.1/bin/R CMD INSTALL helsinki_0.9.06.tar.gz

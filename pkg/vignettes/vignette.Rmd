@@ -31,24 +31,6 @@ library(helsinki)
 Further installation and development instructions at the [home
 page](http://ropengov.github.com/helsinki).
 
-## Helsinki Region Infoshare (HRI)
-
-### Municipality maps (Aluejakokartat)
-
-Get [Helsinki Region Infoshare](http://www.hri.fi) (HRI) municipality maps:
-
-```{r hri-1, warning=FALSE, message=FALSE}
-# Load library
-#  http://ropengov.github.com/helsinki/
-library(helsinki)
-
-# Get the maps
-pienalue <- GetHRIaluejakokartat()
-
-# Inspect the data
-head(pienalue$pienalue.df)
-```
-
 
 ## Helsinki region environmental services (Helsingin seudun ympäristöpalvelut HSY)
 
@@ -93,28 +75,37 @@ df <- as.data.frame(sp)
 head(df)
 ```
 
-
 ### Further HSY data
 
 [HSY website](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) has data for 2010-2011. More is coming, add later and allow temporal analysis.
-
-For further usage examples, see
-[Louhos-blog](http://louhos.wordpress.com) and
-[takomo](https://github.com/louhos/takomo/tree/master/Helsinki).
 
 
 ## Helsinki Real Estate Department (Helsingin kaupungin kiinteistövirasto, HKK)
 
 Retrieve [HKK](http://kartta.hel.fi/avoindata/index.html) data sets.
 
-### Election districts (Aanestysaluejako)
+### Helsinki address information
 
-Aanestysaluejako: data set includes the elections districts for the cities of the capital region (Helsinki, Espoo, Kauniainen and Vantaa) in MapInfo-format. CRS is Finland KKJ2 (EPSG: 2392). All feature datasets have different schemas with varying amount of information. Additionally in HKK database there is an Excel file (Aanestyaluekoodit.xls) with information for all cities, such as voting district names and codes.
-
-```{r hkk-example2, message=FALSE}
-sp <- GetHKK("Aanestysaluejako")
+```{r hkk-addressH, message=FALSE}
+res <- DownloadAddressInfo("Helsingin osoiteluettelo"); 
+dat <- GetAddressInfo( res$local.file )
+head(dat)
 ```
 
+```{r hkk-addressS, message=FALSE}
+res <- DownloadAddressInfo("Seudullinen osoiteluettelo"); 
+dat <- GetAddressInfo( res$local.file )
+head(dat)
+```
+
+### Election districts (Aanestysaluejako)
+
+Aanestysaluejako data set includes the elections districts for the cities of the capital region (Helsinki, Espoo, Kauniainen and Vantaa) in MapInfo-format. CRS is Finland KKJ2 (EPSG: 2392). 
+
+```{r hkk-electiondistricts, message=FALSE}
+# Aanestysaluejako
+sp <- GetElectionDistrictsHelsinki()
+```
 
 ### Statistics districts (Tilastoalue)
 
@@ -171,6 +162,10 @@ package and and the appropriate data provider, including a url
 link. Kindly cite the R package as 'Leo Lahti, Juuso Parkkinen ja
 Joona Lehtomäki (2013). helsinki R package. URL:
 http://ropengov.github.io/helsinki'.
+
+For further usage examples, see
+[Louhos-blog](http://louhos.wordpress.com) and
+[takomo](https://github.com/louhos/takomo/tree/master/Helsinki).
 
 
 ### Session info

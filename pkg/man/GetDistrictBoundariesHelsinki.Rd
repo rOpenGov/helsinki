@@ -2,15 +2,13 @@
 \alias{GetDistrictBoundariesHelsinki}
 \title{Retrieve District Boundaries in Helsinki}
 \usage{
-  GetDistrictBoundariesHelsinki(map)
+  GetDistrictBoundariesHelsinki(map, data.dir = ".")
 }
 \arguments{
   \item{map}{A string. Specify the name of the Helsinki
   District Boundary data set to retrieve. Available
-  options: kunta, pienalue, pienalue_piste, suuralue,
-  suuralue_piste, tilastoalue, tilastoalue_piste,
-  aluejako_alueet_ja_pisteet (the last one gives all maps
-  in a single list of shape objects)}
+  options: c("kunta", "pienalue", "suuralue",
+  "tilastoalue")}
 }
 \value{
   a list of Shape objects (from SpatialPolygonsDataFrame
@@ -24,9 +22,21 @@
 }
 \details{
   The data (C) 2011 Helsingin kaupunkimittausosasto.
+
+  Also aluejako_alueet_ja_pisteet file is available in the
+  original HKK zip file. This contains all maps in a single
+  list of shape objects and is thus redundant. We have
+  ignored this for simplicity. There are also map versions
+  "pienalue_piste"; "suuralue_piste"; "tilastoalue_piste".
+  These point maps are not currently implemented.
+}
+\note{
+  This function replaces sorvi::GetHRIaluejakokartat; The
+  data is now retrieved directly from HKK.
 }
 \examples{
-# sp <- GetDistrictBoundariesHelsinki("tilastoalue");
+# res <- GetDistrictBoundariesHelsinki("tilastoalue");
+          # sp <- res$shape; df <- res$data
           # pdf("~/tmp/tmp.pdf"); PlotShape(sp, "Name"); dev.off()
 }
 \author{

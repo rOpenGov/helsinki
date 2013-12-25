@@ -20,8 +20,8 @@ LazyLoad: yes
 Collate:
     'TODO.R'
     'HKK.R'
-    'HRI.R'
     'HSY.R'
     'firstlib.R'
     'helsinki-package.R'
     'internal.R'
+    'GIS.R'

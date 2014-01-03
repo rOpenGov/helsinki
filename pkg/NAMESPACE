@@ -1,8 +1,6 @@
 export(.InstallMarginal)
 export(DownloadAddressInfo)
 export(GetAddressInfo)
-export(GetDistrictBoundariesHelsinki)
-export(GetElectionDistrictsHelsinki)
 export(GetHSY)
 importFrom(rgdal,ogrListLayers)
 importFrom(rgdal,readOGR)

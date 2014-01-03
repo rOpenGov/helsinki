@@ -56,8 +56,6 @@ GetPalvelukartta <- function(category, ...) {
 }
 
 
-
-
 #' Retrieve HKK data: Helsingin kaupungin rakennusrekisterin ote 
 #'
 #' Retrieves data from Helsinki Real Estate Department (Helsingin 
@@ -78,7 +76,7 @@ GetPalvelukartta <- function(category, ...) {
 
 GetHelsinkiBuildingRegistry <- function( which.data ) {
 
-  # TODO did not manage t read the mapinfo files in R with rgdal.
+  # TODO did not manage to read the mapinfo files in R with rgdal.
   # Check how to do, implement and export 
   # Also note the metadata Excel that is available  
 

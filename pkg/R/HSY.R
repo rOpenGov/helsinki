@@ -16,12 +16,12 @@
 #'
 #' @return Shape object (from SpatialPolygonsDataFrame class)
 #' @export
-#' @importFrom sorvi ReadShape
+#' @importFrom gisfi ReadShape
 #' @importFrom rgdal readOGR
 #' @references
 #' See citation("helsinki") 
 #' @author Leo Lahti \email{louhos@@googlegroups.com}
-#' @examples # sp <- get.hsy("Vaestoruudukko")
+#' @examples # sp <- GetHSY("Vaestoruudukko")
 #' @keywords utilities
 
 GetHSY <- function (which.data = "Vaestoruudukko") {
@@ -33,7 +33,7 @@ GetHSY <- function (which.data = "Vaestoruudukko") {
 
   if (which.data %in% c("Vaestoruudukko", "Rakennustietoruudukko", "SeutuRAMAVA")) {
 
-    # Vaestotietoruudukko: Ruutukohtaista tietoa vaeston lukumaarasta,
+    # Vaestoruudukko: Ruutukohtaista tietoa vaeston lukumaarasta,
     # ikajakaumasta ja asumisvaljyydesta  
 
     # Rakennustietoruudukko: Ruutukohtaista tietoa rakennusten
@@ -51,7 +51,7 @@ GetHSY <- function (which.data = "Vaestoruudukko") {
                   
   } else if (which.data == "key.KATAKER") {
 
-    # Identifiers for different building types were manually scraped 3.12.2012 from
+    # Building type identifiers were manually scraped 3.12.2012 from
     # http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf
     # (C) HSY 2011 (http://www.hsy.fi)
 
@@ -85,9 +85,13 @@ GetHSY <- function (which.data = "Vaestoruudukko") {
       sp[[nam]] <-  factor(iconv(sp[[nam]], from = "latin1", to = "UTF-8"))
     }
   } else if (which.data == "Rakennustietoruudukko") {
-    sp <- sorvi::ReadShape("Rakennustietoruudukko_2010_region.shp")
+
+    sp <- gisfi::ReadShape("Rakennustietoruudukko_2010_region.shp")
+
   } else if (which.data == "Vaestoruudukko") {
-    sp <- sorvi::ReadShape("Vaestoruudukko_2010_region.shp")
+
+    sp <- gisfi::ReadShape("Vaestoruudukko_2010_region.shp")
+
   }
 
   sp

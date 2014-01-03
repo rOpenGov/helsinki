@@ -4,17 +4,17 @@
 #' Package: \tab helsinki\cr
 #' Type: \tab Package\cr
 #' Version: \tab See sessionInfo() or DESCRIPTION file\cr
-#' Date: \tab 2013\cr
+#' Date: \tab 2014\cr
 #' License: \tab FreeBSD\cr
 #' LazyLoad: \tab yes\cr
 #' }
 #'
-#' R Tools for helsinki API
+#' R Tools for Helsinki region, Finland
 #'
 #' @name helsinki-package
 #' @aliases helsinki
 #' @docType package
-#' @title R Tools for helsinki API
+#' @title R Tools for Helsinki 
 #'
 #' @author Leo Lahti, Juuso Parkkinen and Joona Lehtomaki \email{louhos@@googlegroups.com}
 #' @references

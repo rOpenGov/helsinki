@@ -6,8 +6,8 @@
 Helsinki  R tools
 ===========
 
-This is an [rOpenGov](http://ropengov.github.com/helsinki) R package
-providing tools for open Helsinki data.
+The helsinki R package is part of the
+[rOpenGov](http://ropengov.github.com/helsinki) project.
 
 
 ### Installation
@@ -35,10 +35,10 @@ page](http://ropengov.github.com/helsinki).
 ## Helsinki region environmental services (Helsingin seudun ympäristöpalvelut HSY)
 
 
+
 ### Population grid
 
-Download population information from [HSY database](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) ((C) 2011 HSY) and visualize on the Helsinki map. For data documentation, see [HSY website](http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf).
-
+Download population information from [HSY database](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) ((C) 2011 HSY) and visualize on the Helsinki map. For data documentation, see [HSY website](http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf). Population size, density, and age structure per grid.
 
 ```{r hsy-example, fig.width=8, fig.height=8, message=FALSE}
 # http://ropengov.github.com/helsinki
@@ -47,31 +47,50 @@ library(helsinki)
 # Get population grid (Vaestoruudukko) 
 sp <- GetHSY("Vaestoruudukko")  
 
-# Define limits of the color scale
-at <- c(seq(0, 2000, 250), Inf) 
-
 # Visualize population grid
-q <- PlotShape(sp, "ASUKKAITA", type = "oneway", at = at, ncol = length(at)) 
+#library(gisfi)
+# Define limits of the color scale
+#at <- c(seq(0, 2000, 250), Inf) 
+#q <- PlotShape(sp, "ASUKKAITA", type = "oneway", at = at, ncol = length(at)) 
 ```
-
-The following data sets are available (specified in the GetHSY argument):
-
- * Vaestotietoruudukko: population size, density, and age structure per grid
-
- * Rakennustietoruudukko: Grid-level (500mx500m) information on
-   building counts (lukumaara), area (kerrosala), usage
-   (kayttotarkoitus), region efficiency (aluetehokkuus).
-
- * seutuRAMAVA: building area capacity per municipality region
-   (kaupunginosittain summattu tieto rakennusmaavarannosta)
-
-
 
 Inspect data manually. Some rarely populated grids are censored with
 '99' to guarantee privacy.
 
 ```{r hsy-example2, message=FALSE}
 df <- as.data.frame(sp)   
+head(df)
+```
+
+### Helsinki building information
+
+Information of buildings in Helsinki region. Data obtained from (C)
+HSY 2011. Grid-level (500mx500m) information on building counts
+(lukumaara), built area (kerrosala), usage (kayttotarkoitus), region
+efficiency (aluetehokkuus).
+
+```{r hsy-examplerak, message=FALSE}
+sp <- GetHSY("Rakennustietoruudukko")  
+df <- as.data.frame(sp)   
+head(df)
+```
+
+### Helsinki building area capacity
+
+Building area capacity per municipal region (kaupunginosittain summattu tieto rakennusmaavarannosta). Data obtained from (C) HSY 2011. 
+
+```{r hsy-exampleramava, message=FALSE}
+sp <- GetHSY("seutuRAMAVA")  
+df <- as.data.frame(sp)   
+head(df)
+```
+
+### Building category codes
+
+Mapping for building categories from the HSY documentation. Data obtained manually from (C) HSY 2011. 
+
+```{r hsy-examplekataker, message=FALSE}
+df <- GetHSY("key.KATAKER")  
 head(df)
 ```
 
@@ -98,60 +117,6 @@ dat <- GetAddressInfo( res$local.file )
 head(dat)
 ```
 
-### Election districts (Aanestysaluejako)
-
-Aanestysaluejako data set includes the elections districts for the cities of the capital region (Helsinki, Espoo, Kauniainen and Vantaa) in MapInfo-format. CRS is Finland KKJ2 (EPSG: 2392). 
-
-```{r hkk-electiondistricts, message=FALSE}
-# Aanestysaluejako
-sp <- GetElectionDistrictsHelsinki()
-```
-
-### Statistics districts (Tilastoalue)
-
-```{r hkk-tilastoalue, message=FALSE}
-id <- "tilastoalue"
-res <- GetDistrictBoundariesHelsinki(id); 
-sp <- res$shape; 
-df <- res$data
-head(df)
-PlotShape(sp, "Name")
-```
-
-### Municipalities (Kunta)
-
-```{r hkk-kunta, message=FALSE}
-id <- "kunta"
-res <- GetDistrictBoundariesHelsinki(id); 
-sp <- res$shape; 
-df <- res$data
-head(df)
-PlotShape(sp, "Name")
-```
-
-### Major districts (Suuralue)
-
-```{r hkk-suuralue, message=FALSE}
-id <- "suuralue"
-res <- GetDistrictBoundariesHelsinki(id); 
-sp <- res$shape; 
-df <- res$data
-head(df)
-PlotShape(sp, "Name")
-```
-
-### Minor districts (Pienalue)
-
-```{r hkk-pienalue, message=FALSE}
-id <- "pienalue"
-res <- GetDistrictBoundariesHelsinki(id); 
-sp <- res$shape; 
-df <- res$data
-head(df)
-PlotShape(sp, "Name")
-```
-
-
 
 ### Licensing and Citations
 
@@ -160,7 +125,7 @@ This work can be freely used, modified and distributed under the
 license](http://en.wikipedia.org/wiki/BSD\_licenses). Cite Helsinki R
 package and and the appropriate data provider, including a url
 link. Kindly cite the R package as 'Leo Lahti, Juuso Parkkinen ja
-Joona Lehtomäki (2013). helsinki R package. URL:
+Joona Lehtomäki (2013-2014). helsinki R package. URL:
 http://ropengov.github.io/helsinki'.
 
 For further usage examples, see

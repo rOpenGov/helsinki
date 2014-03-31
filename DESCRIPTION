@@ -25,3 +25,4 @@ Collate:
     'firstlib.R'
     'helsinki-package.R'
     'internal.R'
+    'utils.R'

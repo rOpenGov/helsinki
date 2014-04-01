@@ -11,10 +11,7 @@ Depends:
     R (>= 3.0.1),
     methods,
     rjson,
-    RCurl
-Imports:
-    sorvi,
-    gisfi,
-    rgdal
+    RCurl,
+    maptools
 URL: http://ropengov.github.com/helsinki
 LazyLoad: yes

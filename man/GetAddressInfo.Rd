@@ -5,9 +5,9 @@
 GetAddressInfo(local.file)
 }
 \arguments{
-  \item{which.data}{A string. Specify the name of the HKK
-  data set to retrieve. Options: "Helsingin
-  osoiteluettelo", "Seudullinen osoiteluettelo"}
+  \item{local.file}{A filename pointing to the downloaded
+  data, either "Helsingin osoiteluettelo" or "Seudullinen
+  osoiteluettelo"}
 }
 \value{
 data frame

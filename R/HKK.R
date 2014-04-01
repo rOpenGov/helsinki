@@ -86,7 +86,7 @@ DownloadAddressInfo <- function( which.data, data.dir = NULL ) {
 #'
 #' The data (C) 2011 Helsingin kaupunkimittausosasto.
 #' 
-#' @param which.data  A string. Specify the name of the HKK data set to retrieve. Options: "Helsingin osoiteluettelo", "Seudullinen osoiteluettelo"
+#' @param local.file  A filename pointing to the downloaded data, either "Helsingin osoiteluettelo" or "Seudullinen osoiteluettelo"
 #'
 #' @return data frame
 #' @export

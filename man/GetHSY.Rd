@@ -2,7 +2,7 @@
 \alias{GetHSY}
 \title{Retrieve HSY data}
 \usage{
-  GetHSY(which.data = "Vaestoruudukko")
+GetHSY(which.data = "Vaestoruudukko")
 }
 \arguments{
   \item{which.data}{A string. Specify the name of the
@@ -14,28 +14,27 @@
   documentation.}
 }
 \value{
-  Shape object (from SpatialPolygonsDataFrame class)
+Shape object (from SpatialPolygonsDataFrame class)
 }
 \description{
-  Retrieves data from Helsinki Region Environmental
-  Services Authority (Helsingin seudun ymparistopalvelu
-  HSY)
-  http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx
-  For data description (in Finnish) see:
-  http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf.
-  The data copyright (C) HSY 2011.
+Retrieves data from Helsinki Region Environmental Services
+Authority (Helsingin seudun ymparistopalvelu HSY)
+http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx
+For data description (in Finnish) see:
+http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf.
+The data copyright (C) HSY 2011.
 }
 \details{
-  Arguments:
+Arguments:
 }
 \examples{
-# sp <- get.hsy("Vaestoruudukko")
+# sp <- GetHSY("Vaestoruudukko")
 }
 \author{
-  Leo Lahti \email{louhos@googlegroups.com}
+Leo Lahti \email{louhos@googlegroups.com}
 }
 \references{
-  See citation("helsinki")
+See citation("helsinki")
 }
 \keyword{utilities}
 

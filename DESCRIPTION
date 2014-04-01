@@ -18,11 +18,3 @@ Imports:
     rgdal
 URL: http://ropengov.github.com/helsinki
 LazyLoad: yes
-Collate:
-    'TODO.R'
-    'HKK.R'
-    'HSY.R'
-    'firstlib.R'
-    'helsinki-package.R'
-    'internal.R'
-    'utils.R'

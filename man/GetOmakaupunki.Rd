@@ -2,7 +2,7 @@
 \alias{GetOmakaupunki}
 \title{Access Omakaupunki data}
 \usage{
-  GetOmakaupunki(query, login, password, api_key, ...)
+GetOmakaupunki(query, login, password, api_key, ...)
 }
 \arguments{
   \item{query}{API query, e.g. "event" or "directory"
@@ -19,18 +19,18 @@
   licensed under CC BY-NC-SA 3.0.}
 }
 \value{
-  List of results
+List of results
 }
 \description{
-  Access Omakaupunki data through the API. Using the API
-  requireds a password and an API key. For more details and
-  API documentation see
-  http://blogit.hs.fi/hsnext/omakaupungin-meno-ja-palvelutiedot-avoimena-rajapintana
+Access Omakaupunki data through the API. Using the API
+requireds a password and an API key. For more details and
+API documentation see
+http://blogit.hs.fi/hsnext/omakaupungin-meno-ja-palvelutiedot-avoimena-rajapintana
 }
 \examples{
 # event.categories <- GetOmakaupunki("event/categories", LOGIN, PASSWORD, API)
 }
 \author{
-  Juuso Parkkinen \email{louhos@googlegroups.com}
+Juuso Parkkinen \email{louhos@googlegroups.com}
 }
 

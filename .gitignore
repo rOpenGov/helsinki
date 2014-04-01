@@ -1,6 +1,5 @@
 # History files
 .Rhistory
-
 # Example code in package build process
 *-Ex.R
 *~
@@ -8,3 +7,5 @@
 *.tar.gz
 *.Rcheck
 .Rproj.user
+helsinki.Rproj
+.Rbuildignore

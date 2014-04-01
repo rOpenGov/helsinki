@@ -2,28 +2,28 @@
 \name{helsinki-package}
 \alias{helsinki}
 \alias{helsinki-package}
-\title{R Tools for helsinki API}
+\title{R Tools for Helsinki}
 \description{
-  Brief summary of the helsinki package
+Brief summary of the helsinki package
 }
 \details{
-  \tabular{ll}{ Package: \tab helsinki\cr Type: \tab
-  Package\cr Version: \tab See sessionInfo() or DESCRIPTION
-  file\cr Date: \tab 2013\cr License: \tab FreeBSD\cr
-  LazyLoad: \tab yes\cr }
+\tabular{ll}{ Package: \tab helsinki\cr Type: \tab
+Package\cr Version: \tab See sessionInfo() or DESCRIPTION
+file\cr Date: \tab 2014\cr License: \tab FreeBSD\cr
+LazyLoad: \tab yes\cr }
 
-  R Tools for helsinki API
+R Tools for Helsinki region, Finland
 }
 \examples{
 # library(helsinki)
 }
 \author{
-  Leo Lahti, Juuso Parkkinen and Joona Lehtomaki
-  \email{louhos@googlegroups.com}
+Leo Lahti, Juuso Parkkinen and Joona Lehtomaki
+\email{louhos@googlegroups.com}
 }
 \references{
-  See citation("helsinki")
-  \url{http://ropengov.github.com/helsinki}
+See citation("helsinki")
+\url{http://ropengov.github.com/helsinki}
 }
 \keyword{package}
 

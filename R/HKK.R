@@ -70,7 +70,7 @@ DownloadAddressInfo <- function( which.data, data.dir = NULL ) {
   }
 
   # Remove temporary directory
-  unlink(data.dir, recursive=T)
+#  unlink(data.dir, recursive=T)
 
   list(local.file = f, local.path = data.dir, source.url = remote.zip, time = date(), which.data = which.data)
 

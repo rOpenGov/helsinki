@@ -1,8 +1,8 @@
-\name{DownloadAddressInfo}
-\alias{DownloadAddressInfo}
+\name{get_helsinki_address_info}
+\alias{get_helsinki_address_info}
 \title{Retrieve address information in Helsinki region}
 \usage{
-DownloadAddressInfo(which.data, data.dir = NULL)
+get_helsinki_address_info(which.data, data.dir = tempdir())
 }
 \arguments{
   \item{which.data}{A string. Specify the name of the HKK
@@ -27,10 +27,10 @@ http://kartta.hel.fi/avoindata/index.html
 The data (C) 2011 Helsingin kaupunkimittausosasto.
 }
 \examples{
-# tab <- GetAddressInfo("Helsingin osoiteluettelo")
+# tab <- get_helsinki_address_info("Helsingin osoiteluettelo")
 }
 \author{
-Joona Lehtomaki and Leo Lahti
+Juuso Parkkinen, Joona Lehtomaki and Leo Lahti
 \email{louhos@googlegroups.com}
 }
 \references{

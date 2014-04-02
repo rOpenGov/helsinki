@@ -1,17 +1,21 @@
-\name{GetHSY}
-\alias{GetHSY}
+\name{get_HSY_data}
+\alias{get_HSY_data}
 \title{Retrieve HSY data}
 \usage{
-GetHSY(which.data = "Vaestoruudukko")
+get_HSY_data(which.data = NULL, which.year = 2013, data.dir = tempdir())
 }
 \arguments{
   \item{which.data}{A string. Specify the name of the
-  retrieved HSY data set. Options: Vaestoruudukko;
-  Rakennustietoruudukko; SeutuRAMAVA; key.KATAKER. The
-  first three are documented in HSY data description
-  document (see above). The key.KATAKER contains manually
-  parsed mapping for building categories from the HSY
-  documentation.}
+  retrieved HSY data set. Options: Vaestotietoruudukko;
+  Rakennustietoruudukko; SeutuRAMAVA_kosa;
+  SeutuRAMAVA_tila. These are documented in HSY data
+  description document (see above).}
+
+  \item{which.year}{An integer. Specify the year for the
+  data to be retrieved.}
+
+  \item{data.dir}{A string. Specify a temporary folder for
+  storing downloaded data.}
 }
 \value{
 Shape object (from SpatialPolygonsDataFrame class)
@@ -31,7 +35,8 @@ Arguments:
 # sp <- GetHSY("Vaestoruudukko")
 }
 \author{
-Leo Lahti \email{louhos@googlegroups.com}
+Juuso Parkkinen and Leo Lahti
+\email{louhos@googlegroups.com}
 }
 \references{
 See citation("helsinki")

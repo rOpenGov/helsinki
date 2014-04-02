@@ -13,7 +13,11 @@
 #' The data is licensed under CC BY-NC-SA 3.0. 
 #'
 #' @return List of results
-#'
+#' @export
+#' @importFrom RCurl getCurlHandle
+#' @importFrom RCurl getForm
+#' @importFrom rjson fromJSON
+#' 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
 #' @examples # event.categories <- GetOmakaupunki("event/categories", LOGIN, PASSWORD, API)
 GetOmakaupunki <- function(query, login, password, api_key, ...) {
@@ -41,7 +45,11 @@ GetOmakaupunki <- function(query, login, password, api_key, ...) {
 #' @param ... Additional parameters to the API (optional). See details from the API documentation
 #'
 #' @return List of results
-#'
+#' @export
+#' @importFrom RCurl getCurlHandle
+#' @importFrom RCurl getForm
+#' @importFrom rjson fromJSON
+#' 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
 #' @examples # pk.services <- GetPalvelukartta("service")
 
@@ -67,8 +75,6 @@ GetPalvelukartta <- function(category, ...) {
 #' @param which.data  A string. Specify the name of the data set to retrieve. 
 #'
 #' @return a list of Shape objects (from SpatialPolygonsDataFrame class)
-#' @importFrom rgdal readOGR
-#' @importFrom rgdal ogrListLayers
 #' @references
 #' See citation("helsinki") 
 #' @author Leo Lahti \email{louhos@@googlegroups.com}

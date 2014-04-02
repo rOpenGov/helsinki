@@ -13,6 +13,7 @@
 #'
 #' @return List with the following elements: local.file (local file name); local.path (download directory); source.url (url of the original data file); time (date and time of data download); which.data (data set to retrieve)
 #' @export
+#' @importFrom utils unzip
 #' @references
 #' See citation("helsinki") 
 #' @author Juuso Parkkinen, Joona Lehtomaki and Leo Lahti \email{louhos@@googlegroups.com}
@@ -49,7 +50,7 @@ get_helsinki_address_info <- function(which.data, data.dir=tempdir()) {
   download.file(remote.zip, destfile = local.zip)
   
   # Unzip the downloaded zip file
-  unzip(local.zip, exdir = data.dir)
+  utils::unzip(local.zip, exdir = data.dir)
   
   message(paste("For detailed description of", which.data, "data, see description PDF file:", pdf.url))
   

@@ -18,7 +18,11 @@
 #' @author Juuso Parkkinen, Joona Lehtomaki and Leo Lahti \email{louhos@@googlegroups.com}
 #' @examples # tab <- get_helsinki_address_info("Helsingin osoiteluettelo")
 
-get_helsinki_address_info <- function(which.data, data.dir = tempdir()) {
+get_helsinki_address_info <- function(which.data, data.dir=tempdir()) {
+  
+  # Create data.dir if it does not exist
+#  if (!file.exists(data.dir))
+  dir.create(data.dir)
   
   # Define files based on chosen data
   if (which.data == "Seudullinen osoiteluettelo") {

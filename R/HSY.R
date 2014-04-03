@@ -150,10 +150,18 @@ get_HSY_data <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) 
     sp@data <- temp
     message("\nAdded KATAKER descriptions to Rakennustietoruudukko")
   }
-
+  
+  # Fix characters in SeutuRAMAVA data
+  if (which.data=="SeutuRAMAVA_kosa") {
+    for (nam in c("OMLAJI_1S", "OMLAJI_2S", "OMLAJI_3S", "NIMI", "NIMI_SE"))    
+      sp[[nam]] <-  factor(iconv(sp[[nam]], from = "latin1", to = "UTF-8"))
+  }
+  if (which.data=="SeutuRAMAVA_tila") {
+    for (nam in c("OMLAJI_1S", "OMLAJI_2S", "OMLAJI_3S", "NIMI"))    
+      sp[[nam]] <-  factor(iconv(sp[[nam]], from = "latin1", to = "UTF-8"))
+  }
+  
   message("\nData loaded succesfully!")
-  message("TODO: Fix proj4string")
-  message("TODO: Fix characters")
   return(sp)
 }
 
@@ -243,55 +251,6 @@ kataker.key <- function () {
   
   KATAKER.key
 }
-
-  
-#   } else if (which.data == "key.KATAKER") {
-#     
-#     # Building type identifiers were manually scraped 3.12.2012 from
-#     # http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf
-#     # (C) HSY 2011 (http://www.hsy.fi)
-#     
-#     # Get ID descriptions
-#     KATAKER.key <- kataker.key()
-#     
-#     res <- data.frame(list(key = as.integer(names(KATAKER.key)), 
-#                            description = KATAKER.key))
-#     return(res)
-#     
-#   } else {
-#     stop("Provide proper data name.")
-#   }
-#   
-#   # Unzip the files
-#   
-# #   .InstallMarginal("utils")
-# #   
-# #   unzip(destfile)
-#   
-#   if (which.data == "SeutuRAMAVA") {
-#     
-#     # Need to read with rgdal, the readShapePoly had problems in
-#     # handling this file
-#     .InstallMarginal("rgdal")
-#     
-#     sp <- rgdal::readOGR(".", layer = "SeutuRAMAVA_2010")
-#     # Convert to UTF-8 where needed 
-#     nams <- c("OMLAJI_1S", "OMLAJI_2S", "OMLAJI_3S", "NIMI", "NIMI_SE")
-#     for (nam in nams) {    
-#       sp[[nam]] <-  factor(iconv(sp[[nam]], from = "latin1", to = "UTF-8"))
-#     }
-#   } else if (which.data == "Rakennustietoruudukko") {
-#     
-#     sp <- gisfi::ReadShape("Rakennustietoruudukko_2010_region.shp")
-#     
-#   } else if (which.data == "Vaestoruudukko") {
-#     
-#     sp <- gisfi::ReadShape("Vaestoruudukko_2010_region.shp")
-#     
-#   }
-#   
-#   sp
-# }
 
 
 # # The combination of some data and an aching desire for an answer does not

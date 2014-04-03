@@ -46,7 +46,7 @@ get_HKK_address_data <- function(which.data, data.dir=tempdir()) {
   # Download the data
   remote.zip <- paste("http://kartta.hel.fi/avoindata/aineistot/", zipfile, sep = "")
   local.zip <- file.path(data.dir, zipfile)
-  message(paste("Dowloading", remote.zip, "\ninto", local.zip))
+  message("Dowloading ", remote.zip, "\ninto ", local.zip, "\n")
   utils::download.file(remote.zip, destfile = local.zip)
   
   # Unzip the downloaded zip file

@@ -8,7 +8,7 @@ citEntry(entry="misc",
 	   person(given ="Joona", family="Lehtomaki")
          ),
 	 journal = "",
-	 year = "2013",
+	 year = "2014",
          textVersion =
          paste("(C) Leo Lahti, Juuso Parkkinen and Joona Lehtomaki 2013.",
                "helsinki R package",

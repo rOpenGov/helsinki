@@ -32,7 +32,7 @@ The data copyright (C) HSY 2011.
 Arguments:
 }
 \examples{
-# sp <- GetHSY("Vaestoruudukko")
+# sp <- get_HSY_data("Vaestoruudukko")
 }
 \author{
 Juuso Parkkinen and Leo Lahti

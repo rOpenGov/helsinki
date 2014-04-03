@@ -1,8 +1,8 @@
-\name{get_helsinki_address_info}
-\alias{get_helsinki_address_info}
+\name{get_HKK_address_data}
+\alias{get_HKK_address_data}
 \title{Retrieve address information in Helsinki region}
 \usage{
-get_helsinki_address_info(which.data, data.dir = tempdir())
+get_HKK_address_data(which.data, data.dir = tempdir())
 }
 \arguments{
   \item{which.data}{A string. Specify the name of the HKK

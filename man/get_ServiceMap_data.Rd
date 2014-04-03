@@ -1,8 +1,8 @@
-\name{GetPalvelukartta}
-\alias{GetPalvelukartta}
+\name{get_ServiceMap_data}
+\alias{get_ServiceMap_data}
 \title{Access Paakaupunkiseudun Palvelukartta data}
 \usage{
-GetPalvelukartta(category, ...)
+get_ServiceMap_data(category, ...)
 }
 \arguments{
   \item{category}{API query category, e.g. "service"}
@@ -22,7 +22,7 @@ licensing terms pf the data see
 http://www.hel2.fi/palvelukartta/REST.html.
 }
 \examples{
-# pk.services <- GetPalvelukartta("service")
+# pk.services <- get_ServiceMap_data("service")
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

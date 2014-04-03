@@ -19,14 +19,16 @@
 #'
 #' @return Shape object (from SpatialPolygonsDataFrame class)
 #' @export
+#' @importFrom utils download.file
+#' @importFrom utils unzip
 #' @importFrom maptools readShapePoly
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen and Leo Lahti \email{louhos@@googlegroups.com}
-#' @examples # sp <- GetHSY("Vaestoruudukko")
+#' @examples # sp <- get_HSY_data("Vaestoruudukko")
 #' @keywords utilities
 
 get_HSY_data <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
-  
+    
   if (is.null(which.data)) {
     message("Available HSY datasets:
   'Vaestotietoruudukko': Ruutukohtaista tietoa vaeston lukumaarasta, ikajakaumasta ja asumisvaljyydesta. Vuodet: 1997-2003, 2008-2013.
@@ -158,7 +160,7 @@ get_HSY_data <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) 
 
 kataker.key <- function () {
   KATAKER.key <- c(
-    "1"   = "Yhden asunnon talot", 
+    "11"   = "Yhden asunnon talot", 
     "12"  = "Kahden asunnon talot", 
     "13"  = "Muut erilliset pientalot", 
     "21"  = "Rivitalot", 

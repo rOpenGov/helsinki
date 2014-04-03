@@ -13,17 +13,17 @@
 #'
 #' @return List with the following elements: local.file (local file name); local.path (download directory); source.url (url of the original data file); time (date and time of data download); which.data (data set to retrieve)
 #' @export
+#' @importFrom utils download.file
 #' @importFrom utils unzip
-#' @references
-#' See citation("helsinki") 
+#' @references See citation("helsinki") 
 #' @author Juuso Parkkinen, Joona Lehtomaki and Leo Lahti \email{louhos@@googlegroups.com}
 #' @examples # tab <- get_helsinki_address_info("Helsingin osoiteluettelo")
 
-get_helsinki_address_info <- function(which.data, data.dir=tempdir()) {
-  
+get_HKK_address_data <- function(which.data, data.dir=tempdir()) {
+    
   # Create data.dir if it does not exist
-#  if (!file.exists(data.dir))
-  dir.create(data.dir)
+  if (!file.exists(data.dir))
+    dir.create(data.dir)
   
   # Define files based on chosen data
   if (which.data == "Seudullinen osoiteluettelo") {
@@ -47,7 +47,7 @@ get_helsinki_address_info <- function(which.data, data.dir=tempdir()) {
   remote.zip <- paste("http://kartta.hel.fi/avoindata/aineistot/", zipfile, sep = "")
   local.zip <- file.path(data.dir, zipfile)
   message(paste("Dowloading", remote.zip, "\ninto", local.zip))
-  download.file(remote.zip, destfile = local.zip)
+  utils::download.file(remote.zip, destfile = local.zip)
   
   # Unzip the downloaded zip file
   utils::unzip(local.zip, exdir = data.dir)
@@ -61,6 +61,63 @@ get_helsinki_address_info <- function(which.data, data.dir=tempdir()) {
   return(tab)
 }
 
+#' Retrieve HKK data: Helsingin kaupungin rakennusrekisterin ote 
+#'
+#' Retrieves data from Helsinki Real Estate Department (Helsingin 
+#' kaupungin kiinteistovirasto, HKK) through the HKK website
+#' http://kartta.hel.fi/avoindata/index.html
+#'
+#' The data (C) 2011 Helsingin kaupunkimittausosasto.
+#' 
+#' @param which.data  A string. Specify the name of the data set to retrieve. 
+#'
+#' @return a list of Shape objects (from SpatialPolygonsDataFrame class)
+#' @references
+#' See citation("helsinki") 
+#' @author Leo Lahti \email{louhos@@googlegroups.com}
+#' @examples # tab <- GetHKK("Helsingin osoiteluettelo")
+GetHelsinkiBuildingRegistry <- function( which.data ) {
+  
+  # TODO did not manage to read the mapinfo files in R with rgdal.
+  # Check how to do, implement and export 
+  # Also note the metadata Excel that is available  
+  
+  data.url <- "http://kartta.hel.fi/avoindata/aineistot/"
+  data.dir <- tempdir()  
+  
+  # Helsingin kaupungin rakennusrekisterin ote:
+  # http://kartta.hel.fi/avoindata/aineistot/rakennukset_Helsinki_06_2012.zip
+  
+  remote.zip <- "rakennukset_Helsinki_06_2012.zip"
+  unzip.files(data.dir, remote.zip, local.zip, data.url, which.data)
+  
+  # "Metatieto_rakennukset.xls"
+  # "rakennukset_helsinki_20m2_hkikoord" 
+  # "rakennukset_Helsinki_etrsgk25"     
+  # "rakennukset_Helsinki_hkikoord"      
+  # "rakennukset_Helsinki_wgs84"        
+  
+  # Facta-kenttien metatiedot_.pdf          
+  # rakennukset_Helsinki_06_2012_wgs84.DAT 
+  
+  # Read the specified map         
+  f <- file.path(data.dir, paste("rakennukset_Helsinki_wgs84/", "rakennukset_Helsinki_06_2012_wgs84.DAT", sep = ""))
+  
+  # Shape file or list of shape files; one for each layer
+  sp <- readmap(f)
+  
+  # Remove temporary directory
+  unlink(data.dir, recursive=T)
+  
+  return(sp)
+  
+  stop(paste(which.data, "not implemented"))
+  
+}
+
+
+
+## THE IS TO BE DELETED
 # #' Retrieve address information in Helsinki region 
 # #'
 # #' Retrieves address data from Helsinki 

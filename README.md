@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.org/rOpenGov/govdat.png)](https://travis-ci.org/rOpenGov/helsinki)
+[![Build Status](https://api.travis-ci.org/rOpenGov/helsinki.png)](https://travis-ci.org/rOpenGov/helsinki)
 
 ### Overview
 

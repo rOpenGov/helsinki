@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/rOpenGov/govdat.png)](https://travis-ci.org/rOpenGov/helsinki)
+
 ### Overview
 
   [helsinki](http://ropengov.github.com/helsinki) is a Helsinki open
@@ -5,7 +7,6 @@
   access, analyze and visualize Helsinki data resources. For details,
   see the project homepage:
   [http://ropengov.github.com/helsinki](http://ropengov.github.com/helsinki)
-
 
 ### Contact
   

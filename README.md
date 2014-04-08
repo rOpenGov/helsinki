@@ -1,4 +1,6 @@
 [![Build Status](https://api.travis-ci.org/rOpenGov/helsinki.png)](https://travis-ci.org/rOpenGov/helsinki)
+[![Stories in Ready](https://badge.waffle.io/ropengov/helsinki.png?label=TODO)](http://waffle.io/ropengov/helsinki)
+
 
 ### Overview
 

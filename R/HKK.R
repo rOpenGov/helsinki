@@ -11,7 +11,7 @@
 #' @param which.data  A string. Specify the name of the HKK data set to retrieve. Options: "Helsingin osoiteluettelo", "Seudullinen osoiteluettelo"
 #' @param data.dir Directory where the original downloaded raw data will be stored.
 #'
-#' @return List with the following elements: local.file (local file name); local.path (download directory); source.url (url of the original data file); time (date and time of data download); which.data (data set to retrieve)
+#' @return A data frame containing the address data
 #' @export
 #' @importFrom utils download.file
 #' @importFrom utils unzip
@@ -19,8 +19,15 @@
 #' @author Juuso Parkkinen, Joona Lehtomaki and Leo Lahti \email{louhos@@googlegroups.com}
 #' @examples # tab <- get_helsinki_address_info("Helsingin osoiteluettelo")
 
-get_HKK_address_data <- function(which.data, data.dir=tempdir()) {
-    
+get_HKK_address_data <- function(which.data=NULL, data.dir=tempdir()) {
+  
+  if (is.null(which.data)) {
+    message("Available HKK address datasets:
+  'Seudullinen osoiteluettelo': Osoitetiedot, laajuus: Helsinki, Espoo, Vantaa, Kauniainen.
+  'Helsingin osoiteluettelo': Osoitetiedot, laajuus: Helsinki.")
+    stop("Please specify 'which.data'")
+  }
+  
   # Create data.dir if it does not exist
   if (!file.exists(data.dir))
     dir.create(data.dir)

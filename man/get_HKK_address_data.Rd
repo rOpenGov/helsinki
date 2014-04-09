@@ -2,7 +2,7 @@
 \alias{get_HKK_address_data}
 \title{Retrieve address information in Helsinki region}
 \usage{
-get_HKK_address_data(which.data, data.dir = tempdir())
+get_HKK_address_data(which.data = NULL, data.dir = tempdir())
 }
 \arguments{
   \item{which.data}{A string. Specify the name of the HKK
@@ -13,10 +13,7 @@ get_HKK_address_data(which.data, data.dir = tempdir())
   raw data will be stored.}
 }
 \value{
-List with the following elements: local.file (local file
-name); local.path (download directory); source.url (url of
-the original data file); time (date and time of data
-download); which.data (data set to retrieve)
+A data frame containing the address data
 }
 \description{
 Retrieves address data from Helsinki Real Estate Department

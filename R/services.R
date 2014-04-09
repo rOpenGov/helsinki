@@ -52,16 +52,7 @@ get_Omakaupunki_data <- function(query, login, password, api_key, ...) {
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
 #' @examples # pk.services <- get_ServiceMap_data("service")
 get_ServiceMap_data <- function(category, ...) {
-    
-  # Example how to use params
-  # # Get parks data
-  # pk.servicetree <- get_ServiceMap_data("servicetree")
-  # pk.servicetree[[1]]$children[[7]]$children[[2]]
-  # parks.data <- get_ServiceMap_data("unit", service=25664)
-  
-  # http://www.hel.fi/palvelukarttaws/rest/v2/organization/91
-  # get_ServiceMap_data("organization/91")
-  
+      
   api.url <- "http://www.hel.fi/palvelukarttaws/rest/v2/"
   query.url <- paste0(api.url, category, "/")
   curl <- RCurl::getCurlHandle(cookiefile = "")

@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+
+# Travis scripts
+.travis.yml

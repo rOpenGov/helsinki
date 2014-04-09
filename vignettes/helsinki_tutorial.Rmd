@@ -38,46 +38,31 @@ page](http://ropengov.github.com/helsinki).
 
 ### Population grid
 
-Download population information from [HSY database](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) ((C) 2011 HSY) and visualize on the Helsinki map. For data documentation, see [HSY website](http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf). Population size, density, and age structure per grid.
+Download population information from [HSY database](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) (C) 2013 HSY, and inspect the data manually. Some rarely populated grids are censored with '99' to guarantee privacy.
 
 ```{r hsy-example, fig.width=8, fig.height=8, message=FALSE}
-# http://ropengov.github.com/helsinki
-library(helsinki)
-
-# Get population grid (Vaestotietoruudukko) 
-sp <- get_HSY_data("Vaestotietoruudukko")  
-
-# Visualize population grid
-#library(gisfi)
-# Define limits of the color scale
-#at <- c(seq(0, 2000, 250), Inf) 
-#q <- PlotShape(sp, "ASUKKAITA", type = "oneway", at = at, ncol = length(at)) 
-```
-
-Inspect data manually. Some rarely populated grids are censored with
-'99' to guarantee privacy.
-
-```{r hsy-example2, message=FALSE}
+sp <- get_HSY_data("Vaestotietoruudukko")
 df <- as.data.frame(sp)   
 head(df)
 ```
 
+
 ### Helsinki building information
 
 Information of buildings in Helsinki region. Data obtained from (C)
-HSY 2011. Grid-level (500mx500m) information on building counts
+HSY 2013. Grid-level (500mx500m) information on building counts
 (lukumaara), built area (kerrosala), usage (kayttotarkoitus), region
 efficiency (aluetehokkuus).
 
 ```{r hsy-examplerak, message=FALSE}
-sp <- get_HSY_data("Rakennustietoruudukko")  
+sp <- get_HSY_data("Rakennustietoruudukko", 2013)  
 df <- as.data.frame(sp)   
 head(df)
 ```
 
 ### Helsinki building area capacity
 
-Building area capacity per municipal region (kaupunginosittain summattu tieto rakennusmaavarannosta). Data obtained from (C) HSY 2011. 
+Building area capacity per municipal region (kaupunginosittain summattu tieto rakennusmaavarannosta). Data obtained from (C) HSY 2013. 
 
 ```{r hsy-exampleramava, message=FALSE}
 sp <- get_HSY_data("SeutuRAMAVA_kosa")  
@@ -88,7 +73,7 @@ head(df)
 
 ### Further HSY data
 
-[HSY website](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) has data for 2010-2011. More is coming, add later and allow temporal analysis.
+[HSY website](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) has more data that will be included in the helsinki package later.
 
 
 ## Helsinki Real Estate Department (Helsingin kaupungin kiinteistövirasto, HKK)

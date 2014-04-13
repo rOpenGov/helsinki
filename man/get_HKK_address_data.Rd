@@ -24,7 +24,7 @@ http://kartta.hel.fi/avoindata/index.html
 The data (C) 2011 Helsingin kaupunkimittausosasto.
 }
 \examples{
-# tab <- get_helsinki_address_info("Helsingin osoiteluettelo")
+tab <- get_HKK_address_data("Helsingin osoiteluettelo")
 }
 \author{
 Juuso Parkkinen, Joona Lehtomaki and Leo Lahti

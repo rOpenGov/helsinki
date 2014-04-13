@@ -17,7 +17,7 @@
 #' @importFrom utils unzip
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen, Joona Lehtomaki and Leo Lahti \email{louhos@@googlegroups.com}
-#' @examples # tab <- get_helsinki_address_info("Helsingin osoiteluettelo")
+#' @examples tab <- get_HKK_address_data("Helsingin osoiteluettelo")
 
 get_HKK_address_data <- function(which.data=NULL, data.dir=tempdir()) {
   
@@ -53,9 +53,12 @@ get_HKK_address_data <- function(which.data=NULL, data.dir=tempdir()) {
   # Download the data
   remote.zip <- paste("http://kartta.hel.fi/avoindata/aineistot/", zipfile, sep = "")
   local.zip <- file.path(data.dir, zipfile)
-  message("Dowloading ", remote.zip, "\ninto ", local.zip, "\n")
-  utils::download.file(remote.zip, destfile = local.zip)
-  
+  if (!file.exists(local.zip)) {
+    message("Dowloading ", remote.zip, "\ninto ", local.zip, "\n")
+    utils::download.file(remote.zip, destfile = local.zip)
+  } else {
+    message("File ", local.zip, " already found, will not download again!")
+  }  
   # Unzip the downloaded zip file
   utils::unzip(local.zip, exdir = data.dir)
   

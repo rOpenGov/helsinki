@@ -24,7 +24,7 @@
 #' @importFrom maptools readShapePoly
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen and Leo Lahti \email{louhos@@googlegroups.com}
-#' @examples # sp <- get_HSY_data("Vaestoruudukko")
+#' @examples sp <- get_HSY_data("Vaestotietoruudukko")
 #' @keywords utilities
 
 get_HSY_data <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
@@ -93,14 +93,17 @@ get_HSY_data <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) 
     remote.zip <- paste0("http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Documents/", zip.file)
   }
   local.zip <- file.path(data.dir, zip.file)
-  message("Dowloading ", remote.zip, "\ninto ", local.zip, "\n")
-  download.file(remote.zip, destfile = local.zip)
-  
+  if (!file.exists(local.zip)) {
+    message("Dowloading ", remote.zip, "\ninto ", local.zip, "\n")
+    utils::download.file(remote.zip, destfile = local.zip)
+  } else {
+    message("File ", local.zip, " already found, will not download again!")
+  }  
   
   ## Process data -----------------------------------------------
   
   # Unzip the downloaded zip file
-  unzip(local.zip, exdir = data.dir)
+  utils::unzip(local.zip, exdir = data.dir)
   
   # Define shapefile
   if (which.data=="Vaestotietoruudukko") {

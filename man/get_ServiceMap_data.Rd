@@ -22,7 +22,7 @@ licensing terms pf the data see
 http://www.hel2.fi/palvelukartta/REST.html.
 }
 \examples{
-# pk.services <- get_ServiceMap_data("service")
+pk.services <- get_ServiceMap_data("service")
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

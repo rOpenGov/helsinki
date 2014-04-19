@@ -31,5 +31,4 @@
 
   See the DESCRIPTION file
   
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/fdfcd0ee746a540299b8f7be2833b93f "githalytics.com")](http://githalytics.com/ropengov/helsinki)
-
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/1be3f84ba8e530528c296d1b4f749ab1 "githalytics.com")](http://githalytics.com/rOpenGov/helsinki)

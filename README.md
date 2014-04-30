@@ -6,9 +6,7 @@
 
   [helsinki](http://ropengov.github.com/helsinki) is a Helsinki open
   data toolkit for [R](http://www.r-project.org) providing tools to
-  access, analyze and visualize Helsinki data resources. For details,
-  see the project homepage:
-  [http://ropengov.github.com/helsinki](http://ropengov.github.com/helsinki)
+  access, analyze and visualize Helsinki data resources.
 
 ### Contact
   

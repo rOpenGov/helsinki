@@ -4,10 +4,6 @@
 -->
 
 
-```r
-opts_knit$set(upload.fun = imgur_upload, base.url = NULL)  # upload all images to imgur.com
-# opts_chunk$set(fig.width=5, fig.height=5, cache=TRUE)
-```
 
 
 Helsinki  R tools
@@ -51,21 +47,8 @@ Load package.
 library(helsinki)
 ```
 
-```
-## Loading required package: rjson
-## Loading required package: RCurl
-## Loading required package: bitops
-## Loading required package: maptools
-## Loading required package: sp
-## Checking rgeos availability: TRUE
-## helsinki R package: tools for open data from Helsinki, Finland capital region.
-## This R package is part of rOpenGov <ropengov.github.io>.
-## Copyright (C) 2010-2014 Leo Lahti, Juuso Parkkinen and Joona Lehtomaki.
-## This is free software. You are free to use, modify and redistribute it under the FreeBSD license.
-```
 
-
-Further installation and development instructions at the [Github
+Further development instructions at the [Github
 page](https://github.com/rOpenGov/helsinki).
 
 ## Helsinki region environmental services

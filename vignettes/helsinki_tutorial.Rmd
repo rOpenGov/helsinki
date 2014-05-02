@@ -3,7 +3,7 @@
 %\VignetteIndexEntry{An R Markdown Vignette made with knitr}
 -->
 
-```{r setup}
+```{r setup, echo=FALSE}
 opts_knit$set(upload.fun = imgur_upload, base.url = NULL) # upload all images to imgur.com
 # opts_chunk$set(fig.width=5, fig.height=5, cache=TRUE)
 ```
@@ -44,7 +44,7 @@ Load package.
 library(helsinki)
 ```
 
-Further installation and development instructions at the [Github
+Further development instructions at the [Github
 page](https://github.com/rOpenGov/helsinki).
 
 ## Helsinki region environmental services

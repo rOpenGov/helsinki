@@ -31,7 +31,6 @@ Release version for general users:
 
 ```r
 install.packages("helsinki")
-library(helsinki)
 ```
 
 
@@ -42,7 +41,27 @@ Development version for developers:
 install.packages("devtools")
 library(devtools)
 install_github("helsinki", "ropengov")
+```
+
+
+Load package.
+
+
+```r
 library(helsinki)
+```
+
+```
+## Loading required package: rjson
+## Loading required package: RCurl
+## Loading required package: bitops
+## Loading required package: maptools
+## Loading required package: sp
+## Checking rgeos availability: TRUE
+## helsinki R package: tools for open data from Helsinki, Finland capital region.
+## This R package is part of rOpenGov <ropengov.github.io>.
+## Copyright (C) 2010-2014 Leo Lahti, Juuso Parkkinen and Joona Lehtomaki.
+## This is free software. You are free to use, modify and redistribute it under the FreeBSD license.
 ```
 
 
@@ -271,16 +290,16 @@ str(parks.data[[1]])
 
 ```
 ## List of 14
-##  $ id                : num 26553
+##  $ id                : num 26902
 ##  $ org_id            : num 92
 ##  $ provider_type     : num 101
 ##  $ name_fi           : chr "Puisto, lähivirkistysalue tai vastaava"
 ##  $ name_sv           : chr "Puisto, lähivirkistysalue tai vastaava"
 ##  $ name_en           : chr "Puisto, lähivirkistysalue tai vastaava"
-##  $ latitude          : num 60.4
+##  $ latitude          : num 60.2
 ##  $ longitude         : num 25.1
-##  $ northing_etrs_gk25: num 6693492
-##  $ easting_etrs_gk25 : num 25503793
+##  $ northing_etrs_gk25: num 6681175
+##  $ easting_etrs_gk25 : num 25506208
 ##  $ address_city_fi   : chr "Vantaa"
 ##  $ address_city_sv   : chr "Vantaa"
 ##  $ address_city_en   : chr "Vantaa"
@@ -320,13 +339,12 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5       helsinki_0.9.13 maptools_0.8-29 sp_1.0-14      
-## [5] RCurl_1.95-4.1  bitops_1.0-6    rjson_0.2.13    roxygen2_3.1.0 
+## [1] helsinki_0.9.13 maptools_0.8-29 sp_1.0-14       RCurl_1.95-4.1 
+## [5] bitops_1.0-6    rjson_0.2.13    knitr_1.5      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
-##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
-##  [9] Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
+## [1] evaluate_0.5.1  foreign_0.8-60  formatR_0.10    grid_3.0.3     
+## [5] lattice_0.20-27 stringr_0.6.2   tools_3.0.3
 ```
 
 

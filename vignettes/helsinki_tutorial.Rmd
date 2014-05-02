@@ -28,7 +28,6 @@ Release version for general users:
 
 ```{r install, eval=FALSE}
 install.packages("helsinki")
-library(helsinki)
 ```
 
 Development version for developers:
@@ -37,6 +36,11 @@ Development version for developers:
 install.packages("devtools")
 library(devtools)
 install_github("helsinki", "ropengov")
+```
+
+Load package.
+
+```{r load}
 library(helsinki)
 ```
 

@@ -1,32 +1,33 @@
+helsinki
+========
+
+Helsinki open data R tools
+
 [![Build Status](https://api.travis-ci.org/rOpenGov/helsinki.png)](https://travis-ci.org/rOpenGov/helsinki)
 [![Stories in Ready](https://badge.waffle.io/ropengov/helsinki.png?label=TODO)](http://waffle.io/ropengov/helsinki)
 
+* Maintainer: Juuso Parkkinen
+* Authors: Juuso Parkkinen, Leo Lahti, Joona Lehtomäki
+* License: FreeBSD
 
 ### Overview
 
-  [helsinki](http://ropengov.github.com/helsinki) is a Helsinki open
-  data toolkit for [R](http://www.r-project.org) providing tools to
-  access, analyze and visualize Helsinki data resources.
+This R package provides tools to access open from the Helsinki region in Finland.
+
+For installation and usage, check the [tutorial
+page](https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md).  
+
+This R package is part of the [rOpenGov](http://ropengov.github.io) project.
 
 ### Contact
   
-  [Homepage](http://ropengov.github.com/contact.html)
-
-  You are welcome to:
+You are welcome to:
   
-  * submit suggestions and bug-reports at: https://github.com/ropengov/helsinki/issues
-  * send a pull request on: https://github.com/ropengov/helsinki/
-  * compose a friendly e-mail to: louhos@googlegroups.com
-  * join our IRC channels at !louhos@IRCnet (Finland) and ropengov@Freenode (international)
+* [submit suggestions and bug-reports](https://github.com/ropengov/helsinki/issues)
+* [send a pull request](https://github.com/ropengov/helsinki/)
+* compose a friendly e-mail to: louhos@googlegroups.com
+* join our IRC channels at !louhos@IRCnet (Finland) and ropengov@Freenode (international)
+* follow us in social media: [Louhos (Finland)](http://louhos.github.com/contact.html); [rOpenGov (international)](http://ropengov.github.io/contribute/)
 
-### Developers
-
-  We are greatful to a number of
-  [http://louhos.github.com/contact.html](contributors)! The main
-  admins are Leo Lahti, Juuso Parkkinen and Joona Lehtomäki.
-
-### License: FreeBSD
-
-  See the DESCRIPTION file
   
 [![githalytics.com alpha](https://cruel-carlota.gopagoda.com/1be3f84ba8e530528c296d1b4f749ab1 "githalytics.com")](http://githalytics.com/rOpenGov/helsinki)

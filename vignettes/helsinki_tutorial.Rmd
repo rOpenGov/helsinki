@@ -3,26 +3,33 @@
 %\VignetteIndexEntry{An R Markdown Vignette made with knitr}
 -->
 
-```{r setup, echo=FALSE}
-opts_knit$set(upload.fun = imgur_upload, base.url = NULL) # upload all images to imgur.com
-# opts_chunk$set(fig.width=5, fig.height=5, cache=TRUE)
-```
 
-Helsinki  R tools
+helsinki - tutorial
 ===========
 
-This is an [rOpenGov](https://github.com/rOpenGov/helsinki) R package
-providing tools for open data in the Helsinki region in Finland.
+This R package provides tools to access open data from the Helsinki region in Finland
+as part of the [rOpenGov](http://ropengov.github.io) project.
 
-## Available data
+For contact information and source code, see the [github page](https://github.com/rOpenGov/helsinki)
 
-The following data sets are currently available:
-* [Helsinki region environmental services](#helsinki-region-environmental-services)
-* [Helsinki Real Estate Department](#helsinki-real-estate-department)
-* [Helsinki Service Map](#helsinki-service-map)
+## Available data sources
 
+The following data sources are currently available:
+* [Helsinki region district maps](#aluejakokartat) (Helsingin seudun aluejakokartat)
+ * Datasets: *Aluejakokartat (kunta, pien-, suur-, tilastoalueet), äänestysaluejako*
+ * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
+* [Helsinki Real Estate Department](#hkk) (HKK:n avointa dataa)
+ * Datasets: *Helsingin osoiteluettelo, Seudullinen osoiteluettelo*
+ * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
+ * Note! More spatial data from HKK availabe in the [fingis](https://github.com/rOpenGov/fingis) package, see [examples](https://github.com/rOpenGov/fingis/blob/master/vignettes/fingis_tutorial.md#hel-spatial)
+* [Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
+ * Datasets: *Väestötietoruudukko, rakennustietoruudukko, SeutuRAMAVA*
+ * Source: [Helsingin seudun ympäristöpalvelut, HSY](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
+* [Helsinki Service Map](#servicemap)
+ * APIs: *[Helsingin seudun Palvelukartta](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91), [Omakaupunki](http://api.omakaupunki.fi/)*
+ 
 
-### Installation
+## Installation
 
 Release version for general users:
 
@@ -44,14 +51,37 @@ Load package.
 library(helsinki)
 ```
 
-Further development instructions at the [Github
-page](https://github.com/rOpenGov/helsinki).
+## <a name="aluejakokartat"></a>Helsinki region district maps
 
-## Helsinki region environmental services
+Helsinki region district maps (Helsingin seudun aluejakokartat) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/). These are preprocessed in the [fingis](https://github.com/rOpenGov/fingis) package, see examples in the [fingis tutorial](https://github.com/rOpenGov/fingis/blob/master/vignettes/fingis_tutorial.md). The data are available in the helsinki package with `data(aluejakokartat)`.
 
-Data from Helsingin seudun ympäristöpalvelut, HSY.
+```{r aluejako_data, message=FALSE}
+# data(aluejakokartat)
+```
 
-### Population grid
+
+## <a name="hkk"></a>Helsinki Real Estate Department
+
+Open data from [Helsingin kaupungin kiinteistövirasto, (HKK)](http://kartta.hel.fi/avoindata/index.html).
+
+### Helsinki address information
+
+```{r hkk-addressH, message=FALSE}
+dat <- get_HKK_address_data("Helsingin osoiteluettelo")
+head(dat)
+```
+
+```{r hkk-addressS, message=FALSE}
+dat <- get_HKK_address_data("Seudullinen osoiteluettelo")
+head(dat)
+```
+
+
+## <a name="hsy"></a> Helsinki region environmental services
+
+Data from [Helsingin seudun ympäristöpalvelut (HSY)](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx).
+
+### Population grid (väestöteitoruudukko)
 
 Download population information from [HSY database](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) (C) 2013 HSY, and inspect the data manually. Some rarely populated grids are censored with '99' to guarantee privacy.
 
@@ -62,7 +92,7 @@ head(df)
 ```
 
 
-### Helsinki building information
+### Helsinki building information (rakennustietoruudukko)
 
 Information of buildings in Helsinki region. Data obtained from (C)
 HSY 2013. Grid-level (500mx500m) information on building counts
@@ -86,32 +116,13 @@ head(df)
 ```
 
 
-### Further HSY data
+### Other Helsinki region spatial data
 
 [HSY website](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) has more data that will be included in the helsinki package later.
 
+## <a name="servicemap"></a>Helsinki Service Map
 
-## Helsinki Real Estate Department
-
-Data from Helsingin kaupungin kiinteistövirasto, HKK.
-
-Retrieve [HKK](http://kartta.hel.fi/avoindata/index.html) data sets.
-
-### Helsinki address information
-
-```{r hkk-addressH, message=FALSE}
-dat <- get_HKK_address_data("Helsingin osoiteluettelo")
-head(dat)
-```
-
-```{r hkk-addressS, message=FALSE}
-dat <- get_HKK_address_data("Seudullinen osoiteluettelo")
-head(dat)
-```
-
-## Helsinki Service Map
-
-Retrieve data from [Helsinki Service Map](http://www.hel.fi/palvelukartta/?lang=en) [API](http://www.hel.fi/palvelukarttaws/rest/ver2_en.html).
+Retrieve data from [Palvelukartta](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) [API](http://www.hel.fi/palvelukarttaws/rest/ver2_en.html).
 
 ```{r servicemap, message=FALSE}
 # Get servicetree
@@ -125,15 +136,15 @@ str(parks.data[[1]])
 ```
 
 
-### Licensing and Citations
+### Citation
 
-This work can be freely used, modified and distributed under the
-[Two-clause FreeBSD
-license](http://en.wikipedia.org/wiki/BSD\_licenses). Cite Helsinki R
-package and and the appropriate data provider, including a url
-link. Kindly cite the R package as 'Leo Lahti, Juuso Parkkinen ja
-Joona Lehtomäki (2013-2014). helsinki R package. URL:
-https://github.com/rOpenGov/helsinki/'.
+**Citing the data:** See `help()` to get citation information for each data source individually.
+
+**Citing the R package:**
+
+```{r citation, comment=NA}
+citation("helsinki")
+```
 
 ### Session info
 

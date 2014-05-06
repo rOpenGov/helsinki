@@ -1,0 +1,24 @@
+\docType{data}
+\name{aluejakokartat}
+\alias{aluejakokartat}
+\title{Helsinki region district maps (aluejakokartat)}
+\description{
+Helsinki region district maps (aluejakokartat,
+aanestysalueet) from Helsinki Real Estate Department
+(Helsingin kaupungin kiinteistovirasto, HKK) through the
+HKK website http://ptp.hel.fi/avoindata/index.html. The
+data are retrieved and preprocessed using the fingis
+package, see details in
+https://github.com/louhos/takomo/helsinki/
+}
+\examples{
+data(aluejakokartat)
+}
+\author{
+Juuso Parkkinen \email{louhos@googlegroups.com}
+}
+\references{
+See citation("helsinki")
+}
+\keyword{data}
+

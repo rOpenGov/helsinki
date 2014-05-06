@@ -9,17 +9,17 @@
 #' LazyLoad: \tab yes\cr
 #' }
 #'
-#' R Tools for Helsinki region, Finland
-#'
+#' Tools for accessing various open data sources in the Helsinki region in Finland.
+#' 
 #' @name helsinki-package
 #' @aliases helsinki
 #' @docType package
-#' @title R Tools for Helsinki 
+#' @title Helsinki open data R tools
 #'
-#' @author Leo Lahti, Juuso Parkkinen and Joona Lehtomaki \email{louhos@@googlegroups.com}
+#' @author Juuso Parkkinen, Leo Lahti and Joona Lehtomaki \email{louhos@@googlegroups.com}
 #' @references
 #' See citation("helsinki")
-#' \url{http://ropengov.github.com/helsinki}
+#' \url{https://github.com/rOpenGov/helsinki}
 #' @examples # library(helsinki)
 #' @keywords package
 NULL

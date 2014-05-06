@@ -2,7 +2,7 @@
 \name{helsinki-package}
 \alias{helsinki}
 \alias{helsinki-package}
-\title{R Tools for Helsinki}
+\title{Helsinki open data R tools}
 \description{
 Brief summary of the helsinki package
 }
@@ -12,18 +12,19 @@ Package\cr Version: \tab See sessionInfo() or DESCRIPTION
 file\cr Date: \tab 2014\cr License: \tab FreeBSD\cr
 LazyLoad: \tab yes\cr }
 
-R Tools for Helsinki region, Finland
+Tools for accessing various open data sources in the
+Helsinki region in Finland.
 }
 \examples{
 # library(helsinki)
 }
 \author{
-Leo Lahti, Juuso Parkkinen and Joona Lehtomaki
+Juuso Parkkinen, Leo Lahti and Joona Lehtomaki
 \email{louhos@googlegroups.com}
 }
 \references{
 See citation("helsinki")
-\url{http://ropengov.github.com/helsinki}
+\url{https://github.com/rOpenGov/helsinki}
 }
 \keyword{package}
 

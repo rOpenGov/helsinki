@@ -1,8 +1,8 @@
-\name{get_HKK_address_data}
-\alias{get_HKK_address_data}
+\name{get_hkk_address_data}
+\alias{get_hkk_address_data}
 \title{Retrieve address information in Helsinki region}
 \usage{
-get_HKK_address_data(which.data = NULL, data.dir = tempdir())
+get_hkk_address_data(which.data = NULL, data.dir = tempdir())
 }
 \arguments{
   \item{which.data}{A string. Specify the name of the HKK
@@ -24,7 +24,7 @@ http://kartta.hel.fi/avoindata/index.html
 The data (C) 2011 Helsingin kaupunkimittausosasto.
 }
 \examples{
-tab <- get_HKK_address_data("Helsingin osoiteluettelo")
+tab <- get_hkk_address_data("Helsingin osoiteluettelo")
 }
 \author{
 Juuso Parkkinen, Joona Lehtomaki and Leo Lahti

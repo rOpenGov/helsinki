@@ -1,8 +1,8 @@
-\name{get_Omakaupunki_data}
-\alias{get_Omakaupunki_data}
+\name{get_omakaupunki}
+\alias{get_omakaupunki}
 \title{Access Omakaupunki data}
 \usage{
-get_Omakaupunki_data(query, login, password, api_key, ...)
+get_omakaupunki(query, login, password, api_key, ...)
 }
 \arguments{
   \item{query}{API query, e.g. "event" or "directory"
@@ -28,7 +28,7 @@ API documentation see
 http://blogit.hs.fi/hsnext/omakaupungin-meno-ja-palvelutiedot-avoimena-rajapintana
 }
 \examples{
-# event.categories <- get_Omakaupunki_data("event/categories", LOGIN, PASSWORD, API)
+# event.categories <- get_omakaupunki("event/categories", LOGIN, PASSWORD, API)
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

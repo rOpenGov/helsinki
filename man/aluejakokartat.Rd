@@ -9,7 +9,7 @@ aanestysalueet) from Helsinki Real Estate Department
 HKK website http://ptp.hel.fi/avoindata/index.html. The
 data are retrieved and preprocessed using the fingis
 package, see details in
-https://github.com/louhos/takomo/helsinki/
+https://github.com/louhos/takomo/helsinki/.
 }
 \examples{
 data(aluejakokartat)

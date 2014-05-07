@@ -19,7 +19,7 @@
 #' Helsinki Real Estate Department (Helsingin kaupungin kiinteistovirasto, HKK)
 #' through the HKK website http://ptp.hel.fi/avoindata/index.html.
 #' The data are retrieved and preprocessed using the fingis package,
-#' see details in https://github.com/louhos/takomo/helsinki/
+#' see details in https://github.com/louhos/takomo/helsinki/.
 #'
 #' @name aluejakokartat
 #' @docType data
@@ -28,6 +28,7 @@
 #' @keywords data
 #' @examples data(aluejakokartat)
 NULL
+
 
 #' Retrieve address information in Helsinki region 
 #'
@@ -47,9 +48,9 @@ NULL
 #' @importFrom utils unzip
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen, Joona Lehtomaki and Leo Lahti \email{louhos@@googlegroups.com}
-#' @examples tab <- get_HKK_address_data("Helsingin osoiteluettelo")
+#' @examples tab <- get_hkk_address_data("Helsingin osoiteluettelo")
 
-get_HKK_address_data <- function(which.data=NULL, data.dir=tempdir()) {
+get_hkk_address_data <- function(which.data=NULL, data.dir=tempdir()) {
   
   if (is.null(which.data)) {
     message("Available HKK address datasets:

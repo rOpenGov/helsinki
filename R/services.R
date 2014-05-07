@@ -33,9 +33,9 @@
 #' @importFrom rjson fromJSON
 #' 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples # event.categories <- get_Omakaupunki_data("event/categories", LOGIN, PASSWORD, API)
+#' @examples # event.categories <- get_omakaupunki("event/categories", LOGIN, PASSWORD, API)
 
-get_Omakaupunki_data <- function(query, login, password, api_key, ...) {
+get_omakaupunki <- function(query, login, password, api_key, ...) {
   
   api.url <- "http://api.omakaupunki.fi/v1/"
   query.url <- paste0(api.url, query)
@@ -47,9 +47,10 @@ get_Omakaupunki_data <- function(query, login, password, api_key, ...) {
   return(res.list)
 }
 
-#' Access Paakaupunkiseudun Palvelukartta data
+#' Access Helsinki region Service Map data
 #'
-#' Access Paakaupunkiseudun Palvelukartta data from the it's API (version 2). 
+#' Access Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
+#' data from the its API (version 2). 
 #' Using the API is free. For more details and API documentation see
 #' http://www.hel.fi/palvelukarttaws/rest/ver2.html.
 #' For licensing terms pf the data see http://www.hel2.fi/palvelukartta/REST.html.
@@ -64,8 +65,8 @@ get_Omakaupunki_data <- function(query, login, password, api_key, ...) {
 #' @importFrom rjson fromJSON
 #' 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples pk.services <- get_ServiceMap_data("service")
-get_ServiceMap_data <- function(category, ...) {
+#' @examples pk.services <- get_servicemap("service")
+get_servicemap <- function(category, ...) {
       
   api.url <- "http://www.hel.fi/palvelukarttaws/rest/v2/"
   query.url <- paste0(api.url, category, "/")

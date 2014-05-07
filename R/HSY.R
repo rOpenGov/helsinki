@@ -13,7 +13,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 
-#' Retrieve HSY data 
+#' Retrieve data from Helsinki Region Environmental Services
 #'
 #' Retrieves data from Helsinki Region Environmental
 #' Services Authority (Helsingin seudun ymparistopalvelu HSY) 
@@ -22,7 +22,6 @@
 #' http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf. 
 #' The data copyright (C) HSY 2011.
 #'
-#' Arguments:
 #' @param which.data A string. Specify the name of the retrieved HSY data set. Options: Vaestotietoruudukko; Rakennustietoruudukko; SeutuRAMAVA_kosa; SeutuRAMAVA_tila. These are documented in HSY data description document (see above).
 #' @param which.year An integer. Specify the year for the data to be retrieved.
 #' @param data.dir A string. Specify a temporary folder for storing downloaded data.
@@ -34,10 +33,10 @@
 #' @importFrom maptools readShapePoly
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen and Leo Lahti \email{louhos@@googlegroups.com}
-#' @examples sp <- get_HSY_data("Vaestotietoruudukko")
+#' @examples sp <- get_hsy("Vaestotietoruudukko")
 #' @keywords utilities
 
-get_HSY_data <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
+get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
     
   if (is.null(which.data)) {
     message("Available HSY datasets:
@@ -154,7 +153,7 @@ get_HSY_data <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) 
   
   # Add KATAKER to rakennustieto, mailaa '11' SePe:lle
   if (which.data=="Rakennustietoruudukko") {
-    KATAKER.key <- kataker.key()
+    KATAKER.key <- kataker_key()
     kk.df <- data.frame(list(KATAKER = as.integer(names(KATAKER.key)), description = KATAKER.key))
     temp <- sp@data
     temp$KATAKER1.description <- kk.df$description[match(temp$KATAKER1, kk.df$KATAKER)]
@@ -179,7 +178,7 @@ get_HSY_data <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) 
 }
 
 
-kataker.key <- function () {
+kataker_key <- function () {
   KATAKER.key <- c(
     "11"   = "Yhden asunnon talot", 
     "12"  = "Kahden asunnon talot", 

@@ -1,8 +1,8 @@
-\name{get_HSY_data}
-\alias{get_HSY_data}
-\title{Retrieve HSY data}
+\name{get_hsy}
+\alias{get_hsy}
+\title{Retrieve data from Helsinki Region Environmental Services}
 \usage{
-get_HSY_data(which.data = NULL, which.year = 2013, data.dir = tempdir())
+get_hsy(which.data = NULL, which.year = 2013, data.dir = tempdir())
 }
 \arguments{
   \item{which.data}{A string. Specify the name of the
@@ -28,11 +28,8 @@ For data description (in Finnish) see:
 http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf.
 The data copyright (C) HSY 2011.
 }
-\details{
-Arguments:
-}
 \examples{
-sp <- get_HSY_data("Vaestotietoruudukko")
+sp <- get_hsy("Vaestotietoruudukko")
 }
 \author{
 Juuso Parkkinen and Leo Lahti

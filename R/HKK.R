@@ -18,7 +18,7 @@
 #' Helsinki region district maps (aluejakokartat, aanestysalueet) from
 #' Helsinki Real Estate Department (Helsingin kaupungin kiinteistovirasto, HKK)
 #' through the HKK website http://ptp.hel.fi/avoindata/index.html.
-#' The data are retrieved and preprocessed using the fingis package,
+#' The data are retrieved and preprocessed using the gisfin package,
 #' see details in https://github.com/louhos/takomo/helsinki/.
 #'
 #' @name aluejakokartat

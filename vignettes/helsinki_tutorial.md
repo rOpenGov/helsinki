@@ -22,7 +22,7 @@ The following data sources are currently available:
 * [Helsinki Real Estate Department](#hkk) (HKK:n avointa dataa)
  * Helsingin osoiteluettelo, seudullinen osoiteluettelo (address information in Helsinki region)
  * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
- * Note! More spatial data from HKK availabe in the [fingis](https://github.com/rOpenGov/fingis) package, see [examples](https://github.com/rOpenGov/fingis/blob/master/vignettes/fingis_tutorial.md#hel-spatial)
+ * Note! More spatial data from HKK availabe in the [gisfin](https://github.com/rOpenGov/gisfin) package, see [examples](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md#hel-spatial)
 * [Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
  * Väestötietoruudukko (population grid)
  * Rakennustietoruudukko (building information grid)
@@ -63,7 +63,7 @@ library(helsinki)
 
 ## <a name="aluejakokartat"></a>Helsinki region district maps
 
-Helsinki region district maps (Helsingin seudun aluejakokartat) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/). These are preprocessed in the [fingis](https://github.com/rOpenGov/fingis) package, see examples in the [fingis tutorial](https://github.com/rOpenGov/fingis/blob/master/vignettes/fingis_tutorial.md). The data are available in the helsinki package with `data(aluejakokartat)`.
+Helsinki region district maps (Helsingin seudun aluejakokartat) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/). These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, see examples in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). The data are available in the helsinki package with `data(aluejakokartat)`.
 
 
 ```r
@@ -363,7 +363,7 @@ sessionInfo()
 ## loaded via a namespace (and not attached):
 ##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
 ##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
-##  [9] markdown_0.6.4  Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
+##  [9] Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
 ```
 
 

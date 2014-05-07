@@ -16,17 +16,21 @@ For contact information and source code, see the [github page](https://github.co
 
 The following data sources are currently available:
 * [Helsinki region district maps](#aluejakokartat) (Helsingin seudun aluejakokartat)
- * Datasets: *Aluejakokartat (kunta, pien-, suur-, tilastoalueet), äänestysaluejako*
+ * Aluejakokartat: kunta, pien-, suur-, tilastoalueet (Helsinki region district maps)
+ * Äänestysaluejako: (Helsinki region election district maps)
  * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
 * [Helsinki Real Estate Department](#hkk) (HKK:n avointa dataa)
- * Datasets: *Helsingin osoiteluettelo, Seudullinen osoiteluettelo*
+ * Helsingin osoiteluettelo, seudullinen osoiteluettelo (address information in Helsinki region)
  * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
  * Note! More spatial data from HKK availabe in the [fingis](https://github.com/rOpenGov/fingis) package, see [examples](https://github.com/rOpenGov/fingis/blob/master/vignettes/fingis_tutorial.md#hel-spatial)
 * [Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
- * Datasets: *Väestötietoruudukko, rakennustietoruudukko, SeutuRAMAVA*
+ * Väestötietoruudukko (population grid)
+ * Rakennustietoruudukko (building information grid)
+ * SeutuRAMAVA (building land resource information(?))
  * Source: [Helsingin seudun ympäristöpalvelut, HSY](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
-* [Helsinki Service Map](#servicemap)
- * APIs: *[Helsingin seudun Palvelukartta](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91), [Omakaupunki](http://api.omakaupunki.fi/)*
+* [Service and event information](#servicemap)
+ * [Helsinki region Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) (Pääkaupunkiseudun Palvelukartta)
+ * [Omakaupunki](http://api.omakaupunki.fi/) (requires personal API key, no examples given)
  
 
 ## Installation
@@ -67,12 +71,12 @@ Open data from [Helsingin kaupungin kiinteistövirasto, (HKK)](http://kartta.hel
 ### Helsinki address information
 
 ```{r hkk-addressH, message=FALSE}
-dat <- get_HKK_address_data("Helsingin osoiteluettelo")
+dat <- get_hkk_address_data("Helsingin osoiteluettelo")
 head(dat)
 ```
 
 ```{r hkk-addressS, message=FALSE}
-dat <- get_HKK_address_data("Seudullinen osoiteluettelo")
+dat <- get_hkk_address_data("Seudullinen osoiteluettelo")
 head(dat)
 ```
 
@@ -86,7 +90,7 @@ Data from [Helsingin seudun ympäristöpalvelut (HSY)](http://www.hsy.fi/seututi
 Download population information from [HSY database](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) (C) 2013 HSY, and inspect the data manually. Some rarely populated grids are censored with '99' to guarantee privacy.
 
 ```{r hsy-example, fig.width=8, fig.height=8, message=FALSE}
-sp <- get_HSY_data("Vaestotietoruudukko")
+sp <- get_hsy("Vaestotietoruudukko")
 df <- as.data.frame(sp)   
 head(df)
 ```
@@ -100,7 +104,7 @@ HSY 2013. Grid-level (500mx500m) information on building counts
 efficiency (aluetehokkuus).
 
 ```{r hsy-examplerak, message=FALSE}
-sp <- get_HSY_data("Rakennustietoruudukko", 2013)  
+sp <- get_hsy("Rakennustietoruudukko", 2013)  
 df <- as.data.frame(sp)   
 head(df)
 ```
@@ -110,31 +114,29 @@ head(df)
 Building area capacity per municipal region (kaupunginosittain summattu tieto rakennusmaavarannosta). Data obtained from (C) HSY 2013. 
 
 ```{r hsy-exampleramava, message=FALSE}
-sp <- get_HSY_data("SeutuRAMAVA_kosa")  
+sp <- get_hsy("SeutuRAMAVA_kosa")  
 df <- as.data.frame(sp)   
 head(df)
 ```
 
 
-### Other Helsinki region spatial data
 
-[HSY website](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) has more data that will be included in the helsinki package later.
+## <a name="servicemap"></a>Service and event information
 
-## <a name="servicemap"></a>Helsinki Service Map
-
-Retrieve data from [Palvelukartta](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) [API](http://www.hel.fi/palvelukarttaws/rest/ver2_en.html).
+Function `get_servicemap()` retrieves regional service data from the [Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) [API](http://www.hel.fi/palvelukarttaws/rest/ver2_en.html).
 
 ```{r servicemap, message=FALSE}
 # Get servicetree
-pk.servicetree <- get_ServiceMap_data("servicetree")
+pk.servicetree <- get_servicemap("servicetree")
 # Get id for parks
 str(pk.servicetree[[1]]$children[[7]]$children[[2]])
 # Get parks data
-parks.data <- get_ServiceMap_data("unit", service=25664)
+parks.data <- get_servicemap("unit", service=25664)
 # Check what data is given for the first park
 str(parks.data[[1]])
 ```
 
+Function `get_omakaupunki()` retrieves regional service and event data from the [Omakaupunki API](http://api.omakaupunki.fi/). However, the API needs a personal key, so no examples are given here.
 
 ### Citation
 

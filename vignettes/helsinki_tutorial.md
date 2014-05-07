@@ -16,17 +16,21 @@ For contact information and source code, see the [github page](https://github.co
 
 The following data sources are currently available:
 * [Helsinki region district maps](#aluejakokartat) (Helsingin seudun aluejakokartat)
- * Datasets: *Aluejakokartat (kunta, pien-, suur-, tilastoalueet), äänestysaluejako*
+ * Aluejakokartat: kunta, pien-, suur-, tilastoalueet (Helsinki region district maps)
+ * Äänestysaluejako: (Helsinki region election district maps)
  * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
 * [Helsinki Real Estate Department](#hkk) (HKK:n avointa dataa)
- * Datasets: *Helsingin osoiteluettelo, Seudullinen osoiteluettelo*
+ * Helsingin osoiteluettelo, seudullinen osoiteluettelo (address information in Helsinki region)
  * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
  * Note! More spatial data from HKK availabe in the [fingis](https://github.com/rOpenGov/fingis) package, see [examples](https://github.com/rOpenGov/fingis/blob/master/vignettes/fingis_tutorial.md#hel-spatial)
 * [Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
- * Datasets: *Väestötietoruudukko, rakennustietoruudukko, SeutuRAMAVA*
+ * Väestötietoruudukko (population grid)
+ * Rakennustietoruudukko (building information grid)
+ * SeutuRAMAVA (building land resource information(?))
  * Source: [Helsingin seudun ympäristöpalvelut, HSY](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
-* [Helsinki Service Map](#servicemap)
- * APIs: *[Helsingin seudun Palvelukartta](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91), [Omakaupunki](http://api.omakaupunki.fi/)*
+* [Service and event information](#servicemap)
+ * [Helsinki region Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) (Pääkaupunkiseudun Palvelukartta)
+ * [Omakaupunki](http://api.omakaupunki.fi/) (requires personal API key, no examples given)
  
 
 ## Installation
@@ -76,7 +80,7 @@ Open data from [Helsingin kaupungin kiinteistövirasto, (HKK)](http://kartta.hel
 
 
 ```r
-dat <- get_HKK_address_data("Helsingin osoiteluettelo")
+dat <- get_hkk_address_data("Helsingin osoiteluettelo")
 head(dat)
 ```
 
@@ -100,7 +104,7 @@ head(dat)
 
 
 ```r
-dat <- get_HKK_address_data("Seudullinen osoiteluettelo")
+dat <- get_hkk_address_data("Seudullinen osoiteluettelo")
 head(dat)
 ```
 
@@ -133,7 +137,7 @@ Download population information from [HSY database](http://www.hsy.fi/seututieto
 
 
 ```r
-sp <- get_HSY_data("Vaestotietoruudukko")
+sp <- get_hsy("Vaestotietoruudukko")
 df <- as.data.frame(sp)
 head(df)
 ```
@@ -166,7 +170,7 @@ efficiency (aluetehokkuus).
 
 
 ```r
-sp <- get_HSY_data("Rakennustietoruudukko", 2013)
+sp <- get_hsy("Rakennustietoruudukko", 2013)
 df <- as.data.frame(sp)
 head(df)
 ```
@@ -202,7 +206,7 @@ Building area capacity per municipal region (kaupunginosittain summattu tieto ra
 
 
 ```r
-sp <- get_HSY_data("SeutuRAMAVA_kosa")
+sp <- get_hsy("SeutuRAMAVA_kosa")
 df <- as.data.frame(sp)
 head(df)
 ```
@@ -254,18 +258,15 @@ head(df)
 
 
 
-### Other Helsinki region spatial data
 
-[HSY website](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) has more data that will be included in the helsinki package later.
+## <a name="servicemap"></a>Service and event information
 
-## <a name="servicemap"></a>Helsinki Service Map
-
-Retrieve data from [Palvelukartta](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) [API](http://www.hel.fi/palvelukarttaws/rest/ver2_en.html).
+Function `get_servicemap()` retrieves regional service data from the [Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) [API](http://www.hel.fi/palvelukarttaws/rest/ver2_en.html).
 
 
 ```r
 # Get servicetree
-pk.servicetree <- get_ServiceMap_data("servicetree")
+pk.servicetree <- get_servicemap("servicetree")
 # Get id for parks
 str(pk.servicetree[[1]]$children[[7]]$children[[2]])
 ```
@@ -281,30 +282,28 @@ str(pk.servicetree[[1]]$children[[7]]$children[[2]])
 
 ```r
 # Get parks data
-parks.data <- get_ServiceMap_data("unit", service = 25664)
+parks.data <- get_servicemap("unit", service = 25664)
 # Check what data is given for the first park
 str(parks.data[[1]])
 ```
 
 ```
-## List of 14
-##  $ id                : num 27255
-##  $ org_id            : num 92
+## List of 11
+##  $ id                : num 29524
+##  $ org_id            : num 49
 ##  $ provider_type     : num 101
-##  $ name_fi           : chr "Puisto, lähivirkistysalue tai vastaava Tikkurilanpuisto"
-##  $ name_sv           : chr "Puisto, lähivirkistysalue tai vastaava Tikkurilanpuisto"
-##  $ name_en           : chr "Puisto, lähivirkistysalue tai vastaava Tikkurilanpuisto"
-##  $ latitude          : num 60.3
-##  $ longitude         : num 25
-##  $ northing_etrs_gk25: num 6686820
-##  $ easting_etrs_gk25 : num 25502271
-##  $ address_city_fi   : chr "Vantaa"
-##  $ address_city_sv   : chr "Vantaa"
-##  $ address_city_en   : chr "Vantaa"
-##  $ phone             : chr "09 8392 2407"
+##  $ name_fi           : chr "Kuttulammenpuisto  + leikkipaikat"
+##  $ name_sv           : chr "Kututräskparken och lekplats"
+##  $ name_en           : chr "Kuttulammenpuisto  + leikkipaikat"
+##  $ latitude          : num 60.2
+##  $ longitude         : num 24.8
+##  $ northing_etrs_gk25: num 6681306
+##  $ easting_etrs_gk25 : num 25486543
+##  $ phone             : chr "09 8162 5100"
 ```
 
 
+Function `get_omakaupunki()` retrieves regional service and event data from the [Omakaupunki API](http://api.omakaupunki.fi/). However, the API needs a personal key, so no examples are given here.
 
 ### Citation
 
@@ -358,13 +357,13 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] roxygen2_3.1.0  helsinki_0.9.14 maptools_0.8-29 sp_1.0-14      
-## [5] RCurl_1.95-4.1  bitops_1.0-6    rjson_0.2.13    knitr_1.5      
+## [1] knitr_1.5       helsinki_0.9.14 maptools_0.8-29 sp_1.0-14      
+## [5] RCurl_1.95-4.1  bitops_1.0-6    rjson_0.2.13    roxygen2_3.1.0 
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
 ##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
-##  [9] Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
+##  [9] markdown_0.6.4  Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
 ```
 
 

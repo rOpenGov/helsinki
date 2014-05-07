@@ -209,26 +209,30 @@ as part of the <a href="http://ropengov.github.io">rOpenGov</a> project.</p>
 <li><a href="#aluejakokartat">Helsinki region district maps</a> (Helsingin seudun aluejakokartat)
 
 <ul>
-<li>Datasets: <em>Aluejakokartat (kunta, pien-, suur-, tilastoalueet), äänestysaluejako</em></li>
+<li>Aluejakokartat: kunta, pien-, suur-, tilastoalueet (Helsinki region district maps)</li>
+<li>Äänestysaluejako: (Helsinki region election district maps)</li>
 <li>Source: <a href="http://ptp.hel.fi/avoindata/">Helsingin kaupungin Kiinteistövirasto (HKK)</a></li>
 </ul></li>
 <li><a href="#hkk">Helsinki Real Estate Department</a> (HKK:n avointa dataa)
 
 <ul>
-<li>Datasets: <em>Helsingin osoiteluettelo, Seudullinen osoiteluettelo</em></li>
+<li>Helsingin osoiteluettelo, seudullinen osoiteluettelo (address information in Helsinki region)</li>
 <li>Source: <a href="http://ptp.hel.fi/avoindata/">Helsingin kaupungin Kiinteistövirasto (HKK)</a></li>
 <li>Note! More spatial data from HKK availabe in the <a href="https://github.com/rOpenGov/fingis">fingis</a> package, see <a href="https://github.com/rOpenGov/fingis/blob/master/vignettes/fingis_tutorial.md#hel-spatial">examples</a></li>
 </ul></li>
 <li><a href="#hsy">Helsinki region environmental services</a> (HSY:n avointa dataa)
 
 <ul>
-<li>Datasets: <em>Väestötietoruudukko, rakennustietoruudukko, SeutuRAMAVA</em></li>
+<li>Väestötietoruudukko (population grid)</li>
+<li>Rakennustietoruudukko (building information grid)</li>
+<li>SeutuRAMAVA (building land resource information(?))</li>
 <li>Source: <a href="http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx">Helsingin seudun ympäristöpalvelut, HSY</a></li>
 </ul></li>
-<li><a href="#servicemap">Helsinki Service Map</a>
+<li><a href="#servicemap">Service and event information</a>
 
 <ul>
-<li>APIs: <em><a href="http://www.hel.fi/palvelukartta/Default.aspx?language=fi&amp;city=91">Helsingin seudun Palvelukartta</a>, <a href="http://api.omakaupunki.fi/">Omakaupunki</a></em></li>
+<li><a href="http://www.hel.fi/palvelukartta/Default.aspx?language=fi&amp;city=91">Helsinki region Service Map</a> (Pääkaupunkiseudun Palvelukartta)</li>
+<li><a href="http://api.omakaupunki.fi/">Omakaupunki</a> (requires personal API key, no examples given)</li>
 </ul></li>
 </ul>
 
@@ -264,7 +268,7 @@ install_github(&quot;helsinki&quot;, &quot;ropengov&quot;)
 
 <h3>Helsinki address information</h3>
 
-<pre><code class="r">dat &lt;- get_HKK_address_data(&quot;Helsingin osoiteluettelo&quot;)
+<pre><code class="r">dat &lt;- get_hkk_address_data(&quot;Helsingin osoiteluettelo&quot;)
 head(dat)
 </code></pre>
 
@@ -284,7 +288,7 @@ head(dat)
 ## 6 25512316 Helsinki Sjökaptensvägen Helsingfors      1  osoite, katu
 </code></pre>
 
-<pre><code class="r">dat &lt;- get_HKK_address_data(&quot;Seudullinen osoiteluettelo&quot;)
+<pre><code class="r">dat &lt;- get_hkk_address_data(&quot;Seudullinen osoiteluettelo&quot;)
 head(dat)
 </code></pre>
 
@@ -312,7 +316,7 @@ head(dat)
 
 <p>Download population information from <a href="http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx">HSY database</a> &copy; 2013 HSY, and inspect the data manually. Some rarely populated grids are censored with &#39;99&#39; to guarantee privacy.</p>
 
-<pre><code class="r">sp &lt;- get_HSY_data(&quot;Vaestotietoruudukko&quot;)
+<pre><code class="r">sp &lt;- get_hsy(&quot;Vaestotietoruudukko&quot;)
 df &lt;- as.data.frame(sp)
 head(df)
 </code></pre>
@@ -340,7 +344,7 @@ HSY 2013. Grid-level (500mx500m) information on building counts
 (lukumaara), built area (kerrosala), usage (kayttotarkoitus), region
 efficiency (aluetehokkuus).</p>
 
-<pre><code class="r">sp &lt;- get_HSY_data(&quot;Rakennustietoruudukko&quot;, 2013)
+<pre><code class="r">sp &lt;- get_hsy(&quot;Rakennustietoruudukko&quot;, 2013)
 df &lt;- as.data.frame(sp)
 head(df)
 </code></pre>
@@ -372,7 +376,7 @@ head(df)
 
 <p>Building area capacity per municipal region (kaupunginosittain summattu tieto rakennusmaavarannosta). Data obtained from &copy; HSY 2013. </p>
 
-<pre><code class="r">sp &lt;- get_HSY_data(&quot;SeutuRAMAVA_kosa&quot;)
+<pre><code class="r">sp &lt;- get_hsy(&quot;SeutuRAMAVA_kosa&quot;)
 df &lt;- as.data.frame(sp)
 head(df)
 </code></pre>
@@ -421,16 +425,12 @@ head(df)
 ## 5                                    &lt;NA&gt;
 </code></pre>
 
-<h3>Other Helsinki region spatial data</h3>
+<h2><a name="servicemap"></a>Service and event information</h2>
 
-<p><a href="http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx">HSY website</a> has more data that will be included in the helsinki package later.</p>
-
-<h2><a name="servicemap"></a>Helsinki Service Map</h2>
-
-<p>Retrieve data from <a href="http://www.hel.fi/palvelukartta/Default.aspx?language=fi&amp;city=91">Palvelukartta</a> <a href="http://www.hel.fi/palvelukarttaws/rest/ver2_en.html">API</a>.</p>
+<p>Function <code>get_servicemap()</code> retrieves regional service data from the <a href="http://www.hel.fi/palvelukartta/Default.aspx?language=fi&amp;city=91">Service Map</a> <a href="http://www.hel.fi/palvelukarttaws/rest/ver2_en.html">API</a>.</p>
 
 <pre><code class="r"># Get servicetree
-pk.servicetree &lt;- get_ServiceMap_data(&quot;servicetree&quot;)
+pk.servicetree &lt;- get_servicemap(&quot;servicetree&quot;)
 # Get id for parks
 str(pk.servicetree[[1]]$children[[7]]$children[[2]])
 </code></pre>
@@ -444,27 +444,26 @@ str(pk.servicetree[[1]]$children[[7]]$children[[2]])
 </code></pre>
 
 <pre><code class="r"># Get parks data
-parks.data &lt;- get_ServiceMap_data(&quot;unit&quot;, service = 25664)
+parks.data &lt;- get_servicemap(&quot;unit&quot;, service = 25664)
 # Check what data is given for the first park
 str(parks.data[[1]])
 </code></pre>
 
-<pre><code>## List of 14
-##  $ id                : num 27255
-##  $ org_id            : num 92
+<pre><code>## List of 11
+##  $ id                : num 29524
+##  $ org_id            : num 49
 ##  $ provider_type     : num 101
-##  $ name_fi           : chr &quot;Puisto, lähivirkistysalue tai vastaava Tikkurilanpuisto&quot;
-##  $ name_sv           : chr &quot;Puisto, lähivirkistysalue tai vastaava Tikkurilanpuisto&quot;
-##  $ name_en           : chr &quot;Puisto, lähivirkistysalue tai vastaava Tikkurilanpuisto&quot;
-##  $ latitude          : num 60.3
-##  $ longitude         : num 25
-##  $ northing_etrs_gk25: num 6686820
-##  $ easting_etrs_gk25 : num 25502271
-##  $ address_city_fi   : chr &quot;Vantaa&quot;
-##  $ address_city_sv   : chr &quot;Vantaa&quot;
-##  $ address_city_en   : chr &quot;Vantaa&quot;
-##  $ phone             : chr &quot;09 8392 2407&quot;
+##  $ name_fi           : chr &quot;Kuttulammenpuisto  + leikkipaikat&quot;
+##  $ name_sv           : chr &quot;Kututräskparken och lekplats&quot;
+##  $ name_en           : chr &quot;Kuttulammenpuisto  + leikkipaikat&quot;
+##  $ latitude          : num 60.2
+##  $ longitude         : num 24.8
+##  $ northing_etrs_gk25: num 6681306
+##  $ easting_etrs_gk25 : num 25486543
+##  $ phone             : chr &quot;09 8162 5100&quot;
 </code></pre>
+
+<p>Function <code>get_omakaupunki()</code> retrieves regional service and event data from the <a href="http://api.omakaupunki.fi/">Omakaupunki API</a>. However, the API needs a personal key, so no examples are given here.</p>
 
 <h3>Citation</h3>
 
@@ -510,13 +509,13 @@ https://github.com/rOpenGov/helsinki
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] roxygen2_3.1.0  helsinki_0.9.14 maptools_0.8-29 sp_1.0-14      
-## [5] RCurl_1.95-4.1  bitops_1.0-6    rjson_0.2.13    knitr_1.5      
+## [1] knitr_1.5       helsinki_0.9.14 maptools_0.8-29 sp_1.0-14      
+## [5] RCurl_1.95-4.1  bitops_1.0-6    rjson_0.2.13    roxygen2_3.1.0 
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
 ##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
-##  [9] Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
+##  [9] markdown_0.6.4  Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
 </code></pre>
 
 </body>

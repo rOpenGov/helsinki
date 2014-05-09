@@ -6,6 +6,7 @@
 ```{r knit, eval=FALSE, echo=FALSE}
 # Hot to knit this document into .md and .html
 library(knitr)
+opts_knit$set(base.dir = "vignettes") # Change the base dir where to save figures
 knit(input="vignettes/helsinki_tutorial.Rmd", output="vignettes/helsinki_tutorial.md")
 knit2html(input="vignettes/helsinki_tutorial.md", output="vignettes/helsinki_tutorial.html", options=c("use_xhtml","smartypants","mathjax","highlight_code"))
 ```
@@ -56,13 +57,13 @@ install_github("helsinki", "ropengov")
 
 Load package.
 
-```{r load}
+```{r load, message=FALSE, warning=FALSE, results='hide'}
 library(helsinki)
 ```
 
 ## <a name="aluejakokartat"></a>Helsinki region district maps
 
-Helsinki region district maps (Helsingin seudun aluejakokartat) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/). These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, see examples in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). The data are available in the helsinki package with `data(aluejakokartat)`.
+Helsinki region district maps (Helsingin seudun aluejakokartat) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) are available in the helsinki package with `data(aluejakokartat)`. These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, and more examples can be found in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). 
 
 ```{r aluejako_data, message=FALSE}
 data(aluejakokartat)
@@ -71,49 +72,47 @@ data(aluejakokartat)
 
 ## <a name="hsy"></a> Helsinki region environmental services
 
-Data from [Helsingin seudun ympäristöpalvelut (HSY)](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx).
+Retrieve data from [Helsingin seudun ympäristöpalvelut (HSY)](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) with `get_hsy()`.
 
-### Population grid (väestöteitoruudukko)
+### Population grid 
 
-Download population information from [HSY database](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) (C) 2013 HSY, and inspect the data manually. Some rarely populated grids are censored with '99' to guarantee privacy.
+Population grid (väestötietoruudukko) with 250m x 250m grid size in year 2013 contains the number of people in different age groups. The most rarely populated grids are left out (0-4 persons), and grids wiht less than 99 persons are censored with '99' to guarantee privacy.
 
-```{r hsy-example, fig.width=8, fig.height=8, message=FALSE}
-sp <- get_hsy("Vaestotietoruudukko")
-df <- as.data.frame(sp)   
-head(df)
+```{r hsy_vaesto, message=FALSE, warning=FALSE, results='hide'}
+sp.vaesto <- get_hsy(which.data="Vaestotietoruudukko", which.year=2013)
+head(sp.vaesto@data)
 ```
 
 
-### Helsinki building information (rakennustietoruudukko)
+### Helsinki building information
 
-Information of buildings in Helsinki region. Data obtained from (C)
-HSY 2013. Grid-level (500mx500m) information on building counts
-(lukumaara), built area (kerrosala), usage (kayttotarkoitus), region
+Building information grid (rakennustietoruudukko) in Helsinki region on grid-level (500m x 500m): building counts (lukumäärä), built area (kerrosala), usage (käyttötarkoitus), and region
 efficiency (aluetehokkuus).
 
-```{r hsy-examplerak, message=FALSE}
-sp <- get_hsy("Rakennustietoruudukko", 2013)  
-df <- as.data.frame(sp)   
-head(df)
+```{r hsy_rakennus, message=FALSE, warning=FALSE, results='hide'}
+sp.rakennus <- get_hsy(which.data="Rakennustietoruudukko", which.year=2013)  
+head(sp.rakennus@data)
 ```
 
 ### Helsinki building area capacity
 
-Building area capacity per municipal region (kaupunginosittain summattu tieto rakennusmaavarannosta). Data obtained from (C) HSY 2013. 
+Building area capacity per municipal region (kaupunginosittain summattua tietoa rakennusmaavarannosta). Plot with number of buildlings with `spplot()`.
 
-```{r hsy-exampleramava, message=FALSE}
-sp <- get_hsy("SeutuRAMAVA_kosa")  
-df <- as.data.frame(sp)   
-head(df)
+```{r hsy_ramava, message=FALSE, warning=FALSE, results='hide'}
+sp.ramava <- get_hsy(which.data="SeutuRAMAVA_tila", which.year=2013)  
+head(sp.ramava@data)
+# Values with less than five units are given as 999999999, set those to zero
+sp.ramava@data[sp.ramava@data==999999999] <- 0
+# Plot number of buildings for each region
+spplot(sp.ramava, zcol="RAKLKM", main="Number of buildings in each 'tilastoalue'")
 ```
-
 
 
 ## <a name="servicemap"></a>Service and event information
 
 Function `get_servicemap()` retrieves regional service data from the [Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) [API](http://www.hel.fi/palvelukarttaws/rest/ver2_en.html).
 
-```{r servicemap, message=FALSE}
+```{r servicemap, message=FALSE, warning=FALSE, results='hide'}
 # Get servicetree
 pk.servicetree <- get_servicemap("servicetree")
 # Get id for parks

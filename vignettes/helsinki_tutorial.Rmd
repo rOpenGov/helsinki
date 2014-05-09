@@ -3,6 +3,13 @@
 %\VignetteIndexEntry{An R Markdown Vignette made with knitr}
 -->
 
+```{r knit, eval=FALSE, echo=FALSE}
+# Hot to knit this document into .md and .html
+library(knitr)
+knit(input="vignettes/helsinki_tutorial.Rmd", output="vignettes/helsinki_tutorial.md")
+knit2html(input="vignettes/helsinki_tutorial.md", output="vignettes/helsinki_tutorial.html", options=c("use_xhtml","smartypants","mathjax","highlight_code"))
+```
+
 
 helsinki - tutorial
 ===========
@@ -19,10 +26,8 @@ The following data sources are currently available:
  * Aluejakokartat: kunta, pien-, suur-, tilastoalueet (Helsinki region district maps)
  * Äänestysaluejako: (Helsinki region election district maps)
  * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
-* [Helsinki Real Estate Department](#hkk) (HKK:n avointa dataa)
- * Helsingin osoiteluettelo, seudullinen osoiteluettelo (address information in Helsinki region)
- * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
- * Note! More spatial data from HKK availabe in the [gisfin](https://github.com/rOpenGov/gisfin) package, see [examples](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md#hel-spatial)
+* Helsinki Real Estate Department (HKK:n avointa dataa)
+ * Spatial data from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) availabe in the [gisfin](https://github.com/rOpenGov/gisfin) package, see [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md) for examples
 * [Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
  * Väestötietoruudukko (population grid)
  * Rakennustietoruudukko (building information grid)
@@ -60,24 +65,7 @@ library(helsinki)
 Helsinki region district maps (Helsingin seudun aluejakokartat) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/). These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, see examples in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). The data are available in the helsinki package with `data(aluejakokartat)`.
 
 ```{r aluejako_data, message=FALSE}
-# data(aluejakokartat)
-```
-
-
-## <a name="hkk"></a>Helsinki Real Estate Department
-
-Open data from [Helsingin kaupungin kiinteistövirasto, (HKK)](http://kartta.hel.fi/avoindata/index.html).
-
-### Helsinki address information
-
-```{r hkk-addressH, message=FALSE}
-dat <- get_hkk_address_data("Helsingin osoiteluettelo")
-head(dat)
-```
-
-```{r hkk-addressS, message=FALSE}
-dat <- get_hkk_address_data("Seudullinen osoiteluettelo")
-head(dat)
+data(aluejakokartat)
 ```
 
 

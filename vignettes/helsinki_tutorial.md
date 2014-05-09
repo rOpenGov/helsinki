@@ -4,6 +4,9 @@
 -->
 
 
+
+
+
 helsinki - tutorial
 ===========
 
@@ -19,10 +22,8 @@ The following data sources are currently available:
  * Aluejakokartat: kunta, pien-, suur-, tilastoalueet (Helsinki region district maps)
  * Äänestysaluejako: (Helsinki region election district maps)
  * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
-* [Helsinki Real Estate Department](#hkk) (HKK:n avointa dataa)
- * Helsingin osoiteluettelo, seudullinen osoiteluettelo (address information in Helsinki region)
- * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
- * Note! More spatial data from HKK availabe in the [gisfin](https://github.com/rOpenGov/gisfin) package, see [examples](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md#hel-spatial)
+* Helsinki Real Estate Department (HKK:n avointa dataa)
+ * Spatial data from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) availabe in the [gisfin](https://github.com/rOpenGov/gisfin) package, see [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md) for examples
 * [Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
  * Väestötietoruudukko (population grid)
  * Rakennustietoruudukko (building information grid)
@@ -67,62 +68,7 @@ Helsinki region district maps (Helsingin seudun aluejakokartat) from [Helsingin 
 
 
 ```r
-# data(aluejakokartat)
-```
-
-
-
-## <a name="hkk"></a>Helsinki Real Estate Department
-
-Open data from [Helsingin kaupungin kiinteistövirasto, (HKK)](http://kartta.hel.fi/avoindata/index.html).
-
-### Helsinki address information
-
-
-```r
-dat <- get_hkk_address_data("Helsingin osoiteluettelo")
-head(dat)
-```
-
-```
-##           katunimi osoitenumero osoitenumero2 osoitekirjain       N
-## 1         Haapatie           24            NA             b 6682555
-## 2        Pallokuja           12            NA               6678084
-## 3       Poutunkuja            4            NA               6678926
-## 4       Haukkakuja            1            NA               6683284
-## 5       Haukkakuja            4            NA               6683307
-## 6 Merikapteenintie            4            NA               6681909
-##          E kaupunki           gatan      staden tyyppi tyyppi_selite
-## 1 25499401 Helsinki        Aspvägen Helsingfors      1  osoite, katu
-## 2 25508664 Helsinki     Bollgränden Helsingfors      1  osoite, katu
-## 3 25494428 Helsinki   Pouttugränden Helsingfors      1  osoite, katu
-## 4 25503858 Helsinki     Falkgränden Helsingfors      1  osoite, katu
-## 5 25503852 Helsinki     Falkgränden Helsingfors      1  osoite, katu
-## 6 25512316 Helsinki Sjökaptensvägen Helsingfors      1  osoite, katu
-```
-
-
-
-```r
-dat <- get_hkk_address_data("Seudullinen osoiteluettelo")
-head(dat)
-```
-
-```
-##          katunimi osoitenumero osoitenumero2 osoitekirjain       N
-## 1    Gråängsvägen            0            NA               6673565
-## 2        Grådalen            0            NA               6673640
-## 3      Lillaisarn            0            NA               6665767
-## 4 Herrö Träskholm            0            NA               6663250
-## 5      Stora Bodö            0            NA               6666765
-## 6      Torraisarn            0            NA               6664992
-##          E kaupunki            gatan staden tyyppi   tyyppi_selite
-## 1 25478911    Espoo  Harmaaniityntie   Esbo      1 osoite tai katu
-## 2 25478711    Espoo     Harmaalaakso   Esbo      1 osoite tai katu
-## 3 25483084    Espoo       Lillaisarn   Esbo      1 osoite tai katu
-## 4 25481439    Espoo Herrön Träskholm   Esbo      1 osoite tai katu
-## 5 25485583    Espoo       Stora Bodö   Esbo      1 osoite tai katu
-## 6 25482421    Espoo       Torraisarn   Esbo      1 osoite tai katu
+data(aluejakokartat)
 ```
 
 
@@ -288,18 +234,21 @@ str(parks.data[[1]])
 ```
 
 ```
-## List of 11
-##  $ id                : num 29524
-##  $ org_id            : num 49
+## List of 14
+##  $ id                : num 26500
+##  $ org_id            : num 92
 ##  $ provider_type     : num 101
-##  $ name_fi           : chr "Kuttulammenpuisto  + leikkipaikat"
-##  $ name_sv           : chr "Kututräskparken och lekplats"
-##  $ name_en           : chr "Kuttulammenpuisto  + leikkipaikat"
-##  $ latitude          : num 60.2
-##  $ longitude         : num 24.8
-##  $ northing_etrs_gk25: num 6681306
-##  $ easting_etrs_gk25 : num 25486543
-##  $ phone             : chr "09 8162 5100"
+##  $ name_fi           : chr "Puisto, lähivirkistysalue tai vastaava"
+##  $ name_sv           : chr "Puisto, lähivirkistysalue tai vastaava"
+##  $ name_en           : chr "Puisto, lähivirkistysalue tai vastaava"
+##  $ latitude          : num 60.4
+##  $ longitude         : num 25.1
+##  $ northing_etrs_gk25: num 6695228
+##  $ easting_etrs_gk25 : num 25503754
+##  $ address_city_fi   : chr "Vantaa"
+##  $ address_city_sv   : chr "Vantaa"
+##  $ address_city_en   : chr "Vantaa"
+##  $ phone             : chr "09 8392 2407"
 ```
 
 
@@ -357,13 +306,13 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5       helsinki_0.9.14 maptools_0.8-29 sp_1.0-14      
-## [5] RCurl_1.95-4.1  bitops_1.0-6    rjson_0.2.13    roxygen2_3.1.0 
+## [1] helsinki_0.9.15 knitr_1.5       RCurl_1.95-4.1  bitops_1.0-6   
+## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_3.1.0 
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
 ##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
-##  [9] Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
+##  [9] markdown_0.6.4  Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
 ```
 
 

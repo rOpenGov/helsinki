@@ -1,0 +1,11 @@
+#   #   #   ## Check that this is correct!
+#     sp.vaesto = get_hsy("Vaestotietoruudukko", data.dir="TEMP")
+#   library(gisfin)
+#   sp.vaesto <- spTransform(sp.vaesto, CRS("+proj=longlat +datum=WGS84"))
+#     df.vaesto = sp2df(sp.vaesto, "INDEX")
+#     # spplot(sp.vaesto, "ASUKKAITA")
+#     ggplot(df.vaesto, aes(x=long, y=lat)) + geom_polygon(aes(fill=ASUKKAITA, group=INDEX))#, fill="red")
+#   hel.bbox <- as.vector(sp.vaesto@bbox)
+#   library(ggmap)
+#   hel.map <- ggmap::get_map(location = hel.bbox, source = "osm")
+#   ggmap(hel.map) + geom_polygon(data = df.vaesto, aes(x = long, y = lat, fill = ASUKKAITA, group = INDEX), alpha = 0.5) 

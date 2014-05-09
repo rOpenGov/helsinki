@@ -27,17 +27,15 @@
 #' @param data.dir A string. Specify a temporary folder for storing downloaded data.
 #'
 #' @return Shape object (from SpatialPolygonsDataFrame class)
+#' @import maptools
 #' @export
-#' @importFrom utils download.file
-#' @importFrom utils unzip
-#' @importFrom maptools readShapePoly
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen and Leo Lahti \email{louhos@@googlegroups.com}
 #' @examples sp <- get_hsy("Vaestotietoruudukko")
 #' @keywords utilities
 
 get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
-    
+  
   if (is.null(which.data)) {
     message("Available HSY datasets:
   'Vaestotietoruudukko': Ruutukohtaista tietoa vaeston lukumaarasta, ikajakaumasta ja asumisvaljyydesta. Vuodet: 1997-2003, 2008-2013.
@@ -94,7 +92,7 @@ get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
   } else {
     stop("Invalid 'which.data' argument")
   }
-
+  
   # Download data
   if (which.data=="SeutuRAMAVA_kosa" & which.year==2010) {
     remote.zip <- paste0("http://www.hsy.fi/seututieto/Documents/Paikkatiedot/", zip.file) 
@@ -147,10 +145,11 @@ get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
     else
       sp.file <- paste0(data.dir, "/SeutuRAMAVA_", which.year, "_SHP.shp")
   }
-
-  # Read shapefile
-  sp <- maptools::readShapePoly(sp.file)
   
+  # Read shapefile and add coordinate information manually (ETRS-GK25 -> EPSG:3879)
+  p4s <- "+init=epsg:3879 +proj=tmerc +lat_0=0 +lon_0=25 +k=1 +x_0=25500000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+  sp <- maptools::readShapePoly(fn=sp.file, proj4string=CRS(p4s))
+    
   # Add KATAKER to rakennustieto, mailaa '11' SePe:lle
   if (which.data=="Rakennustietoruudukko") {
     KATAKER.key <- kataker_key()

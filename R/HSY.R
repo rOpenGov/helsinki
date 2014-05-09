@@ -25,6 +25,7 @@
 #' @param which.data A string. Specify the name of the retrieved HSY data set. Options: Vaestotietoruudukko; Rakennustietoruudukko; SeutuRAMAVA_kosa; SeutuRAMAVA_tila. These are documented in HSY data description document (see above).
 #' @param which.year An integer. Specify the year for the data to be retrieved.
 #' @param data.dir A string. Specify a temporary folder for storing downloaded data.
+#' @param verbose logical. Should R report extra information on progress? 
 #'
 #' @return Shape object (from SpatialPolygonsDataFrame class)
 #' @import maptools
@@ -34,7 +35,7 @@
 #' @examples sp <- get_hsy("Vaestotietoruudukko")
 #' @keywords utilities
 
-get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
+get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir(), verbose=TRUE) {
   
   if (is.null(which.data)) {
     message("Available HSY datasets:
@@ -101,10 +102,12 @@ get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
   }
   local.zip <- file.path(data.dir, zip.file)
   if (!file.exists(local.zip)) {
-    message("Dowloading ", remote.zip, "\ninto ", local.zip, "\n")
-    utils::download.file(remote.zip, destfile = local.zip)
+    if (verbose)
+      message("Dowloading ", remote.zip, "\ninto ", local.zip, "\n")
+    utils::download.file(remote.zip, destfile = local.zip, quiet=!verbose)
   } else {
-    message("File ", local.zip, " already found, will not download again!")
+    if (verbose)
+      message("File ", local.zip, " already found, will not download again!")
   }  
   
   ## Process data -----------------------------------------------
@@ -114,21 +117,24 @@ get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
   
   # Define shapefile
   if (which.data=="Vaestotietoruudukko") {
-    message("For detailed description of ", which.data, " see\nhttp://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Documents/Vaestoruudukko.pdf")
+    if (verbose)
+      message("For detailed description of ", which.data, " see\nhttp://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Documents/Vaestoruudukko.pdf")
     if (which.year %in% c(2012, 2013))
       sp.file <- paste0(data.dir, "/Vaestotietoruudukko_", which.year, ".shp")
     else
       sp.file <- paste0(data.dir, "/Vaestoruudukko_", which.year, ".shp")
     
   } else if (which.data=="Rakennustietoruudukko") {
-    message("For detailed description of ", which.data, " see\nhttp://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Documents/Rakennustietoruudukko.pdf")
+    if (verbose)
+      message("For detailed description of ", which.data, " see\nhttp://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Documents/Rakennustietoruudukko.pdf")
     if (which.year==2012)
       sp.file <- paste0(data.dir, "/Rakennustitetoruudukko_", which.year, ".shp")
     else
       sp.file <- paste0(data.dir, "/Rakennustietoruudukko_", which.year, ".shp")
     
   } else if (which.data=="SeutuRAMAVA_kosa") {
-    message("For detailed description of ", which.data, " see\nhttp://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Documents/SeutuRAMAVA.pdf")
+    if (verbose) 
+      message("For detailed description of ", which.data, " see\nhttp://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Documents/SeutuRAMAVA.pdf")
     if (which.year==2013)
       sp.file <- paste0(data.dir, "/SeutuRamava_kosa_", which.year, ".shp")
     else if (which.year==2012)
@@ -137,7 +143,8 @@ get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
       sp.file <- paste0(data.dir, "/SeutuRAMAVA_", which.year, ".shp")
     
   } else if (which.data=="SeutuRAMAVA_tila") {
-    message("For detailed description of ", which.data, " see\nhttp://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Documents/SeutuRAMAVA.pdf")
+    if (verbose)
+      message("For detailed description of ", which.data, " see\nhttp://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Documents/SeutuRAMAVA.pdf")
     if (which.year==2013)
       sp.file <- paste0(data.dir, "/SeutuRamava_tila_", which.year, ".shp")
     else if (which.year==2012)
@@ -172,7 +179,8 @@ get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir()) {
       sp[[nam]] <-  factor(iconv(sp[[nam]], from = "latin1", to = "UTF-8"))
   }
   
-  message("\nData loaded succesfully!")
+  if (verbose)
+    message("\nData loaded succesfully!")
   return(sp)
 }
 

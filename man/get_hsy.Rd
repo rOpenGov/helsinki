@@ -2,7 +2,8 @@
 \alias{get_hsy}
 \title{Retrieve data from Helsinki Region Environmental Services}
 \usage{
-get_hsy(which.data = NULL, which.year = 2013, data.dir = tempdir())
+get_hsy(which.data = NULL, which.year = 2013, data.dir = tempdir(),
+  verbose = TRUE)
 }
 \arguments{
   \item{which.data}{A string. Specify the name of the
@@ -16,6 +17,9 @@ get_hsy(which.data = NULL, which.year = 2013, data.dir = tempdir())
 
   \item{data.dir}{A string. Specify a temporary folder for
   storing downloaded data.}
+
+  \item{verbose}{logical. Should R report extra information
+  on progress?}
 }
 \value{
 Shape object (from SpatialPolygonsDataFrame class)

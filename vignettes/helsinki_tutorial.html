@@ -199,7 +199,7 @@ hr {
 <p>This R package provides tools to access open data from the Helsinki region in Finland
 as part of the <a href="http://ropengov.github.io">rOpenGov</a> project.</p>
 
-<p>For contact information and source code, see the <a href="https://github.com/rOpenGov/helsinki">github page</a></p>
+<p>For contact information and source code, see the <a href="https://github.com/rOpenGov/helsinki">github page</a>. </p>
 
 <h2>Available data sources</h2>
 
@@ -232,7 +232,16 @@ as part of the <a href="http://ropengov.github.io">rOpenGov</a> project.</p>
 <li><a href="http://www.hel.fi/palvelukartta/Default.aspx?language=fi&amp;city=91">Helsinki region Service Map</a> (Pääkaupunkiseudun Palvelukartta)</li>
 <li><a href="http://api.omakaupunki.fi/">Omakaupunki</a> (requires personal API key, no examples given)</li>
 </ul></li>
+<li><a href="#hri_stats">Helsinki Region Infoshare statistics API</a>
+
+<ul>
+<li>Aluejakosarjat</li>
+<li>More data coming&hellip;</li>
+<li>Source: <a href="http://dev.hel.fi/stats/">Helsinki Region Infoshare statistics API</a></li>
+</ul></li>
 </ul>
+
+<p>List of potential data sources to be added to the package can be found <a href="https://github.com/rOpenGov/helsinki/blob/master/vignettes/todo-datasets.md">here</a>.</p>
 
 <h2>Installation</h2>
 
@@ -255,7 +264,7 @@ install_github(&quot;helsinki&quot;, &quot;ropengov&quot;)
 
 <h2><a name="aluejakokartat"></a>Helsinki region district maps</h2>
 
-<p>Helsinki region district maps (Helsingin seudun aluejakokartat) from <a href="http://ptp.hel.fi/avoindata/">Helsingin kaupungin Kiinteistövirasto (HKK)</a>. These are preprocessed in the <a href="https://github.com/rOpenGov/gisfin">gisfin</a> package, see examples in the <a href="https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md">gisfin tutorial</a>. The data are available in the helsinki package with <code>data(aluejakokartat)</code>.</p>
+<p>Helsinki region district maps (Helsingin seudun aluejakokartat) from <a href="http://ptp.hel.fi/avoindata/">Helsingin kaupungin Kiinteistövirasto (HKK)</a> are available in the helsinki package with <code>data(aluejakokartat)</code>. These are preprocessed in the <a href="https://github.com/rOpenGov/gisfin">gisfin</a> package, and more examples can be found in the <a href="https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md">gisfin tutorial</a>. </p>
 
 <pre><code class="r">data(aluejakokartat)
 </code></pre>
@@ -311,6 +320,47 @@ str(parks.data[[1]])
 
 <p>Function <code>get_omakaupunki()</code> retrieves regional service and event data from the <a href="http://api.omakaupunki.fi/">Omakaupunki API</a>. However, the API needs a personal key, so no examples are given here.</p>
 
+<h2><a name="hri_stats"></a> Helsinki Region Infoshare statistics API</h2>
+
+<p>Functoin <code>get_hri_stats()</code> retrieves data from the <a href="http://dev.hel.fi/stats/">Helsinki Region Infoshare statistics API</a>. Note! The implementation will be updated!</p>
+
+<pre><code class="r"># Retrieve list of available data
+stats.list &lt;- get_hri_stats(query = &quot;&quot;)
+# Show first results
+head(stats.list)
+</code></pre>
+
+<pre><code>##                             Helsingin väestö äidinkielen mukaan 1.1. 
+##                            &quot;aluesarjat_a03s_hki_vakiluku_aidinkieli&quot; 
+##                                           Syntyneet äidin iän mukaan 
+##                             &quot;aluesarjat_hginseutu_va_vm04_syntyneet&quot; 
+##   Vantaalla asuva työllinen työvoima sukupuolen ja iän mukaan 31.12. 
+##                             &quot;aluesarjat_c01s_van_tyovoima_sukupuoli&quot; 
+## Espoon lapsiperheet lasten määrän mukaan (0-17-vuotiaat lapset) 1.1. 
+##                            &quot;aluesarjat_b03s_esp_lapsiperheet_alle18&quot; 
+##                                 Väestö iän ja sukupuolen mukaan 1.1. 
+##                          &quot;aluesarjat_hginseutu_va_vr01_vakiluku_ika&quot; 
+##         Helsingin asuntotuotanto rahoitusmuodon ja huoneluvun mukaan 
+##                         &quot;aluesarjat_a03hki_astuot_rahoitus_huonelkm&quot;
+</code></pre>
+
+<p>Specify a dataset to retrieve. The output is currently a three-dimensional array.</p>
+
+<pre><code class="r"># Retrieve a specific dataset
+stats.res &lt;- get_hri_stats(query = stats.list[1])
+# Show the structure of the results
+str(stats.res)
+</code></pre>
+
+<pre><code>##  num [1:22, 1:4, 1:197] 497526 501518 508659 515765 525031 ...
+##  - attr(*, &quot;dimnames&quot;)=List of 3
+##   ..$ vuosi     : chr [1:22] &quot;1992&quot; &quot;1993&quot; &quot;1994&quot; &quot;1995&quot; ...
+##   ..$ aidinkieli: chr [1:4] &quot;Kaikki äidinkielet&quot; &quot;Suomi ja saame&quot; &quot;Ruotsi&quot; &quot;Muu kieli&quot;
+##   ..$ alue      : chr [1:197] &quot;091 Helsinki&quot; &quot;091 1 Eteläinen suurpiiri&quot; &quot;091 101 Vironniemen peruspiiri&quot; &quot;091 10 Kruununhaka&quot; ...
+</code></pre>
+
+<p>More examples to be added.</p>
+
 <h3>Citation</h3>
 
 <p><strong>Citing the data:</strong> See <code>help()</code> to get citation information for each data source individually.</p>
@@ -355,12 +405,15 @@ https://github.com/rOpenGov/helsinki
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] helsinki_0.9.15 maptools_0.8-29 sp_1.0-14       knitr_1.5      
+## [1] knitr_1.5       reshape2_1.2.2  helsinki_0.9.15 RCurl_1.95-4.1 
+## [5] bitops_1.0-6    rjson_0.2.13    maptools_0.8-29 sp_1.0-14      
+## [9] roxygen2_3.1.0 
 ## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.1  foreign_0.8-60  formatR_0.10    grid_3.0.3     
-## [5] lattice_0.20-27 RCurl_1.95-4.1  rjson_0.2.13    stringr_0.6.2  
-## [9] tools_3.0.3
+##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
+##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
+##  [9] markdown_0.6.4  plyr_1.8.1      Rcpp_0.11.1     stringr_0.6.2  
+## [13] tools_3.0.3
 </code></pre>
 
 </body>

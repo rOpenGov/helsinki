@@ -13,7 +13,7 @@ helsinki - tutorial
 This R package provides tools to access open data from the Helsinki region in Finland
 as part of the [rOpenGov](http://ropengov.github.io) project.
 
-For contact information and source code, see the [github page](https://github.com/rOpenGov/helsinki)
+For contact information and source code, see the [github page](https://github.com/rOpenGov/helsinki). 
 
 ## Available data sources
 
@@ -32,7 +32,12 @@ The following data sources are currently available:
 * [Service and event information](#servicemap)
  * [Helsinki region Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) (Pääkaupunkiseudun Palvelukartta)
  * [Omakaupunki](http://api.omakaupunki.fi/) (requires personal API key, no examples given)
- 
+* [Helsinki Region Infoshare statistics API](#hri_stats)
+ * Aluejakosarjat
+ * More data coming...
+ * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
+
+List of potential data sources to be added to the package can be found [here](https://github.com/rOpenGov/helsinki/blob/master/vignettes/todo-datasets.md).
 
 ## Installation
 
@@ -64,7 +69,7 @@ library(helsinki)
 
 ## <a name="aluejakokartat"></a>Helsinki region district maps
 
-Helsinki region district maps (Helsingin seudun aluejakokartat) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/). These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, see examples in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). The data are available in the helsinki package with `data(aluejakokartat)`.
+Helsinki region district maps (Helsingin seudun aluejakokartat) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) are available in the helsinki package with `data(aluejakokartat)`. These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, and more examples can be found in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). 
 
 
 ```r
@@ -138,6 +143,55 @@ str(parks.data[[1]])
 
 Function `get_omakaupunki()` retrieves regional service and event data from the [Omakaupunki API](http://api.omakaupunki.fi/). However, the API needs a personal key, so no examples are given here.
 
+## <a name="hri_stats"></a> Helsinki Region Infoshare statistics API
+
+Functoin `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/). Note! The implementation will be updated!
+
+
+```r
+# Retrieve list of available data
+stats.list <- get_hri_stats(query = "")
+# Show first results
+head(stats.list)
+```
+
+```
+##                             Helsingin väestö äidinkielen mukaan 1.1. 
+##                            "aluesarjat_a03s_hki_vakiluku_aidinkieli" 
+##                                           Syntyneet äidin iän mukaan 
+##                             "aluesarjat_hginseutu_va_vm04_syntyneet" 
+##   Vantaalla asuva työllinen työvoima sukupuolen ja iän mukaan 31.12. 
+##                             "aluesarjat_c01s_van_tyovoima_sukupuoli" 
+## Espoon lapsiperheet lasten määrän mukaan (0-17-vuotiaat lapset) 1.1. 
+##                            "aluesarjat_b03s_esp_lapsiperheet_alle18" 
+##                                 Väestö iän ja sukupuolen mukaan 1.1. 
+##                          "aluesarjat_hginseutu_va_vr01_vakiluku_ika" 
+##         Helsingin asuntotuotanto rahoitusmuodon ja huoneluvun mukaan 
+##                         "aluesarjat_a03hki_astuot_rahoitus_huonelkm"
+```
+
+
+Specify a dataset to retrieve. The output is currently a three-dimensional array.
+
+
+```r
+# Retrieve a specific dataset
+stats.res <- get_hri_stats(query = stats.list[1])
+# Show the structure of the results
+str(stats.res)
+```
+
+```
+##  num [1:22, 1:4, 1:197] 497526 501518 508659 515765 525031 ...
+##  - attr(*, "dimnames")=List of 3
+##   ..$ vuosi     : chr [1:22] "1992" "1993" "1994" "1995" ...
+##   ..$ aidinkieli: chr [1:4] "Kaikki äidinkielet" "Suomi ja saame" "Ruotsi" "Muu kieli"
+##   ..$ alue      : chr [1:197] "091 Helsinki" "091 1 Eteläinen suurpiiri" "091 101 Vironniemen peruspiiri" "091 10 Kruununhaka" ...
+```
+
+
+More examples to be added.
+
 ### Citation
 
 **Citing the data:** See `help()` to get citation information for each data source individually.
@@ -190,12 +244,15 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] helsinki_0.9.15 maptools_0.8-29 sp_1.0-14       knitr_1.5      
+## [1] knitr_1.5       reshape2_1.2.2  helsinki_0.9.15 RCurl_1.95-4.1 
+## [5] bitops_1.0-6    rjson_0.2.13    maptools_0.8-29 sp_1.0-14      
+## [9] roxygen2_3.1.0 
 ## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.1  foreign_0.8-60  formatR_0.10    grid_3.0.3     
-## [5] lattice_0.20-27 RCurl_1.95-4.1  rjson_0.2.13    stringr_0.6.2  
-## [9] tools_3.0.3
+##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
+##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
+##  [9] markdown_0.6.4  plyr_1.8.1      Rcpp_0.11.1     stringr_0.6.2  
+## [13] tools_3.0.3
 ```
 
 

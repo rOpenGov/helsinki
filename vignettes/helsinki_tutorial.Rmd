@@ -18,7 +18,7 @@ helsinki - tutorial
 This R package provides tools to access open data from the Helsinki region in Finland
 as part of the [rOpenGov](http://ropengov.github.io) project.
 
-For contact information and source code, see the [github page](https://github.com/rOpenGov/helsinki)
+For contact information and source code, see the [github page](https://github.com/rOpenGov/helsinki). 
 
 ## Available data sources
 
@@ -37,7 +37,12 @@ The following data sources are currently available:
 * [Service and event information](#servicemap)
  * [Helsinki region Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) (Pääkaupunkiseudun Palvelukartta)
  * [Omakaupunki](http://api.omakaupunki.fi/) (requires personal API key, no examples given)
- 
+* [Helsinki Region Infoshare statistics API](#hri_stats)
+ * Aluejakosarjat
+ * More data coming...
+ * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
+
+List of potential data sources to be added to the package can be found [here](https://github.com/rOpenGov/helsinki/blob/master/vignettes/todo-datasets.md).
 
 ## Installation
 
@@ -124,6 +129,28 @@ str(parks.data[[1]])
 ```
 
 Function `get_omakaupunki()` retrieves regional service and event data from the [Omakaupunki API](http://api.omakaupunki.fi/). However, the API needs a personal key, so no examples are given here.
+
+## <a name="hri_stats"></a> Helsinki Region Infoshare statistics API
+
+Functoin `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/). Note! The implementation will be updated!
+
+```{r hri_stats1, message=FALSE, warning=FALSE}
+# Retrieve list of available data
+stats.list <- get_hri_stats(query="")
+# Show first results
+head(stats.list)
+```
+
+Specify a dataset to retrieve. The output is currently a three-dimensional array.
+
+```{r hri_stats2, message=FALSE, warning=FALSE}
+# Retrieve a specific dataset
+stats.res <- get_hri_stats(query=stats.list[1])
+# Show the structure of the results
+str(stats.res)
+```
+
+More examples to be added.
 
 ### Citation
 

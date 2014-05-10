@@ -33,7 +33,7 @@ The following data sources are currently available:
  * [Helsinki region Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) (Pääkaupunkiseudun Palvelukartta)
  * [Omakaupunki](http://api.omakaupunki.fi/) (requires personal API key, no examples given)
 * [Helsinki Region Infoshare statistics API](#hri_stats)
- * Aluejakosarjat
+ * Aluesarjat (regional time series data)
  * More data coming...
  * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
 

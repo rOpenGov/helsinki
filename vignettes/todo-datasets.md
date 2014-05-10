@@ -29,3 +29,6 @@ helsinki - Potential data sources to be added
  * [Open AHJO](http://dev.hel.fi/apis/openahjo)
  * [Helsinkikanava](http://open.helsinkikanava.fi/) Helsinki city council meeting video recordings and associated metadata
 
+### Traffic
+* [Liikenneonnettomuudet Helsingissä 2000-2010](http://www.hri.fi/fi/data/liikenneonnettomuudet-helsingissa-2000-2010) tapahtumapaikat ja onnettomuuslaji paikkatietoaineistona. CSV- ja MapInfo-muotoinen ote liikenneonnettomuusrekisteristä
+* [Liikennemäärät Helsingissä 2011](http://www.hri.fi/fi/data/liikennemaarat-helsingissa-2011) Ajoneuvojen (henkilöautojen, pakettiautojen, kuorma-autojen, rekka-autojen, linja-autojen, moottoripyörien) sekä raitiovaunujen liikennemääriä useissa laskentapisteissä.

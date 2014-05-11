@@ -5,15 +5,11 @@ helsinki - Potential data sources to be added
  * [Pääkaupunkiseudun taloudellisia tunnuslukuja](http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/)  
  * [Pääkaupunkiseudun kuntien tilinpäätökset 2008-2010](http://www.hri.fi/fi/data/kuntien-tilinpaatokset-2008-2010/) 
  * [Helsingin kaupungin tulot ja menot 2009-2010](http://www.hri.fi/fi/data/helsingin-kaupunki-tulot-ja-menot-2009-ja-2010/)  
- * [Tulot ja menot - osoittaa Datademoon??](http://datademo.fi/)
+ * [Tulot ja menot](http://datademo.fi/) (Linkit kaupunkien datoihin Datademo-sivulla)
 
 * Demography
  * [Helsinki alueittain 2011](http://www.hri.fi/fi/data/helsinki-alueittain-2011-taulukot/) Tiedot Helsingin 8 suurpiirin ja 34 peruspiirin asukkaista, työpaikoista, asumisesta, rakentamisesta sekä palveluista ja palvelujen käytöstä.
  * [Helsingin ja Helsingin seudun väestöennuste sukupuolen ja iän mukaan 2012-2050](http://www.hri.fi/fi/data/helsingin-ja-helsingin-seudun-vaestoennuste-sukupuolen-ja-ian-mukaan-2012-2050/)
-
-* Environment 
- * [Helsingin seudun ympäristöpalvelut (HSY)](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) Louhos-blogissa aiemmin sorvilla avattu tiedot 2010-2011. Nyt laajempi aikasarja saatavilla.
- * [Helsingin kaupungin rakennusrekisterin ote](http://www.hri.fi/fi/data/helsingin-kaupungin-rakennusrekisterin-ote-62012/) Mm. tietoja rakennusten iästä.
 
 * General 
  * [Helsingin kaupungin tilastollinen vuosikirja](http://www.hel2.fi/tietokeskus/data/helsingin_kaupungin_tilastollinen_vuosikirja_2009/index.html) Paljon lupaavan oloista dataa Excel-taulukkona,päivittynee vuosittain.  

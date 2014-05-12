@@ -41,6 +41,8 @@ get_hri_stats <- function (query="", verbose=TRUE) {
   
   ## TODO
   # implement grepping for resources? as in eurostat
+  if (verbose)
+    message("Accessing Helsinki Region Infoshare statistics API...")
     
   # Use the regional statistics API
   api.url <- "http://dev.hel.fi/stats/resources/"
@@ -59,12 +61,14 @@ get_hri_stats <- function (query="", verbose=TRUE) {
   
   # Process and show list of resources
   if (query=="") {
-    resources <- names(res.list[["_embedded"]])
+     resources <- names(res.list[["_embedded"]])
     names(resources) <- sapply(res.list[["_embedded"]], function(x) x$metadata$label)
-    message("Please specify a query")
+    if (verbose)
+      message("Retrieved list of available resources.")
     return(resources)
     
   } else {
+    
     ## Process jsonstat results into an array
     # For info about jsontstat, see http://json-stat.org/format/
     # Possible R package ot use: https://github.com/ajschumacher/rjstat
@@ -86,6 +90,8 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     # Have to reverse the dimensions, because in arrays
     # "The values in data are taken to be those in the array with the leftmost subscript moving fastest."
     res.array <- array(data=as.numeric(res.list$dataset$value), dim=rev(dims), dimnames=rev(dimnames))
+    if (verbose)
+      message("Retrieved resource '",query,"'")
     return(res.array)
   }
 #   # Test that it works

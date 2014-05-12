@@ -1,3 +1,4 @@
+export(get_economic_indicators)
 export(get_hri_stats)
 export(get_hsy)
 export(get_omakaupunki)

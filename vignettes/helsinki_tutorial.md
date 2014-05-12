@@ -33,9 +33,12 @@ The following data sources are currently available:
  * [Helsinki region Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) (Pääkaupunkiseudun Palvelukartta)
  * [Omakaupunki](http://api.omakaupunki.fi/) (requires personal API key, no examples given)
 * [Helsinki Region Infoshare statistics API](#hri_stats)
- * Aluesarjat (regional time series data)
+ * [Aluesarjat (original source)](http://www.aluesarjat.fi/) (regional time series data)
  * More data coming...
  * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
+* [Economic data](#economy)
+ * [Taloudellisia tunnuslukuja](http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/) (economic indicators)
+ 
 
 List of potential data sources to be added to the package can be found [here](https://github.com/rOpenGov/helsinki/blob/master/vignettes/todo-datasets.md).
 
@@ -69,11 +72,35 @@ library(helsinki)
 
 ## <a name="aluejakokartat"></a>Helsinki region district maps
 
-Helsinki region district maps (Helsingin seudun aluejakokartat) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) are available in the helsinki package with `data(aluejakokartat)`. These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, and more examples can be found in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). 
+Helsinki region district maps (Helsingin seudun aluejakokartat) and election maps (äänestysalueet) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) are available in the helsinki package with `data(aluejakokartat)`. The data are available as both spatial object (`sp`) and data frame (`df`). These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, and more examples can be found in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). 
 
 
 ```r
+# Load aluejakokartat and study contents
 data(aluejakokartat)
+str(aluejakokartat, m = 2)
+```
+
+```
+## List of 2
+##  $ sp:List of 8
+##   ..$ kunta            :Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
+##   ..$ pienalue         :Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
+##   ..$ pienalue_piste   :Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots
+##   ..$ suuralue         :Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
+##   ..$ suuralue_piste   :Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots
+##   ..$ tilastoalue      :Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
+##   ..$ tilastoalue_piste:Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots
+##   ..$ aanestysalue     :Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots
+##  $ df:List of 8
+##   ..$ kunta            :'data.frame':	1664 obs. of  7 variables:
+##   ..$ pienalue         :'data.frame':	33594 obs. of  7 variables:
+##   ..$ pienalue_piste   :'data.frame':	295 obs. of  3 variables:
+##   ..$ suuralue         :'data.frame':	6873 obs. of  7 variables:
+##   ..$ suuralue_piste   :'data.frame':	23 obs. of  3 variables:
+##   ..$ tilastoalue      :'data.frame':	17279 obs. of  7 variables:
+##   ..$ tilastoalue_piste:'data.frame':	125 obs. of  3 variables:
+##   ..$ aanestysalue     :'data.frame':	35349 obs. of  11 variables:
 ```
 
 
@@ -145,7 +172,7 @@ Function `get_omakaupunki()` retrieves regional service and event data from the 
 
 ## <a name="hri_stats"></a> Helsinki Region Infoshare statistics API
 
-Functoin `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/). Note! The implementation will be updated!
+Function `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/). Note! The implementation will be updated!
 
 
 ```r
@@ -191,6 +218,43 @@ str(stats.res)
 
 
 More examples to be added.
+
+## <a name="economy"></a> Economic data
+
+Function `get_economic_indicators()` retrieves [economic indicator](http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/) data for Helsinki, Espoo, Vantaa and Kauniainen from years 1998-2010. 
+
+
+```r
+# Retrieve data
+ec.res <- get_economic_indicators()
+# See first results
+head(ec.res$indicators)
+```
+
+```
+##       Alue                         Tunnusluku     1998     1999     2000
+## 1 Helsinki                  Asukasluku 31.12. 546317.0 551123.0 555474.0
+## 2 Helsinki               Tuloveroprosentti 1)     16.5     16.5     16.5
+## 3 Helsinki     Verotettavat tulot, EUR/as. 2)  13856.0  14677.0  15512.0
+## 4 Helsinki Verotettavien tulojen muutos, % 2)      6.8      7.3      6.6
+## 5 Helsinki        Verotulot yhteensä, EUR/as.   3386.0   3336.0   3894.0
+## 6 Helsinki           - Kunnallisvero, EUR/as.   2129.0   2187.0   2425.0
+##       2001     2002     2003     2004     2005     2006     2007     2008
+## 1 559718.0 559716.0 559330.0 559046.0 560905.0 564521.0 568531.0 574564.0
+## 2     16.5     16.5     17.5     17.5     17.5     17.5     17.5     17.5
+## 3  16077.0  16463.0  16424.0  16613.0  17111.0  17947.0  19022.0  19989.0
+## 4      4.5      3.2     -0.2      1.1      2.9      5.2      6.7      5.8
+## 5   4072.0   3556.0   3548.0   3448.0   3535.0   3709.0   3979.0   4199.0
+## 6   2677.0   2860.0   2937.0   2863.0   2935.0   3096.0   3274.0   3437.0
+##       2009 2010
+## 1 583350.0   NA
+## 2     17.5 17.5
+## 3  19840.0   NA
+## 4      0.3   NA
+## 5   4120.0   NA
+## 6   3477.0   NA
+```
+
 
 ### Citation
 
@@ -244,15 +308,13 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5       reshape2_1.2.2  helsinki_0.9.15 RCurl_1.95-4.1 
-## [5] bitops_1.0-6    rjson_0.2.13    maptools_0.8-29 sp_1.0-14      
-## [9] roxygen2_3.1.0 
+## [1] knitr_1.5       helsinki_0.9.15 RCurl_1.95-4.1  bitops_1.0-6   
+## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_3.1.0 
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
 ##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
-##  [9] markdown_0.6.4  plyr_1.8.1      Rcpp_0.11.1     stringr_0.6.2  
-## [13] tools_3.0.3
+##  [9] markdown_0.6.4  Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
 ```
 
 

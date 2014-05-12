@@ -235,9 +235,14 @@ as part of the <a href="http://ropengov.github.io">rOpenGov</a> project.</p>
 <li><a href="#hri_stats">Helsinki Region Infoshare statistics API</a>
 
 <ul>
-<li>Aluesarjat (regional time series data)</li>
+<li><a href="http://www.aluesarjat.fi/">Aluesarjat (original source)</a> (regional time series data)</li>
 <li>More data coming&hellip;</li>
 <li>Source: <a href="http://dev.hel.fi/stats/">Helsinki Region Infoshare statistics API</a></li>
+</ul></li>
+<li><a href="#economy">Economic data</a>
+
+<ul>
+<li><a href="http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/">Taloudellisia tunnuslukuja</a> (economic indicators)</li>
 </ul></li>
 </ul>
 
@@ -264,9 +269,32 @@ install_github(&quot;helsinki&quot;, &quot;ropengov&quot;)
 
 <h2><a name="aluejakokartat"></a>Helsinki region district maps</h2>
 
-<p>Helsinki region district maps (Helsingin seudun aluejakokartat) from <a href="http://ptp.hel.fi/avoindata/">Helsingin kaupungin Kiinteistövirasto (HKK)</a> are available in the helsinki package with <code>data(aluejakokartat)</code>. These are preprocessed in the <a href="https://github.com/rOpenGov/gisfin">gisfin</a> package, and more examples can be found in the <a href="https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md">gisfin tutorial</a>. </p>
+<p>Helsinki region district maps (Helsingin seudun aluejakokartat) and election maps (äänestysalueet) from <a href="http://ptp.hel.fi/avoindata/">Helsingin kaupungin Kiinteistövirasto (HKK)</a> are available in the helsinki package with <code>data(aluejakokartat)</code>. The data are available as both spatial object (<code>sp</code>) and data frame (<code>df</code>). These are preprocessed in the <a href="https://github.com/rOpenGov/gisfin">gisfin</a> package, and more examples can be found in the <a href="https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md">gisfin tutorial</a>. </p>
 
-<pre><code class="r">data(aluejakokartat)
+<pre><code class="r"># Load aluejakokartat and study contents
+data(aluejakokartat)
+str(aluejakokartat, m = 2)
+</code></pre>
+
+<pre><code>## List of 2
+##  $ sp:List of 8
+##   ..$ kunta            :Formal class &#39;SpatialPolygonsDataFrame&#39; [package &quot;sp&quot;] with 5 slots
+##   ..$ pienalue         :Formal class &#39;SpatialPolygonsDataFrame&#39; [package &quot;sp&quot;] with 5 slots
+##   ..$ pienalue_piste   :Formal class &#39;SpatialPointsDataFrame&#39; [package &quot;sp&quot;] with 5 slots
+##   ..$ suuralue         :Formal class &#39;SpatialPolygonsDataFrame&#39; [package &quot;sp&quot;] with 5 slots
+##   ..$ suuralue_piste   :Formal class &#39;SpatialPointsDataFrame&#39; [package &quot;sp&quot;] with 5 slots
+##   ..$ tilastoalue      :Formal class &#39;SpatialPolygonsDataFrame&#39; [package &quot;sp&quot;] with 5 slots
+##   ..$ tilastoalue_piste:Formal class &#39;SpatialPointsDataFrame&#39; [package &quot;sp&quot;] with 5 slots
+##   ..$ aanestysalue     :Formal class &#39;SpatialPolygonsDataFrame&#39; [package &quot;sp&quot;] with 5 slots
+##  $ df:List of 8
+##   ..$ kunta            :&#39;data.frame&#39;:    1664 obs. of  7 variables:
+##   ..$ pienalue         :&#39;data.frame&#39;:    33594 obs. of  7 variables:
+##   ..$ pienalue_piste   :&#39;data.frame&#39;:    295 obs. of  3 variables:
+##   ..$ suuralue         :&#39;data.frame&#39;:    6873 obs. of  7 variables:
+##   ..$ suuralue_piste   :&#39;data.frame&#39;:    23 obs. of  3 variables:
+##   ..$ tilastoalue      :&#39;data.frame&#39;:    17279 obs. of  7 variables:
+##   ..$ tilastoalue_piste:&#39;data.frame&#39;:    125 obs. of  3 variables:
+##   ..$ aanestysalue     :&#39;data.frame&#39;:    35349 obs. of  11 variables:
 </code></pre>
 
 <h2><a name="hsy"></a> Helsinki region environmental services</h2>
@@ -322,7 +350,7 @@ str(parks.data[[1]])
 
 <h2><a name="hri_stats"></a> Helsinki Region Infoshare statistics API</h2>
 
-<p>Functoin <code>get_hri_stats()</code> retrieves data from the <a href="http://dev.hel.fi/stats/">Helsinki Region Infoshare statistics API</a>. Note! The implementation will be updated!</p>
+<p>Function <code>get_hri_stats()</code> retrieves data from the <a href="http://dev.hel.fi/stats/">Helsinki Region Infoshare statistics API</a>. Note! The implementation will be updated!</p>
 
 <pre><code class="r"># Retrieve list of available data
 stats.list &lt;- get_hri_stats(query = &quot;&quot;)
@@ -360,6 +388,39 @@ str(stats.res)
 </code></pre>
 
 <p>More examples to be added.</p>
+
+<h2><a name="economy"></a> Economic data</h2>
+
+<p>Function <code>get_economic_indicators()</code> retrieves <a href="http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/">economic indicator</a> data for Helsinki, Espoo, Vantaa and Kauniainen from years 1998-2010. </p>
+
+<pre><code class="r"># Retrieve data
+ec.res &lt;- get_economic_indicators()
+# See first results
+head(ec.res$indicators)
+</code></pre>
+
+<pre><code>##       Alue                         Tunnusluku     1998     1999     2000
+## 1 Helsinki                  Asukasluku 31.12. 546317.0 551123.0 555474.0
+## 2 Helsinki               Tuloveroprosentti 1)     16.5     16.5     16.5
+## 3 Helsinki     Verotettavat tulot, EUR/as. 2)  13856.0  14677.0  15512.0
+## 4 Helsinki Verotettavien tulojen muutos, % 2)      6.8      7.3      6.6
+## 5 Helsinki        Verotulot yhteensä, EUR/as.   3386.0   3336.0   3894.0
+## 6 Helsinki           - Kunnallisvero, EUR/as.   2129.0   2187.0   2425.0
+##       2001     2002     2003     2004     2005     2006     2007     2008
+## 1 559718.0 559716.0 559330.0 559046.0 560905.0 564521.0 568531.0 574564.0
+## 2     16.5     16.5     17.5     17.5     17.5     17.5     17.5     17.5
+## 3  16077.0  16463.0  16424.0  16613.0  17111.0  17947.0  19022.0  19989.0
+## 4      4.5      3.2     -0.2      1.1      2.9      5.2      6.7      5.8
+## 5   4072.0   3556.0   3548.0   3448.0   3535.0   3709.0   3979.0   4199.0
+## 6   2677.0   2860.0   2937.0   2863.0   2935.0   3096.0   3274.0   3437.0
+##       2009 2010
+## 1 583350.0   NA
+## 2     17.5 17.5
+## 3  19840.0   NA
+## 4      0.3   NA
+## 5   4120.0   NA
+## 6   3477.0   NA
+</code></pre>
 
 <h3>Citation</h3>
 
@@ -405,15 +466,13 @@ https://github.com/rOpenGov/helsinki
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5       reshape2_1.2.2  helsinki_0.9.15 RCurl_1.95-4.1 
-## [5] bitops_1.0-6    rjson_0.2.13    maptools_0.8-29 sp_1.0-14      
-## [9] roxygen2_3.1.0 
+## [1] knitr_1.5       helsinki_0.9.15 RCurl_1.95-4.1  bitops_1.0-6   
+## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_3.1.0 
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
 ##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
-##  [9] markdown_0.6.4  plyr_1.8.1      Rcpp_0.11.1     stringr_0.6.2  
-## [13] tools_3.0.3
+##  [9] markdown_0.6.4  Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
 </code></pre>
 
 </body>

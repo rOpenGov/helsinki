@@ -38,9 +38,12 @@ The following data sources are currently available:
  * [Helsinki region Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) (Pääkaupunkiseudun Palvelukartta)
  * [Omakaupunki](http://api.omakaupunki.fi/) (requires personal API key, no examples given)
 * [Helsinki Region Infoshare statistics API](#hri_stats)
- * Aluesarjat (regional time series data)
+ * [Aluesarjat (original source)](http://www.aluesarjat.fi/) (regional time series data)
  * More data coming...
  * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
+* [Economic data](#economy)
+ * [Taloudellisia tunnuslukuja](http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/) (economic indicators)
+ 
 
 List of potential data sources to be added to the package can be found [here](https://github.com/rOpenGov/helsinki/blob/master/vignettes/todo-datasets.md).
 
@@ -68,10 +71,12 @@ library(helsinki)
 
 ## <a name="aluejakokartat"></a>Helsinki region district maps
 
-Helsinki region district maps (Helsingin seudun aluejakokartat) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) are available in the helsinki package with `data(aluejakokartat)`. These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, and more examples can be found in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). 
+Helsinki region district maps (Helsingin seudun aluejakokartat) and election maps (äänestysalueet) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) are available in the helsinki package with `data(aluejakokartat)`. The data are available as both spatial object (`sp`) and data frame (`df`). These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, and more examples can be found in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). 
 
 ```{r aluejako_data, message=FALSE}
+# Load aluejakokartat and study contents
 data(aluejakokartat)
+str(aluejakokartat, m=2)
 ```
 
 
@@ -132,7 +137,7 @@ Function `get_omakaupunki()` retrieves regional service and event data from the 
 
 ## <a name="hri_stats"></a> Helsinki Region Infoshare statistics API
 
-Functoin `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/). Note! The implementation will be updated!
+Function `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/). Note! The implementation will be updated!
 
 ```{r hri_stats1, message=FALSE, warning=FALSE}
 # Retrieve list of available data
@@ -151,6 +156,17 @@ str(stats.res)
 ```
 
 More examples to be added.
+
+## <a name="economy"></a> Economic data
+
+Function `get_economic_indicators()` retrieves [economic indicator](http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/) data for Helsinki, Espoo, Vantaa and Kauniainen from years 1998-2010. 
+
+```{r econ_ind1, message=FALSE, warning=FALSE}
+# Retrieve data
+ec.res <- get_economic_indicators()
+# See first results
+head(ec.res$indicators)
+```
 
 ### Citation
 

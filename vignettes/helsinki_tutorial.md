@@ -17,29 +17,32 @@ For contact information and source code, see the [github page](https://github.co
 
 ## Available data sources
 
-The following data sources are currently available:
-* [Helsinki region district maps](#aluejakokartat) (Helsingin seudun aluejakokartat)
- * Aluejakokartat: kunta, pien-, suur-, tilastoalueet (Helsinki region district maps)
- * Äänestysaluejako: (Helsinki region election district maps)
- * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
-* Helsinki Real Estate Department (HKK:n avointa dataa)
- * Spatial data from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) availabe in the [gisfin](https://github.com/rOpenGov/gisfin) package, see [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md) for examples
-* [Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
- * Väestötietoruudukko (population grid)
- * Rakennustietoruudukko (building information grid)
- * SeutuRAMAVA (building land resource information(?))
- * Source: [Helsingin seudun ympäristöpalvelut, HSY](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
-* [Service and event information](#servicemap)
- * [Helsinki region Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) (Pääkaupunkiseudun Palvelukartta)
- * [Omakaupunki](http://api.omakaupunki.fi/) (requires personal API key, no examples given)
-* [Helsinki Region Infoshare statistics API](#hri_stats)
- * [Aluesarjat (original source)](http://www.aluesarjat.fi/) (regional time series data)
- * More data coming...
- * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
-* [Economic data](#economy)
- * [Taloudellisia tunnuslukuja](http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/) (economic indicators)
- 
+[Helsinki region district maps](#aluejakokartat) (Helsingin seudun aluejakokartat)
+* Aluejakokartat: kunta, pien-, suur-, tilastoalueet (Helsinki region district maps)
+* Äänestysaluejako: (Helsinki region election district maps)
+* Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
 
+Helsinki Real Estate Department (HKK:n avointa dataa)
+* Spatial data from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) availabe in the [gisfin](https://github.com/rOpenGov/gisfin) package, see [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md) for examples
+
+[Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
+* Väestötietoruudukko (population grid)
+* Rakennustietoruudukko (building information grid)
+* SeutuRAMAVA (building land resource information(?))
+* Source: [Helsingin seudun ympäristöpalvelut, HSY](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
+
+[Service and event information](#servicemap)
+* [Helsinki region Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) (Pääkaupunkiseudun Palvelukartta)
+* [Omakaupunki](http://api.omakaupunki.fi/) (requires personal API key, no examples given)
+
+[Helsinki Region Infoshare statistics API](#hri_stats)
+* [Aluesarjat (original source)](http://www.aluesarjat.fi/) (regional time series data)
+* More data coming...
+* Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
+
+[Economic data](#economy)
+* [Taloudellisia tunnuslukuja](http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/) (economic indicators)
+ 
 List of potential data sources to be added to the package can be found [here](https://github.com/rOpenGov/helsinki/blob/master/vignettes/todo-datasets.md).
 
 ## Installation
@@ -308,13 +311,12 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5       helsinki_0.9.15 RCurl_1.95-4.1  bitops_1.0-6   
-## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_3.1.0 
+## [1] helsinki_0.9.16 maptools_0.8-29 sp_1.0-14       knitr_1.5      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
-##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
-##  [9] markdown_0.6.4  Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
+## [1] evaluate_0.5.1  foreign_0.8-60  formatR_0.10    grid_3.0.3     
+## [5] lattice_0.20-27 RCurl_1.95-4.1  rjson_0.2.13    stringr_0.6.2  
+## [9] tools_3.0.3
 ```
 
 

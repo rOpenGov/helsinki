@@ -247,6 +247,12 @@ as part of the <a href="http://ropengov.github.io">rOpenGov</a> project.</p>
 <li><a href="http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/">Taloudellisia tunnuslukuja</a> (economic indicators)</li>
 </ul>
 
+<p><a href="#demography">Demographic data</a></p>
+
+<ul>
+<li><a href="http://www.hri.fi/fi/data/helsingin-ja-helsingin-seudun-vaestoennuste-sukupuolen-ja-ian-mukaan-2012-2050/">Väestöennuste 2012-2050</a> (population projection 2012-2050)</li>
+</ul>
+
 <p>List of potential data sources to be added to the package can be found <a href="https://github.com/rOpenGov/helsinki/blob/master/vignettes/todo-datasets.md">here</a>.</p>
 
 <h2>Installation</h2>
@@ -397,7 +403,7 @@ str(stats.res)
 <pre><code class="r"># Retrieve data
 ec.res &lt;- get_economic_indicators()
 # See first results
-head(ec.res$indicators)
+head(ec.res$data)
 </code></pre>
 
 <pre><code>##       Alue                         Tunnusluku     1998     1999     2000
@@ -421,6 +427,25 @@ head(ec.res$indicators)
 ## 4      0.3   NA
 ## 5   4120.0   NA
 ## 6   3477.0   NA
+</code></pre>
+
+<h2><a name="demography"></a> Demographic data</h2>
+
+<p>Function <code>get_population_projection()</code> retrieves <a href="http://www.hri.fi/fi/data/helsingin-ja-helsingin-seudun-vaestoennuste-sukupuolen-ja-ian-mukaan-2012-2050/">population projection</a> data for Helsinki and Helsinki region by age and gender.</p>
+
+<pre><code class="r"># Retrieve data
+pop.res &lt;- get_population_projection()
+# See first results
+head(pop.res$data[1:6])
+</code></pre>
+
+<pre><code>##   Alue.Region Vuosi.Year Yhteensä.Total Miehet.Male   m0   m1
+## 1    Helsinki       2011         588549      276361 3416 3049
+## 2    Helsinki       2012         594483      279383 3364 3289
+## 3    Helsinki       2013         599822      282099 3428 3231
+## 4    Helsinki       2014         604561      284485 3487 3289
+## 5    Helsinki       2015         609373      286899 3535 3348
+## 6    Helsinki       2016         614246      289334 3577 3395
 </code></pre>
 
 <h3>Citation</h3>
@@ -467,12 +492,13 @@ https://github.com/rOpenGov/helsinki
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] helsinki_0.9.16 maptools_0.8-29 sp_1.0-14       knitr_1.5      
+## [1] knitr_1.5       helsinki_0.9.16 RCurl_1.95-4.1  bitops_1.0-6   
+## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_3.1.0 
 ## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.1  foreign_0.8-60  formatR_0.10    grid_3.0.3     
-## [5] lattice_0.20-27 RCurl_1.95-4.1  rjson_0.2.13    stringr_0.6.2  
-## [9] tools_3.0.3
+##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
+##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
+##  [9] Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
 </code></pre>
 
 </body>

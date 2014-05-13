@@ -10,8 +10,7 @@ get_population_projection(verbose = TRUE)
 }
 \value{
 results A list with indicator data as a data frame, and
-additional metadata and notes provided in the original
-data.
+additional metadata provided in the original data.
 }
 \description{
 Retrieve population projection data (vaestoennuste) by age

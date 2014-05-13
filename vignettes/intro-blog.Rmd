@@ -1,0 +1,28 @@
+```{r knit, eval=FALSE, echo=FALSE}
+# Hot to knit this document into .md and .html
+library(knitr)
+opts_knit$set(base.dir = "vignettes") # Change the base dir where to save figures
+knit(input="vignettes/intro-blog.Rmd", output="vignettes/intro-blog.md")
+knit2html(input="vignettes/intro-blog.md", output="vignettes/intro-blog.html", options=c("use_xhtml","smartypants","mathjax","highlight_code"))
+```
+
+# helsinki - Pääkaupunkiseudun avoimen datan työkalupakki R-kielelle
+
+## aloitus
+
+naseva esimerkkialoitus: kysymys, datat, visu
+
+Pääkaupunkiseudun datalle on nyt myös tehty oma [helsinki-kirjasto](https://github.com/rOpenGov/helsinki) [Datademo-rahoituksella](http://datademo.fi/). 
+
+
+## Kohti kansainvälistä avoimen datan työkalujen verkostoa
+
+Yhä useampien tietoaineistojen tullessa avoimeksi tarvitaan tehokkaita ja joustavia työkaluja datan esikäsittelyyn, analysointiin ja visualisointiin. [R-ohjelmointikieli](http://www.r-project.org/) on tutkimuskäytössä erittäin suosittu avoimen lähdekoodin tilastollinen ohjelmointikieli, jonka käyttö on kovassa kasvussa useilla aloilla. Olemme aiemmin luoneet suomalaisen avoimen datan tarpeisiin [sorvi R-kirjaston](http://louhos.github.io/sorvi/). Sorvin avulla tehtyjä esimerkkianalyysejä ja visualisointeja on julkaistu [Louhos-blogissa](http://louhos.wordpress.com/), jonka kävijämäärä ylitti juuri 30 000:n rajan.
+
+Sorvi-kirjaston kehitystyö on tarjonnut erittäin hyödyllistä kokemusta ja näkemystä siitä miten avoimen lähdekoodin työkaluilla voidaan tukea avoimen datan hyödyntämistä mm. tutkimuksessa, opinnäytetöissä ja datajournalismissa. Samalla on käynyt selväksi että työkalut kannattaa jakaa useampaan kompaktiin kirjastoon, mikä helpottaa sekä kirjastojen käyttöä että ylläpitöä. Sorvista on helsinki-kirjaston lisäksi jo erotettu mm. [statfi](https://github.com/rOpenGov/statfi) ja [sotkanet](https://github.com/rOpenGov/sotkanet) -kirjastot. 
+
+Sorvia kehittäessämme törmäsimme myös samankaltaisiin ulkomaisiin hankkeisiin, ja ajatus yhteistyöverkoston perustamisesta lähti liikkelle. Syksyllä 2013 pystytimme [rOpenGov-sivuston](http://ropengov.github.io/) sekä [github-organisaation](http://ropengov.github.io/) yhteistövetoiselle R-kirjastojen ekosysteemille. Mukana on jo paketteja mm. [Ruotsista](https://github.com/LCHansson/rSCB), [Venäjältä](http://markuskainu.fi/rustfare/index.html), [Puolasta](http://smarterpoland.pl/), [Itävallasta](https://github.com/skasberger/grazwahl2012) ja [USA:sta](https://github.com/rOpenGov/psData). 
+
+rOpenGov-verkosto tarjoaa paitsi suuren määrän avoimia aineistoja R-kielelle, myös kiinnostavia mahdollisuuksia kansainväliseen tutkimustyöhön. Kun samoja aineistoja on tarjolla useista maista, saadaan analyyseihin kansainvälinen ulottuvuus. Esimerkiksi päätöksentekoon ja vaaleihin liittyviä aineistoja FIXME. 
+
+

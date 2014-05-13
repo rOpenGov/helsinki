@@ -65,7 +65,7 @@ get_omakaupunki <- function(query, login, password, api_key, ...) {
 #' @importFrom rjson fromJSON
 #' 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples pk.services <- get_servicemap("service")
+#' @examples \dontrun{ pk.services <- get_servicemap("service") }
 get_servicemap <- function(category, ...) {
       
   api.url <- "http://www.hel.fi/palvelukarttaws/rest/v2/"

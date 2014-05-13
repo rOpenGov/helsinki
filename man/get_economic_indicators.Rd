@@ -21,7 +21,7 @@ Helsinki, Espoo, Vantaa, Kauniainen, Finland, years
 1998-2010.
 }
 \examples{
-res.list <- get_economic_indicators()
+\dontrun{ res.list <- get_economic_indicators() }
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

@@ -26,7 +26,7 @@ specific resources and retrieve it in a three-dimensional
 array form.
 }
 \examples{
-# res.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
+\dontrun{ res.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli") }
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

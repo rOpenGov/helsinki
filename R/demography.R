@@ -28,7 +28,7 @@
 #' 
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples res.list <- get_population_projection()
+#' @examples \dontrun{ res.list <- get_population_projection()}
 
 get_population_projection <- function (verbose=TRUE) {
   

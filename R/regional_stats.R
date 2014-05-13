@@ -35,7 +35,7 @@
 #' 
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples # res.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
+#' @examples \dontrun{ res.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli") }
 
 get_hri_stats <- function (query="", verbose=TRUE) {
   

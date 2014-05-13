@@ -14,7 +14,7 @@
 #' @export
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen, Joona Lehtomaki and Leo Lahti \email{louhos@@googlegroups.com}
-#' @examples tab <- get_hkk_address_data("Helsingin osoiteluettelo")
+#' @examples \dontrun{ tab <- get_hkk_address_data("Helsingin osoiteluettelo") }
 
 get_hkk_address_data <- function(which.data=NULL, data.dir=tempdir()) {
   
@@ -48,7 +48,7 @@ get_hkk_address_data <- function(which.data=NULL, data.dir=tempdir()) {
   }
   
   # Download the data
-  remote.zip <- paste("http://kartta.hel.fi/avoindata/aineistot/", zipfile, sep = "")
+  remote.zip <- paste("http://ptp.hel.fi/avoindata/", zipfile, sep = "")
   local.zip <- file.path(data.dir, zipfile)
   if (!file.exists(local.zip)) {
     message("Dowloading ", remote.zip, "\ninto ", local.zip, "\n")

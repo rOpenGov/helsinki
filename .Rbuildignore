@@ -11,6 +11,7 @@
 ./inst/extras/*
 ./inst/extras/*.R
 ./inst/extras/*.Rmd
+./inst/extras/*.RData
 
 # Git related
 ./.git*

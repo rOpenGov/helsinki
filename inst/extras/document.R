@@ -1,3 +1,7 @@
 library(devtools)
-document("pkg")
+document("../../")
+
+#library(knitr)
+#knit("../../vignettes/helsinki_tutorial.Rmd", "../../vignettes/helsinki_tutorial.md")
+
 

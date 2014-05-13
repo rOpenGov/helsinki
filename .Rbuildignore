@@ -3,3 +3,14 @@
 
 # Travis scripts
 .travis.yml
+
+# Vignette source
+./vignettes/*
+
+# Extra material related but not to be included in the package
+./inst/extras/*
+./inst/extras/*.R
+./inst/extras/*.Rmd
+
+# Git related
+./.git*

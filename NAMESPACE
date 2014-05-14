@@ -3,6 +3,7 @@
 export(get_economic_indicators)
 export(get_hri_stats)
 export(get_hsy)
+export(get_linkedevents)
 export(get_omakaupunki)
 export(get_population_projection)
 export(get_servicemap)

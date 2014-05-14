@@ -229,7 +229,8 @@ as part of the <a href="http://ropengov.github.io">rOpenGov</a> project.</p>
 <p><a href="#servicemap">Service and event information</a></p>
 
 <ul>
-<li><a href="http://www.hel.fi/palvelukartta/Default.aspx?language=fi&amp;city=91">Helsinki region Service Map</a> (Pääkaupunkiseudun Palvelukartta)</li>
+<li><a href="http://api.hel.fi/servicemap/v1/">Helsinki region Service Map API</a> (Pääkaupunkiseudun Palvelukartta)</li>
+<li><a href="http://api.hel.fi/linkedevents/v0.1/">Helsinki Linked Event API</a></li>
 <li><a href="http://api.omakaupunki.fi/">Omakaupunki</a> (requires personal API key, no examples given)</li>
 </ul>
 
@@ -237,7 +238,6 @@ as part of the <a href="http://ropengov.github.io">rOpenGov</a> project.</p>
 
 <ul>
 <li><a href="http://www.aluesarjat.fi/">Aluesarjat (original source)</a> (regional time series data)</li>
-<li>More data coming&hellip;</li>
 <li>Source: <a href="http://dev.hel.fi/stats/">Helsinki Region Infoshare statistics API</a></li>
 </ul>
 
@@ -412,14 +412,15 @@ head(sp.ramava@data)
 <pre><code class="r"># Values with less than five units are given as 999999999, set those to zero
 sp.ramava@data[sp.ramava@data == 999999999] &lt;- 0
 # Plot number of buildings for each region
-spplot(sp.ramava, zcol = &quot;RAKLKM&quot;, main = &quot;Number of buildings in each &#39;tilastoalue&#39;&quot;)
+spplot(sp.ramava, zcol = &quot;RAKLKM&quot;, main = &quot;Number of buildings in each &#39;tilastoalue&#39;&quot;, 
+    col.regions = colorRampPalette(c(&quot;blue&quot;, &quot;gray80&quot;, &quot;red&quot;))(100))
 </code></pre>
 
 <p><img src="figure/hsy_ramava.png" alt="plot of chunk hsy_ramava"/> </p>
 
 <h2><a name="servicemap"></a>Service and event information</h2>
 
-<p>Function <code>get_servicemap()</code> retrieves regional service data from the new <a href="http://api.hel.fi/servicemap/v1/">Service Map API</a>, that retrieves data from the <a href="http://dev.hel.fi/servicemap/">Service Map</a>.</p>
+<p>Function <code>get_servicemap()</code> retrieves regional service data from the new <a href="http://api.hel.fi/servicemap/v1/">Service Map API</a>, that contains data from the <a href="http://dev.hel.fi/servicemap/">Service Map</a>.</p>
 
 <pre><code class="r"># Search for &#39;puisto&#39; (park) (specify q=&#39;query&#39;)
 search.puisto &lt;- get_servicemap(category = &quot;search&quot;, q = &quot;puisto&quot;)
@@ -461,58 +462,75 @@ sapply(search.puisto$results, function(x) x$name$fi)
 </code></pre>
 
 <pre><code class="r"># See what data is given for one service
-str(search.puisto$results[[1]], m = 2)
+names(search.puisto$results[[1]])
 </code></pre>
 
-<pre><code>## List of 26
-##  $ connections              :List of 1
-##   ..$ :List of 10
-##  $ id                       : num 14461
-##  $ data_source_url          : chr &quot;http://www.kauniainen.fi&quot;
-##  $ name                     :List of 3
-##   ..$ fi: chr &quot;Asematien puisto&quot;
-##   ..$ en: chr &quot;Playground&quot;
-##   ..$ sv: chr &quot;Stationsvägens park&quot;
-##  $ description              : NULL
-##  $ provider_type            : num 101
-##  $ department               : chr &quot;235-YKT&quot;
-##  $ organization             : num 235
-##  $ street_address           :List of 3
-##   ..$ fi: chr &quot;Asematie 17&quot;
-##   ..$ en: chr &quot;Asematie 17&quot;
-##   ..$ sv: chr &quot;Stationsvägen 17&quot;
-##  $ address_zip              : chr &quot;02700&quot;
-##  $ phone                    : NULL
-##  $ email                    : NULL
-##  $ www_url                  :List of 3
-##   ..$ fi: chr &quot;http://www.kauniainen.fi/palvelut_ja_lomakkeet/kadut_ja_viheralueet_liikenne/katujen_ja_yleisten_alueiden_kunnossapito/kaupungi&quot;| __truncated__
-##   ..$ en: chr &quot;http://www.kauniainen.fi/palvelut_ja_lomakkeet/kadut_ja_viheralueet_liikenne/katujen_ja_yleisten_alueiden_kunnossapito/kaupungi&quot;| __truncated__
-##   ..$ sv: chr &quot;http://www.kauniainen.fi/sv/service_och_blanketter/gator_och_gronomraden_trafik/underhall_av_gator_och_allmanna_omraden/stadens&quot;| __truncated__
-##  $ address_postal_full      : NULL
-##  $ municipality             : NULL
-##  $ picture_url              : NULL
-##  $ picture_caption          : NULL
-##  $ origin_last_modified_time: chr &quot;2014-05-13T06:52:55.826Z&quot;
-##  $ connection_hash          : chr &quot;fc36ea8ef1b2dce835aad80915454b60724059c3&quot;
-##  $ services                 : num [1:3] 28130 25394 25672
-##  $ divisions                : list()
-##  $ keywords                 : num [1:4] 838 837 4 1
-##  $ root_services            : num [1:3] 25298 25622 28128
-##  $ location                 :List of 2
-##   ..$ type       : chr &quot;Point&quot;
-##   ..$ coordinates: num [1:2] 24.7 60.2
-##  $ object_type              : chr &quot;unit&quot;
-##  $ score                    : num 2.19
+<pre><code>##  [1] &quot;connections&quot;               &quot;id&quot;                       
+##  [3] &quot;data_source_url&quot;           &quot;name&quot;                     
+##  [5] &quot;description&quot;               &quot;provider_type&quot;            
+##  [7] &quot;department&quot;                &quot;organization&quot;             
+##  [9] &quot;street_address&quot;            &quot;address_zip&quot;              
+## [11] &quot;phone&quot;                     &quot;email&quot;                    
+## [13] &quot;www_url&quot;                   &quot;address_postal_full&quot;      
+## [15] &quot;municipality&quot;              &quot;picture_url&quot;              
+## [17] &quot;picture_caption&quot;           &quot;origin_last_modified_time&quot;
+## [19] &quot;connection_hash&quot;           &quot;services&quot;                 
+## [21] &quot;divisions&quot;                 &quot;keywords&quot;                 
+## [23] &quot;root_services&quot;             &quot;location&quot;                 
+## [25] &quot;object_type&quot;               &quot;score&quot;
 </code></pre>
 
 <pre><code class="r"># More results could be retrieved by specifying &#39;page=2&#39; etc.
+</code></pre>
+
+<p>Function <code>get_linkedevents()</code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v0.1/">Linked Events API</a>.</p>
+
+<pre><code class="r"># Searh for current events
+events &lt;- get_linkedevents(&quot;event&quot;)
+# Get names for the first 20 results
+sapply(events$results, function(x) x$name$fi)
+</code></pre>
+
+<pre><code>##  [1] &quot;Mikko Maltsusta&quot;                           
+##  [2] &quot;Valokuvia ja maalauksia Vietnamista&quot;       
+##  [3] &quot;Helsingin Poliisisoittokunta ja Anssi Kela&quot;
+##  [4] &quot;Kalevala klubi&quot;                            
+##  [5] &quot;Nuori taide&quot;                               
+##  [6] &quot;Bulgarian nykykirjallisuutta tutummaksi&quot;   
+##  [7] &quot;Tanssimme sinulle Itämaista&quot;               
+##  [8] &quot;Kuuma ankanpoikanen: Let´s Fat&quot;            
+##  [9] &quot;Louise Lapointe: Puppetry Arts in Québec&quot;  
+## [10] &quot;Studio 90:n tanssioppilaiden kevätnäytös&quot;  
+## [11] &quot;Studio 90:n tanssioppilaiden kevätnäytös&quot;  
+## [12] &quot;Muutos&quot;                                    
+## [13] &quot;Laulan!&quot;                                   
+## [14] &quot;Vispilänkauppaa ja jumihäitä&quot;              
+## [15] &quot;Teatteriryhmä Vire: Munkkikeikka&quot;          
+## [16] &quot;Teatteriryhmä Vire: Munkkikeikka&quot;          
+## [17] &quot;Teatteriryhmä Vire: Munkkikeikka&quot;          
+## [18] &quot;Anita-Ullas dolda liv&quot;                     
+## [19] &quot;Anita-Ullas dolda liv&quot;                     
+## [20] &quot;Don*Gnu (Tanska): Men in Sandals&quot;
+</code></pre>
+
+<pre><code class="r"># See what data is given for the first event
+names(events$results[[1]])
+</code></pre>
+
+<pre><code>##  [1] &quot;location&quot;            &quot;keywords&quot;            &quot;super_event&quot;        
+##  [4] &quot;event_status&quot;        &quot;id&quot;                  &quot;data_source&quot;        
+##  [7] &quot;origin_id&quot;           &quot;custom_fields&quot;       &quot;image&quot;              
+## [10] &quot;created_time&quot;        &quot;last_modified_time&quot;  &quot;date_published&quot;     
+## [13] &quot;start_time&quot;          &quot;end_time&quot;            &quot;target_group&quot;       
+## [16] &quot;location_extra_info&quot; &quot;name&quot;                &quot;description&quot;        
+## [19] &quot;url&quot;                 &quot;@id&quot;                 &quot;@type&quot;
 </code></pre>
 
 <p>Function <code>get_omakaupunki()</code> retrieves regional service and event data from the <a href="http://api.omakaupunki.fi/">Omakaupunki API</a>. However, the API needs a personal key, so no examples are given here.</p>
 
 <h2><a name="hri_stats"></a> Helsinki Region Infoshare statistics API</h2>
 
-<p>Function <code>get_hri_stats()</code> retrieves data from the <a href="http://dev.hel.fi/stats/">Helsinki Region Infoshare statistics API</a>. Note! The implementation will be updated!</p>
+<p>Function <code>get_hri_stats()</code> retrieves data from the <a href="http://dev.hel.fi/stats/">Helsinki Region Infoshare statistics API</a>.</p>
 
 <pre><code class="r"># Retrieve list of available data
 stats.list &lt;- get_hri_stats(query = &quot;&quot;)
@@ -549,7 +567,7 @@ str(stats.res)
 ##   ..$ alue      : chr [1:197] &quot;091 Helsinki&quot; &quot;091 1 Eteläinen suurpiiri&quot; &quot;091 101 Vironniemen peruspiiri&quot; &quot;091 10 Kruununhaka&quot; ...
 </code></pre>
 
-<p>More examples to be added.</p>
+<p>The implementation will be updated and more examples will be added in the near future.</p>
 
 <h2><a name="economy"></a> Economic data</h2>
 
@@ -647,13 +665,13 @@ https://github.com/rOpenGov/helsinki
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5       helsinki_0.9.17 RCurl_1.95-4.1  bitops_1.0-6   
-## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_3.1.0 
+## [1] knitr_1.5       helsinki_0.9.19 RCurl_1.95-4.1  bitops_1.0-6   
+## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_4.0.0 
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
-##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
-##  [9] Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
+## [1] evaluate_0.5.1  foreign_0.8-60  formatR_0.10    grid_3.0.3     
+## [5] lattice_0.20-27 markdown_0.6.4  Rcpp_0.11.1     stringr_0.6.2  
+## [9] tools_3.0.3
 </code></pre>
 
 </body>

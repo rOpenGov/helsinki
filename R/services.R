@@ -17,11 +17,12 @@
 #'
 #' Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
 #' http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v1/. 
-#' For more details and API documentation see http://api.hel.fi/servicemap/v1/.
+#' For more API documentation and license information see the API link.
 #' 
-#' @param category API query category, for example "search", "service", or "unit".
-#' For list of available options, see http://api.hel.fi/servicemap/v1/. 
-#' @param ... Additional parameters to the API (optional). See details from the API documentation http://api.hel.fi/servicemap/v1/.
+#' @param A string. The API query, for example "search", "service", or "unit".
+#' For full list of available options and details, see http://api.hel.fi/servicemap/v1/. 
+#' @param ... Additional parameters to the API (optional).
+#' For details, see http://api.hel.fi/servicemap/v1/. 
 #'
 #' @return List of results
 #' @export
@@ -30,7 +31,7 @@
 #' @importFrom rjson fromJSON
 #' 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples \dontrun{ pk.services <- get_servicemap("service") }
+#' @examples \donttest{ search.puisto <- get_servicemap(category="search", q="puisto") }
 
 get_servicemap <- function(category, ...) {
   
@@ -38,6 +39,48 @@ get_servicemap <- function(category, ...) {
   # Define query url
   # New API (13.5.2014)
   api.url <- "http://api.hel.fi/servicemap/v1/"
+  query.url <- paste0(api.url, category, "/")
+  
+  # Get Curl handle
+  curl <- RCurl::getCurlHandle(cookiefile = "")
+  
+  # Get data as json using getForm
+  # Note! Warnings suppressed because getForm outputs warning when no parameters (...) given
+  suppressWarnings(
+    res.json <- RCurl::getForm(uri=query.url, ..., curl=curl)
+  )
+  # Transform results into list from JSON
+  res.list <- rjson::fromJSON(res.json)
+  return(res.list)
+}
+
+
+
+#' Access Helsinki Linked Events API
+#'
+#' Access the new Helsinki Linked Events API: http://api.hel.fi/linkedevents/v0.1/.
+#' The API contains data from the Helsinki City Tourist & Convention Bureau, 
+#' the City of Helsinki Cultural Office and the Helmet metropolitan area public libraries.
+#' For more API documentation and license information see the API link.
+#' 
+#' @param A string. The API query, one of "category", "event", "language", or "place".
+#' For details, see http://api.hel.fi/linkedevents/v0.1/. 
+#' @param ... Additional parameters to the API (optional).
+#' For details, see http://api.hel.fi/linkedevents/v0.1/. 
+#'
+#' @return List of results
+#' @export
+#' @importFrom RCurl getCurlHandle
+#' @importFrom RCurl getForm
+#' @importFrom rjson fromJSON
+#' 
+#' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
+#' @examples \donttest{ events <- get_linkedevents("event") }
+
+get_linkedevents <- function(category, ...) {
+  
+  # Define query url
+  api.url <- "http://api.hel.fi/linkedevents/v0.1/"
   query.url <- paste0(api.url, category, "/")
   
   # Get Curl handle
@@ -74,7 +117,8 @@ get_servicemap <- function(category, ...) {
 #' @importFrom rjson fromJSON
 #' 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples # event.categories <- get_omakaupunki("event/categories", LOGIN, PASSWORD, API)
+#' @examples \donttest{ #event.categories <- get_omakaupunki("event/categories", 
+#' LOGIN, PASSWORD, API) }
 
 get_omakaupunki <- function(query, login, password, api_key, ...) {
   

@@ -37,12 +37,12 @@ Helsinki Real Estate Department (HKK:n avointa dataa)
 * Source: [Helsingin seudun ympäristöpalvelut, HSY](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
 
 [Service and event information](#servicemap)
-* [Helsinki region Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) (Pääkaupunkiseudun Palvelukartta)
+* [Helsinki region Service Map API](http://api.hel.fi/servicemap/v1/) (Pääkaupunkiseudun Palvelukartta)
+* [Helsinki Linked Event API](http://api.hel.fi/linkedevents/v0.1/)
 * [Omakaupunki](http://api.omakaupunki.fi/) (requires personal API key, no examples given)
 
 [Helsinki Region Infoshare statistics API](#hri_stats)
 * [Aluesarjat (original source)](http://www.aluesarjat.fi/) (regional time series data)
-* More data coming...
 * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
 
 [Economic data](#economy)
@@ -121,13 +121,13 @@ head(sp.ramava@data)
 # Values with less than five units are given as 999999999, set those to zero
 sp.ramava@data[sp.ramava@data==999999999] <- 0
 # Plot number of buildings for each region
-spplot(sp.ramava, zcol="RAKLKM", main="Number of buildings in each 'tilastoalue'")
+spplot(sp.ramava, zcol="RAKLKM", main="Number of buildings in each 'tilastoalue'", col.regions=colorRampPalette(c('blue', 'gray80', 'red'))(100))
 ```
 
 
 ## <a name="servicemap"></a>Service and event information
 
-Function `get_servicemap()` retrieves regional service data from the new [Service Map API](http://api.hel.fi/servicemap/v1/), that retrieves data from the [Service Map](http://dev.hel.fi/servicemap/).
+Function `get_servicemap()` retrieves regional service data from the new [Service Map API](http://api.hel.fi/servicemap/v1/), that contains data from the [Service Map](http://dev.hel.fi/servicemap/).
 
 ```{r servicemap, message=FALSE, warning=FALSE}
 # Search for "puisto" (park) (specify q="query")
@@ -138,9 +138,21 @@ str(search.puisto, m=1)
 # Get names for the first 20 results
 sapply(search.puisto$results, function(x) x$name$fi)
 # See what data is given for one service
-str(search.puisto$results[[1]], m=2)
+names(search.puisto$results[[1]])
 # More results could be retrieved by specifying 'page=2' etc.
 ```
+
+Function `get_linkedevents()` retrieves regional event data from the new [Linked Events API](http://api.hel.fi/linkedevents/v0.1/).
+
+```{r linkedevents, message=FALSE, warning=FALSE}
+# Searh for current events
+events <- get_linkedevents("event")
+# Get names for the first 20 results
+sapply(events$results, function(x) x$name$fi)
+# See what data is given for the first event
+names(events$results[[1]])
+```
+
 
 Function `get_omakaupunki()` retrieves regional service and event data from the [Omakaupunki API](http://api.omakaupunki.fi/). However, the API needs a personal key, so no examples are given here.
 

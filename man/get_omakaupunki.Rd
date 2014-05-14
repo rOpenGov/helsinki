@@ -26,7 +26,8 @@ and an API key. For more details and API documentation see
 http://blogit.hs.fi/hsnext/omakaupungin-meno-ja-palvelutiedot-avoimena-rajapintana
 }
 \examples{
-# event.categories <- get_omakaupunki("event/categories", LOGIN, PASSWORD, API)
+\donttest{ #event.categories <- get_omakaupunki("event/categories",
+LOGIN, PASSWORD, API) }
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

@@ -6,10 +6,11 @@
 get_servicemap(category, ...)
 }
 \arguments{
-\item{category}{API query category, for example "search", "service", or "unit".
-For list of available options, see http://api.hel.fi/servicemap/v1/.}
+\item{A}{string. The API query, for example "search", "service", or "unit".
+For full list of available options and details, see http://api.hel.fi/servicemap/v1/.}
 
-\item{...}{Additional parameters to the API (optional). See details from the API documentation http://api.hel.fi/servicemap/v1/.}
+\item{...}{Additional parameters to the API (optional).
+For details, see http://api.hel.fi/servicemap/v1/.}
 }
 \value{
 List of results
@@ -17,10 +18,10 @@ List of results
 \description{
 Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
 http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v1/.
-For more details and API documentation see http://api.hel.fi/servicemap/v1/.
+For more API documentation and license information see the API link.
 }
 \examples{
-\dontrun{ pk.services <- get_servicemap("service") }
+\donttest{ search.puisto <- get_servicemap(category="search", q="puisto") }
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

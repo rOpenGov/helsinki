@@ -13,6 +13,47 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 
+#' Access Helsinki region Service Map API
+#'
+#' Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
+#' http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v1/. 
+#' For more details and API documentation see http://api.hel.fi/servicemap/v1/.
+#' 
+#' @param category API query category, for example "search", "service", or "unit".
+#' For list of available options, see http://api.hel.fi/servicemap/v1/. 
+#' @param ... Additional parameters to the API (optional). See details from the API documentation http://api.hel.fi/servicemap/v1/.
+#'
+#' @return List of results
+#' @export
+#' @importFrom RCurl getCurlHandle
+#' @importFrom RCurl getForm
+#' @importFrom rjson fromJSON
+#' 
+#' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
+#' @examples \dontrun{ pk.services <- get_servicemap("service") }
+
+get_servicemap <- function(category, ...) {
+  
+  # api.url <- "http://www.hel.fi/palvelukarttaws/rest/v2/"
+  # Define query url
+  # New API (13.5.2014)
+  api.url <- "http://api.hel.fi/servicemap/v1/"
+  query.url <- paste0(api.url, category, "/")
+  
+  # Get Curl handle
+  curl <- RCurl::getCurlHandle(cookiefile = "")
+  
+  # Get data as json using getForm
+  # Note! Warnings suppressed because getForm outputs warning when no parameters (...) given
+  suppressWarnings(
+    res.json <- RCurl::getForm(uri=query.url, ..., curl=curl)
+  )
+  # Transform results into list from JSON
+  res.list <- rjson::fromJSON(res.json)
+  return(res.list)
+}
+
+
 #' Access Omakaupunki data
 #'
 #' Access Omakaupunki data through the API. Using the API requireds a password 
@@ -47,34 +88,3 @@ get_omakaupunki <- function(query, login, password, api_key, ...) {
   return(res.list)
 }
 
-#' Access Helsinki region Service Map data
-#'
-#' Access Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
-#' data from the its API (version 2). 
-#' Using the API is free. For more details and API documentation see
-#' http://www.hel.fi/palvelukarttaws/rest/ver2.html.
-#' For licensing terms pf the data see http://www.hel2.fi/palvelukartta/REST.html.
-#' 
-#' @param category API query category, e.g. "service"
-#' @param ... Additional parameters to the API (optional). See details from the API documentation
-#'
-#' @return List of results
-#' @export
-#' @importFrom RCurl getCurlHandle
-#' @importFrom RCurl getForm
-#' @importFrom rjson fromJSON
-#' 
-#' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples \dontrun{ pk.services <- get_servicemap("service") }
-get_servicemap <- function(category, ...) {
-      
-  api.url <- "http://www.hel.fi/palvelukarttaws/rest/v2/"
-  query.url <- paste0(api.url, category, "/")
-  curl <- RCurl::getCurlHandle(cookiefile = "")
-  # Note! Warnings suppressed because getForm outputs warning when no parameters (...) given
-  suppressWarnings(
-  res.json <- RCurl::getForm(uri=query.url, ..., curl=curl)
-  )
-  res.list <- rjson::fromJSON(res.json)
-  return(res.list)
-}

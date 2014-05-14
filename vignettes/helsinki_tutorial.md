@@ -126,6 +126,23 @@ sp.vaesto <- get_hsy(which.data = "Vaestotietoruudukko", which.year = 2013)
 head(sp.vaesto@data)
 ```
 
+```
+##   INDEX ASUKKAITA ASVALJYYS IKA0_9 IKA10_19 IKA20_29 IKA30_39 IKA40_49
+## 0   688         5        50     99       99       99       99       99
+## 1   703         6        42     99       99       99       99       99
+## 2   710         7        36     99       99       99       99       99
+## 3   711         7        64     99       99       99       99       99
+## 4   715        16        28     99       99       99       99       99
+## 5   864        10        65     99       99       99       99       99
+##   IKA50_59 IKA60_69 IKA70_79 IKA_YLI80
+## 0       99       99       99        99
+## 1       99       99       99        99
+## 2       99       99       99        99
+## 3       99       99       99        99
+## 4       99       99       99        99
+## 5       99       99       99        99
+```
+
 
 
 ### Helsinki building information
@@ -139,6 +156,30 @@ sp.rakennus <- get_hsy(which.data = "Rakennustietoruudukko", which.year = 2013)
 head(sp.rakennus@data)
 ```
 
+```
+##   INDEX RAKLKM RAKLKM_AS RAKLKM_MUU KERALA_YHT KERALA_AS KERALA_MUU
+## 0   688      3         2          1        324       282         42
+## 1   691      3         2          1         90        80         10
+## 2   692      9         4          5        286       206         80
+## 3   702      2         2          0        262       262          0
+## 4   703      3         2          1        373       326         47
+## 5   710      6         2          4        370       302         68
+##   KATAKER1  KATAKER2  KATAKER3 SUMMA1    SUMMA2    SUMMA3 ALUETEHOK
+## 0       11       941 999999999    282        42 999999999  0.005288
+## 1       41       941 999999999     80        10 999999999  0.001440
+## 2       41       941       931    206        47        33  0.007304
+## 3       11 999999999 999999999    262 999999999 999999999  0.004192
+## 4       11       941 999999999    326        47 999999999  0.005968
+## 5       11       931       941    302        39        29  0.005920
+##   KATAKER1.description    KATAKER2.description    KATAKER3.description
+## 0  Yhden asunnon talot       Talousrakennukset Puuttuvan tiedon merkki
+## 1   Vapaa-ajan asunnot       Talousrakennukset Puuttuvan tiedon merkki
+## 2   Vapaa-ajan asunnot       Talousrakennukset        Saunarakennukset
+## 3  Yhden asunnon talot Puuttuvan tiedon merkki Puuttuvan tiedon merkki
+## 4  Yhden asunnon talot       Talousrakennukset Puuttuvan tiedon merkki
+## 5  Yhden asunnon talot        Saunarakennukset       Talousrakennukset
+```
+
 
 ### Helsinki building area capacity
 
@@ -148,6 +189,47 @@ Building area capacity per municipal region (kaupunginosittain summattua tietoa 
 ```r
 sp.ramava <- get_hsy(which.data = "SeutuRAMAVA_tila", which.year = 2013)
 head(sp.ramava@data)
+```
+
+```
+##   KUNTA    KOKOTUN TILANRO            NIMI RAKLKM YKSLKM RAKEOIKEUS
+## 0   049 0491013000     013 KILO-KARAKALLIO   2245    915    1871538
+## 1   235 2351003000     003            <NA>    326    214     218052
+## 2   049 0495051000     051 KANTA-KAUKLAHTI    952    396     321345
+## 3   092 0926081000     081           KORSO   1511    965     519438
+## 4   092 0927096000     096     ITÄ-HAKKILA    994    687     278428
+## 5   049 0491014000     014     LAAKSOLAHTI   3749   1998     807561
+##   KARA_YHT KARA_AS KARA_MUU RAKERA_YHT RAKERA_AS RAKERA_MUU VARA_YHT
+## 0  1225666  607609   618057      40653     22814      17839   646923
+## 1   171017  103585    67432       7411      6206       1205    47053
+## 2   195116  144274    50842      41179     34061       7118    98379
+## 3   419911  334123    85788       3963      3355        608    98692
+## 4   193025  127626    65399       2067      1720        347    77453
+## 5   600636  547178    53458      33286     29987       3299   174097
+##   VARA_AS VARA_AP VARA_AK VARA_MUU VANHINRAKE UUSINRAKE OMLAJI_1
+## 0   93878   68728   25150   553045       1900      2013       11
+## 1   42653   40606    2047     4400       1907      2013       11
+## 2   76698   72958    3740    21681       1900      2013        3
+## 3   59018   54779    4239    39674       1890      2013        9
+## 4   22339   22339       0    55114       1900      2013        9
+## 5  135184  130252    4932    38913       1870      2013        9
+##                        OMLAJI_1S OMLAJI_2                      OMLAJI_2S
+## 0 Asunto-osakeyhtiö tai asunto-o       11 Asunto-osakeyhtiö tai asunto-o
+## 1 Asunto-osakeyhtiö tai asunto-o       11 Asunto-osakeyhtiö tai asunto-o
+## 2                          Espoo        3                          Espoo
+## 3         Muu yksityinen henkilö        9         Muu yksityinen henkilö
+## 4         Muu yksityinen henkilö        9         Muu yksityinen henkilö
+## 5         Muu yksityinen henkilö        9         Muu yksityinen henkilö
+##   OMLAJI_3                      OMLAJI_3S
+## 0       11 Asunto-osakeyhtiö tai asunto-o
+## 1       11 Asunto-osakeyhtiö tai asunto-o
+## 2        3                          Espoo
+## 3        9         Muu yksityinen henkilö
+## 4        9         Muu yksityinen henkilö
+## 5        9         Muu yksityinen henkilö
+```
+
+```r
 # Values with less than five units are given as 999999999, set those to zero
 sp.ramava@data[sp.ramava@data == 999999999] <- 0
 # Plot number of buildings for each region
@@ -160,18 +242,101 @@ spplot(sp.ramava, zcol = "RAKLKM", main = "Number of buildings in each 'tilastoa
 
 ## <a name="servicemap"></a>Service and event information
 
-Function `get_servicemap()` retrieves regional service data from the [Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) [API](http://www.hel.fi/palvelukarttaws/rest/ver2_en.html).
+Function `get_servicemap()` retrieves regional service data from the new [Service Map API](http://api.hel.fi/servicemap/v1/), that retrieves data from the [Service Map](http://dev.hel.fi/servicemap/).
 
 
 ```r
-# Get servicetree
-pk.servicetree <- get_servicemap("servicetree")
-# Get id for parks
-str(pk.servicetree[[1]]$children[[7]]$children[[2]])
-# Get parks data
-parks.data <- get_servicemap("unit", service = 25664)
-# Check what data is given for the first park
-str(parks.data[[1]])
+# Search for 'puisto' (park) (specify q='query')
+search.puisto <- get_servicemap(category = "search", q = "puisto")
+# Study results
+str(search.puisto, m = 1)
+```
+
+```
+## List of 4
+##  $ count   : num 1076
+##  $ next    : chr "http://api.hel.fi/servicemap/v1/search/?q=puisto&page=2"
+##  $ previous: NULL
+##  $ results :List of 20
+```
+
+```r
+# A lot of results found (count > 1000) Get names for the first 20 results
+sapply(search.puisto$results, function(x) x$name$fi)
+```
+
+```
+##  [1] "Asematien puisto"                  
+##  [2] "Hurtigin puisto"                   
+##  [3] "Kasavuoren puisto"                 
+##  [4] "Kaupungintalon puisto"             
+##  [5] "Stenbergin puisto"                 
+##  [6] "Sinebrychoffin puisto"             
+##  [7] "Sibeliuksen puisto"                
+##  [8] "Hesperian puisto"                  
+##  [9] "Kaisaniemen puisto"                
+## [10] "Esplanadin puisto"                 
+## [11] "Heiniitty, puisto"                 
+## [12] "Ullanmäki, puisto"                 
+## [13] "Puistot ja viheralueet"            
+## [14] "Puistot ja viheralueet"            
+## [15] "Säätytalon puisto, puistotäti"     
+## [16] "Myllykallion puisto, puistotäti"   
+## [17] "Teinintien puisto, puistotäti"     
+## [18] "Esplanadin puiston WLAN-tukiasema" 
+## [19] "Sibeliuksen puiston yleisövessa"   
+## [20] "Sinebrychoffin puiston yleisövessa"
+```
+
+```r
+# See what data is given for one service
+str(search.puisto$results[[1]], m = 2)
+```
+
+```
+## List of 26
+##  $ connections              :List of 1
+##   ..$ :List of 10
+##  $ id                       : num 14461
+##  $ data_source_url          : chr "http://www.kauniainen.fi"
+##  $ name                     :List of 3
+##   ..$ fi: chr "Asematien puisto"
+##   ..$ en: chr "Playground"
+##   ..$ sv: chr "Stationsvägens park"
+##  $ description              : NULL
+##  $ provider_type            : num 101
+##  $ department               : chr "235-YKT"
+##  $ organization             : num 235
+##  $ street_address           :List of 3
+##   ..$ fi: chr "Asematie 17"
+##   ..$ en: chr "Asematie 17"
+##   ..$ sv: chr "Stationsvägen 17"
+##  $ address_zip              : chr "02700"
+##  $ phone                    : NULL
+##  $ email                    : NULL
+##  $ www_url                  :List of 3
+##   ..$ fi: chr "http://www.kauniainen.fi/palvelut_ja_lomakkeet/kadut_ja_viheralueet_liikenne/katujen_ja_yleisten_alueiden_kunnossapito/kaupungi"| __truncated__
+##   ..$ en: chr "http://www.kauniainen.fi/palvelut_ja_lomakkeet/kadut_ja_viheralueet_liikenne/katujen_ja_yleisten_alueiden_kunnossapito/kaupungi"| __truncated__
+##   ..$ sv: chr "http://www.kauniainen.fi/sv/service_och_blanketter/gator_och_gronomraden_trafik/underhall_av_gator_och_allmanna_omraden/stadens"| __truncated__
+##  $ address_postal_full      : NULL
+##  $ municipality             : NULL
+##  $ picture_url              : NULL
+##  $ picture_caption          : NULL
+##  $ origin_last_modified_time: chr "2014-05-13T06:52:55.826Z"
+##  $ connection_hash          : chr "fc36ea8ef1b2dce835aad80915454b60724059c3"
+##  $ services                 : num [1:3] 28130 25394 25672
+##  $ divisions                : list()
+##  $ keywords                 : num [1:4] 838 837 4 1
+##  $ root_services            : num [1:3] 25298 25622 28128
+##  $ location                 :List of 2
+##   ..$ type       : chr "Point"
+##   ..$ coordinates: num [1:2] 24.7 60.2
+##  $ object_type              : chr "unit"
+##  $ score                    : num 2.19
+```
+
+```r
+# More results could be retrieved by specifying 'page=2' etc.
 ```
 
 
@@ -330,27 +495,23 @@ sessionInfo()
 ```
 
 ```
-## R version 3.0.2 (2013-09-25)
-## Platform: x86_64-pc-linux-gnu (64-bit)
+## R version 3.0.3 (2014-03-06)
+## Platform: x86_64-apple-darwin10.8.0 (64-bit)
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] helsinki_0.9.17 maptools_0.8-29 sp_1.0-15       knitr_1.5      
+## [1] knitr_1.5       helsinki_0.9.17 RCurl_1.95-4.1  bitops_1.0-6   
+## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_3.1.0 
 ## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.5  foreign_0.8-61  formatR_0.10    grid_3.0.2     
-## [5] lattice_0.20-29 RCurl_1.95-4.1  rjson_0.2.13    stringr_0.6.2  
-## [9] tools_3.0.2
+##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.1 
+##  [5] foreign_0.8-60  formatR_0.10    grid_3.0.3      lattice_0.20-27
+##  [9] Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
 ```
 
 

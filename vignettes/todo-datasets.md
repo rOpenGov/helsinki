@@ -1,6 +1,9 @@
 helsinki - Potential data sources to be added
 ==========
-  
+
+Events
+* [Event API](http://api.hel.fi/linkedevents/v0.1/)
+
 Demography
 * [Helsinki alueittain 2011](http://www.hri.fi/fi/data/helsinki-alueittain-2011-taulukot/) Tiedot Helsingin 8 suurpiirin ja 34 peruspiirin asukkaista, työpaikoista, asumisesta, rakentamisesta sekä palveluista ja palvelujen käytöstä.
 * [Helsingin ja Helsingin seudun väestöennuste sukupuolen ja iän mukaan 2012-2050](http://www.hri.fi/fi/data/helsingin-ja-helsingin-seudun-vaestoennuste-sukupuolen-ja-ian-mukaan-2012-2050/)

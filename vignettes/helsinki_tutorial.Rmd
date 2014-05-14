@@ -95,7 +95,7 @@ Retrieve data from [Helsingin seudun ympäristöpalvelut (HSY)](http://www.hsy.f
 
 Population grid (väestötietoruudukko) with 250m x 250m grid size in year 2013 contains the number of people in different age groups. The most rarely populated grids are left out (0-4 persons), and grids wiht less than 99 persons are censored with '99' to guarantee privacy.
 
-```{r hsy_vaesto, message=FALSE, warning=FALSE, results='hide'}
+```{r hsy_vaesto, message=FALSE, warning=FALSE}
 sp.vaesto <- get_hsy(which.data="Vaestotietoruudukko", which.year=2013)
 head(sp.vaesto@data)
 ```
@@ -106,7 +106,7 @@ head(sp.vaesto@data)
 Building information grid (rakennustietoruudukko) in Helsinki region on grid-level (500m x 500m): building counts (lukumäärä), built area (kerrosala), usage (käyttötarkoitus), and region
 efficiency (aluetehokkuus).
 
-```{r hsy_rakennus, message=FALSE, warning=FALSE, results='hide'}
+```{r hsy_rakennus, message=FALSE, warning=FALSE}
 sp.rakennus <- get_hsy(which.data="Rakennustietoruudukko", which.year=2013)  
 head(sp.rakennus@data)
 ```
@@ -115,7 +115,7 @@ head(sp.rakennus@data)
 
 Building area capacity per municipal region (kaupunginosittain summattua tietoa rakennusmaavarannosta). Plot with number of buildlings with `spplot()`.
 
-```{r hsy_ramava, message=FALSE, warning=FALSE, results='hide'}
+```{r hsy_ramava, message=FALSE, warning=FALSE}
 sp.ramava <- get_hsy(which.data="SeutuRAMAVA_tila", which.year=2013)  
 head(sp.ramava@data)
 # Values with less than five units are given as 999999999, set those to zero
@@ -127,24 +127,26 @@ spplot(sp.ramava, zcol="RAKLKM", main="Number of buildings in each 'tilastoalue'
 
 ## <a name="servicemap"></a>Service and event information
 
-Function `get_servicemap()` retrieves regional service data from the [Service Map](http://www.hel.fi/palvelukartta/Default.aspx?language=fi&city=91) [API](http://www.hel.fi/palvelukarttaws/rest/ver2_en.html).
+Function `get_servicemap()` retrieves regional service data from the new [Service Map API](http://api.hel.fi/servicemap/v1/), that retrieves data from the [Service Map](http://dev.hel.fi/servicemap/).
 
-```{r servicemap, message=FALSE, warning=FALSE, results='hide'}
-# Get servicetree
-pk.servicetree <- get_servicemap("servicetree")
-# Get id for parks
-str(pk.servicetree[[1]]$children[[7]]$children[[2]])
-# Get parks data
-parks.data <- get_servicemap("unit", service=25664)
-# Check what data is given for the first park
-str(parks.data[[1]])
+```{r servicemap, message=FALSE, warning=FALSE}
+# Search for "puisto" (park) (specify q="query")
+search.puisto <- get_servicemap(category="search", q="puisto")
+# Study results
+str(search.puisto, m=1)
+# A lot of results found (count > 1000)
+# Get names for the first 20 results
+sapply(search.puisto$results, function(x) x$name$fi)
+# See what data is given for one service
+str(search.puisto$results[[1]], m=2)
+# More results could be retrieved by specifying 'page=2' etc.
 ```
 
 Function `get_omakaupunki()` retrieves regional service and event data from the [Omakaupunki API](http://api.omakaupunki.fi/). However, the API needs a personal key, so no examples are given here.
 
 ## <a name="hri_stats"></a> Helsinki Region Infoshare statistics API
 
-Function `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/). Note! The implementation will be updated!
+Function `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/).
 
 ```{r hri_stats1, message=FALSE, warning=FALSE}
 # Retrieve list of available data
@@ -162,7 +164,7 @@ stats.res <- get_hri_stats(query=stats.list[1])
 str(stats.res)
 ```
 
-More examples to be added.
+The implementation will be updated and more examples will be added in the near future.
 
 ## <a name="economy"></a> Economic data
 

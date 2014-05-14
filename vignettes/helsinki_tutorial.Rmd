@@ -131,7 +131,7 @@ Function `get_servicemap()` retrieves regional service data from the new [Servic
 
 ```{r servicemap, message=FALSE, warning=FALSE}
 # Search for "puisto" (park) (specify q="query")
-search.puisto <- get_servicemap(category="search", q="puisto")
+search.puisto <- get_servicemap(query="search", q="puisto")
 # Study results
 str(search.puisto, m=1)
 # A lot of results found (count > 1000)
@@ -146,7 +146,7 @@ Function `get_linkedevents()` retrieves regional event data from the new [Linked
 
 ```{r linkedevents, message=FALSE, warning=FALSE}
 # Searh for current events
-events <- get_linkedevents("event")
+events <- get_linkedevents(query="event")
 # Get names for the first 20 results
 sapply(events$results, function(x) x$name$fi)
 # See what data is given for the first event

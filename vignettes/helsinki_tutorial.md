@@ -248,7 +248,7 @@ Function `get_servicemap()` retrieves regional service data from the new [Servic
 
 ```r
 # Search for 'puisto' (park) (specify q='query')
-search.puisto <- get_servicemap(category = "search", q = "puisto")
+search.puisto <- get_servicemap(query = "search", q = "puisto")
 # Study results
 str(search.puisto, m = 1)
 ```
@@ -320,7 +320,7 @@ Function `get_linkedevents()` retrieves regional event data from the new [Linked
 
 ```r
 # Searh for current events
-events <- get_linkedevents("event")
+events <- get_linkedevents(query = "event")
 # Get names for the first 20 results
 sapply(events$results, function(x) x$name$fi)
 ```
@@ -530,13 +530,12 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5       helsinki_0.9.19 RCurl_1.95-4.1  bitops_1.0-6   
-## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_4.0.0 
+## [1] helsinki_0.9.19 RCurl_1.95-4.1  bitops_1.0-6    rjson_0.2.13   
+## [5] maptools_0.8-29 sp_1.0-14       roxygen2_4.0.0  knitr_1.5      
 ## 
 ## loaded via a namespace (and not attached):
 ## [1] evaluate_0.5.1  foreign_0.8-60  formatR_0.10    grid_3.0.3     
-## [5] lattice_0.20-27 markdown_0.6.4  Rcpp_0.11.1     stringr_0.6.2  
-## [9] tools_3.0.3
+## [5] lattice_0.20-27 Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
 ```
 
 

@@ -423,7 +423,7 @@ spplot(sp.ramava, zcol = &quot;RAKLKM&quot;, main = &quot;Number of buildings in
 <p>Function <code>get_servicemap()</code> retrieves regional service data from the new <a href="http://api.hel.fi/servicemap/v1/">Service Map API</a>, that contains data from the <a href="http://dev.hel.fi/servicemap/">Service Map</a>.</p>
 
 <pre><code class="r"># Search for &#39;puisto&#39; (park) (specify q=&#39;query&#39;)
-search.puisto &lt;- get_servicemap(category = &quot;search&quot;, q = &quot;puisto&quot;)
+search.puisto &lt;- get_servicemap(query = &quot;search&quot;, q = &quot;puisto&quot;)
 # Study results
 str(search.puisto, m = 1)
 </code></pre>
@@ -486,7 +486,7 @@ names(search.puisto$results[[1]])
 <p>Function <code>get_linkedevents()</code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v0.1/">Linked Events API</a>.</p>
 
 <pre><code class="r"># Searh for current events
-events &lt;- get_linkedevents(&quot;event&quot;)
+events &lt;- get_linkedevents(query = &quot;event&quot;)
 # Get names for the first 20 results
 sapply(events$results, function(x) x$name$fi)
 </code></pre>
@@ -665,13 +665,12 @@ https://github.com/rOpenGov/helsinki
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5       helsinki_0.9.19 RCurl_1.95-4.1  bitops_1.0-6   
-## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_4.0.0 
+## [1] helsinki_0.9.19 RCurl_1.95-4.1  bitops_1.0-6    rjson_0.2.13   
+## [5] maptools_0.8-29 sp_1.0-14       roxygen2_4.0.0  knitr_1.5      
 ## 
 ## loaded via a namespace (and not attached):
 ## [1] evaluate_0.5.1  foreign_0.8-60  formatR_0.10    grid_3.0.3     
-## [5] lattice_0.20-27 markdown_0.6.4  Rcpp_0.11.1     stringr_0.6.2  
-## [9] tools_3.0.3
+## [5] lattice_0.20-27 Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
 </code></pre>
 
 </body>

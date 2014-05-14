@@ -28,7 +28,7 @@
 #' 
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples \dontrun{ res.list <- get_economic_indicators() }
+#' @examples \donttest{ res.list <- get_economic_indicators() }
 
 get_economic_indicators <- function (verbose=TRUE) {
 

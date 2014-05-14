@@ -3,10 +3,10 @@
 \alias{get_servicemap}
 \title{Access Helsinki region Service Map API}
 \usage{
-get_servicemap(category, ...)
+get_servicemap(query, ...)
 }
 \arguments{
-\item{A}{string. The API query, for example "search", "service", or "unit".
+\item{query}{The API query as a string, for example "search", "service", or "unit".
 For full list of available options and details, see http://api.hel.fi/servicemap/v1/.}
 
 \item{...}{Additional parameters to the API (optional).

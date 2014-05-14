@@ -3,10 +3,10 @@
 \alias{get_linkedevents}
 \title{Access Helsinki Linked Events API}
 \usage{
-get_linkedevents(category, ...)
+get_linkedevents(query, ...)
 }
 \arguments{
-\item{A}{string. The API query, one of "category", "event", "language", or "place".
+\item{query}{The API query as a string, one of "category", "event", "language", or "place".
 For details, see http://api.hel.fi/linkedevents/v0.1/.}
 
 \item{...}{Additional parameters to the API (optional).

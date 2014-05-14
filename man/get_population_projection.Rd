@@ -19,7 +19,7 @@ http://www.hri.fi/fi/data/helsingin-ja-helsingin-seudun-vaestoennuste-sukupuolen
 Helsinki, Helsinki region, 2012-2050
 }
 \examples{
-\dontrun{ res.list <- get_population_projection()}
+\donttest{ res.list <- get_population_projection()}
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

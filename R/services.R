@@ -19,7 +19,7 @@
 #' http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v1/. 
 #' For more API documentation and license information see the API link.
 #' 
-#' @param A string. The API query, for example "search", "service", or "unit".
+#' @param query The API query as a string, for example "search", "service", or "unit".
 #' For full list of available options and details, see http://api.hel.fi/servicemap/v1/. 
 #' @param ... Additional parameters to the API (optional).
 #' For details, see http://api.hel.fi/servicemap/v1/. 
@@ -33,13 +33,13 @@
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
 #' @examples \donttest{ search.puisto <- get_servicemap(category="search", q="puisto") }
 
-get_servicemap <- function(category, ...) {
+get_servicemap <- function(query, ...) {
   
   # api.url <- "http://www.hel.fi/palvelukarttaws/rest/v2/"
   # Define query url
   # New API (13.5.2014)
   api.url <- "http://api.hel.fi/servicemap/v1/"
-  query.url <- paste0(api.url, category, "/")
+  query.url <- paste0(api.url, query, "/")
   
   # Get Curl handle
   curl <- RCurl::getCurlHandle(cookiefile = "")
@@ -63,7 +63,7 @@ get_servicemap <- function(category, ...) {
 #' the City of Helsinki Cultural Office and the Helmet metropolitan area public libraries.
 #' For more API documentation and license information see the API link.
 #' 
-#' @param A string. The API query, one of "category", "event", "language", or "place".
+#' @param query The API query as a string, one of "category", "event", "language", or "place".
 #' For details, see http://api.hel.fi/linkedevents/v0.1/. 
 #' @param ... Additional parameters to the API (optional).
 #' For details, see http://api.hel.fi/linkedevents/v0.1/. 
@@ -77,11 +77,11 @@ get_servicemap <- function(category, ...) {
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
 #' @examples \donttest{ events <- get_linkedevents("event") }
 
-get_linkedevents <- function(category, ...) {
+get_linkedevents <- function(query, ...) {
   
   # Define query url
   api.url <- "http://api.hel.fi/linkedevents/v0.1/"
-  query.url <- paste0(api.url, category, "/")
+  query.url <- paste0(api.url, query, "/")
   
   # Get Curl handle
   curl <- RCurl::getCurlHandle(cookiefile = "")

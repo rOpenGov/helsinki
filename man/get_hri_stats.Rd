@@ -25,7 +25,7 @@ or query for a specific resources and retrieve it in a
 three-dimensional array form.
 }
 \examples{
-\dontrun{ res.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli") }
+\donttest{ res.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli") }
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

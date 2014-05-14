@@ -19,7 +19,7 @@ http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/.
 Helsinki, Espoo, Vantaa, Kauniainen, Finland, years 1998-2010.
 }
 \examples{
-\dontrun{ res.list <- get_economic_indicators() }
+\donttest{ res.list <- get_economic_indicators() }
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

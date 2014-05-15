@@ -1,10 +1,5 @@
-```{r knit, eval=FALSE, echo=FALSE}
-# Hot to knit this document into .md and .html
-library(knitr)
-opts_knit$set(base.dir = "vignettes") # Change the base dir where to save figures
-knit(input="vignettes/intro-blog.Rmd", output="vignettes/intro-blog.md")
-# knit2html(input="vignettes/intro-blog.md", output="vignettes/intro-blog.html", options=c("use_xhtml","smartypants","mathjax","highlight_code"))
-```
+
+
 
 # helsinki - Pääkaupunkiseudun avoimen datan työkalupakki R-kielelle
 
@@ -14,8 +9,9 @@ Jotain introlätinää alkuun.
 
 Haetaan ensin väestöruudukko ([HSY:ltä](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)) funktiolla `get_hsy()`.
 
-```{r popgrid, message=FALSE, warning=FALSE}
-popgrid.sp <- get_hsy(which.data="Vaestotietoruudukko", which.year=2013)
+
+```r
+popgrid.sp <- get_hsy(which.data = "Vaestotietoruudukko", which.year = 2013)
 # Transform into lat/long coordinates
 library(sp)
 library(rgdal)
@@ -23,56 +19,97 @@ popgrid.sp <- sp::spTransform(popgrid.sp, CRS("+proj=longlat +datum=WGS84"))
 # Transform to ggplot2-compatible data frame
 library(ggplot2)
 library(rgeos)
-popgrid.df <- ggplot2::fortify(popgrid.sp, region="INDEX")
+popgrid.df <- ggplot2::fortify(popgrid.sp, region = "INDEX")
 # Merge original population grid data to the data frame
-popgrid.df <- merge(popgrid.df, popgrid.sp@data, by.x="id", by.y="INDEX")
+popgrid.df <- merge(popgrid.df, popgrid.sp@data, by.x = "id", by.y = "INDEX")
 ```
+
 
 Haetaan sitten  [Palvelukartan uudesta API:sta](http://api.hel.fi/servicemap/v1/) (uusi Palvelukartta [täällä](http://dev.hel.fi/servicemap/)) pääkaupunkiseudun peruskoulujen sijainnit. 
 
-```{r services, message=FALSE, warning=FALSE}
+
+```r
 # Search services with 'perusopetus' (basic education)
-temp <- get_servicemap(query="search", q="perusopetus")
+temp <- get_servicemap(query = "search", q = "perusopetus")
 # Study results
 sapply(temp$results, function(x) x$name$fi)
+```
+
+```
+##  [1] "Perusopetus"                                    
+##  [2] "yleinen perusopetus"                            
+##  [3] "yleinen perusopetus"                            
+##  [4] "Luokkien 1-6 perusopetus"                       
+##  [5] "Luokkien 7-9 perusopetus"                       
+##  [6] "Erityispedagogiikan mukainen perusopetus"       
+##  [7] "steinerpedagogiikan mukainen perusopetus"       
+##  [8] "Ruotsinkielinen perusopetus 2013-2014"          
+##  [9] "Luokkien 1-6 perusopetus"                       
+## [10] "Luokkien 7-9 perusopetus"                       
+## [11] "Luokkien 1-6 perusopetus"                       
+## [12] "Luokkien 7-9 perusopetus"                       
+## [13] "Erityispedagogiikan mukainen perusopetus"       
+## [14] "steinerpedagogiikan mukainen perusopetus"       
+## [15] "Ruotsinkielinen perusopetus 2014-2015"          
+## [16] "Luokkien 1-6 perusopetus"                       
+## [17] "Luokkien 7-9 perusopetus"                       
+## [18] "Suomen- ja vieraskielinen perusopetus 2013-2014"
+## [19] "Suomen- ja vieraskielinen perusopetus 2014-2015"
+```
+
+```r
 # Get id for 'Luokkien 1-6 perusopetus'
 temp$results[[4]]$id
+```
+
+```
+## [1] 30351
+```
+
+```r
 # Get all units under this service type
-res <- get_servicemap(query="unit", service=temp$results[[4]]$id)
+res <- get_servicemap(query = "unit", service = temp$results[[4]]$id)
 # Get all results at once by increasing 'page_size'
-res <- get_servicemap(query="unit", service=temp$results[[4]]$id, page_size=215)
+res <- get_servicemap(query = "unit", service = temp$results[[4]]$id, page_size = 215)
 # Check which results have location information
 has.location <- which(sapply(res$results, function(x) !is.null(x$location)))
 # Get coordinates for the results
 coords <- t(sapply(res$results[has.location], function(x) x$location$coordinates))
 # Construct a data frame
-ed.df <- data.frame(long=coords[,1], lat=coords[,2])
+ed.df <- data.frame(long = coords[, 1], lat = coords[, 2])
 ```
+
 
 Datan visualisointia varten haetaan ensin tausta [Stamen-palvelusta](http://maps.stamen.com/) käyttäen [ggmap-kirjastoa](https://sites.google.com/site/davidkahle/ggmap). Plotataan sitten sekä väestöruudukko että koulujen sijainnit kartalle [ggplot2-kirjastolla](http://ggplot2.org/).
 
-```{r demo1, message=FALSE, warning=FALSE}
-# Get background map for helsinki using ggmap package
-# Plot with ggplot2, colour based on population
+
+```r
+# Get background map for helsinki using ggmap package Plot with ggplot2,
+# colour based on population
 library(ggmap)
 # Get bounding box from the population grid
 hel.bbox <- as.vector(popgrid.sp@bbox)
 # Get background map from Stamen maps
-hel.map <- ggmap::get_map(location = hel.bbox, source = "stamen", maptype="toner", crop=TRUE)
+hel.map <- ggmap::get_map(location = hel.bbox, source = "stamen", maptype = "toner", 
+    crop = TRUE)
 
 # Plot background map
 p <- ggmap(hel.map)
 # Add population grid
-p <- p + geom_polygon(data=popgrid.df, aes(x=long, y=lat, group=id, fill=ASUKKAITA)) + scale_fill_gradient2(low="white", high="red")
+p <- p + geom_polygon(data = popgrid.df, aes(x = long, y = lat, group = id, 
+    fill = ASUKKAITA)) + scale_fill_gradient2(low = "white", high = "red")
 # Add services
-p <- p + geom_point(data=ed.df, aes(x=long, y=lat), colour="blue")
+p <- p + geom_point(data = ed.df, aes(x = long, y = lat), colour = "blue")
 # Remove axis information
-p <- p + theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank())
+p <- p + theme(axis.title = element_blank(), axis.text = element_blank(), axis.ticks = element_blank())
 # Add title
 p <- p + ggtitle("Pääkaupunkiseudun väestötiheys ja koulujen sijainti")
 # Print figure
 print(p)
 ```
+
+![plot of chunk demo1](figure/demo1.png) 
+
 
 Ideoita interaktiiviselle visualisaatiolle
 * Väestöruudukon aineiston suodatus ikäryhmittäin

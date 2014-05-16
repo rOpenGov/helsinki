@@ -7,6 +7,8 @@
 
 Avoin data tarjoaa mahdollisuuden tutkia tämänkaltaisia kysymyksiä. Pääkaupunkiseudun kohdalla tämä onnistuu nyt [Datademo-rahoituksella](http://datademo.fi/) toteutetun [helsinki-kirjasto](https://github.com/rOpenGov/helsinki) avulla. Kirjasto tuo tärkeimmät pääkaupunkiseudun avoimen tietoaineistot R-laskentaympäristöön ja mahdollistaa niiden analyysin, yhdistämisen ja visualisoinnin.
 
+Aloitetaan asentamalla helsinki-kirjasto:
+
 
 ```r
 # Install and load package devtools first
@@ -14,8 +16,8 @@ install.packages("devtools")
 library(devtools)
 # Install development version of helsinki from github
 install_github(repo = "helsinki", username = "ropengov")
-# Install package helsinki from CRAN and load it
-# install.packages('helsinki')
+# Install package helsinki from CRAN install.packages('helsinki') Load
+# package
 library(helsinki)
 ```
 
@@ -40,7 +42,7 @@ popgrid.df <- merge(popgrid.df, popgrid.sp, by.x = "id", by.y = "INDEX")
 ```
 
 
-Haetaan sitten [Pääkaupunkiseudun Palvelukartan uudesta API:sta](http://api.hel.fi/servicemap/v1/) (uusi Palvelukartta [täällä](http://dev.hel.fi/servicemap/)) pääkaupunkiseudun peruskouluihin liittyvät palvelut funtioalla `get_servicemap()`.
+Haetaan sitten [Pääkaupunkiseudun Palvelukartan uudesta API:sta](http://api.hel.fi/servicemap/v1/) (uusi Palvelukartta [täällä](http://dev.hel.fi/servicemap/)) pääkaupunkiseudun peruskouluihin liittyvät palvelut funktiolla `get_servicemap()`.
 
 
 ```r
@@ -78,14 +80,14 @@ Valitaan hakutuloksista numerot 4 ja 9 (id:t 30351 ja 30529), eli 'Luokkien 1-6 
 
 
 ```r
-# Get all units under service ids 30351 and 30529 Increase 'page_size' to
-# retrieve all results at once
+# Get all units under service ids 30351 and 30529 (use high 'page_size' to
+# retrieve all results at once)
 res2 <- get_servicemap(query = "unit", service = "30351,30529", page_size = 1000)
 # Check which results have location information
 has.location <- which(sapply(res2$results, function(x) !is.null(x$location)))
-# Get coordinates for the results
+# Get coordinates for those results
 coords <- t(sapply(res2$results[has.location], function(x) x$location$coordinates))
-# Construct a data frame
+# Construct data frame
 ed.df <- data.frame(long = coords[, 1], lat = coords[, 2], school = "alakoulu")
 ```
 
@@ -94,8 +96,7 @@ Datan visualisointia varten haetaan ensin karttatausta [Stamen-palvelusta](http:
 
 
 ```r
-# Get background map for helsinki using ggmap package Plot with ggplot2,
-# colour based on population
+# Get background map for helsinki using ggmap package
 library(ggmap)
 # Get bounding box from the population grid
 hel.bbox <- as.vector(popgrid.sp@bbox)
@@ -114,7 +115,7 @@ p <- ggmap(hel.map)
 # Add population grid
 p <- p + geom_polygon(data = popgrid.df, aes(x = long, y = lat, group = id, 
     fill = ASUKKAITA)) + scale_fill_gradient2(low = "white", high = "steelblue")
-# Add services
+# Add services as points
 p <- p + geom_point(data = ed.df, aes(x = long, y = lat, colour = school))
 # Remove axis information
 p <- p + theme(axis.title = element_blank(), axis.text = element_blank(), axis.ticks = element_blank())
@@ -127,16 +128,13 @@ print(p)
 ![plot of chunk popschool](figure/popschool.png) 
 
 
+Kartalla näkyvät tiheästi asutut alueet sinisellä ja koulut punaisina pisteinä. Koulujen sijainti näyttää vastaavan hyvin väestökeskittymiä.
+
 Helsinki-kirjaston kehitysversio löytyy [githubista](https://github.com/rOpenGov/helsinki) ja julkaisuversio [CRANista](http://cran.r-project.org/web/packages/helsinki/index.html). Kirjastossa mukana olevat datalähteet lyhyine esimerkkeineen löytyvät [tutoriaalista](https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md). Tärkeimmät mukana olevat datalähteet ovat tällä hetkellä
 * [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
 * [Helsingin seudun ympäristöpalvelu (HSY)](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
 * [Pääkaupunkiseudun Palvelukartan API](http://api.hel.fi/servicemap/v1/)
 * [HRI:n tilasto-API](http://dev.hel.fi/stats/)
-
-Ideoita interaktiiviselle visualisaatiolle
-* Väestöruudukon aineiston suodatus ikäryhmittäin
-* Visualisoitavan palvelun valinta valikosta
-
 
 
 ## Kohti kansainvälistä avoimen datan työkalujen verkostoa

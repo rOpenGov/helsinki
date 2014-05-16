@@ -8,13 +8,26 @@ knit(input="vignettes/intro-blog.Rmd", output="vignettes/intro-blog.md")
 
 # helsinki - Pääkaupunkiseudun avoimen datan työkalupakki R-kielelle
 
-## Miten pääkaupunkiseudun asukastiheys suhtautuu palveluiden määrään?
+### Miten koulujen sijainti pääkaupunkiseudulla suhtautuu asukastiheyteen?
 
-Jotain introlätinää alkuun.
+Avoin data tarjoaa mahdollisuuden tutkia tämänkaltaisia kysymyksiä. Pääkaupunkiseudun kohdalla tämä onnistuu nyt [Datademo-rahoituksella](http://datademo.fi/) toteutetun [helsinki-kirjasto](https://github.com/rOpenGov/helsinki) avulla. Kirjasto tuo tärkeimmät pääkaupunkiseudun avoimen tietoaineistot R-laskentaympäristöön ja mahdollistaa niiden analyysin, yhdistämisen ja visualisoinnin.
 
-Haetaan ensin väestöruudukko ([HSY:ltä](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)) funktiolla `get_hsy()`.
+```{r install, message=FALSE, warning=FALSE, results='hide'}
+# Install and load package devtools first
+install.packages("devtools")
+library(devtools)
+# Install development version of helsinki from github
+install_github(repo="helsinki", username="ropengov")
+# Install package helsinki from CRAN and load it
+# install.packages("helsinki")
+library(helsinki)
+```
+
+
+Tutkiaksemme koulujen sijainnin suhdetta väestötiheyteen haemme ensin vuoden 2013 väestöruudukon ([HSY:ltä](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)) funktiolla `get_hsy()` ja muokataan data sopivaan muotoon.
 
 ```{r popgrid, message=FALSE, warning=FALSE}
+# Retrieve population grid for year 2013
 popgrid.sp <- get_hsy(which.data="Vaestotietoruudukko", which.year=2013)
 # Transform into lat/long coordinates
 library(sp)
@@ -25,33 +38,35 @@ library(ggplot2)
 library(rgeos)
 popgrid.df <- ggplot2::fortify(popgrid.sp, region="INDEX")
 # Merge original population grid data to the data frame
-popgrid.df <- merge(popgrid.df, popgrid.sp@data, by.x="id", by.y="INDEX")
+popgrid.df <- merge(popgrid.df, popgrid.sp, by.x="id", by.y="INDEX")
 ```
 
-Haetaan sitten  [Palvelukartan uudesta API:sta](http://api.hel.fi/servicemap/v1/) (uusi Palvelukartta [täällä](http://dev.hel.fi/servicemap/)) pääkaupunkiseudun peruskoulujen sijainnit. 
+Haetaan sitten [Pääkaupunkiseudun Palvelukartan uudesta API:sta](http://api.hel.fi/servicemap/v1/) (uusi Palvelukartta [täällä](http://dev.hel.fi/servicemap/)) pääkaupunkiseudun peruskouluihin liittyvät palvelut funtioalla `get_servicemap()`.
 
-```{r services, message=FALSE, warning=FALSE}
+```{r education1, message=FALSE, warning=FALSE}
 # Search services with 'perusopetus' (basic education)
-temp <- get_servicemap(query="search", q="perusopetus")
-# Study results
-sapply(temp$results, function(x) x$name$fi)
-# Get id for 'Luokkien 1-6 perusopetus'
-temp$results[[4]]$id
-# Get all units under this service type
-res <- get_servicemap(query="unit", service=temp$results[[4]]$id)
-# Get all results at once by increasing 'page_size'
-res <- get_servicemap(query="unit", service=temp$results[[4]]$id, page_size=215)
-# Check which results have location information
-has.location <- which(sapply(res$results, function(x) !is.null(x$location)))
-# Get coordinates for the results
-coords <- t(sapply(res$results[has.location], function(x) x$location$coordinates))
-# Construct a data frame
-ed.df <- data.frame(long=coords[,1], lat=coords[,2])
+res1 <- get_servicemap(query="search", q="perusopetus")
+# List id, name and parent category id for the results
+t(sapply(res1$results, function(x) c(x$id, x$name$fi, x$parent)))
 ```
 
-Datan visualisointia varten haetaan ensin tausta [Stamen-palvelusta](http://maps.stamen.com/) käyttäen [ggmap-kirjastoa](https://sites.google.com/site/davidkahle/ggmap). Plotataan sitten sekä väestöruudukko että koulujen sijainnit kartalle [ggplot2-kirjastolla](http://ggplot2.org/).
+Valitaan hakutuloksista numerot 4 ja 9 (id:t 30351 ja 30529), eli 'Luokkien 1-6 perusopetus' kategorioista 'Suomen- ja vieraskielinen perusopetus 2013-2014' ja 'Ruotsinkielinen perusopetus 2013-2014'.
 
-```{r demo1, message=FALSE, warning=FALSE}
+```{r education2, message=FALSE, warning=FALSE}
+# Get all units under service ids 30351 and 30529
+# Increase 'page_size' to retrieve all results at once
+res2 <- get_servicemap(query="unit", service="30351,30529", page_size=1000)
+# Check which results have location information
+has.location <- which(sapply(res2$results, function(x) !is.null(x$location)))
+# Get coordinates for the results
+coords <- t(sapply(res2$results[has.location], function(x) x$location$coordinates))
+# Construct a data frame
+ed.df <- data.frame(long=coords[,1], lat=coords[,2], school="alakoulu")
+```
+
+Datan visualisointia varten haetaan ensin karttatausta [Stamen-palvelusta](http://maps.stamen.com/) käyttäen [ggmap-kirjastoa](https://sites.google.com/site/davidkahle/ggmap). 
+
+```{r helmap, message=FALSE, warning=FALSE}
 # Get background map for helsinki using ggmap package
 # Plot with ggplot2, colour based on population
 library(ggmap)
@@ -59,13 +74,17 @@ library(ggmap)
 hel.bbox <- as.vector(popgrid.sp@bbox)
 # Get background map from Stamen maps
 hel.map <- ggmap::get_map(location = hel.bbox, source = "stamen", maptype="toner", crop=TRUE)
+```
 
+Visualisoidaan lopuksi sekä väestöruudukko että koulujen sijainnit kartalle [ggplot2-kirjastolla](http://ggplot2.org/).
+
+```{r popschool, message=FALSE, warning=FALSE, fig.width=10, fig.height=8}
 # Plot background map
 p <- ggmap(hel.map)
 # Add population grid
-p <- p + geom_polygon(data=popgrid.df, aes(x=long, y=lat, group=id, fill=ASUKKAITA)) + scale_fill_gradient2(low="white", high="red")
+p <- p + geom_polygon(data=popgrid.df, aes(x=long, y=lat, group=id, fill=ASUKKAITA)) + scale_fill_gradient2(low="white", high="steelblue")
 # Add services
-p <- p + geom_point(data=ed.df, aes(x=long, y=lat), colour="blue")
+p <- p + geom_point(data=ed.df, aes(x=long, y=lat, colour=school))
 # Remove axis information
 p <- p + theme(axis.title=element_blank(), axis.text=element_blank(), axis.ticks=element_blank())
 # Add title
@@ -74,12 +93,16 @@ p <- p + ggtitle("Pääkaupunkiseudun väestötiheys ja koulujen sijainti")
 print(p)
 ```
 
+Helsinki-kirjaston kehitysversio löytyy [githubista](https://github.com/rOpenGov/helsinki) ja julkaisuversio [CRANista](http://cran.r-project.org/web/packages/helsinki/index.html). Kirjastossa mukana olevat datalähteet lyhyine esimerkkeineen löytyvät [tutoriaalista](https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md). Tärkeimmät mukana olevat datalähteet ovat tällä hetkellä
+* [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
+* [Helsingin seudun ympäristöpalvelu (HSY)](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
+* [Pääkaupunkiseudun Palvelukartan API](http://api.hel.fi/servicemap/v1/)
+* [HRI:n tilasto-API](http://dev.hel.fi/stats/)
+
 Ideoita interaktiiviselle visualisaatiolle
 * Väestöruudukon aineiston suodatus ikäryhmittäin
 * Visualisoitavan palvelun valinta valikosta
 
-
-Pääkaupunkiseudun datalle on nyt tehty oma [helsinki-kirjasto](https://github.com/rOpenGov/helsinki) [Datademo-rahoituksella](http://datademo.fi/). 
 
 
 ## Kohti kansainvälistä avoimen datan työkalujen verkostoa

@@ -23,7 +23,7 @@ library(helsinki)
 
 
 
-Tutkiaksemme koulujen sijainnin suhdetta väestötiheyteen haemme ensin vuoden 2013 väestöruudukon ([HSY:ltä](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)) funktiolla `get_hsy()` ja muokataan data sopivaan muotoon.
+Tutkiaksemme koulujen sijainnin suhdetta väestötiheyteen haemme ensin vuoden 2013 väestöruudukon ([HSY:ltä](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)) funktiolla `get_hsy()` ja muokataan data sopivaan muotoon. Aineistossa on asetettu kaikkien alle sadan asukkaan ruutujen arvoksi 99 tietosuojasyistä.
 
 
 ```r
@@ -114,9 +114,11 @@ Visualisoidaan lopuksi sekä väestöruudukko että koulujen sijainnit kartalle 
 p <- ggmap(hel.map)
 # Add population grid
 p <- p + geom_polygon(data = popgrid.df, aes(x = long, y = lat, group = id, 
-    fill = ASUKKAITA)) + scale_fill_gradient2(low = "white", high = "steelblue")
+    fill = ASUKKAITA))
+# Change fill scale for
+p <- p + scale_fill_gradient(low = "grey80", high = "blue")
 # Add services as points
-p <- p + geom_point(data = ed.df, aes(x = long, y = lat, colour = school))
+p <- p + geom_point(data = ed.df, aes(x = long, y = lat), colour = "red")
 # Remove axis information
 p <- p + theme(axis.title = element_blank(), axis.text = element_blank(), axis.ticks = element_blank())
 # Add title

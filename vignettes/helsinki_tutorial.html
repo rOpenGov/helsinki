@@ -310,7 +310,7 @@ str(aluejakokartat, m = 2)
 
 <h3>Population grid</h3>
 
-<p>Population grid (väestötietoruudukko) with 250m x 250m grid size in year 2013 contains the number of people in different age groups. The most rarely populated grids are left out (0-4 persons), and grids wiht less than 99 persons are censored with &#39;99&#39; to guarantee privacy.</p>
+<p>Population grid (väestötietoruudukko) with 250m x 250m grid size in year 2013 contains the number of people in different age groups. The most rarely populated grids are left out (0-4 persons), and grids with less than 99 persons are censored with &#39;99&#39; to guarantee privacy.</p>
 
 <pre><code class="r">sp.vaesto &lt;- get_hsy(which.data = &quot;Vaestotietoruudukko&quot;, which.year = 2013)
 head(sp.vaesto@data)
@@ -429,8 +429,8 @@ str(search.puisto, m = 1)
 </code></pre>
 
 <pre><code>## List of 4
-##  $ count   : num 1076
-##  $ next    : chr &quot;http://api.hel.fi/servicemap/v1/search/?q=puisto&amp;page=2&quot;
+##  $ count   : num 1403
+##  $ next    : chr &quot;http://api.hel.fi/servicemap/v1/search/?page=2&amp;q=puisto&quot;
 ##  $ previous: NULL
 ##  $ results :List of 20
 </code></pre>
@@ -439,26 +439,26 @@ str(search.puisto, m = 1)
 sapply(search.puisto$results, function(x) x$name$fi)
 </code></pre>
 
-<pre><code>##  [1] &quot;Asematien puisto&quot;                  
-##  [2] &quot;Hurtigin puisto&quot;                   
-##  [3] &quot;Kasavuoren puisto&quot;                 
-##  [4] &quot;Kaupungintalon puisto&quot;             
-##  [5] &quot;Stenbergin puisto&quot;                 
-##  [6] &quot;Sinebrychoffin puisto&quot;             
-##  [7] &quot;Sibeliuksen puisto&quot;                
-##  [8] &quot;Hesperian puisto&quot;                  
-##  [9] &quot;Kaisaniemen puisto&quot;                
-## [10] &quot;Esplanadin puisto&quot;                 
-## [11] &quot;Heiniitty, puisto&quot;                 
-## [12] &quot;Ullanmäki, puisto&quot;                 
-## [13] &quot;Puistot ja viheralueet&quot;            
-## [14] &quot;Puistot ja viheralueet&quot;            
-## [15] &quot;Säätytalon puisto, puistotäti&quot;     
-## [16] &quot;Myllykallion puisto, puistotäti&quot;   
-## [17] &quot;Teinintien puisto, puistotäti&quot;     
-## [18] &quot;Esplanadin puiston WLAN-tukiasema&quot; 
-## [19] &quot;Sibeliuksen puiston yleisövessa&quot;   
-## [20] &quot;Sinebrychoffin puiston yleisövessa&quot;
+<pre><code>##  [1] &quot;Sibeliuksen puiston yleisövessa&quot;      
+##  [2] &quot;Sinebrychoffin puiston yleisövessa&quot;   
+##  [3] &quot;Topeliuksen puiston yleisövessa&quot;      
+##  [4] &quot;Puistot ja viheralueet&quot;               
+##  [5] &quot;Matti Heleniuksen puiston yleisövessa&quot;
+##  [6] &quot;Thurmaninpuisto&quot;                      
+##  [7] &quot;Asematien puisto&quot;                     
+##  [8] &quot;Hurtigin puisto&quot;                      
+##  [9] &quot;Kasavuoren puisto&quot;                    
+## [10] &quot;Kaupungintalon puisto&quot;                
+## [11] &quot;Stenbergin puisto&quot;                    
+## [12] &quot;Leikkipaikka Härkävaljakon puisto&quot;    
+## [13] &quot;Leikkipaikka Ilkantien puisto&quot;        
+## [14] &quot;Leikkipaikka Johanneksen puisto&quot;      
+## [15] &quot;Leikkipaikka Katajanokan puisto&quot;      
+## [16] &quot;Leikkipaikka Kivitorpan puisto&quot;       
+## [17] &quot;Leikkipaikka Museon puisto&quot;           
+## [18] &quot;Leikkipaikka Pajalahden puisto&quot;       
+## [19] &quot;Leikkipaikka Rikun puisto&quot;            
+## [20] &quot;Leikkipaikka Rukkilan puisto&quot;
 </code></pre>
 
 <pre><code class="r"># See what data is given for one service
@@ -474,10 +474,10 @@ names(search.puisto$results[[1]])
 ## [13] &quot;www_url&quot;                   &quot;address_postal_full&quot;      
 ## [15] &quot;municipality&quot;              &quot;picture_url&quot;              
 ## [17] &quot;picture_caption&quot;           &quot;origin_last_modified_time&quot;
-## [19] &quot;connection_hash&quot;           &quot;services&quot;                 
-## [21] &quot;divisions&quot;                 &quot;keywords&quot;                 
-## [23] &quot;root_services&quot;             &quot;location&quot;                 
-## [25] &quot;object_type&quot;               &quot;score&quot;
+## [19] &quot;services&quot;                  &quot;divisions&quot;                
+## [21] &quot;keywords&quot;                  &quot;root_services&quot;            
+## [23] &quot;location&quot;                  &quot;object_type&quot;              
+## [25] &quot;score&quot;
 </code></pre>
 
 <pre><code class="r"># More results could be retrieved by specifying &#39;page=2&#39; etc.
@@ -522,8 +522,8 @@ names(events$results[[1]])
 ##  [7] &quot;origin_id&quot;           &quot;custom_fields&quot;       &quot;image&quot;              
 ## [10] &quot;created_time&quot;        &quot;last_modified_time&quot;  &quot;date_published&quot;     
 ## [13] &quot;start_time&quot;          &quot;end_time&quot;            &quot;target_group&quot;       
-## [16] &quot;location_extra_info&quot; &quot;name&quot;                &quot;description&quot;        
-## [19] &quot;url&quot;                 &quot;@id&quot;                 &quot;@type&quot;
+## [16] &quot;name&quot;                &quot;location_extra_info&quot; &quot;url&quot;                
+## [19] &quot;description&quot;         &quot;@id&quot;                 &quot;@type&quot;
 </code></pre>
 
 <p>Function <code>get_omakaupunki()</code> retrieves regional service and event data from the <a href="http://api.omakaupunki.fi/">Omakaupunki API</a>. However, the API needs a personal key, so no examples are given here.</p>
@@ -665,12 +665,13 @@ https://github.com/rOpenGov/helsinki
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] helsinki_0.9.19 RCurl_1.95-4.1  bitops_1.0-6    rjson_0.2.13   
-## [5] maptools_0.8-29 sp_1.0-14       roxygen2_4.0.0  knitr_1.5      
+## [1] knitr_1.5       helsinki_0.9.20 RCurl_1.95-4.1  bitops_1.0-6   
+## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_4.0.1 
 ## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.1  foreign_0.8-60  formatR_0.10    grid_3.0.3     
-## [5] lattice_0.20-27 Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
+## [1] digest_0.6.4    evaluate_0.5.1  foreign_0.8-60  formatR_0.10   
+## [5] grid_3.0.3      lattice_0.20-27 Rcpp_0.11.1     stringr_0.6.2  
+## [9] tools_3.0.3
 </code></pre>
 
 </body>

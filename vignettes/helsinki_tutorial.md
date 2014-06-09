@@ -118,7 +118,7 @@ Retrieve data from [Helsingin seudun ympäristöpalvelut (HSY)](http://www.hsy.f
 
 ### Population grid 
 
-Population grid (väestötietoruudukko) with 250m x 250m grid size in year 2013 contains the number of people in different age groups. The most rarely populated grids are left out (0-4 persons), and grids wiht less than 99 persons are censored with '99' to guarantee privacy.
+Population grid (väestötietoruudukko) with 250m x 250m grid size in year 2013 contains the number of people in different age groups. The most rarely populated grids are left out (0-4 persons), and grids with less than 99 persons are censored with '99' to guarantee privacy.
 
 
 ```r
@@ -255,8 +255,8 @@ str(search.puisto, m = 1)
 
 ```
 ## List of 4
-##  $ count   : num 1076
-##  $ next    : chr "http://api.hel.fi/servicemap/v1/search/?q=puisto&page=2"
+##  $ count   : num 1403
+##  $ next    : chr "http://api.hel.fi/servicemap/v1/search/?page=2&q=puisto"
 ##  $ previous: NULL
 ##  $ results :List of 20
 ```
@@ -267,26 +267,26 @@ sapply(search.puisto$results, function(x) x$name$fi)
 ```
 
 ```
-##  [1] "Asematien puisto"                  
-##  [2] "Hurtigin puisto"                   
-##  [3] "Kasavuoren puisto"                 
-##  [4] "Kaupungintalon puisto"             
-##  [5] "Stenbergin puisto"                 
-##  [6] "Sinebrychoffin puisto"             
-##  [7] "Sibeliuksen puisto"                
-##  [8] "Hesperian puisto"                  
-##  [9] "Kaisaniemen puisto"                
-## [10] "Esplanadin puisto"                 
-## [11] "Heiniitty, puisto"                 
-## [12] "Ullanmäki, puisto"                 
-## [13] "Puistot ja viheralueet"            
-## [14] "Puistot ja viheralueet"            
-## [15] "Säätytalon puisto, puistotäti"     
-## [16] "Myllykallion puisto, puistotäti"   
-## [17] "Teinintien puisto, puistotäti"     
-## [18] "Esplanadin puiston WLAN-tukiasema" 
-## [19] "Sibeliuksen puiston yleisövessa"   
-## [20] "Sinebrychoffin puiston yleisövessa"
+##  [1] "Sibeliuksen puiston yleisövessa"      
+##  [2] "Sinebrychoffin puiston yleisövessa"   
+##  [3] "Topeliuksen puiston yleisövessa"      
+##  [4] "Puistot ja viheralueet"               
+##  [5] "Matti Heleniuksen puiston yleisövessa"
+##  [6] "Thurmaninpuisto"                      
+##  [7] "Asematien puisto"                     
+##  [8] "Hurtigin puisto"                      
+##  [9] "Kasavuoren puisto"                    
+## [10] "Kaupungintalon puisto"                
+## [11] "Stenbergin puisto"                    
+## [12] "Leikkipaikka Härkävaljakon puisto"    
+## [13] "Leikkipaikka Ilkantien puisto"        
+## [14] "Leikkipaikka Johanneksen puisto"      
+## [15] "Leikkipaikka Katajanokan puisto"      
+## [16] "Leikkipaikka Kivitorpan puisto"       
+## [17] "Leikkipaikka Museon puisto"           
+## [18] "Leikkipaikka Pajalahden puisto"       
+## [19] "Leikkipaikka Rikun puisto"            
+## [20] "Leikkipaikka Rukkilan puisto"
 ```
 
 ```r
@@ -304,10 +304,10 @@ names(search.puisto$results[[1]])
 ## [13] "www_url"                   "address_postal_full"      
 ## [15] "municipality"              "picture_url"              
 ## [17] "picture_caption"           "origin_last_modified_time"
-## [19] "connection_hash"           "services"                 
-## [21] "divisions"                 "keywords"                 
-## [23] "root_services"             "location"                 
-## [25] "object_type"               "score"
+## [19] "services"                  "divisions"                
+## [21] "keywords"                  "root_services"            
+## [23] "location"                  "object_type"              
+## [25] "score"
 ```
 
 ```r
@@ -359,8 +359,8 @@ names(events$results[[1]])
 ##  [7] "origin_id"           "custom_fields"       "image"              
 ## [10] "created_time"        "last_modified_time"  "date_published"     
 ## [13] "start_time"          "end_time"            "target_group"       
-## [16] "location_extra_info" "name"                "description"        
-## [19] "url"                 "@id"                 "@type"
+## [16] "name"                "location_extra_info" "url"                
+## [19] "description"         "@id"                 "@type"
 ```
 
 
@@ -530,12 +530,13 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] helsinki_0.9.19 RCurl_1.95-4.1  bitops_1.0-6    rjson_0.2.13   
-## [5] maptools_0.8-29 sp_1.0-14       roxygen2_4.0.0  knitr_1.5      
+## [1] knitr_1.5       helsinki_0.9.20 RCurl_1.95-4.1  bitops_1.0-6   
+## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_4.0.1 
 ## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.1  foreign_0.8-60  formatR_0.10    grid_3.0.3     
-## [5] lattice_0.20-27 Rcpp_0.11.1     stringr_0.6.2   tools_3.0.3
+## [1] digest_0.6.4    evaluate_0.5.1  foreign_0.8-60  formatR_0.10   
+## [5] grid_3.0.3      lattice_0.20-27 Rcpp_0.11.1     stringr_0.6.2  
+## [9] tools_3.0.3
 ```
 
 

@@ -1,8 +1,8 @@
 helsinki - Potential data sources to be added
 ==========
 
-Events
-* [Event API](http://api.hel.fi/linkedevents/v0.1/)
+* [Espoon rakennukst](http://www.hri.fi/fi/data/espoon-rakennukset/)
+* [Vantaan rakennukset](http://www.hri.fi/fi/data/vantaan-rakennukset/)
 
 Demography
 * [Helsinki alueittain 2011](http://www.hri.fi/fi/data/helsinki-alueittain-2011-taulukot/) Tiedot Helsingin 8 suurpiirin ja 34 peruspiirin asukkaista, työpaikoista, asumisesta, rakentamisesta sekä palveluista ja palvelujen käytöstä.
@@ -14,6 +14,7 @@ General
 * Implemented in get_hri_stats() (via HRI API) - [Helsingin seudun aluesarjat](http://www.aluesarjat.fi/)
 
 Economic data
+* Verotiedot postinumeroittain (Tilastokeskus)
 * [Kuntien tilinpäätökset 2008-2010](http://www.hri.fi/fi/data/kuntien-tilinpaatokset-2008-2010/) - this data is available for all municipalities in Finland => could implement in sorvi
 * [Helsingin kaupungin tulot ja menot 2009-2010](http://www.hri.fi/fi/data/helsingin-kaupunki-tulot-ja-menot-2009-ja-2010/)  
 * [Helsingin kaupungin tulot ja menot 2012]( http://www.hri.fi/fi/data/helsingin-kaupungin-tulot-ja-menot/)  

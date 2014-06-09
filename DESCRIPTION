@@ -7,7 +7,7 @@ Author: Juuso Parkkinen, Leo Lahti, Joona Lehtomaki
 Maintainer: Juuso Parkkinen <louhos@googlegroups.com>
 Description: Tools for accessing various open data sources in the Helsinki
     region in Finland. Current data sources include
-    the Real Estate Department (district maps), 
+    the Real Estate Department (district maps),
     the Environmental Services Authority,
     Service Map API,
     Linked Events API and

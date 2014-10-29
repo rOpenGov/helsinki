@@ -1,6 +1,8 @@
 helsinki - Potential data sources to be added
 ==========
 
+* [Reittiopas API](http://developer.reittiopas.fi/pages/en/home.php)
+
 * [Espoon rakennukst](http://www.hri.fi/fi/data/espoon-rakennukset/)
 * [Vantaan rakennukset](http://www.hri.fi/fi/data/vantaan-rakennukset/)
 

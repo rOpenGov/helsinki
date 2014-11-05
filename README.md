@@ -19,4 +19,3 @@ You are welcome to contact us:
 * join IRC at ropengov@Freenode
 * follow us in [social media](http://ropengov.github.io/contribute/)  
   
-[![githalytics.com alpha](https://cruel-carlota.gopagoda.com/1be3f84ba8e530528c296d1b4f749ab1 "githalytics.com")](http://githalytics.com/rOpenGov/helsinki)

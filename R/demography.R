@@ -28,7 +28,7 @@
 #' 
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples \donttest{ res.list <- get_population_projection()}
+#' @examples prop.proj.list <- get_population_projection()
 
 get_population_projection <- function (verbose=TRUE) {
   
@@ -37,6 +37,12 @@ get_population_projection <- function (verbose=TRUE) {
   
   # Read csv from http://www.hri.fi/fi/data/helsingin-ja-helsingin-seudun-vaestoennuste-sukupuolen-ja-ian-mukaan-2012-2050/
   csv.url <- "http://www.hel2.fi/tietokeskus/data/helsinki/Vaestoennusteet/Helsingin_seudun_vaestoennuste_ika_sp_2012_2050.csv"
+  # Check whether url available
+  if (!RCurl::url.exists(csv.url)) {
+    message(paste("Sorry! Url", csv.url, "not available!\nReturned NULL."))
+    return(NULL)
+  }
+  
   pop.proj <- read.csv(csv.url, sep=";", fileEncoding="ISO-8859-1", skip=3, stringsAsFactors=FALSE)
   
   # Read metadata

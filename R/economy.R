@@ -38,6 +38,13 @@ get_economic_indicators <- function (verbose=TRUE) {
   
   # Read csv from http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/
   csv.url <- "http://www.hel2.fi/tietokeskus/data/talous/PKS_kuntien_taloustunnuslukuja_1.csv"
+  
+  # Check whether url available
+  if (!RCurl::url.exists(csv.url)) {
+    message(paste("Sorry! Url", csv.url, "not available!\nReturned NULL."))
+    return(NULL)
+  }
+  
   ec.ind <- read.csv(csv.url, sep=";", fileEncoding="ISO-8859-1", skip=2, nrow=160, stringsAsFactors=FALSE)
   # Use 'EUR' for euros
   ec.ind$Tunnusluku <- gsub("\u0080", "EUR", ec.ind$Tunnusluku)

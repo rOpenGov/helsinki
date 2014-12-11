@@ -35,7 +35,7 @@
 #' 
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples \donttest{ res.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli") }
+#' @examples \donttest{ stats.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli") }
 
 get_hri_stats <- function (query="", verbose=TRUE) {
   
@@ -52,6 +52,12 @@ get_hri_stats <- function (query="", verbose=TRUE) {
   # For a specific resource, use jsontstat
   else
     query.url <- paste0(api.url, query, "/jsonstat")
+  
+  # Check whether url available
+  if (!RCurl::url.exists(query.url)) {
+    message(paste("Sorry! Url", query.url, "not available!\nReturned NULL."))
+    return(NULL)
+  }
   
   # Access data with RCurl
   curl <- RCurl::getCurlHandle(cookiefile = "")

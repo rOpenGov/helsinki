@@ -29,10 +29,11 @@
 #'
 #' @return Shape object (from SpatialPolygonsDataFrame class)
 #' @import maptools
+#' @importFrom sp CRS
 #' @export
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen and Leo Lahti \email{louhos@@googlegroups.com}
-#' @examples \donttest{ sp <- get_hsy("Vaestotietoruudukko") }
+#' @examples sp.vaesto <- get_hsy("Vaestotietoruudukko")
 #' @keywords utilities
 
 get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir(), verbose=TRUE) {
@@ -102,6 +103,12 @@ get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir(), verbo
   }
   local.zip <- file.path(data.dir, zip.file)
   if (!file.exists(local.zip)) {
+    # Check whether url available
+    if (!RCurl::url.exists(remote.zip)) {
+      message(paste("Sorry! Url", remote.zip, "not available!\nReturned NULL."))
+      return(NULL)
+    }
+    
     if (verbose)
       message("Dowloading ", remote.zip, "\ninto ", local.zip, "\n")
     utils::download.file(remote.zip, destfile = local.zip, quiet=!verbose)
@@ -155,7 +162,7 @@ get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir(), verbo
   
   # Read shapefile and add coordinate information manually (ETRS-GK25 -> EPSG:3879)
   p4s <- "+init=epsg:3879 +proj=tmerc +lat_0=0 +lon_0=25 +k=1 +x_0=25500000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
-  sp <- maptools::readShapePoly(fn=sp.file, proj4string=CRS(p4s))
+  sp <- maptools::readShapePoly(fn=sp.file, proj4string=sp::CRS(p4s))
     
   # Add KATAKER to rakennustieto, mailaa '11' SePe:lle
   if (which.data=="Rakennustietoruudukko") {

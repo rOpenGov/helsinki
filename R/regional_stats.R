@@ -43,7 +43,7 @@ get_hri_stats <- function (query="", verbose=TRUE) {
   # implement grepping for resources? as in eurostat
   if (verbose)
     message("Accessing Helsinki Region Infoshare statistics API...")
-    
+  
   # Use the regional statistics API
   api.url <- "http://dev.hel.fi/stats/resources/"
   # For resources list
@@ -58,18 +58,17 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     message(paste("Sorry! Url", query.url, "not available!\nReturned NULL."))
     return(NULL)
   }
-  suppressWarnings(
-    res.json <- RCurl::getForm(uri=query.url, ..., curl=curl)
-  )
   # Access data with RCurl
   curl <- RCurl::getCurlHandle(cookiefile = "")
-  res.json <- RCurl::getForm(uri=query.url, curl=curl)
+  suppressWarnings(
+    res.json <- RCurl::getForm(uri=query.url, curl=curl)
+  )
   # Process json into a list
   res.list <- rjson::fromJSON(res.json)
   
   # Process and show list of resources
   if (query=="") {
-     resources <- names(res.list[["_embedded"]])
+    resources <- names(res.list[["_embedded"]])
     names(resources) <- sapply(res.list[["_embedded"]], function(x) x$metadata$label)
     if (verbose)
       message("Retrieved list of available resources.")
@@ -85,7 +84,7 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     dims <- res.list$dataset$dimension$size
     names(dims) <- res.list$dataset$dimension$id
     dimnames <- lapply(res.list$dataset$dimension[3:(length(dims)+2)], function(x) {res=unlist(x$category$label); names(res)=NULL; res})
-
+    
     # Construct an array
     
     # For special characters:
@@ -102,10 +101,10 @@ get_hri_stats <- function (query="", verbose=TRUE) {
       message("Retrieved resource '",query,"'")
     return(res.array)
   }
-#   # Test that it works
-#   query <- "aluesarjat_a03s_hki_vakiluku_aidinkieli"
-#   hki.vakiluku <- get_hri_stats(query)
-#   library(reshape2)
-#   df <- reshape2::melt(hki.vakiluku)
+  #   # Test that it works
+  #   query <- "aluesarjat_a03s_hki_vakiluku_aidinkieli"
+  #   hki.vakiluku <- get_hri_stats(query)
+  #   library(reshape2)
+  #   df <- reshape2::melt(hki.vakiluku)
   
 }

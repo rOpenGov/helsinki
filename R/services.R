@@ -31,7 +31,7 @@
 #' @importFrom rjson fromJSON
 #' 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples \donttest{ dept <- get_servicemap(query="department") }
+#' @examples search.puisto <- get_servicemap(query="search", q="puisto")
 
 get_servicemap <- function(query, ...) {
   
@@ -39,13 +39,14 @@ get_servicemap <- function(query, ...) {
   # Define query url
   # New API (13.5.2014)
   api.url <- "http://api.hel.fi/servicemap/v1/"
-  query.url <- paste0(api.url, query, "/")
   
-  # Check whether url available
-  if (!RCurl::url.exists(query.url)) {
-    message(paste("Sorry! Url", query.url, "not available!\nReturned NULL."))
+  # Check whether API url available
+  if (!RCurl::url.exists(api.url)) {
+    message(paste("Sorry! API", api.url, "not available!\nReturned NULL."))
     return(NULL)
   }
+  
+  query.url <- paste0(api.url, query, "/")
   
   # Get Curl handle
   curl <- RCurl::getCurlHandle(cookiefile = "")
@@ -81,19 +82,20 @@ get_servicemap <- function(query, ...) {
 #' @importFrom rjson fromJSON
 #' 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples \donttest{ events <- get_linkedevents(query="event") }
+#' @examples events <- get_linkedevents(query="event")
 
 get_linkedevents <- function(query, ...) {
   
   # Define query url
   api.url <- "http://api.hel.fi/linkedevents/v0.1/"
-  query.url <- paste0(api.url, query, "/")
   
-  # Check whether url available
-  if (!RCurl::url.exists(query.url)) {
-    message(paste("Sorry! Url", query.url, "not available!\nReturned NULL."))
+  # Check whether API url available
+  if (!RCurl::url.exists(api.url)) {
+    message(paste("Sorry! API", api.url, "not available!\nReturned NULL."))
     return(NULL)
   }
+  
+  query.url <- paste0(api.url, query, "/")
   
   # Get Curl handle
   curl <- RCurl::getCurlHandle(cookiefile = "")

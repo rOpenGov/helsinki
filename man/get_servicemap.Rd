@@ -21,7 +21,7 @@ http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap
 For more API documentation and license information see the API link.
 }
 \examples{
-\donttest{ dept <- get_servicemap(query="department") }
+search.puisto <- get_servicemap(query="search", q="puisto")
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

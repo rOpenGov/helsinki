@@ -58,7 +58,9 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     message(paste("Sorry! Url", query.url, "not available!\nReturned NULL."))
     return(NULL)
   }
-  
+  suppressWarnings(
+    res.json <- RCurl::getForm(uri=query.url, ..., curl=curl)
+  )
   # Access data with RCurl
   curl <- RCurl::getCurlHandle(cookiefile = "")
   res.json <- RCurl::getForm(uri=query.url, curl=curl)

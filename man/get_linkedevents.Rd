@@ -22,7 +22,7 @@ the City of Helsinki Cultural Office and the Helmet metropolitan area public lib
 For more API documentation and license information see the API link.
 }
 \examples{
-\donttest{ events <- get_linkedevents(query="event") }
+events <- get_linkedevents(query="event")
 }
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}

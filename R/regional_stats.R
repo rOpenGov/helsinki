@@ -35,7 +35,7 @@
 #' 
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples \donttest{ stats.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli") }
+#' @examples stats.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
 
 get_hri_stats <- function (query="", verbose=TRUE) {
   
@@ -92,10 +92,12 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     #   .. (kaksi pistettä), tietoa ei ole saatu, se on liian epävarma ilmoitettavaksi tai se on salattu;
     # . (piste), loogisesti mahdoton esitettäväksi;
     # 0 (nolla), suure pienempi kuin puolet käytetystä yksiköstä.
+    # assign NA to ".", and ".."
     # => simple as.numeric() is fine, produces NA for "." and ".."
     
     # Have to reverse the dimensions, because in arrays
     # "The values in data are taken to be those in the array with the leftmost subscript moving fastest."
+    res.list$dataset$value[res.list$dataset$value %in% c(".", "..")] <- NA
     res.array <- array(data=as.numeric(res.list$dataset$value), dim=rev(dims), dimnames=rev(dimnames))
     if (verbose)
       message("Retrieved resource '",query,"'")

@@ -27,7 +27,7 @@ http://www.hsy.fi/seututieto/Documents/Paikkatiedot/Tietokuvaukset_kaikki.pdf.
 The data copyright (C) HSY 2011.
 }
 \examples{
-sp.vaesto <- get_hsy("Vaestotietoruudukko")
+vaesto.sp <- get_hsy("Vaestotietoruudukko")
 }
 \author{
 Juuso Parkkinen and Leo Lahti \email{louhos@googlegroups.com}

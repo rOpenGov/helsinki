@@ -33,7 +33,7 @@
 #' @export
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen and Leo Lahti \email{louhos@@googlegroups.com}
-#' @examples sp.vaesto <- get_hsy("Vaestotietoruudukko")
+#' @examples vaesto.sp <- get_hsy("Vaestotietoruudukko")
 #' @keywords utilities
 
 get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir(), verbose=TRUE) {

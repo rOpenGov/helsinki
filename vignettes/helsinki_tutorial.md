@@ -6,7 +6,6 @@
 
 
 
-
 helsinki - tutorial
 ===========
 
@@ -34,18 +33,12 @@ Helsinki Real Estate Department (HKK:n avointa dataa)
 [Service and event information](#servicemap)
 * [Helsinki region Service Map API](http://api.hel.fi/servicemap/v1/) (Pääkaupunkiseudun Palvelukartta)
 * [Helsinki Linked Event API](http://api.hel.fi/linkedevents/v0.1/)
-* [Omakaupunki](http://api.omakaupunki.fi/) (requires personal API key, no examples given)
+
 
 [Helsinki Region Infoshare statistics API](#hri_stats)
 * [Aluesarjat (original source)](http://www.aluesarjat.fi/) (regional time series data)
 * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
 
-[Economic data](#economy)
-* [Taloudellisia tunnuslukuja](http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/) (economic indicators)
-
-[Demographic data](#demography)
-* [Väestöennuste 2012-2050](http://www.hri.fi/fi/data/helsingin-ja-helsingin-seudun-vaestoennuste-sukupuolen-ja-ian-mukaan-2012-2050/) (population projection 2012-2050)
- 
 
 List of potential data sources to be added to the package can be found [here](https://github.com/rOpenGov/helsinki/blob/master/vignettes/todo-datasets.md).
 
@@ -58,7 +51,6 @@ Release version for general users:
 install.packages("helsinki")
 ```
 
-
 Development version for developers:
 
 
@@ -68,14 +60,12 @@ library(devtools)
 install_github("helsinki", "ropengov")
 ```
 
-
 Load package.
 
 
 ```r
 library(helsinki)
 ```
-
 
 ## <a name="aluejakokartat"></a>Helsinki region district maps
 
@@ -85,7 +75,7 @@ Helsinki region district maps (Helsingin seudun aluejakokartat) and election map
 ```r
 # Load aluejakokartat and study contents
 data(aluejakokartat)
-str(aluejakokartat, m = 2)
+str(aluejakokartat, m=2)
 ```
 
 ```
@@ -111,7 +101,6 @@ str(aluejakokartat, m = 2)
 ```
 
 
-
 ## <a name="hsy"></a> Helsinki region environmental services
 
 Retrieve data from [Helsingin seudun ympäristöpalvelut (HSY)](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) with `get_hsy()`.
@@ -122,7 +111,7 @@ Population grid (väestötietoruudukko) with 250m x 250m grid size in year 2013 
 
 
 ```r
-sp.vaesto <- get_hsy(which.data = "Vaestotietoruudukko", which.year = 2013)
+sp.vaesto <- get_hsy(which.data="Vaestotietoruudukko", which.year=2013)
 head(sp.vaesto@data)
 ```
 
@@ -144,7 +133,6 @@ head(sp.vaesto@data)
 ```
 
 
-
 ### Helsinki building information
 
 Building information grid (rakennustietoruudukko) in Helsinki region on grid-level (500m x 500m): building counts (lukumäärä), built area (kerrosala), usage (käyttötarkoitus), and region
@@ -152,7 +140,7 @@ efficiency (aluetehokkuus).
 
 
 ```r
-sp.rakennus <- get_hsy(which.data = "Rakennustietoruudukko", which.year = 2013)
+sp.rakennus <- get_hsy(which.data="Rakennustietoruudukko", which.year=2013)  
 head(sp.rakennus@data)
 ```
 
@@ -180,14 +168,13 @@ head(sp.rakennus@data)
 ## 5  Yhden asunnon talot        Saunarakennukset       Talousrakennukset
 ```
 
-
 ### Helsinki building area capacity
 
 Building area capacity per municipal region (kaupunginosittain summattua tietoa rakennusmaavarannosta). Plot with number of buildlings with `spplot()`.
 
 
 ```r
-sp.ramava <- get_hsy(which.data = "SeutuRAMAVA_tila", which.year = 2013)
+sp.ramava <- get_hsy(which.data="SeutuRAMAVA_tila", which.year=2013)  
 head(sp.ramava@data)
 ```
 
@@ -231,14 +218,12 @@ head(sp.ramava@data)
 
 ```r
 # Values with less than five units are given as 999999999, set those to zero
-sp.ramava@data[sp.ramava@data == 999999999] <- 0
+sp.ramava@data[sp.ramava@data==999999999] <- 0
 # Plot number of buildings for each region
-spplot(sp.ramava, zcol = "RAKLKM", main = "Number of buildings in each 'tilastoalue'", 
-    col.regions = colorRampPalette(c("blue", "gray80", "red"))(100))
+spplot(sp.ramava, zcol="RAKLKM", main="Number of buildings in each 'tilastoalue'", col.regions=colorRampPalette(c('blue', 'gray80', 'red'))(100))
 ```
 
-![plot of chunk hsy_ramava](figure/hsy_ramava.png) 
-
+![plot of chunk hsy_ramava](figure/hsy_ramava-1.png) 
 
 
 ## <a name="servicemap"></a>Service and event information
@@ -247,46 +232,47 @@ Function `get_servicemap()` retrieves regional service data from the new [Servic
 
 
 ```r
-# Search for 'puisto' (park) (specify q='query')
-search.puisto <- get_servicemap(query = "search", q = "puisto")
+# Search for "puisto" (park) (specify q="query")
+search.puisto <- get_servicemap(query="search", q="puisto")
 # Study results
-str(search.puisto, m = 1)
+str(search.puisto, m=1)
 ```
 
 ```
 ## List of 4
-##  $ count   : num 1403
-##  $ next    : chr "http://api.hel.fi/servicemap/v1/search/?page=2&q=puisto"
+##  $ count   : num 1661
+##  $ next    : chr "http://api.hel.fi/servicemap/v1/search/?q=puisto&page=2"
 ##  $ previous: NULL
 ##  $ results :List of 20
 ```
 
 ```r
-# A lot of results found (count > 1000) Get names for the first 20 results
+# A lot of results found (count > 1000)
+# Get names for the first 20 results
 sapply(search.puisto$results, function(x) x$name$fi)
 ```
 
 ```
-##  [1] "Sibeliuksen puiston yleisövessa"      
-##  [2] "Sinebrychoffin puiston yleisövessa"   
-##  [3] "Topeliuksen puiston yleisövessa"      
-##  [4] "Puistot ja viheralueet"               
-##  [5] "Matti Heleniuksen puiston yleisövessa"
-##  [6] "Thurmaninpuisto"                      
-##  [7] "Asematien puisto"                     
-##  [8] "Hurtigin puisto"                      
-##  [9] "Kasavuoren puisto"                    
-## [10] "Kaupungintalon puisto"                
-## [11] "Stenbergin puisto"                    
-## [12] "Leikkipaikka Härkävaljakon puisto"    
-## [13] "Leikkipaikka Ilkantien puisto"        
-## [14] "Leikkipaikka Johanneksen puisto"      
-## [15] "Leikkipaikka Katajanokan puisto"      
-## [16] "Leikkipaikka Kivitorpan puisto"       
-## [17] "Leikkipaikka Museon puisto"           
-## [18] "Leikkipaikka Pajalahden puisto"       
-## [19] "Leikkipaikka Rikun puisto"            
-## [20] "Leikkipaikka Rukkilan puisto"
+##  [1] "Mankkaan asukaspuisto"              
+##  [2] "Tapiolan asukaspuisto"              
+##  [3] "Olarin asukaspuisto"                
+##  [4] "Perkkaan asukaspuisto"              
+##  [5] "Hurtigin puisto"                    
+##  [6] "Kaupungintalon puisto"              
+##  [7] "Matinkylän asukaspuisto"            
+##  [8] "Kylätalo Palttinan asukaspuisto"    
+##  [9] "Leppävaaran asukaspuisto"           
+## [10] "Karakallion asukaspuisto"           
+## [11] "Suvelan asukaspuisto"               
+## [12] "Asematien puisto"                   
+## [13] "Viherkallion asukaspuisto"          
+## [14] "Stenbergin puisto"                  
+## [15] "Kasavuoren puisto"                  
+## [16] "Nurmilinnunpuisto"                  
+## [17] "Itärannan puisto/ Otsonlahdenpuisto"
+## [18] "Lehtikaskenpuisto"                  
+## [19] "Alberganesplanadin puisto"          
+## [20] "Kotitontunpuisto"
 ```
 
 ```r
@@ -295,77 +281,77 @@ names(search.puisto$results[[1]])
 ```
 
 ```
-##  [1] "connections"               "id"                       
-##  [3] "data_source_url"           "name"                     
-##  [5] "description"               "provider_type"            
-##  [7] "department"                "organization"             
-##  [9] "street_address"            "address_zip"              
-## [11] "phone"                     "email"                    
-## [13] "www_url"                   "address_postal_full"      
-## [15] "municipality"              "picture_url"              
-## [17] "picture_caption"           "origin_last_modified_time"
-## [19] "services"                  "divisions"                
-## [21] "keywords"                  "root_services"            
-## [23] "location"                  "object_type"              
-## [25] "score"
+##  [1] "connections"               "accessibility_properties" 
+##  [3] "id"                        "data_source_url"          
+##  [5] "name"                      "description"              
+##  [7] "provider_type"             "department"               
+##  [9] "organization"              "street_address"           
+## [11] "address_zip"               "phone"                    
+## [13] "email"                     "www_url"                  
+## [15] "address_postal_full"       "municipality"             
+## [17] "picture_url"               "picture_caption"          
+## [19] "origin_last_modified_time" "root_services"            
+## [21] "services"                  "divisions"                
+## [23] "keywords"                  "location"                 
+## [25] "object_type"               "score"
 ```
 
 ```r
 # More results could be retrieved by specifying 'page=2' etc.
 ```
 
-
 Function `get_linkedevents()` retrieves regional event data from the new [Linked Events API](http://api.hel.fi/linkedevents/v0.1/).
 
 
 ```r
 # Searh for current events
-events <- get_linkedevents(query = "event")
+events <- get_linkedevents(query="event")
 # Get names for the first 20 results
-sapply(events$results, function(x) x$name$fi)
+sapply(events$data, function(x) x$name$fi)
 ```
 
 ```
-##  [1] "Mikko Maltsusta"                           
-##  [2] "Valokuvia ja maalauksia Vietnamista"       
-##  [3] "Helsingin Poliisisoittokunta ja Anssi Kela"
-##  [4] "Kalevala klubi"                            
-##  [5] "Nuori taide"                               
-##  [6] "Bulgarian nykykirjallisuutta tutummaksi"   
-##  [7] "Tanssimme sinulle Itämaista"               
-##  [8] "Kuuma ankanpoikanen: Let´s Fat"            
-##  [9] "Louise Lapointe: Puppetry Arts in Québec"  
-## [10] "Studio 90:n tanssioppilaiden kevätnäytös"  
-## [11] "Studio 90:n tanssioppilaiden kevätnäytös"  
-## [12] "Muutos"                                    
-## [13] "Laulan!"                                   
-## [14] "Vispilänkauppaa ja jumihäitä"              
-## [15] "Teatteriryhmä Vire: Munkkikeikka"          
-## [16] "Teatteriryhmä Vire: Munkkikeikka"          
-## [17] "Teatteriryhmä Vire: Munkkikeikka"          
-## [18] "Anita-Ullas dolda liv"                     
-## [19] "Anita-Ullas dolda liv"                     
-## [20] "Don*Gnu (Tanska): Men in Sandals"
+##  [1] "Ladykillers - Sarjahurmaajat"      
+##  [2] "Ladykillers - Sarjahurmaajat"      
+##  [3] "Ladykillers - Sarjahurmaajat"      
+##  [4] "Melontaa Pitkäjärvellä"            
+##  [5] "Ladykillers - Sarjahurmaajat"      
+##  [6] "Ladykillers - Sarjahurmaajat"      
+##  [7] "Lumikuningatar"                    
+##  [8] "Kuningas kuolee"                   
+##  [9] "Helsingin Urkukesä, päivämusiikkia"
+## [10] "Helsingin Urkukesä, päivämusiikkia"
+## [11] "Helsingin Urkukesä, päivämusiikkia"
+## [12] "Helsingin Urkukesä, päivämusiikkia"
+## [13] "Helsingin Urkukesä, päivämusiikkia"
+## [14] "Helsingin Urkukesä, päivämusiikkia"
+## [15] "Helsingin Urkukesä, päivämusiikkia"
+## [16] "Helsingin Urkukesä, päivämusiikkia"
+## [17] "Helsingin Urkukesä, päivämusiikkia"
+## [18] "Helsingin Urkukesä, päivämusiikkia"
+## [19] "Jukka Puotila Show"                
+## [20] "Kuningas kuolee"
 ```
 
 ```r
 # See what data is given for the first event
-names(events$results[[1]])
+names(events$data[[1]])
 ```
 
 ```
 ##  [1] "location"            "keywords"            "super_event"        
-##  [4] "event_status"        "id"                  "data_source"        
-##  [7] "origin_id"           "custom_fields"       "image"              
-## [10] "created_time"        "last_modified_time"  "date_published"     
-## [13] "start_time"          "end_time"            "target_group"       
-## [16] "name"                "location_extra_info" "url"                
-## [19] "description"         "@id"                 "@type"
+##  [4] "event_status"        "external_links"      "offers"             
+##  [7] "sub_events"          "id"                  "custom_data"        
+## [10] "data_source"         "image"               "origin_id"          
+## [13] "created_time"        "last_modified_time"  "last_modified_by"   
+## [16] "date_published"      "publisher"           "start_time"         
+## [19] "end_time"            "audience"            "short_description"  
+## [22] "name"                "headline"            "location_extra_info"
+## [25] "description"         "secondary_headline"  "info_url"           
+## [28] "provider"            "@id"                 "@type"
 ```
 
 
-
-Function `get_omakaupunki()` retrieves regional service and event data from the [Omakaupunki API](http://api.omakaupunki.fi/). However, the API needs a personal key, so no examples are given here.
 
 ## <a name="hri_stats"></a> Helsinki Region Infoshare statistics API
 
@@ -374,108 +360,45 @@ Function `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare st
 
 ```r
 # Retrieve list of available data
-stats.list <- get_hri_stats(query = "")
+stats.list <- get_hri_stats(query="")
 # Show first results
 head(stats.list)
 ```
 
 ```
-##                             Helsingin väestö äidinkielen mukaan 1.1. 
-##                            "aluesarjat_a03s_hki_vakiluku_aidinkieli" 
-##                                           Syntyneet äidin iän mukaan 
-##                             "aluesarjat_hginseutu_va_vm04_syntyneet" 
-##   Vantaalla asuva työllinen työvoima sukupuolen ja iän mukaan 31.12. 
-##                             "aluesarjat_c01s_van_tyovoima_sukupuoli" 
-## Espoon lapsiperheet lasten määrän mukaan (0-17-vuotiaat lapset) 1.1. 
-##                            "aluesarjat_b03s_esp_lapsiperheet_alle18" 
-##                                 Väestö iän ja sukupuolen mukaan 1.1. 
-##                          "aluesarjat_hginseutu_va_vr01_vakiluku_ika" 
-##         Helsingin asuntotuotanto rahoitusmuodon ja huoneluvun mukaan 
-##                         "aluesarjat_a03hki_astuot_rahoitus_huonelkm"
+##                                         Helsingin väestö äidinkielen mukaan 1.1. 
+##                                        "aluesarjat_a03s_hki_vakiluku_aidinkieli" 
+## Työpaikat Helsingissä (alueella työssäkäyvät) toimialan (TOL 1988) mukaan 31.12. 
+##                                            "aluesarjat_a07s_hki_tyopaikat_tol88" 
+##               Vantaalla asuva työllinen työvoima sukupuolen ja iän mukaan 31.12. 
+##                                         "aluesarjat_c01s_van_tyovoima_sukupuoli" 
+##             Espoon lapsiperheet lasten määrän mukaan (0-17-vuotiaat lapset) 1.1. 
+##                                        "aluesarjat_b03s_esp_lapsiperheet_alle18" 
+##                                             Väestö iän ja sukupuolen mukaan 1.1. 
+##                                      "aluesarjat_hginseutu_va_vr01_vakiluku_ika" 
+##                     Helsingin asuntotuotanto rahoitusmuodon ja huoneluvun mukaan 
+##                                     "aluesarjat_a03hki_astuot_rahoitus_huonelkm"
 ```
-
 
 Specify a dataset to retrieve. The output is currently a three-dimensional array.
 
 
 ```r
 # Retrieve a specific dataset
-stats.res <- get_hri_stats(query = stats.list[1])
+stats.res <- get_hri_stats(query=stats.list[1])
 # Show the structure of the results
 str(stats.res)
 ```
 
 ```
-##  num [1:22, 1:4, 1:197] 497526 501518 508659 515765 525031 ...
+##  num [1:23, 1:4, 1:197] 497526 501518 508659 515765 525031 ...
 ##  - attr(*, "dimnames")=List of 3
-##   ..$ vuosi     : chr [1:22] "1992" "1993" "1994" "1995" ...
+##   ..$ vuosi     : chr [1:23] "1992" "1993" "1994" "1995" ...
 ##   ..$ aidinkieli: chr [1:4] "Kaikki äidinkielet" "Suomi ja saame" "Ruotsi" "Muu kieli"
 ##   ..$ alue      : chr [1:197] "091 Helsinki" "091 1 Eteläinen suurpiiri" "091 101 Vironniemen peruspiiri" "091 10 Kruununhaka" ...
 ```
 
-
 The implementation will be updated and more examples will be added in the near future.
-
-## <a name="economy"></a> Economic data
-
-Function `get_economic_indicators()` retrieves [economic indicator](http://www.hri.fi/fi/data/paakaupunkiseudun-kuntien-taloudellisia-tunnuslukuja/) data for Helsinki, Espoo, Vantaa and Kauniainen from years 1998-2010. 
-
-
-```r
-# Retrieve data
-ec.res <- get_economic_indicators()
-# See first results
-head(ec.res$data)
-```
-
-```
-##       Alue                         Tunnusluku     1998     1999     2000
-## 1 Helsinki                  Asukasluku 31.12. 546317.0 551123.0 555474.0
-## 2 Helsinki               Tuloveroprosentti 1)     16.5     16.5     16.5
-## 3 Helsinki     Verotettavat tulot, EUR/as. 2)  13856.0  14677.0  15512.0
-## 4 Helsinki Verotettavien tulojen muutos, % 2)      6.8      7.3      6.6
-## 5 Helsinki        Verotulot yhteensä, EUR/as.   3386.0   3336.0   3894.0
-## 6 Helsinki           - Kunnallisvero, EUR/as.   2129.0   2187.0   2425.0
-##       2001     2002     2003     2004     2005     2006     2007     2008
-## 1 559718.0 559716.0 559330.0 559046.0 560905.0 564521.0 568531.0 574564.0
-## 2     16.5     16.5     17.5     17.5     17.5     17.5     17.5     17.5
-## 3  16077.0  16463.0  16424.0  16613.0  17111.0  17947.0  19022.0  19989.0
-## 4      4.5      3.2     -0.2      1.1      2.9      5.2      6.7      5.8
-## 5   4072.0   3556.0   3548.0   3448.0   3535.0   3709.0   3979.0   4199.0
-## 6   2677.0   2860.0   2937.0   2863.0   2935.0   3096.0   3274.0   3437.0
-##       2009 2010
-## 1 583350.0   NA
-## 2     17.5 17.5
-## 3  19840.0   NA
-## 4      0.3   NA
-## 5   4120.0   NA
-## 6   3477.0   NA
-```
-
-
-
-## <a name="demography"></a> Demographic data
-
-Function `get_population_projection()` retrieves [population projection](http://www.hri.fi/fi/data/helsingin-ja-helsingin-seudun-vaestoennuste-sukupuolen-ja-ian-mukaan-2012-2050/) data for Helsinki and Helsinki region by age and gender.
-
-
-```r
-# Retrieve data
-pop.res <- get_population_projection()
-# See first results
-head(pop.res$data[1:6])
-```
-
-```
-##   Alue.Region Vuosi.Year Yhteensä.Total Miehet.Male   m0   m1
-## 1    Helsinki       2011         588549      276361 3416 3049
-## 2    Helsinki       2012         594483      279383 3364 3289
-## 3    Helsinki       2013         599822      282099 3428 3231
-## 4    Helsinki       2014         604561      284485 3487 3289
-## 5    Helsinki       2015         609373      286899 3535 3348
-## 6    Helsinki       2016         614246      289334 3577 3395
-```
-
 
 
 ### Citation
@@ -508,7 +431,6 @@ Many thanks for all contributors! For more info, see:
 https://github.com/rOpenGov/helsinki
 ```
 
-
 ### Session info
 
 
@@ -520,8 +442,8 @@ sessionInfo()
 ```
 
 ```
-## R version 3.0.3 (2014-03-06)
-## Platform: x86_64-apple-darwin10.8.0 (64-bit)
+## R version 3.1.2 (2014-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
 ## 
 ## locale:
 ## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -530,13 +452,12 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5       helsinki_0.9.20 RCurl_1.95-4.1  bitops_1.0-6   
-## [5] rjson_0.2.13    maptools_0.8-29 sp_1.0-14       roxygen2_4.0.1 
+## [1] knitr_1.8       helsinki_0.9.23 RCurl_1.95-4.3  bitops_1.0-6   
+## [5] maptools_0.8-30 sp_1.0-15      
 ## 
 ## loaded via a namespace (and not attached):
-## [1] digest_0.6.4    evaluate_0.5.1  foreign_0.8-60  formatR_0.10   
-## [5] grid_3.0.3      lattice_0.20-27 Rcpp_0.11.1     stringr_0.6.2  
-## [9] tools_3.0.3
+## [1] evaluate_0.5.5  foreign_0.8-61  formatR_1.0     grid_3.1.2     
+## [5] lattice_0.20-29 markdown_0.7.4  rjson_0.2.14    stringr_0.6.2  
+## [9] tools_3.1.2
 ```
-
 

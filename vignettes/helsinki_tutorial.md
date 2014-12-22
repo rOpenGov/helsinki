@@ -240,7 +240,7 @@ str(search.puisto, m=1)
 
 ```
 ## List of 4
-##  $ count   : num 1661
+##  $ count   : num 1662
 ##  $ next    : chr "http://api.hel.fi/servicemap/v1/search/?q=puisto&page=2"
 ##  $ previous: NULL
 ##  $ results :List of 20
@@ -452,12 +452,11 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.8       helsinki_0.9.23 RCurl_1.95-4.3  bitops_1.0-6   
-## [5] maptools_0.8-30 sp_1.0-15      
+## [1] helsinki_0.9.23 RCurl_1.95-4.3  bitops_1.0-6    maptools_0.8-30
+## [5] sp_1.0-15       knitr_1.8      
 ## 
 ## loaded via a namespace (and not attached):
 ## [1] evaluate_0.5.5  foreign_0.8-61  formatR_1.0     grid_3.1.2     
-## [5] lattice_0.20-29 markdown_0.7.4  rjson_0.2.14    stringr_0.6.2  
-## [9] tools_3.1.2
+## [5] lattice_0.20-29 rjson_0.2.14    stringr_0.6.2   tools_3.1.2
 ```
 

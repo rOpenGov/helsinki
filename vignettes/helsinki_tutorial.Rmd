@@ -9,6 +9,7 @@ library(knitr)
 opts_knit$set(base.dir = "vignettes") # Change the base dir where to save figures
 knit(input="vignettes/helsinki_tutorial.Rmd", output="vignettes/helsinki_tutorial.md")
 knit2html(input="vignettes/helsinki_tutorial.md", output="vignettes/helsinki_tutorial.html", options=c("use_xhtml","smartypants","mathjax","highlight_code"))
+file.remove("helsinki_tutorial.txt") # Fix to remove from the output
 ```
 
 

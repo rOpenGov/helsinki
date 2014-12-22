@@ -17,25 +17,29 @@ For contact information and source code, see the [github page](https://github.co
 ## Available data sources
 
 [Helsinki region district maps](#aluejakokartat) (Helsingin seudun aluejakokartat)
+
 * Aluejakokartat: kunta, pien-, suur-, tilastoalueet (Helsinki region district maps)
 * Äänestysaluejako: (Helsinki region election district maps)
 * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
 
 Helsinki Real Estate Department (HKK:n avointa dataa)
+
 * Spatial data from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) availabe in the [gisfin](https://github.com/rOpenGov/gisfin) package, see [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md) for examples
 
 [Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
+
 * Väestötietoruudukko (population grid)
 * Rakennustietoruudukko (building information grid)
 * SeutuRAMAVA (building land resource information(?))
 * Source: [Helsingin seudun ympäristöpalvelut, HSY](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
 
 [Service and event information](#servicemap)
+
 * [Helsinki region Service Map API](http://api.hel.fi/servicemap/v1/) (Pääkaupunkiseudun Palvelukartta)
 * [Helsinki Linked Event API](http://api.hel.fi/linkedevents/v0.1/)
 
-
 [Helsinki Region Infoshare statistics API](#hri_stats)
+
 * [Aluesarjat (original source)](http://www.aluesarjat.fi/) (regional time series data)
 * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
 
@@ -452,11 +456,12 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] helsinki_0.9.23 RCurl_1.95-4.3  bitops_1.0-6    maptools_0.8-30
-## [5] sp_1.0-15       knitr_1.8      
+## [1] helsinki_0.9.24 RCurl_1.95-4.3  bitops_1.0-6    maptools_0.8-30
+## [5] sp_1.0-15       knitr_1.8       devtools_1.6.1 
 ## 
 ## loaded via a namespace (and not attached):
 ## [1] evaluate_0.5.5  foreign_0.8-61  formatR_1.0     grid_3.1.2     
-## [5] lattice_0.20-29 rjson_0.2.14    stringr_0.6.2   tools_3.1.2
+## [5] httr_0.5        lattice_0.20-29 rjson_0.2.14    stringr_0.6.2  
+## [9] tools_3.1.2
 ```
 

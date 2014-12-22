@@ -24,25 +24,29 @@ For contact information and source code, see the [github page](https://github.co
 ## Available data sources
 
 [Helsinki region district maps](#aluejakokartat) (Helsingin seudun aluejakokartat)
+
 * Aluejakokartat: kunta, pien-, suur-, tilastoalueet (Helsinki region district maps)
 * Äänestysaluejako: (Helsinki region election district maps)
 * Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
 
 Helsinki Real Estate Department (HKK:n avointa dataa)
+
 * Spatial data from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) availabe in the [gisfin](https://github.com/rOpenGov/gisfin) package, see [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md) for examples
 
 [Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
+
 * Väestötietoruudukko (population grid)
 * Rakennustietoruudukko (building information grid)
 * SeutuRAMAVA (building land resource information(?))
 * Source: [Helsingin seudun ympäristöpalvelut, HSY](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
 
 [Service and event information](#servicemap)
+
 * [Helsinki region Service Map API](http://api.hel.fi/servicemap/v1/) (Pääkaupunkiseudun Palvelukartta)
 * [Helsinki Linked Event API](http://api.hel.fi/linkedevents/v0.1/)
 
-
 [Helsinki Region Infoshare statistics API](#hri_stats)
+
 * [Aluesarjat (original source)](http://www.aluesarjat.fi/) (regional time series data)
 * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
 

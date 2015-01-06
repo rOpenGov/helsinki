@@ -94,7 +94,7 @@ Retrieve data from [Helsingin seudun ympäristöpalvelut (HSY)](http://www.hsy.f
 
 Population grid (väestötietoruudukko) with 250m x 250m grid size in year 2013 contains the number of people in different age groups. The most rarely populated grids are left out (0-4 persons), and grids with less than 99 persons are censored with '99' to guarantee privacy.
 
-```{r hsy_vaesto, message=FALSE, warning=FALSE}
+```{r hsy_vaesto, warning=FALSE}
 sp.vaesto <- get_hsy(which.data="Vaestotietoruudukko", which.year=2013)
 head(sp.vaesto@data)
 ```
@@ -105,7 +105,7 @@ head(sp.vaesto@data)
 Building information grid (rakennustietoruudukko) in Helsinki region on grid-level (500m x 500m): building counts (lukumäärä), built area (kerrosala), usage (käyttötarkoitus), and region
 efficiency (aluetehokkuus).
 
-```{r hsy_rakennus, message=FALSE, warning=FALSE}
+```{r hsy_rakennus, warning=FALSE}
 sp.rakennus <- get_hsy(which.data="Rakennustietoruudukko", which.year=2013)  
 head(sp.rakennus@data)
 ```
@@ -114,7 +114,7 @@ head(sp.rakennus@data)
 
 Building area capacity per municipal region (kaupunginosittain summattua tietoa rakennusmaavarannosta). Plot with number of buildlings with `spplot()`.
 
-```{r hsy_ramava, message=FALSE, warning=FALSE}
+```{r hsy_ramava, warning=FALSE}
 sp.ramava <- get_hsy(which.data="SeutuRAMAVA_tila", which.year=2013)  
 head(sp.ramava@data)
 # Values with less than five units are given as 999999999, set those to zero

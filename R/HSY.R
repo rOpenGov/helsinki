@@ -38,6 +38,9 @@
 
 get_hsy <- function (which.data=NULL, which.year=2013, data.dir=tempdir(), verbose=TRUE) {
   
+  message("IMPORTANT NOTE! HSY open data services have been recently updated and get_hsy() function is outdated! It will be updated soon, meanwhile use the services directly at https://www.hsy.fi/fi/asiantuntijalle/avoindata/Sivut/default.aspx.")
+  return(NULL)
+  
   if (is.null(which.data)) {
     message("Available HSY datasets:
   'Vaestotietoruudukko': Ruutukohtaista tietoa vaeston lukumaarasta, ikajakaumasta ja asumisvaljyydesta. Vuodet: 1997-2003, 2008-2013.

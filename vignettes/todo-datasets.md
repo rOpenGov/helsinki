@@ -1,8 +1,8 @@
 helsinki - Potential data sources to be added
 ==========
 
-* [Reittiopas API](http://developer.reittiopas.fi/pages/en/home.php)
-
+* [Reittiopas API](http://developer.reittiopas.fi/pages/en/home.php) (Juuso has code in his drytrip-repo)
+* [Matka-aika matriisi](http://blogs.helsinki.fi/saavutettavuus/data/metropaccess-matka-aikamatriisi/)
 * [Espoon rakennukst](http://www.hri.fi/fi/data/espoon-rakennukset/)
 * [Vantaan rakennukset](http://www.hri.fi/fi/data/vantaan-rakennukset/)
 

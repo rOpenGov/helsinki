@@ -6,6 +6,7 @@
 
 # Vignette source
 ./vignettes/*
+./vignettes/figure/*
 
 # Extra material related but not to be included in the package
 ./inst/extras/*

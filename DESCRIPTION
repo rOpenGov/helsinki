@@ -1,8 +1,8 @@
 Package: helsinki
 Type: Package
 Title: Helsinki Open Data R Tools
-Version: 0.9.25
-Date: 2015-01-06
+Version: 0.9.26
+Date: 2015-04-17
 Author: Juuso Parkkinen, Leo Lahti, Joona Lehtomaki
 Maintainer: Juuso Parkkinen <louhos@googlegroups.com>
 Description: Tools for accessing various open data sources in the Helsinki
@@ -23,3 +23,5 @@ Imports:
 URL: https://github.com/rOpenGov/helsinki
 LazyLoad: yes
 Roxygen: list(wrap = FALSE)
+NeedsCompilation: no
+Repository: CRAN

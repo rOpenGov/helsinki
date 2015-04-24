@@ -1,18 +1,25 @@
-^.*\.Rproj$
-^\.Rproj\.user$
+vignettes/figure
+vignettes/main.R
+./inst/extras/*
+./inst/extras/.*
+inst/extras/.RData
+inst/extras
+inst/blog
+
+# Git related
+./.git*
 
 # Travis scripts
 .travis.yml
 
-# Vignette source
-./vignettes/*
-./vignettes/figure/*
+# Misc
+./.*~
+./*~
+^.*\.Rproj$
+^\.Rproj\.user$
+^packrat/
+^\.Rprofile$
+^NEWS.md$
+^cran-comments\.md$
 
-# Extra material related but not to be included in the package
-./inst/extras/*
-./inst/extras/*.R
-./inst/extras/*.Rmd
-./inst/extras/*.RData
-
-# Git related
-./.git*
+./inst/extras/..Rcheck

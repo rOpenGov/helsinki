@@ -88,10 +88,10 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     # Construct an array
     
     # For special characters:
-    # Merkintöjen selitykset:
-    #   .. (kaksi pistettä), tietoa ei ole saatu, se on liian epävarma ilmoitettavaksi tai se on salattu;
-    # . (piste), loogisesti mahdoton esitettäväksi;
-    # 0 (nolla), suure pienempi kuin puolet käytetystä yksiköstä.
+    # Merkintojen selitykset:
+    #   .. (kaksi pistetta), tietoa ei ole saatu, se on liian epavarma ilmoitettavaksi tai se on salattu;
+    # . (piste), loogisesti mahdoton esitettavaksi;
+    # 0 (nolla), suure pienempi kuin puolet kaytetysta yksikosta.
     # assign NA to ".", and ".."
     # => simple as.numeric() is fine, produces NA for "." and ".."
     

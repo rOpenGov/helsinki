@@ -4,7 +4,7 @@ Title: R Tools for Helsinki Open Data
 Version: 0.9.28
 Date: 2017-02-17
 Author: Juuso Parkkinen, Leo Lahti, Joona Lehtomaki
-Maintainer: Juuso Parkkinen <louhos@googlegroups.com>
+Maintainer: Juuso Parkkinen <juuso.parkkinen@iki.fi>
 Description: Tools for accessing various open data sources in the Helsinki
     region in Finland. Current data sources include
     the Real Estate Department (district maps),

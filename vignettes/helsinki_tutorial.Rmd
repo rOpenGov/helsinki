@@ -46,7 +46,7 @@ Helsinki Real Estate Department (HKK:n avointa dataa)
 * Väestötietoruudukko (population grid)
 * Rakennustietoruudukko (building information grid)
 * SeutuRAMAVA (building land resource information(?))
-* Source: [Helsingin seudun ympäristöpalvelut, HSY](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
+* Source: Helsingin seudun ympäristöpalvelut, HSY
 
 [Service and event information](#servicemap)
 
@@ -59,7 +59,7 @@ Helsinki Real Estate Department (HKK:n avointa dataa)
 * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
 
 
-List of potential data sources to be added to the package can be found [here](https://github.com/rOpenGov/helsinki/blob/master/vignettes/todo-datasets.Rmd).
+List of potential data sources to be added to the package can be found [here](todo-datasets.Rmd).
 
 ## Installation
 
@@ -96,7 +96,7 @@ str(aluejakokartat, m=2)
 
 ## <a name="hsy"></a> Helsinki region environmental services
 
-Retrieve data from [Helsingin seudun ympäristöpalvelut (HSY)](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) with `get_hsy()`.
+Retrieve data from Helsingin seudun ympäristöpalvelut (HSY) with `get_hsy()`.
 
 ### Population grid 
 

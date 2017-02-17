@@ -24,8 +24,8 @@ Demography
 * [Helsingin ja Helsingin seudun väestöennuste sukupuolen ja iän mukaan 2012-2050](http://www.hri.fi/fi/data/helsingin-ja-helsingin-seudun-vaestoennuste-sukupuolen-ja-ian-mukaan-2012-2050/)
 
 General 
-* [Helsingin kaupungin tilastollinen vuosikirja](http://www.hel2.fi/tietokeskus/data/helsingin_kaupungin_tilastollinen_vuosikirja_2009/index.html) Paljon lupaavan oloista dataa Excel-taulukkona,päivittynee vuosittain.  
-* [Vuokrahinnat avoimena datana](http://valtioneuvosto.fi/ajankohtaista/tiedotteet/tiedote/fi.jsp?oid=357198)
+* Helsingin kaupungin tilastollinen vuosikirja - Paljon lupaavan oloista dataa Excel-taulukkona,päivittynee vuosittain.  
+* Vuokrahinnat avoimena datana<!--(http://valtioneuvosto.fi/tiedotteet?oid=357198)-->
 * Implemented in get_hri_stats() (via HRI API) - [Helsingin seudun aluesarjat](http://www.aluesarjat.fi/)
 
 Economic data

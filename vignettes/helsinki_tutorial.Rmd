@@ -1,7 +1,15 @@
-<!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{An R Markdown Vignette made with knitr}
--->
+---
+title: "Helsinki open data R tools"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Helsinki R package tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
 
 ```{r knit, eval=FALSE, echo=FALSE}
 # Hot to knit this document into .md and .html

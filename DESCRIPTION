@@ -26,3 +26,4 @@ LazyLoad: yes
 Roxygen: list(wrap = FALSE)
 NeedsCompilation: no
 Repository: CRAN
+RoxygenNote: 5.0.1

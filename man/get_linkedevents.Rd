@@ -28,4 +28,3 @@ events <- get_linkedevents(query="event")
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}
 }
-

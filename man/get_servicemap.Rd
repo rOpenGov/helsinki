@@ -27,4 +27,3 @@ search.puisto <- get_servicemap(query="search", q="puisto")
 \author{
 Juuso Parkkinen \email{louhos@googlegroups.com}
 }
-

@@ -28,10 +28,9 @@ three-dimensional array form.
 \examples{
 stats.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
 }
-\author{
-Juuso Parkkinen \email{louhos@googlegroups.com}
-}
 \references{
 See citation("helsinki")
 }
-
+\author{
+Juuso Parkkinen \email{louhos@googlegroups.com}
+}

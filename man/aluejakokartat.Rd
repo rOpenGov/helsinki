@@ -14,11 +14,10 @@ see details in https://github.com/louhos/takomo/helsinki/.
 \examples{
 data(aluejakokartat)
 }
-\author{
-Juuso Parkkinen \email{louhos@googlegroups.com}
-}
 \references{
 See citation("helsinki")
 }
+\author{
+Juuso Parkkinen \email{louhos@googlegroups.com}
+}
 \keyword{data}
-

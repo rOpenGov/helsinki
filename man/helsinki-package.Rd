@@ -2,8 +2,8 @@
 % Please edit documentation in R/helsinki-package.R
 \docType{package}
 \name{helsinki-package}
-\alias{helsinki}
 \alias{helsinki-package}
+\alias{helsinki}
 \title{Helsinki open data R tools}
 \description{
 Brief summary of the helsinki package
@@ -23,12 +23,11 @@ Tools for accessing various open data sources in the Helsinki region in Finland.
 \examples{
 # library(helsinki)
 }
-\author{
-Juuso Parkkinen, Leo Lahti and Joona Lehtomaki \email{louhos@googlegroups.com}
-}
 \references{
 See citation("helsinki")
 \url{https://github.com/rOpenGov/helsinki}
 }
+\author{
+Juuso Parkkinen, Leo Lahti and Joona Lehtomaki \email{louhos@googlegroups.com}
+}
 \keyword{package}
-

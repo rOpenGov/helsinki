@@ -1,7 +1,15 @@
-<!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{An R Markdown Vignette made with knitr}
--->
+---
+title: "Helsinki open data R tools"
+date: "2020-09-16"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Helsinki R package tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
 
 
 
@@ -31,7 +39,7 @@ Helsinki Real Estate Department (HKK:n avointa dataa)
 * Väestötietoruudukko (population grid)
 * Rakennustietoruudukko (building information grid)
 * SeutuRAMAVA (building land resource information(?))
-* Source: [Helsingin seudun ympäristöpalvelut, HSY](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx)
+* Source: Helsingin seudun ympäristöpalvelut, HSY
 
 [Service and event information](#servicemap)
 
@@ -44,7 +52,7 @@ Helsinki Real Estate Department (HKK:n avointa dataa)
 * Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
 
 
-List of potential data sources to be added to the package can be found [here](https://github.com/rOpenGov/helsinki/blob/master/vignettes/todo-datasets.md).
+List of potential data sources to be added to the package can be found [here](todo-datasets.Rmd).
 
 ## Installation
 
@@ -107,7 +115,7 @@ str(aluejakokartat, m=2)
 
 ## <a name="hsy"></a> Helsinki region environmental services
 
-Retrieve data from [Helsingin seudun ympäristöpalvelut (HSY)](http://www.hsy.fi/seututieto/kaupunki/paikkatiedot/Sivut/Avoindata.aspx) with `get_hsy()`.
+Retrieve data from Helsingin seudun ympäristöpalvelut (HSY) with `get_hsy()`.
 
 ### Population grid 
 
@@ -116,41 +124,18 @@ Population grid (väestötietoruudukko) with 250m x 250m grid size in year 2013 
 
 ```r
 sp.vaesto <- get_hsy(which.data="Vaestotietoruudukko", which.year=2013)
-```
-
-```
-## IMPORTANT NOTE! HSY open data services have been recently updated and get_hsy() function is outdated! It will be updated soon, meanwhile use the services directly at https://www.hsy.fi/fi/asiantuntijalle/avoindata/Sivut/default.aspx.
-```
-
-```r
 head(sp.vaesto@data)
-```
-
-```
-## Error in head(sp.vaesto@data): trying to get slot "data" from an object of a basic class ("NULL") with no slots
 ```
 
 
 ### Helsinki building information
 
-Building information grid (rakennustietoruudukko) in Helsinki region on grid-level (500m x 500m): building counts (lukumäärä), built area (kerrosala), usage (käyttötarkoitus), and region
-efficiency (aluetehokkuus).
+Building information grid (rakennustietoruudukko) in Helsinki region on grid-level (500m x 500m): building counts (lukumäärä), built area (kerrosala), usage (käyttötarkoitus), and region efficiency (aluetehokkuus). 
 
 
 ```r
 sp.rakennus <- get_hsy(which.data="Rakennustietoruudukko", which.year=2013)  
-```
-
-```
-## IMPORTANT NOTE! HSY open data services have been recently updated and get_hsy() function is outdated! It will be updated soon, meanwhile use the services directly at https://www.hsy.fi/fi/asiantuntijalle/avoindata/Sivut/default.aspx.
-```
-
-```r
 head(sp.rakennus@data)
-```
-
-```
-## Error in head(sp.rakennus@data): trying to get slot "data" from an object of a basic class ("NULL") with no slots
 ```
 
 ### Helsinki building area capacity
@@ -160,36 +145,11 @@ Building area capacity per municipal region (kaupunginosittain summattua tietoa 
 
 ```r
 sp.ramava <- get_hsy(which.data="SeutuRAMAVA_tila", which.year=2013)  
-```
-
-```
-## IMPORTANT NOTE! HSY open data services have been recently updated and get_hsy() function is outdated! It will be updated soon, meanwhile use the services directly at https://www.hsy.fi/fi/asiantuntijalle/avoindata/Sivut/default.aspx.
-```
-
-```r
 head(sp.ramava@data)
-```
-
-```
-## Error in head(sp.ramava@data): trying to get slot "data" from an object of a basic class ("NULL") with no slots
-```
-
-```r
 # Values with less than five units are given as 999999999, set those to zero
 sp.ramava@data[sp.ramava@data==999999999] <- 0
-```
-
-```
-## Error in sp.ramava@data[sp.ramava@data == 999999999] <- 0: trying to get slot "data" from an object of a basic class ("NULL") with no slots
-```
-
-```r
 # Plot number of buildings for each region
 spplot(sp.ramava, zcol="RAKLKM", main="Number of buildings in each 'tilastoalue'", col.regions=colorRampPalette(c('blue', 'gray80', 'red'))(100))
-```
-
-```
-## Error in (function (classes, fdef, mtable) : unable to find an inherited method for function 'spplot' for signature '"NULL"'
 ```
 
 
@@ -207,8 +167,8 @@ str(search.puisto, m=1)
 
 ```
 ## List of 4
-##  $ count   : num 1662
-##  $ next    : chr "http://api.hel.fi/servicemap/v1/search/?q=puisto&page=2"
+##  $ count   : num 1483
+##  $ next    : chr "https://api.hel.fi/servicemap/v1/search/?page=2&q=puisto"
 ##  $ previous: NULL
 ##  $ results :List of 20
 ```
@@ -220,26 +180,16 @@ sapply(search.puisto$results, function(x) x$name$fi)
 ```
 
 ```
-##  [1] "Mankkaan asukaspuisto"              
-##  [2] "Tapiolan asukaspuisto"              
-##  [3] "Olarin asukaspuisto"                
-##  [4] "Perkkaan asukaspuisto"              
-##  [5] "Hurtigin puisto"                    
-##  [6] "Kaupungintalon puisto"              
-##  [7] "Matinkylän asukaspuisto"            
-##  [8] "Kylätalo Palttinan asukaspuisto"    
-##  [9] "Leppävaaran asukaspuisto"           
-## [10] "Viherkallion asukaspuisto"          
-## [11] "Karakallion asukaspuisto"           
-## [12] "Suvelan asukaspuisto"               
-## [13] "Asematien puisto"                   
-## [14] "Kasavuoren puisto"                  
-## [15] "Stenbergin puisto"                  
-## [16] "Nurmilinnunpuisto"                  
-## [17] "Itärannan puisto/ Otsonlahdenpuisto"
-## [18] "Lehtikaskenpuisto"                  
-## [19] "Alberganesplanadin puisto"          
-## [20] "Kotitontunpuisto"
+##  [1] "Perkkaan asukaspuisto"     "Leppävaaran asukaspuisto" 
+##  [3] "Träskändan kartanopuisto"  "Niittykummunpuisto"       
+##  [5] "Parkvillanpihan puisto"    "Trillapuisto"             
+##  [7] "Albergan kartanopuisto"    "Koivuviidan kentän puisto"
+##  [9] "Ruusutorpanpuisto"         "Ankkuripohjanpuisto"      
+## [11] "Kuttulammenpuisto"         "Rinkelipuisto"            
+## [13] "Sinisiimeksen puisto"      "Espoon keskuspuisto"      
+## [15] "Kartanonpuisto"            "Kurkijoenpuisto"          
+## [17] "Porttipuisto"              "Ryytimaan puisto"         
+## [19] "Tikanpuisto"               "Lehtikaskenpuisto"
 ```
 
 ```r
@@ -248,19 +198,20 @@ names(search.puisto$results[[1]])
 ```
 
 ```
-##  [1] "connections"               "accessibility_properties" 
-##  [3] "id"                        "data_source_url"          
-##  [5] "name"                      "description"              
-##  [7] "provider_type"             "department"               
-##  [9] "organization"              "street_address"           
-## [11] "address_zip"               "phone"                    
-## [13] "email"                     "www_url"                  
-## [15] "address_postal_full"       "municipality"             
-## [17] "picture_url"               "picture_caption"          
-## [19] "origin_last_modified_time" "root_services"            
-## [21] "services"                  "divisions"                
-## [23] "keywords"                  "location"                 
-## [25] "object_type"               "score"
+##  [1] "id"                        "connections"              
+##  [3] "accessibility_properties"  "identifiers"              
+##  [5] "data_source_url"           "name"                     
+##  [7] "description"               "provider_type"            
+##  [9] "street_address"            "address_zip"              
+## [11] "phone"                     "email"                    
+## [13] "www_url"                   "address_postal_full"      
+## [15] "extensions"                "picture_url"              
+## [17] "picture_caption"           "origin_last_modified_time"
+## [19] "root_services"             "department"               
+## [21] "organization"              "municipality"             
+## [23] "services"                  "divisions"                
+## [25] "keywords"                  "location"                 
+## [27] "object_type"               "score"
 ```
 
 ```r
@@ -278,26 +229,26 @@ sapply(events$data, function(x) x$name$fi)
 ```
 
 ```
-##  [1] "Ladykillers - Sarjahurmaajat"      
-##  [2] "Ladykillers - Sarjahurmaajat"      
-##  [3] "Ladykillers - Sarjahurmaajat"      
-##  [4] "Melontaa Pitkäjärvellä"            
-##  [5] "Ladykillers - Sarjahurmaajat"      
-##  [6] "Ladykillers - Sarjahurmaajat"      
-##  [7] "Lumikuningatar"                    
-##  [8] "Kuningas kuolee"                   
-##  [9] "Helsingin Urkukesä, päivämusiikkia"
-## [10] "Helsingin Urkukesä, päivämusiikkia"
-## [11] "Helsingin Urkukesä, päivämusiikkia"
-## [12] "Helsingin Urkukesä, päivämusiikkia"
-## [13] "Helsingin Urkukesä, päivämusiikkia"
-## [14] "Helsingin Urkukesä, päivämusiikkia"
-## [15] "Helsingin Urkukesä, päivämusiikkia"
-## [16] "Helsingin Urkukesä, päivämusiikkia"
-## [17] "Helsingin Urkukesä, päivämusiikkia"
-## [18] "Helsingin Urkukesä, päivämusiikkia"
-## [19] "Jukka Puotila Show"                
-## [20] "Kuningas kuolee"
+##  [1] "Viljelytalkoot Annantalon pihalla"                                                           
+##  [2] "Folk Dances with Live Music"                                                                 
+##  [3] "NEXO – Luovan kirjoittamisen työpaja"                                                        
+##  [4] "Kansantansseja elävän musiikin säestyksellä: Jordania & Norja – Folk Dances with Live Music" 
+##  [5] "Kansantansseja elävän musiikin säestyksellä: Portugali & Puola – Folk Dances with Live Music"
+##  [6] "Kansantansseja elävän musiikin säestyksellä: Ranska & Meksiko – Folk Dances with Live Music" 
+##  [7] "NEXO – Luovan kirjoittamisen työpaja"                                                        
+##  [8] "NEXO – Luovan kirjoittamisen työpaja"                                                        
+##  [9] "NEXO – Luovan kirjoittamisen työpaja"                                                        
+## [10] "NEXO – Luovan kirjoittamisen työpaja"                                                        
+## [11] "NEXO – Luovan kirjoittamisen työpaja"                                                        
+## [12] "NEXO – Luovan kirjoittamisen työpaja"                                                        
+## [13] "NEXO – Luovan kirjoittamisen työpaja"                                                        
+## [14] "NEXO – Luovan kirjoittamisen työpaja"                                                        
+## [15] "NEXO – Luovan kirjoittamisen työpaja"                                                        
+## [16] "Viljelytalkoot Annantalon pihalla"                                                           
+## [17] "Viljelytalkoot Annantalon pihalla"                                                           
+## [18] "Viljelytalkoot Annantalon pihalla"                                                           
+## [19] "Viljelytalkoot Annantalon pihalla"                                                           
+## [20] "Viljelytalkoot Annantalon pihalla"
 ```
 
 ```r
@@ -306,16 +257,18 @@ names(events$data[[1]])
 ```
 
 ```
-##  [1] "location"            "keywords"            "super_event"        
-##  [4] "event_status"        "external_links"      "offers"             
-##  [7] "sub_events"          "id"                  "custom_data"        
-## [10] "data_source"         "image"               "origin_id"          
-## [13] "created_time"        "last_modified_time"  "last_modified_by"   
-## [16] "date_published"      "publisher"           "start_time"         
-## [19] "end_time"            "audience"            "short_description"  
-## [22] "name"                "headline"            "location_extra_info"
-## [25] "description"         "secondary_headline"  "info_url"           
-## [28] "provider"            "@id"                 "@type"
+##  [1] "id"                    "location"              "keywords"             
+##  [4] "super_event"           "event_status"          "external_links"       
+##  [7] "offers"                "data_source"           "publisher"            
+## [10] "sub_events"            "videos"                "in_language"          
+## [13] "audience"              "created_time"          "last_modified_time"   
+## [16] "date_published"        "start_time"            "end_time"             
+## [19] "custom_data"           "audience_min_age"      "audience_max_age"     
+## [22] "super_event_type"      "deleted"               "replaced_by"          
+## [25] "short_description"     "name"                  "location_extra_info"  
+## [28] "provider"              "info_url"              "provider_contact_info"
+## [31] "description"           "@id"                   "@context"             
+## [34] "@type"                 "image"
 ```
 
 
@@ -333,18 +286,18 @@ head(stats.list)
 ```
 
 ```
-##                                         Helsingin väestö äidinkielen mukaan 1.1. 
-##                                        "aluesarjat_a03s_hki_vakiluku_aidinkieli" 
-## Työpaikat Helsingissä (alueella työssäkäyvät) toimialan (TOL 1988) mukaan 31.12. 
-##                                            "aluesarjat_a07s_hki_tyopaikat_tol88" 
-##               Vantaalla asuva työllinen työvoima sukupuolen ja iän mukaan 31.12. 
-##                                         "aluesarjat_c01s_van_tyovoima_sukupuoli" 
-##             Espoon lapsiperheet lasten määrän mukaan (0-17-vuotiaat lapset) 1.1. 
-##                                        "aluesarjat_b03s_esp_lapsiperheet_alle18" 
-##                                             Väestö iän ja sukupuolen mukaan 1.1. 
-##                                      "aluesarjat_hginseutu_va_vr01_vakiluku_ika" 
-##                     Helsingin asuntotuotanto rahoitusmuodon ja huoneluvun mukaan 
-##                                     "aluesarjat_a03hki_astuot_rahoitus_huonelkm"
+##                                      NULL 
+##             "L113_viheralue_kaupunginosa" 
+##                                      NULL 
+##                      "L32_yksikkopaastot" 
+##                                      NULL 
+##                   "J1_loppusijoitettavat" 
+##                                      NULL 
+##                    "I13_maailman_paastot" 
+##                                      NULL 
+##       "J13_sekajatteen_maara_kiinteistot" 
+##  Helsingin väestö äidinkielen mukaan 1.1. 
+## "aluesarjat_a03s_hki_vakiluku_aidinkieli"
 ```
 
 Specify a dataset to retrieve. The output is currently a three-dimensional array.
@@ -358,11 +311,10 @@ str(stats.res)
 ```
 
 ```
-##  num [1:23, 1:4, 1:197] 497526 501518 508659 515765 525031 ...
-##  - attr(*, "dimnames")=List of 3
-##   ..$ vuosi     : chr [1:23] "1992" "1993" "1994" "1995" ...
-##   ..$ aidinkieli: chr [1:4] "Kaikki äidinkielet" "Suomi ja saame" "Ruotsi" "Muu kieli"
-##   ..$ alue      : chr [1:197] "091 Helsinki" "091 1 Eteläinen suurpiiri" "091 101 Vironniemen peruspiiri" "091 10 Kruununhaka" ...
+##  num [1:6, 1:34] 11606 5607 2.07 0.65 0.15 ...
+##  - attr(*, "dimnames")=List of 2
+##   ..$ muuttuja  : chr [1:6] "Asukkaita" "Asukastiheys (hlö/km2)" "Maapinta-ala (km2)" "Viheralueiden pinta-ala (km2)" ...
+##   ..$ peruspiiri: chr [1:34] "Vironniemi" "Ullanlinna" "Kampinmalmi" "Taka-Töölö" ...
 ```
 
 The implementation will be updated and more examples will be added in the near future.
@@ -383,8 +335,8 @@ citation("helsinki")
 
 Kindly cite the helsinki R package as follows:
 
-  (C) Juuso Parkkinen, Leo Lahti and Joona Lehtomaki 2014.
-  helsinki R package
+  (C) Juuso Parkkinen, Leo Lahti and Joona Lehtomaki 2014. helsinki R
+  package
 
 A BibTeX entry for LaTeX users is
 
@@ -409,22 +361,32 @@ sessionInfo()
 ```
 
 ```
-## R version 3.1.2 (2014-10-31)
-## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## R version 4.0.0 (2020-04-24)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 20.04.1 LTS
+## 
+## Matrix products: default
+## BLAS:   /home/lei/bin/R-4.0.0/lib/libRblas.so
+## LAPACK: /home/lei/bin/R-4.0.0/lib/libRlapack.so
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.8       helsinki_0.9.24 RCurl_1.95-4.3  bitops_1.0-6   
-## [5] maptools_0.8-30 sp_1.0-15      
+## [1] helsinki_0.9.30 RCurl_1.98-1.2  maptools_1.0-1  sp_1.4-2       
+## [5] knitr_1.29     
 ## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.5  foreign_0.8-61  formatR_1.0     grid_3.1.2     
-## [5] lattice_0.20-29 markdown_0.7.4  rjson_0.2.14    stringr_0.6.2  
-## [9] tools_3.1.2
+##  [1] compiler_4.0.0  rjson_0.2.20    magrittr_1.5    tools_4.0.0    
+##  [5] foreign_0.8-80  stringi_1.4.6   grid_4.0.0      stringr_1.4.0  
+##  [9] xfun_0.16       bitops_1.0-6    lattice_0.20-41 evaluate_0.14
 ```
 

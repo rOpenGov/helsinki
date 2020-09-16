@@ -4,8 +4,8 @@ citEntry(entry="misc",
          title = "helsinki R package",
          author = personList(
      person(given ="Juuso", family="Parkkinen", email = "juuso.parkkinen@iki.fi"),
-     person(given ="Leo", family="Lahti"),
-	   person(given ="Joona", family="Lehtomaki")
+	   person(given ="Joona", family="Lehtomaki"),
+           person(given ="Leo", family="Lahti")	   
          ),
 	 journal = "",
 	 year = "2014",

@@ -308,11 +308,6 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <li><a href="#available-data-sources">Available data sources</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#helsinki-region-district-maps"><a name="aluejakokartat"></a>Helsinki region district maps</a></li>
-<li><a href="#helsinki-region-environmental-services"><a name="hsy"></a> Helsinki region environmental services</a><ul>
-<li><a href="#population-grid">Population grid</a></li>
-<li><a href="#helsinki-building-information">Helsinki building information</a></li>
-<li><a href="#helsinki-building-area-capacity">Helsinki building area capacity</a></li>
-</ul></li>
 <li><a href="#service-and-event-information"><a name="servicemap"></a>Service and event information</a></li>
 <li><a href="#helsinki-region-infoshare-statistics-api"><a name="hri_stats"></a> Helsinki Region Infoshare statistics API</a><ul>
 <li><a href="#citation">Citation</a></li>
@@ -394,47 +389,21 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 ##   ..$ tilastoalue_piste:&#39;data.frame&#39;:    125 obs. of  3 variables:
 ##   ..$ aanestysalue     :&#39;data.frame&#39;:    35349 obs. of  11 variables:</code></pre>
 </div>
-<div id="helsinki-region-environmental-services" class="section level2">
-<h2><a name="hsy"></a> Helsinki region environmental services</h2>
-<p>Retrieve data from Helsingin seudun ympäristöpalvelut (HSY) with <code>get_hsy()</code>.</p>
-<div id="population-grid" class="section level3">
-<h3>Population grid</h3>
-<p>Population grid (väestötietoruudukko) with 250m x 250m grid size in year 2013 contains the number of people in different age groups. The most rarely populated grids are left out (0-4 persons), and grids with less than 99 persons are censored with ‘99’ to guarantee privacy.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">sp.vaesto &lt;-<span class="st"> </span><span class="kw">get_hsy</span>(<span class="dt">which.data=</span><span class="st">&quot;Vaestotietoruudukko&quot;</span>, <span class="dt">which.year=</span><span class="dv">2013</span>)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">head</span>(sp.vaesto<span class="op">@</span>data)</a></code></pre></div>
-</div>
-<div id="helsinki-building-information" class="section level3">
-<h3>Helsinki building information</h3>
-<p>Building information grid (rakennustietoruudukko) in Helsinki region on grid-level (500m x 500m): building counts (lukumäärä), built area (kerrosala), usage (käyttötarkoitus), and region efficiency (aluetehokkuus).</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">sp.rakennus &lt;-<span class="st"> </span><span class="kw">get_hsy</span>(<span class="dt">which.data=</span><span class="st">&quot;Rakennustietoruudukko&quot;</span>, <span class="dt">which.year=</span><span class="dv">2013</span>)  </a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw">head</span>(sp.rakennus<span class="op">@</span>data)</a></code></pre></div>
-</div>
-<div id="helsinki-building-area-capacity" class="section level3">
-<h3>Helsinki building area capacity</h3>
-<p>Building area capacity per municipal region (kaupunginosittain summattua tietoa rakennusmaavarannosta). Plot with number of buildlings with <code>spplot()</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">sp.ramava &lt;-<span class="st"> </span><span class="kw">get_hsy</span>(<span class="dt">which.data=</span><span class="st">&quot;SeutuRAMAVA_tila&quot;</span>, <span class="dt">which.year=</span><span class="dv">2013</span>)  </a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">head</span>(sp.ramava<span class="op">@</span>data)</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="co"># Values with less than five units are given as 999999999, set those to zero</span></a>
-<a class="sourceLine" id="cb8-4" title="4">sp.ramava<span class="op">@</span>data[sp.ramava<span class="op">@</span>data<span class="op">==</span><span class="dv">999999999</span>] &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="co"># Plot number of buildings for each region</span></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="kw">spplot</span>(sp.ramava, <span class="dt">zcol=</span><span class="st">&quot;RAKLKM&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Number of buildings in each &#39;tilastoalue&#39;&quot;</span>, <span class="dt">col.regions=</span><span class="kw">colorRampPalette</span>(<span class="kw">c</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;gray80&#39;</span>, <span class="st">&#39;red&#39;</span>))(<span class="dv">100</span>))</a></code></pre></div>
-</div>
-</div>
 <div id="service-and-event-information" class="section level2">
 <h2><a name="servicemap"></a>Service and event information</h2>
 <p>Function <code>get_servicemap()</code> retrieves regional service data from the new <a href="http://api.hel.fi/servicemap/v1/">Service Map API</a>, that contains data from the <a href="http://dev.hel.fi/servicemap/">Service Map</a>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Search for &quot;puisto&quot; (park) (specify q=&quot;query&quot;)</span></a>
-<a class="sourceLine" id="cb9-2" title="2">search.puisto &lt;-<span class="st"> </span><span class="kw">get_servicemap</span>(<span class="dt">query=</span><span class="st">&quot;search&quot;</span>, <span class="dt">q=</span><span class="st">&quot;puisto&quot;</span>)</a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="co"># Study results</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="kw">str</span>(search.puisto, <span class="dt">m=</span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Search for &quot;puisto&quot; (park) (specify q=&quot;query&quot;)</span></a>
+<a class="sourceLine" id="cb6-2" title="2">search.puisto &lt;-<span class="st"> </span><span class="kw">get_servicemap</span>(<span class="dt">query=</span><span class="st">&quot;search&quot;</span>, <span class="dt">q=</span><span class="st">&quot;puisto&quot;</span>)</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co"># Study results</span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="kw">str</span>(search.puisto, <span class="dt">m=</span><span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## List of 4
 ##  $ count   : num 1483
 ##  $ next    : chr &quot;https://api.hel.fi/servicemap/v1/search/?page=2&amp;q=puisto&quot;
 ##  $ previous: NULL
 ##  $ results :List of 20</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># A lot of results found (count &gt; 1000)</span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="co"># Get names for the first 20 results</span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="kw">sapply</span>(search.puisto<span class="op">$</span>results, <span class="cf">function</span>(x) x<span class="op">$</span>name<span class="op">$</span>fi)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># A lot of results found (count &gt; 1000)</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="co"># Get names for the first 20 results</span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="kw">sapply</span>(search.puisto<span class="op">$</span>results, <span class="cf">function</span>(x) x<span class="op">$</span>name<span class="op">$</span>fi)</a></code></pre></div>
 <pre><code>##  [1] &quot;Perkkaan asukaspuisto&quot;     &quot;Leppävaaran asukaspuisto&quot; 
 ##  [3] &quot;Träskändan kartanopuisto&quot;  &quot;Niittykummunpuisto&quot;       
 ##  [5] &quot;Parkvillanpihan puisto&quot;    &quot;Trillapuisto&quot;             
@@ -445,8 +414,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 ## [15] &quot;Kartanonpuisto&quot;            &quot;Kurkijoenpuisto&quot;          
 ## [17] &quot;Porttipuisto&quot;              &quot;Ryytimaan puisto&quot;         
 ## [19] &quot;Tikanpuisto&quot;               &quot;Lehtikaskenpuisto&quot;</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># See what data is given for one service</span></a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="kw">names</span>(search.puisto<span class="op">$</span>results[[<span class="dv">1</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># See what data is given for one service</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw">names</span>(search.puisto<span class="op">$</span>results[[<span class="dv">1</span>]])</a></code></pre></div>
 <pre><code>##  [1] &quot;id&quot;                        &quot;connections&quot;              
 ##  [3] &quot;accessibility_properties&quot;  &quot;identifiers&quot;              
 ##  [5] &quot;data_source_url&quot;           &quot;name&quot;                     
@@ -461,34 +430,34 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 ## [23] &quot;services&quot;                  &quot;divisions&quot;                
 ## [25] &quot;keywords&quot;                  &quot;location&quot;                 
 ## [27] &quot;object_type&quot;               &quot;score&quot;</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># More results could be retrieved by specifying &#39;page=2&#39; etc.</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># More results could be retrieved by specifying &#39;page=2&#39; etc.</span></a></code></pre></div>
 <p>Function <code>get_linkedevents()</code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v0.1/">Linked Events API</a>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Searh for current events</span></a>
-<a class="sourceLine" id="cb16-2" title="2">events &lt;-<span class="st"> </span><span class="kw">get_linkedevents</span>(<span class="dt">query=</span><span class="st">&quot;event&quot;</span>)</a>
-<a class="sourceLine" id="cb16-3" title="3"><span class="co"># Get names for the first 20 results</span></a>
-<a class="sourceLine" id="cb16-4" title="4"><span class="kw">sapply</span>(events<span class="op">$</span>data, <span class="cf">function</span>(x) x<span class="op">$</span>name<span class="op">$</span>fi)</a></code></pre></div>
-<pre><code>##  [1] &quot;Viljelytalkoot Annantalon pihalla&quot;                                                           
-##  [2] &quot;Folk Dances with Live Music&quot;                                                                 
-##  [3] &quot;NEXO – Luovan kirjoittamisen työpaja&quot;                                                        
-##  [4] &quot;Kansantansseja elävän musiikin säestyksellä: Jordania &amp; Norja – Folk Dances with Live Music&quot; 
-##  [5] &quot;Kansantansseja elävän musiikin säestyksellä: Portugali &amp; Puola – Folk Dances with Live Music&quot;
-##  [6] &quot;Kansantansseja elävän musiikin säestyksellä: Ranska &amp; Meksiko – Folk Dances with Live Music&quot; 
-##  [7] &quot;NEXO – Luovan kirjoittamisen työpaja&quot;                                                        
-##  [8] &quot;NEXO – Luovan kirjoittamisen työpaja&quot;                                                        
-##  [9] &quot;NEXO – Luovan kirjoittamisen työpaja&quot;                                                        
-## [10] &quot;NEXO – Luovan kirjoittamisen työpaja&quot;                                                        
-## [11] &quot;NEXO – Luovan kirjoittamisen työpaja&quot;                                                        
-## [12] &quot;NEXO – Luovan kirjoittamisen työpaja&quot;                                                        
-## [13] &quot;NEXO – Luovan kirjoittamisen työpaja&quot;                                                        
-## [14] &quot;NEXO – Luovan kirjoittamisen työpaja&quot;                                                        
-## [15] &quot;NEXO – Luovan kirjoittamisen työpaja&quot;                                                        
-## [16] &quot;Viljelytalkoot Annantalon pihalla&quot;                                                           
-## [17] &quot;Viljelytalkoot Annantalon pihalla&quot;                                                           
-## [18] &quot;Viljelytalkoot Annantalon pihalla&quot;                                                           
-## [19] &quot;Viljelytalkoot Annantalon pihalla&quot;                                                           
-## [20] &quot;Viljelytalkoot Annantalon pihalla&quot;</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># See what data is given for the first event</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="kw">names</span>(events<span class="op">$</span>data[[<span class="dv">1</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Search for current events</span></a>
+<a class="sourceLine" id="cb13-2" title="2">events &lt;-<span class="st"> </span><span class="kw">get_linkedevents</span>(<span class="dt">query=</span><span class="st">&quot;event&quot;</span>)</a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="co"># Get names for the first 20 results</span></a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="kw">sapply</span>(events<span class="op">$</span>data, <span class="cf">function</span>(x) x<span class="op">$</span>name<span class="op">$</span>fi)</a></code></pre></div>
+<pre><code>##  [1] &quot;Moniheli ry:n pop-up piste&quot;                       
+##  [2] &quot;Enter ry opastaa&quot;                                 
+##  [3] &quot;Virtuaalinen lukupiiri&quot;                           
+##  [4] &quot;Moniheli ry:n pop-up piste&quot;                       
+##  [5] &quot;Enter ry opastaa&quot;                                 
+##  [6] &quot;Moniheli ry:n pop-up piste&quot;                       
+##  [7] &quot;Virtuaalinen lukupiiri&quot;                           
+##  [8] &quot;Moniheli ry:n pop-up piste&quot;                       
+##  [9] &quot;Enter ry opastaa&quot;                                 
+## [10] &quot;Millainen on sinun metsäsuhteesi?&quot;                
+## [11] &quot;Virtuaalinen lukupiiri&quot;                           
+## [12] &quot;Moniheli ry:n pop-up piste&quot;                       
+## [13] &quot;Enter ry opastaa&quot;                                 
+## [14] &quot;Helsinki Loves Developers: Luonnon monimuotoisuus&quot;
+## [15] &quot;Moniheli ry:n pop-up piste&quot;                       
+## [16] &quot;Virtuaalinen lukupiiri&quot;                           
+## [17] &quot;Enter ry opastaa&quot;                                 
+## [18] &quot;Vieraslajit Vantaan kasvimaailmassa&quot;              
+## [19] &quot;Orkesteri tulee kirjastoosi&quot;                      
+## [20] &quot;Kielikahvila arabiankielisille vanhemmille&quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># See what data is given for the first event</span></a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="kw">names</span>(events<span class="op">$</span>data[[<span class="dv">1</span>]])</a></code></pre></div>
 <pre><code>##  [1] &quot;id&quot;                    &quot;location&quot;              &quot;keywords&quot;             
 ##  [4] &quot;super_event&quot;           &quot;event_status&quot;          &quot;external_links&quot;       
 ##  [7] &quot;offers&quot;                &quot;data_source&quot;           &quot;publisher&quot;            
@@ -505,10 +474,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="helsinki-region-infoshare-statistics-api" class="section level2">
 <h2><a name="hri_stats"></a> Helsinki Region Infoshare statistics API</h2>
 <p>Function <code>get_hri_stats()</code> retrieves data from the <a href="http://dev.hel.fi/stats/">Helsinki Region Infoshare statistics API</a>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># Retrieve list of available data</span></a>
-<a class="sourceLine" id="cb20-2" title="2">stats.list &lt;-<span class="st"> </span><span class="kw">get_hri_stats</span>(<span class="dt">query=</span><span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="co"># Show first results</span></a>
-<a class="sourceLine" id="cb20-4" title="4"><span class="kw">head</span>(stats.list)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Retrieve list of available data</span></a>
+<a class="sourceLine" id="cb17-2" title="2">stats.list &lt;-<span class="st"> </span><span class="kw">get_hri_stats</span>(<span class="dt">query=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="co"># Show first results</span></a>
+<a class="sourceLine" id="cb17-4" title="4"><span class="kw">head</span>(stats.list)</a></code></pre></div>
 <pre><code>##                                      NULL 
 ##             &quot;L113_viheralue_kaupunginosa&quot; 
 ##                                      NULL 
@@ -522,10 +491,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 ##  Helsingin väestö äidinkielen mukaan 1.1. 
 ## &quot;aluesarjat_a03s_hki_vakiluku_aidinkieli&quot;</code></pre>
 <p>Specify a dataset to retrieve. The output is currently a three-dimensional array.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Retrieve a specific dataset</span></a>
-<a class="sourceLine" id="cb22-2" title="2">stats.res &lt;-<span class="st"> </span><span class="kw">get_hri_stats</span>(<span class="dt">query=</span>stats.list[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="co"># Show the structure of the results</span></a>
-<a class="sourceLine" id="cb22-4" title="4"><span class="kw">str</span>(stats.res)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Retrieve a specific dataset</span></a>
+<a class="sourceLine" id="cb19-2" title="2">stats.res &lt;-<span class="st"> </span><span class="kw">get_hri_stats</span>(<span class="dt">query=</span>stats.list[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="co"># Show the structure of the results</span></a>
+<a class="sourceLine" id="cb19-4" title="4"><span class="kw">str</span>(stats.res)</a></code></pre></div>
 <pre><code>##  num [1:6, 1:34] 11606 5607 2.07 0.65 0.15 ...
 ##  - attr(*, &quot;dimnames&quot;)=List of 2
 ##   ..$ muuttuja  : chr [1:6] &quot;Asukkaita&quot; &quot;Asukastiheys (hlö/km2)&quot; &quot;Maapinta-ala (km2)&quot; &quot;Viheralueiden pinta-ala (km2)&quot; ...
@@ -535,7 +504,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h3>Citation</h3>
 <p><strong>Citing the data:</strong> See <code>help()</code> to get citation information for each data source individually.</p>
 <p><strong>Citing the R package:</strong></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">citation</span>(<span class="st">&quot;helsinki&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">citation</span>(<span class="st">&quot;helsinki&quot;</span>)</a></code></pre></div>
 <pre><code>
 Kindly cite the helsinki R package as follows:
 
@@ -546,7 +515,7 @@ A BibTeX entry for LaTeX users is
 
   @Misc{,
     title = {helsinki R package},
-    author = {Juuso Parkkinen and Leo Lahti and Joona Lehtomaki},
+    author = {Juuso Parkkinen and Joona Lehtomaki and Leo Lahti},
     year = {2014},
   }
 
@@ -556,7 +525,7 @@ https://github.com/rOpenGov/helsinki</code></pre>
 <div id="session-info" class="section level3">
 <h3>Session info</h3>
 <p>This vignette was created with</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
 <pre><code>## R version 4.0.0 (2020-04-24)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 20.04.1 LTS
@@ -578,14 +547,13 @@ https://github.com/rOpenGov/helsinki</code></pre>
 ## 
 ## other attached packages:
 ## [1] helsinki_0.9.30 RCurl_1.98-1.2  maptools_1.0-1  sp_1.4-2       
-## [5] knitr_1.29     
+## [5] rmarkdown_2.3   knitr_1.29     
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] lattice_0.20-41 digest_0.6.25   bitops_1.0-6    grid_4.0.0     
 ##  [5] magrittr_1.5    evaluate_0.14   rlang_0.4.7     stringi_1.4.6  
-##  [9] rmarkdown_2.3   rjson_0.2.20    tools_4.0.0     stringr_1.4.0  
-## [13] foreign_0.8-80  yaml_2.2.1      xfun_0.16       compiler_4.0.0 
-## [17] htmltools_0.5.0</code></pre>
+##  [9] rjson_0.2.20    tools_4.0.0     stringr_1.4.0   foreign_0.8-80 
+## [13] xfun_0.16       yaml_2.2.1      compiler_4.0.0  htmltools_0.5.0</code></pre>
 </div>
 </div>
 </div>

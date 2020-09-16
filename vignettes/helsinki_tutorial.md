@@ -5,7 +5,7 @@ output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Helsinki R package tutorial}
+  %\VignetteIndexEntry{Helsinki open data R tools}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
@@ -113,46 +113,6 @@ str(aluejakokartat, m=2)
 ```
 
 
-## <a name="hsy"></a> Helsinki region environmental services
-
-Retrieve data from Helsingin seudun ympäristöpalvelut (HSY) with `get_hsy()`.
-
-### Population grid 
-
-Population grid (väestötietoruudukko) with 250m x 250m grid size in year 2013 contains the number of people in different age groups. The most rarely populated grids are left out (0-4 persons), and grids with less than 99 persons are censored with '99' to guarantee privacy.
-
-
-```r
-sp.vaesto <- get_hsy(which.data="Vaestotietoruudukko", which.year=2013)
-head(sp.vaesto@data)
-```
-
-
-### Helsinki building information
-
-Building information grid (rakennustietoruudukko) in Helsinki region on grid-level (500m x 500m): building counts (lukumäärä), built area (kerrosala), usage (käyttötarkoitus), and region efficiency (aluetehokkuus). 
-
-
-```r
-sp.rakennus <- get_hsy(which.data="Rakennustietoruudukko", which.year=2013)  
-head(sp.rakennus@data)
-```
-
-### Helsinki building area capacity
-
-Building area capacity per municipal region (kaupunginosittain summattua tietoa rakennusmaavarannosta). Plot with number of buildlings with `spplot()`.
-
-
-```r
-sp.ramava <- get_hsy(which.data="SeutuRAMAVA_tila", which.year=2013)  
-head(sp.ramava@data)
-# Values with less than five units are given as 999999999, set those to zero
-sp.ramava@data[sp.ramava@data==999999999] <- 0
-# Plot number of buildings for each region
-spplot(sp.ramava, zcol="RAKLKM", main="Number of buildings in each 'tilastoalue'", col.regions=colorRampPalette(c('blue', 'gray80', 'red'))(100))
-```
-
-
 ## <a name="servicemap"></a>Service and event information
 
 Function `get_servicemap()` retrieves regional service data from the new [Service Map API](http://api.hel.fi/servicemap/v1/), that contains data from the [Service Map](http://dev.hel.fi/servicemap/).
@@ -222,33 +182,33 @@ Function `get_linkedevents()` retrieves regional event data from the new [Linked
 
 
 ```r
-# Searh for current events
+# Search for current events
 events <- get_linkedevents(query="event")
 # Get names for the first 20 results
 sapply(events$data, function(x) x$name$fi)
 ```
 
 ```
-##  [1] "Viljelytalkoot Annantalon pihalla"                                                           
-##  [2] "Folk Dances with Live Music"                                                                 
-##  [3] "NEXO – Luovan kirjoittamisen työpaja"                                                        
-##  [4] "Kansantansseja elävän musiikin säestyksellä: Jordania & Norja – Folk Dances with Live Music" 
-##  [5] "Kansantansseja elävän musiikin säestyksellä: Portugali & Puola – Folk Dances with Live Music"
-##  [6] "Kansantansseja elävän musiikin säestyksellä: Ranska & Meksiko – Folk Dances with Live Music" 
-##  [7] "NEXO – Luovan kirjoittamisen työpaja"                                                        
-##  [8] "NEXO – Luovan kirjoittamisen työpaja"                                                        
-##  [9] "NEXO – Luovan kirjoittamisen työpaja"                                                        
-## [10] "NEXO – Luovan kirjoittamisen työpaja"                                                        
-## [11] "NEXO – Luovan kirjoittamisen työpaja"                                                        
-## [12] "NEXO – Luovan kirjoittamisen työpaja"                                                        
-## [13] "NEXO – Luovan kirjoittamisen työpaja"                                                        
-## [14] "NEXO – Luovan kirjoittamisen työpaja"                                                        
-## [15] "NEXO – Luovan kirjoittamisen työpaja"                                                        
-## [16] "Viljelytalkoot Annantalon pihalla"                                                           
-## [17] "Viljelytalkoot Annantalon pihalla"                                                           
-## [18] "Viljelytalkoot Annantalon pihalla"                                                           
-## [19] "Viljelytalkoot Annantalon pihalla"                                                           
-## [20] "Viljelytalkoot Annantalon pihalla"
+##  [1] "Moniheli ry:n pop-up piste"                       
+##  [2] "Enter ry opastaa"                                 
+##  [3] "Virtuaalinen lukupiiri"                           
+##  [4] "Moniheli ry:n pop-up piste"                       
+##  [5] "Enter ry opastaa"                                 
+##  [6] "Moniheli ry:n pop-up piste"                       
+##  [7] "Virtuaalinen lukupiiri"                           
+##  [8] "Moniheli ry:n pop-up piste"                       
+##  [9] "Enter ry opastaa"                                 
+## [10] "Millainen on sinun metsäsuhteesi?"                
+## [11] "Virtuaalinen lukupiiri"                           
+## [12] "Moniheli ry:n pop-up piste"                       
+## [13] "Enter ry opastaa"                                 
+## [14] "Helsinki Loves Developers: Luonnon monimuotoisuus"
+## [15] "Moniheli ry:n pop-up piste"                       
+## [16] "Virtuaalinen lukupiiri"                           
+## [17] "Enter ry opastaa"                                 
+## [18] "Vieraslajit Vantaan kasvimaailmassa"              
+## [19] "Orkesteri tulee kirjastoosi"                      
+## [20] "Kielikahvila arabiankielisille vanhemmille"
 ```
 
 ```r
@@ -342,7 +302,7 @@ A BibTeX entry for LaTeX users is
 
   @Misc{,
     title = {helsinki R package},
-    author = {Juuso Parkkinen and Leo Lahti and Joona Lehtomaki},
+    author = {Juuso Parkkinen and Joona Lehtomaki and Leo Lahti},
     year = {2014},
   }
 
@@ -382,11 +342,12 @@ sessionInfo()
 ## 
 ## other attached packages:
 ## [1] helsinki_0.9.30 RCurl_1.98-1.2  maptools_1.0-1  sp_1.4-2       
-## [5] knitr_1.29     
+## [5] rmarkdown_2.3   knitr_1.29     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_4.0.0  rjson_0.2.20    magrittr_1.5    tools_4.0.0    
-##  [5] foreign_0.8-80  stringi_1.4.6   grid_4.0.0      stringr_1.4.0  
-##  [9] xfun_0.16       bitops_1.0-6    lattice_0.20-41 evaluate_0.14
+##  [1] lattice_0.20-41 digest_0.6.25   bitops_1.0-6    grid_4.0.0     
+##  [5] magrittr_1.5    evaluate_0.14   rlang_0.4.7     stringi_1.4.6  
+##  [9] rjson_0.2.20    tools_4.0.0     stringr_1.4.0   foreign_0.8-80 
+## [13] xfun_0.16       yaml_2.2.1      compiler_4.0.0  htmltools_0.5.0
 ```
 

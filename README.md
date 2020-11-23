@@ -1,13 +1,14 @@
 helsinki - Helsinki open data R tools
 ========
 
-
+<!-- badges: start -->
+[![R build status](https://github.com/rOpenGov/helsinki/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/helsinki/actions)
 [![Build Status](https://api.travis-ci.org/rOpenGov/helsinki.png)](https://travis-ci.org/rOpenGov/helsinki)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/helsinki)](http://www.r-pkg.org/pkg/helsinki)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/helsinki)](http://www.r-pkg.org/pkg/helsinki)
 <!--[![Stories in Ready](https://badge.waffle.io/ropengov/helsinki.png?label=Ready)](http://waffle.io/ropengov/helsinki)-->
 <!--[![codecov.io](https://codecov.io/github/rOpenGov/helsinki/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/helsinki?branch=master)-->
-
+<!-- badges: end -->
 
 R tools for open data from the Helsinki region in Finland from the [rOpenGov](http://ropengov.github.io) project.   
 

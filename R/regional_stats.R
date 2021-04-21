@@ -1,7 +1,7 @@
 # This file is a part of the helsinki package (http://github.com/rOpenGov/helsinki)
-# in association with the rOpenGov project (ropengov.github.io)
+# in association with the rOpenGov project (http://ropengov.org)
 
-# Copyright (C) 2010-2014 Juuso Parkkinen / Louhos <louhos.github.com>. 
+# Copyright (C) 2010-2021 Juuso Parkkinen / Louhos <louhos.github.com>. 
 # All rights reserved.
 
 # This program is open source software; you can redistribute it and/or modify 

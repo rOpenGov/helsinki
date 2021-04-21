@@ -11,13 +11,16 @@ vignette: >
 ---
 
 
-```{r knit, eval=FALSE, echo=FALSE}
-# Hot to knit this document into .md and .html
-library(knitr)
-opts_knit$set(base.dir = "vignettes") # Change the base dir where to save figures
-knit(input="vignettes/helsinki_tutorial.Rmd", output="vignettes/helsinki_tutorial.md")
-knit2html(input="vignettes/helsinki_tutorial.md", output="vignettes/helsinki_tutorial.html", options=c("use_xhtml","smartypants","mathjax","highlight_code"))
-file.remove("helsinki_tutorial.txt") # Fix to remove from the output
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE, 
+  warning = FALSE,
+  fig.height = 7, 
+  fig.width = 7,
+  dpi = 75
+)
 ```
 
 
@@ -25,7 +28,7 @@ helsinki - tutorial
 ===========
 
 This R package provides tools to access open data from the Helsinki region in Finland
-as part of the [rOpenGov](http://ropengov.github.io) project.
+as part of the [rOpenGov](http://ropengov.org) project.
 
 For contact information and source code, see the [github page](https://github.com/rOpenGov/helsinki). 
 
@@ -65,16 +68,15 @@ List of potential data sources to be added to the package can be found [here](to
 
 Release version for general users:
 
-```{r install, eval=FALSE}
+```{r install_default, eval=FALSE}
 install.packages("helsinki")
 ```
 
 Development version for developers:
 
-```{r install2, eval=FALSE}
-install.packages("devtools")
-library(devtools)
-install_github("helsinki", "ropengov")
+```{r install_remotes, eval=FALSE}
+library(remotes)
+remotes::install_github("ropengov/helsinki")
 ```
 
 Load package.

@@ -10,7 +10,7 @@ helsinki - Helsinki open data R tools
 <!--[![codecov.io](https://codecov.io/github/rOpenGov/helsinki/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/helsinki?branch=master)-->
 <!-- badges: end -->
 
-R tools for open data from the Helsinki region in Finland from the [rOpenGov](http://ropengov.github.io) project.   
+R tools for open data from the Helsinki region in Finland from the [rOpenGov](http://ropengov.org) project.   
 
 For installation and usage, check the [tutorial page](https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md). 
 
@@ -20,5 +20,5 @@ You are welcome to contact us:
 
 * [submit suggestions and bug-reports](https://github.com/ropengov/helsinki/issues)
 * [send a pull request](https://github.com/ropengov/helsinki/)
-* follow us in [social media](http://ropengov.github.io/contribute/)  
+* [be in touch](http://ropengov.org/community/) and follow us in social media
   

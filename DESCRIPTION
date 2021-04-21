@@ -21,7 +21,8 @@ Depends:
     RCurl
 Suggests:
     knitr,
-    rmarkdown
+    rmarkdown,
+    remotes
 Imports:
     rjson,
     sp

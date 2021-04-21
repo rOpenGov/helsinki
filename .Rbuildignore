@@ -20,3 +20,4 @@ inst/blog
 ^NEWS.md$
 ^cran-comments\.md$
 ./inst/extras/..Rcheck
+^\.github$

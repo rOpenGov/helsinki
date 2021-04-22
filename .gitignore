@@ -10,3 +10,5 @@
 helsinki.Rproj
 *.RData
 .DS_Store
+doc
+Meta

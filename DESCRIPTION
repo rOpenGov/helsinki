@@ -25,10 +25,15 @@ Suggests:
     remotes
 Imports:
     rjson,
-    sp
+    sp,
+    httr,
+    purrr,
+    xml2,
+    methods
 URL: https://github.com/rOpenGov/helsinki
 BugReports: https://github.com/ropengov/helsinki/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
+Encoding: UTF-8
 RoxygenNote: 7.1.1

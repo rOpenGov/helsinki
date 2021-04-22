@@ -90,8 +90,11 @@ get_linkedevents <- function(query, ...) {
   api.url <- "http://api.hel.fi/linkedevents/v0.1/"
   
   # Check whether API url available
-  if (!RCurl::url.exists(api.url)) {
-    message(paste("Sorry! API", api.url, "not available!\nReturned NULL."))
+  conn<-url(api.url)
+  doesnotexist<-inherits(try(suppressWarnings(readLines(conn)),silent=TRUE),"try-error")
+  close(conn)
+  if (doesnotexist) {
+    warning(paste("Sorry! API", api.url, "not available! Returning NULL"))
     return(NULL)
   }
   

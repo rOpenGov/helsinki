@@ -21,3 +21,5 @@ inst/blog
 ^cran-comments\.md$
 ./inst/extras/..Rcheck
 ^\.github$
+^doc$
+^Meta$

@@ -280,3 +280,81 @@ kataker_key <- function () {
   
   KATAKER.key
 }
+
+#' @title Produce an SF object: Vaestotietoruudukko
+#' 
+#' @description Produces an sf object for Väestötietoruudukko (population grid)
+#' 
+#' @details Additional data not available here can be manually downloaded from HRI website: https://hri.fi/data/fi/dataset/vaestotietoruudukko
+#' 
+#' @param year year as numeric from range 2015:2019
+#'
+#' @return sf object
+#'
+#' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
+#'
+#' @examples
+#' \dontrun{
+#' pop_grid <- get_vaestotietoruudukko(year = 2015)
+#' }
+#'
+#' @export
+get_vaestotietoruudukko <- function(year = NULL) {
+  namespace_title <- "asuminen_ja_maankaytto:Vaestotietoruudukko"
+  valid.years <- 2015:2019
+  
+  if (is.null(year)) {
+    message(paste0("year = NULL! Retrieving latest available feature from year ", max(valid.years)))
+    year <- max(valid.years)
+  }
+  
+  if (!(year %in% valid.years)) {
+    stop(cat("Input valid year from range:", valid.years))
+  }
+  
+  selection <- paste(namespace_title, year, sep = "_")
+  
+  feature <- get_feature(typeName = selection)
+  feature
+}
+
+#' @title Produce an SF object: Rakennustietoruudukko
+#' 
+#' @description Produces an sf object for Rakennustietoruudukko (building information grid)
+#' 
+#' @details Additional data not available here can be manually downloaded from HRI website: https://hri.fi/data/fi/dataset/rakennustietoruudukko
+#' 
+#' @param year year as numeric from range 2015:2019
+#'
+#' @return sf object
+#'
+#' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
+#' 
+#' @examples
+#' \dontrun{
+#' pop_grid <- get_rakennustietoruudukko(year = 2016)
+#' }
+#'
+#' @export
+get_rakennustietoruudukko <- function(year = NULL) {
+  namespace_title <- "asuminen_ja_maankaytto:Rakennustietoruudukko"
+  valid.years <- 2015:2019
+  
+  if (is.null(year)) {
+    message(paste0("year = NULL! Retrieving latest available feature from year ", max(valid.years)))
+    year <- max(valid.years)
+  }
+  
+  if (!(year %in% valid.years)) {
+    stop(cat("Input valid year from range:", valid.years))
+  }
+  
+  if (year == 2016) {
+    selection <- paste(namespace_title, year, "2", sep = "_")
+  } else {
+    selection <- paste(namespace_title, year, sep = "_")
+  }
+  
+  feature <- get_feature(typeName = selection)
+  feature
+}

@@ -20,7 +20,7 @@ Additional data not available here can be manually downloaded from HRI website: 
 }
 \examples{
 \dontrun{
-pop_grid <- get_rakennustietoruudukko(year = 2016)
+building_grid <- get_rakennustietoruudukko(year = 2016)
 }
 
 }

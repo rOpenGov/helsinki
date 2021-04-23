@@ -29,7 +29,8 @@ Imports:
     httr,
     purrr,
     xml2,
-    methods
+    methods,
+    sf
 URL: https://github.com/rOpenGov/helsinki
 BugReports: https://github.com/ropengov/helsinki/issues
 VignetteBuilder: knitr

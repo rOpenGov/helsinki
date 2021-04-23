@@ -55,14 +55,14 @@ get_feature_list <- function() {
 #' 
 #' @examples 
 #' \dontrun{
-#' selection <- interactive_list()
-#' feature <- simple_get(type_name = selected)
+#' selection <- select_feature()
+#' feature <- get_feature(type_name = selected)
 #' ggplot(feature) +
 #'   geom_sf()
 #' }
 #'
 #' @export
-get_interactive <- function() {
+select_feature <- function() {
   df <- get_feature_list()
   unique_namespace <- unique(df$Namespace)
   selection <- menu(choices = unique_namespace,

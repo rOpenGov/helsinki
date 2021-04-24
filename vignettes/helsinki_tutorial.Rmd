@@ -107,9 +107,9 @@ search.puisto <- get_servicemap(query="search", q="puisto")
 str(search.puisto, m=1)
 # A lot of results found (count > 1000)
 # Get names for the first 20 results
-sapply(search.puisto$results, function(x) x$name$fi)
-# See what data is given for one service
-names(search.puisto$results[[1]])
+search.puisto$results$name$fi
+# See what kind of data is given for services
+names(search.puisto$results)
 # More results could be retrieved by specifying 'page=2' etc.
 ```
 
@@ -119,9 +119,9 @@ Function `get_linkedevents()` retrieves regional event data from the new [Linked
 # Search for current events
 events <- get_linkedevents(query="event")
 # Get names for the first 20 results
-sapply(events$data, function(x) x$name$fi)
-# See what data is given for the first event
-names(events$data[[1]])
+events$data$name$fi
+# See what kind of data is given for events
+names(events$data)
 ```
 
 

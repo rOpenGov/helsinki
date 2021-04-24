@@ -45,13 +45,13 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     message("Accessing Helsinki Region Infoshare statistics API...")
   
   # Use the regional statistics API
-  api.url <- "http://dev.hel.fi/stats/resources/"
+  api_url <- "http://dev.hel.fi/stats/resources/"
   # For resources list
   if (query=="")
-    query.url <- paste0(api.url, query)
+    query.url <- paste0(api_url, query)
   # For a specific resource, use jsontstat
   else
-    query.url <- paste0(api.url, query, "/jsonstat")
+    query.url <- paste0(api_url, query, "/jsonstat")
   
   # Check whether url available
   if (!RCurl::url.exists(query.url)) {

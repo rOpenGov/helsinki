@@ -38,18 +38,18 @@
 get_servicemap <- function(query, ...) {
   
   api_url <- "http://api.hel.fi/servicemap/v2/"
-  query_url <- paste0(api.url, query, "/")
+  query_url <- paste0(api_url, query, "/")
   
   url <- httr::parse_url(query_url)
   url$query <- list(...)
   url <- httr::build_url(url)
   
   # Check whether API url available
-  conn<-url(api.url)
+  conn<-url(api_url)
   doesnotexist<-inherits(try(suppressWarnings(readLines(conn)),silent=TRUE),"try-error")
   close(conn)
   if (doesnotexist) {
-    warning(paste("Sorry! API", api.url, "not available! Returning NULL"))
+    warning(paste("Sorry! API", api_url, "not available! Returning NULL"))
     return(NULL)
   }
 
@@ -88,18 +88,18 @@ get_linkedevents <- function(query, ...) {
   
   # Build query url
   api_url <- "http://api.hel.fi/linkedevents/v1/"
-  query_url <- paste0(api.url, query, "/")
+  query_url <- paste0(api_url, query, "/")
   
   url <- httr::parse_url(query_url)
   url$query <- list(...)
   url <- httr::build_url(url)
   
   # Check whether API url available
-  conn<-url(api.url)
+  conn<-url(api_url)
   doesnotexist<-inherits(try(suppressWarnings(readLines(conn)),silent=TRUE),"try-error")
   close(conn)
   if (doesnotexist) {
-    warning(paste("Sorry! API", api.url, "not available! Returning NULL"))
+    warning(paste("Sorry! API", api_url, "not available! Returning NULL"))
     return(NULL)
   }
 

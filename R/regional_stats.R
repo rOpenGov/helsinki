@@ -28,11 +28,14 @@
 #' @param verbose logical. Should R report extra information on progress? 
 #' @return results A three-dimensional array of results.
 #' 
-#' @export
+#' @importFrom httr parse_url build_url
+#' @importFrom jsonlite fromJSON
 #' 
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
 #' @examples stats.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
+#' 
+#' @export
 
 get_hri_stats <- function (query="", verbose=TRUE) {
   
@@ -45,28 +48,31 @@ get_hri_stats <- function (query="", verbose=TRUE) {
   api_url <- "http://dev.hel.fi/stats/resources/"
   # For resources list
   if (query=="")
-    query.url <- paste0(api_url, query)
-  # For a specific resource, use jsontstat
+    query_url <- paste0(api_url, query)
+  # For a specific resource, use jsonstat
   else
-    query.url <- paste0(api_url, query, "/jsonstat")
+    query_url <- paste0(api_url, query, "/jsonstat")
   
   # Check whether url available
-  if (!RCurl::url.exists(query.url)) {
-    message(paste("Sorry! Url", query.url, "not available!\nReturned NULL."))
+  conn<-url(query_url)
+  doesnotexist<-inherits(try(suppressWarnings(readLines(conn)),silent=TRUE),"try-error")
+  close(conn)
+  if (doesnotexist) {
+    warning(paste("Sorry! Url", query_url, "not available! Returning NULL"))
     return(NULL)
   }
-  # Access data with RCurl
-  curl <- RCurl::getCurlHandle(cookiefile = "")
-  suppressWarnings(
-    res.json <- RCurl::getForm(uri=query.url, curl=curl)
-  )
+  
+  # Access data with httr
+  url <- httr::parse_url(query_url)
+  url <- httr::build_url(url)
+  
   # Process json into a list
-  res.list <- rjson::fromJSON(res.json)
+  res_list <- jsonlite::fromJSON(url)
   
   # Process and show list of resources
   if (query=="") {
-    resources <- names(res.list[["_embedded"]])
-    names(resources) <- sapply(res.list[["_embedded"]], function(x) x$metadata$label)
+    resources <- names(res_list[["_embedded"]])
+    names(resources) <- sapply(res_list[["_embedded"]], function(x) x$metadata$label)
     if (verbose)
       message("Retrieved list of available resources.")
     return(resources)
@@ -78,9 +84,9 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     # Possible R package ot use: https://github.com/ajschumacher/rjstat
     
     # Process dimensions metadata
-    dims <- res.list$dataset$dimension$size
-    names(dims) <- res.list$dataset$dimension$id
-    dimnames <- lapply(res.list$dataset$dimension[3:(length(dims)+2)], function(x) {res=unlist(x$category$label); names(res)=NULL; res})
+    dims <- res_list$dataset$dimension$size
+    names(dims) <- res_list$dataset$dimension$id
+    dimnames <- lapply(res_list$dataset$dimension[3:(length(dims)+2)], function(x) {res=unlist(x$category$label); names(res)=NULL; res})
     
     # Construct an array
     
@@ -94,8 +100,8 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     
     # Have to reverse the dimensions, because in arrays
     # "The values in data are taken to be those in the array with the leftmost subscript moving fastest."
-    res.list$dataset$value[res.list$dataset$value %in% c(".", "..")] <- NA
-    res.array <- array(data=as.numeric(res.list$dataset$value), dim=rev(dims), dimnames=rev(dimnames))
+    res_list$dataset$value[res_list$dataset$value %in% c(".", "..")] <- NA
+    res.array <- array(data=as.numeric(res_list$dataset$value), dim=rev(dims), dimnames=rev(dimnames))
     if (verbose)
       message("Retrieved resource '",query,"'")
     return(res.array)

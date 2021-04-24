@@ -16,6 +16,7 @@
 #' @param base_url string Api base url 
 #' @param queries list List of query parameters
 #' @importFrom xml2 read_xml xml_find_all xml_text
+#' @importFrom httpcache GET
 #'
 #' @return wfs_api (S3) object with the following attributes:
 #'        \describe{

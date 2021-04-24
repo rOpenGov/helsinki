@@ -29,7 +29,8 @@ Imports:
     purrr,
     xml2,
     methods,
-    sf
+    sf,
+    httpcache
 URL: https://github.com/rOpenGov/helsinki
 BugReports: https://github.com/ropengov/helsinki/issues
 VignetteBuilder: knitr

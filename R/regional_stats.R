@@ -28,9 +28,6 @@
 #' @param verbose logical. Should R report extra information on progress? 
 #' @return results A three-dimensional array of results.
 #' 
-#' @importFrom RCurl getCurlHandle
-#' @importFrom RCurl getForm
-#' @importFrom rjson fromJSON
 #' @export
 #' 
 #' @references See citation("helsinki") 

@@ -24,7 +24,7 @@
 #' @param ... Additional parameters to the API (optional).
 #' For details, see http://api.hel.fi/servicemap/v2/. 
 #'
-#' @return Data frame
+#' @return Data frame or a list
 #' 
 #' @importFrom httr parse_url build_url
 #' @importFrom jsonlite fromJSON
@@ -54,7 +54,8 @@ get_servicemap <- function(query, ...) {
   }
 
   res_list <- jsonlite::fromJSON(url)
-  res_list <- res_list$data 
+  # the element might not always be called data, making this dangerous
+  # res_list <- res_list$data 
   return(res_list)
 }
 
@@ -72,7 +73,7 @@ get_servicemap <- function(query, ...) {
 #' @param ... Additional parameters to the API (optional).
 #' For details, see http://api.hel.fi/linkedevents/v1/. 
 #'
-#' @return Data frame
+#' @return Data frame or a list
 #' 
 #' @importFrom httr parse_url build_url
 #' @importFrom jsonlite fromJSON
@@ -104,6 +105,7 @@ get_linkedevents <- function(query, ...) {
   }
 
   res_list <- jsonlite::fromJSON(url)
-  res_list <- res_list$data 
+  # the element might not always be called data, making this dangerous
+  # res_list <- res_list$data 
   return(res_list)
 }

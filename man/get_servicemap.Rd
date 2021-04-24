@@ -2,28 +2,35 @@
 % Please edit documentation in R/services.R
 \name{get_servicemap}
 \alias{get_servicemap}
-\title{Access Helsinki region Service Map API}
+\title{Access Helsinki region Service Map API
+
+Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
+http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v2/. 
+For more API documentation and license information see the API link.}
 \usage{
 get_servicemap(query, ...)
 }
 \arguments{
 \item{query}{The API query as a string, for example "search", "service", or "unit".
-For full list of available options and details, see http://api.hel.fi/servicemap/v1/.}
+For full list of available options and details, see http://api.hel.fi/servicemap/v2/.}
 
 \item{...}{Additional parameters to the API (optional).
-For details, see http://api.hel.fi/servicemap/v1/.}
+For details, see http://api.hel.fi/servicemap/v2/.}
 }
 \value{
-List of results
+Data frame or a list
 }
 \description{
+Access Helsinki region Service Map API
+
 Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
-http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v1/. 
+http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v2/. 
 For more API documentation and license information see the API link.
 }
 \examples{
 search.puisto <- get_servicemap(query="search", q="puisto")
+
 }
 \author{
-Juuso Parkkinen \email{louhos@googlegroups.com}
+Juuso Parkkinen \email{louhos@googlegroups.com}, Pyry Kantanen
 }

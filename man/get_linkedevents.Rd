@@ -2,29 +2,37 @@
 % Please edit documentation in R/services.R
 \name{get_linkedevents}
 \alias{get_linkedevents}
-\title{Access Helsinki Linked Events API}
+\title{Access Helsinki Linked Events API
+
+Access the new Helsinki Linked Events API: http://api.hel.fi/linkedevents/v0.1/.
+The API contains data from the Helsinki City Tourist & Convention Bureau, 
+the City of Helsinki Cultural Office and the Helmet metropolitan area public libraries.
+For more API documentation and license information see the API link.}
 \usage{
 get_linkedevents(query, ...)
 }
 \arguments{
 \item{query}{The API query as a string, one of "category", "event", "language", or "place".
-For details, see http://api.hel.fi/linkedevents/v0.1/.}
+For details, see http://api.hel.fi/linkedevents/v1/.}
 
 \item{...}{Additional parameters to the API (optional).
-For details, see http://api.hel.fi/linkedevents/v0.1/.}
+For details, see http://api.hel.fi/linkedevents/v1/.}
 }
 \value{
-List of results
+Data frame or a list
 }
 \description{
+Access Helsinki Linked Events API
+
 Access the new Helsinki Linked Events API: http://api.hel.fi/linkedevents/v0.1/.
 The API contains data from the Helsinki City Tourist & Convention Bureau, 
 the City of Helsinki Cultural Office and the Helmet metropolitan area public libraries.
 For more API documentation and license information see the API link.
 }
 \examples{
-events <- get_linkedevents(query="event")
+events <- get_linkedevents(query="search", q="teatteri", start="2020-01-01")
+
 }
 \author{
-Juuso Parkkinen \email{louhos@googlegroups.com}
+Juuso Parkkinen \email{louhos@googlegroups.com}, Pyry Kantanen
 }

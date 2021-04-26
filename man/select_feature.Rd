@@ -4,18 +4,23 @@
 \alias{select_feature}
 \title{Interactively browse and select features}
 \usage{
-select_feature()
+select_feature(base.url = NULL, get = FALSE)
+}
+\arguments{
+\item{base.url}{WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"}
+
+\item{get}{Should the selected feature be also downloaded? Default is FALSE}
 }
 \value{
-feature Title (character)
+feature Title (character) or feature object
 }
 \description{
 Select wanted feature for use in other functions
 }
 \examples{
 \dontrun{
-selection <- select_feature()
-feature <- get_feature(type_name = selected)
+selection <- select_feature(base.url = "https://kartta.hsy.fi/geoserver/wfs")
+feature <- get_feature(base.url = "https://kartta.hsy.fi/geoserver/wfs", type_name = selected)
 ggplot(feature) +
   geom_sf()
 }

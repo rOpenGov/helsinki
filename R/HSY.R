@@ -72,21 +72,22 @@ get_hsy <- function(which.data=NULL, which.year=2013, data.dir=tempdir(), verbos
 #' @export
 get_vaestotietoruudukko <- function(year = NULL) {
   namespace_title <- "asuminen_ja_maankaytto:Vaestotietoruudukko"
-  valid.years <- 2015:2019
+  base_url <- "https://kartta.hsy.fi/geoserver/wfs"
+  valid_years <- 2015:2019
   
   if (is.null(year)) {
-    message(paste0("year = NULL! Retrieving latest available feature from year ", max(valid.years)))
-    year <- max(valid.years)
+    message(paste0("year = NULL! Retrieving feature from year ", max(valid_years)))
+    year <- max(valid_years)
   }
   
-  if (!(year %in% valid.years)) {
+  if (!(year %in% valid_years)) {
     message(paste0("It is strongly suggested to use a valid year from range: 2015-2019. 
                    Using other years may result in an error."))
   }
   
   selection <- paste(namespace_title, year, sep = "_")
   
-  feature <- get_feature(typeName = selection)
+  feature <- get_feature(base.url = base_url, typeName = selection)
   feature
 }
 
@@ -117,14 +118,15 @@ get_vaestotietoruudukko <- function(year = NULL) {
 #' @export
 get_rakennustietoruudukko <- function(year = NULL) {
   namespace_title <- "asuminen_ja_maankaytto:Rakennustietoruudukko"
-  valid.years <- 2015:2019
+  base_url <- "https://kartta.hsy.fi/geoserver/wfs"
+  valid_years <- 2015:2019
   
   if (is.null(year)) {
-    message(paste0("year = NULL! Retrieving latest available feature from year ", max(valid.years)))
-    year <- max(valid.years)
+    message(paste0("year = NULL! Retrieving feature from year ", max(valid_years)))
+    year <- max(valid_years)
   }
   
-  if (!(year %in% valid.years)) {
+  if (!(year %in% valid_years)) {
     message(paste0("It is strongly suggested to use a valid year from range: 2015-2019. 
                    Using other years may result in an error."))
   }
@@ -135,6 +137,6 @@ get_rakennustietoruudukko <- function(year = NULL) {
     selection <- paste(namespace_title, year, sep = "_")
   }
   
-  feature <- get_feature(typeName = selection)
+  feature <- get_feature(base.url = base_url, typeName = selection)
   feature
 }

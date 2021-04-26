@@ -4,7 +4,10 @@
 \alias{get_feature_list}
 \title{Print all available Features}
 \usage{
-get_feature_list()
+get_feature_list(base.url = NULL)
+}
+\arguments{
+\item{base.url}{a WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"}
 }
 \value{
 data frame

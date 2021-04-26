@@ -4,10 +4,15 @@
 \alias{get_feature}
 \title{Produce an SF object}
 \usage{
-get_feature(typeName = "asuminen_ja_maankaytto:Vaestotietoruudukko_2015")
+get_feature(
+  base.url = "https://kartta.hsy.fi/geoserver/wfs",
+  typename = "asuminen_ja_maankaytto:Vaestotietoruudukko_2015"
+)
 }
 \arguments{
-\item{typeName}{accepts feature names, e.g. "asuminen_ja_maankaytto:1000m_verkostobufferi"
+\item{base.url}{WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"}
+
+\item{typename}{accepts feature names, e.g. "asuminen_ja_maankaytto:1000m_verkostobufferi"
 No short form titles here, e.g. "1000m_verkostobufferi"!}
 }
 \value{

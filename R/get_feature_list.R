@@ -3,6 +3,8 @@
 #' @description Basically "request=GetCapabilities" as a neat data frame.
 #' 
 #' @details Lists all <FeatureType> nodes.
+#' 
+#' @param base.url a WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
 #'
 #' @return data frame
 #' 
@@ -12,8 +14,14 @@
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
 #'
 #' @export
-get_feature_list <- function() {
-  resp <- wfs_api(queries = "request=GetCapabilities")
+get_feature_list <- function(base.url = NULL) {
+  
+  if (is.null(base.url)) {
+    message("base.url = NULL. Using https://kartta.hsy.fi/geoserver/wfs")
+    base.url <- "https://kartta.hsy.fi/geoserver/wfs"
+  }
+  
+  resp <- wfs_api(base.url = base.url, queries = "request=GetCapabilities")
   content <- resp$content
   
   # For some reason this seems to be a necessary step
@@ -21,7 +29,7 @@ get_feature_list <- function() {
   content_ns_strip <- xml2::xml_ns_strip(content)
   
   # All "<FeatureType>" nodes
-  kaikki <- xml2::xml_find_all(content_ns_strip, "//FeatureType ")
+  kaikki <- xml2::xml_find_all(x = content_ns_strip, xpath = "//FeatureType ")
   
   df <- data.frame(matrix(NA, nrow = length(kaikki), ncol = 2))
   names(df) <- c("Name", "Title")
@@ -47,7 +55,10 @@ get_feature_list <- function() {
 #' 
 #' @description Select wanted feature for use in other functions
 #'
-#' @return feature Title (character)
+#' @return feature Title (character) or feature object
+#' 
+#' @param base.url WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
+#' @param get Should the selected feature be also downloaded? Default is FALSE
 #' 
 #' @importFrom utils menu
 #'
@@ -55,20 +66,25 @@ get_feature_list <- function() {
 #' 
 #' @examples 
 #' \dontrun{
-#' selection <- select_feature()
-#' feature <- get_feature(type_name = selected)
+#' selection <- select_feature(base.url = "https://kartta.hsy.fi/geoserver/wfs")
+#' feature <- get_feature(base.url = "https://kartta.hsy.fi/geoserver/wfs", type_name = selected)
 #' ggplot(feature) +
 #'   geom_sf()
 #' }
 #'
 #' @export
-select_feature <- function() {
-  df <- get_feature_list()
+select_feature <- function(base.url = NULL, get = FALSE) {
+  df <- get_feature_list(base.url = base.url)
   unique_namespace <- unique(df$Namespace)
   selection <- menu(choices = unique_namespace,
                     title = "From which namespace?")
   selection2 <- menu(choices = df$Title[which(df$Namespace == unique_namespace[selection])],
                      title = "Which dataset?")
-  selected_dataset <- df$Name[which(df$Title == df$Title[selection2])]
-  selected_dataset
+  selected_dataset_name <- df$Name[which(df$Title == df$Title[selection2])]
+  if (get == TRUE) {
+    object <- get_feature(base.url = base.url ,typename = selected_dataset_name)
+    return(object)
+  } else {
+    return(selected_dataset_name)
+  }
 }

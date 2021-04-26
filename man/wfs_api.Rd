@@ -4,12 +4,12 @@
 \alias{wfs_api}
 \title{WFS API}
 \usage{
-wfs_api(base_url = "https://kartta.hsy.fi/geoserver/wfs", queries)
+wfs_api(base.url = NULL, queries)
 }
 \arguments{
-\item{base_url}{string Api base url}
+\item{base.url}{WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"}
 
-\item{queries}{list List of query parameters}
+\item{queries}{List of query parameters}
 }
 \value{
 wfs_api (S3) object with the following attributes:
@@ -35,7 +35,7 @@ are cached. If you want clear cache, use [httpcache::clearCache()]. To turn
 the cache off completely, use [httpcache::cacheOff()]
 }
 \examples{
-  wfs_api(base_url = "https://kartta.hsy.fi/geoserver/wfs", 
+  wfs_api(base.url = "https://kartta.hsy.fi/geoserver/wfs", 
           queries = append(list("service" = "WFS", "version" = "1.0.0"), 
                 list(request = "getFeature", 
                      layer = "tilastointialueet:kunta4500k_2017")))

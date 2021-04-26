@@ -13,8 +13,8 @@
 #' are cached. If you want clear cache, use [httpcache::clearCache()]. To turn
 #' the cache off completely, use [httpcache::cacheOff()]
 #'
-#' @param base_url string Api base url 
-#' @param queries list List of query parameters
+#' @param base.url WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
+#' @param queries List of query parameters
 #' @importFrom xml2 read_xml xml_find_all xml_text
 #' @importFrom httpcache GET
 #'
@@ -28,20 +28,24 @@
 #' @author Joona Lehtomäki <joona.lehtomaki@@iki.fi>
 #'
 #' @examples
-#'   wfs_api(base_url = "https://kartta.hsy.fi/geoserver/wfs", 
+#'   wfs_api(base.url = "https://kartta.hsy.fi/geoserver/wfs", 
 #'           queries = append(list("service" = "WFS", "version" = "1.0.0"), 
 #'                 list(request = "getFeature", 
 #'                      layer = "tilastointialueet:kunta4500k_2017")))
 #' @export
-wfs_api <- function(base_url = "https://kartta.hsy.fi/geoserver/wfs", queries) {
+wfs_api <- function(base.url = NULL, queries) {
   
-  if (!grepl("^http", base_url)) stop("Invalid base URL")
+  if (is.null(base.url)) {
+    stop("base.url = NULL. Please input a valid WFS url")
+  }
+  
+  if (!grepl("^http", base.url)) stop("Invalid base URL")
   
   # Set the user agent
   ua <- httr::user_agent("https://github.com/rOpenGov/helsinki")
   
   # Construct the query URL
-  url <- httr::modify_url(base_url, query = queries)
+  url <- httr::modify_url(base.url, query = queries)
   
   # Print out the URL
   message("Requesting response from: ", url)

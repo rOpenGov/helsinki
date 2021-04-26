@@ -3,15 +3,17 @@
 \name{get_city_map}
 \alias{get_city_map}
 \title{Get city administrative regions}
+\source{
+Metropolitan area in districts: <https://hri.fi/data/fi/dataset/paakaupunkiseudun-aluejakokartat>
+}
 \usage{
 get_city_map(city = NULL, level = NULL)
 }
 \arguments{
 \item{city}{The desired city. Options: Helsinki, Espoo, Vantaa, Kauniainen}
 
-\item{level}{The desired administrative level. Options are 1, 2 and 3,
-where 1 is the lowest level (= largest areas) and 3 is the highest level 
-(= smallest areas)}
+\item{level}{The desired administrative level. Options are:
+- "suurpiiri", "tilastoalue", "pienalue" and "aanestysalue"}
 }
 \value{
 sf object

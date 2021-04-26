@@ -8,11 +8,12 @@
 #' @importFrom sf st_read read_sf st_crs
 #' 
 #' @param city The desired city. Options: Helsinki, Espoo, Vantaa, Kauniainen
-#' @param level The desired administrative level. Options are 1, 2 and 3,
-#' where 1 is the lowest level (= largest areas) and 3 is the highest level 
-#' (= smallest areas)
+#' @param level The desired administrative level. Options are:
+#' - "suurpiiri", "tilastoalue", "pienalue" and "aanestysalue"
 #'
 #' @return sf object
+#' 
+#' @source Metropolitan area in districts: <https://hri.fi/data/fi/dataset/paakaupunkiseudun-aluejakokartat>
 #'
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
 #'
@@ -33,7 +34,8 @@ get_city_map <- function(city = NULL, level = NULL) {
   url <- httr::parse_url(base_url)
   
   if (!(tolower(city) %in% c("helsinki", "vantaa", "espoo", "kauniainen"))) {
-    stop("Following city inputs are supported: helsinki, vantaa, espoo, kauniainen")
+    stop("Following city inputs are supported: 
+         helsinki, vantaa, espoo, kauniainen")
   }
   
   if (tolower(level) %in% c("pienalue", "suuralue", "tilastoalue")) {
@@ -43,6 +45,12 @@ get_city_map <- function(city = NULL, level = NULL) {
   } else {
     stop("Following level inputs are supported: 
          suuralue, tilastoalue, pienalue, aanestysalue")
+  }
+  
+  if (level == "aanestysalue") {
+    if (city %in% c("espoo", "kauniainen", "vantaa")) {
+      stop(cat("Voting districts for", city,"currently unavailable from WFS"))
+    }
   }
     
   url$query <- list(service = "wfs",
@@ -74,6 +82,12 @@ get_city_map <- function(city = NULL, level = NULL) {
   if (is.na(sf::st_crs(object))) {
     sf::st_crs(object) <- 3879
   }
+  
+  message("Source: Metropolitan area in districts. The maintainer of the dataset 
+  is Helsingin kaupunkiympäristön toimiala / Kaupunkimittauspalvelut and the 
+  original author is Helsingin, Espoon, Vantaan ja Kauniaisten 
+  mittausorganisaatiot. The dataset has been downloaded from Helsinki Region 
+  Infoshare service. CC BY 4.0. <https://creativecommons.org/licenses/by/4.0/>")
   
   return(object)
   

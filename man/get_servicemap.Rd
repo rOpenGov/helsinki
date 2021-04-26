@@ -7,15 +7,23 @@
 Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
 http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v2/. 
 For more API documentation and license information see the API link.}
+\source{
+API contents: All content is available under CC BY 4.0, 
+except where otherwise stated. The City of Helsinki logo is a registered 
+trademark. The Helsinki Grotesk Typeface is a proprietary typeface licensed 
+by Camelot Typefaces.
+<https://creativecommons.org/licenses/by/4.0/>
+API Location: https://api.hel.fi/servicemap/v2/
+}
 \usage{
 get_servicemap(query, ...)
 }
 \arguments{
 \item{query}{The API query as a string, for example "search", "service", or "unit".
-For full list of available options and details, see http://api.hel.fi/servicemap/v2/.}
+For full list of available options and details, see https://dev.hel.fi/apis/service-map-backend-api.}
 
-\item{...}{Additional parameters to the API (optional).
-For details, see http://api.hel.fi/servicemap/v2/.}
+\item{...}{Additional parameters to the API (optional). 
+For additional details, see https://dev.hel.fi/apis/service-map-backend-api.}
 }
 \value{
 Data frame or a list

@@ -2,32 +2,48 @@
 % Please edit documentation in R/services.R
 \name{get_linkedevents}
 \alias{get_linkedevents}
-\title{Access Helsinki Linked Events API
+\title{Access Helsinki Linked Events API}
+\source{
+Helsinki Linked Events API v1. Developed by the City of Helsinki 
+Open Software Development team. Event data from Helsinki Marketing, Helsinki 
+Cultural Centres, Helmet metropolitan area public libraries and City of 
+Helsinki registry of service unit. 
+CC BY 4.0. <https://creativecommons.org/licenses/by/4.0/>
 
-Access the new Helsinki Linked Events API: http://api.hel.fi/linkedevents/v0.1/.
-The API contains data from the Helsinki City Tourist & Convention Bureau, 
-the City of Helsinki Cultural Office and the Helmet metropolitan area public libraries.
-For more API documentation and license information see the API link.}
+For more API documentation and license information see the API link:
+http://api.hel.fi/linkedevents/v1/
+}
 \usage{
 get_linkedevents(query, ...)
 }
 \arguments{
-\item{query}{The API query as a string, one of "category", "event", "language", or "place".
-For details, see http://api.hel.fi/linkedevents/v1/.}
+\item{query}{The API query as a string, for example "event", "category",
+"language", "place" or "keyword".}
 
-\item{...}{Additional parameters to the API (optional).
-For details, see http://api.hel.fi/linkedevents/v1/.}
+\item{...}{Additional parameters that narrow down the output (optional).}
 }
 \value{
 Data frame or a list
 }
 \description{
-Access Helsinki Linked Events API
+Easy access to Helsinki Linked Events API
+}
+\details{
+Complete list of possible query input: "keyword", "keyword_set", "place",
+"language", "organization", "image", "event", "search", "user".
 
-Access the new Helsinki Linked Events API: http://api.hel.fi/linkedevents/v0.1/.
-The API contains data from the Helsinki City Tourist & Convention Bureau, 
-the City of Helsinki Cultural Office and the Helmet metropolitan area public libraries.
-For more API documentation and license information see the API link.
+With "..." the user can pass on additional parameters that depend on the
+chosen query input. For example, when performing a search (query = "search"), 
+the search can be narrowed down with parameters such as:
+\itemize{
+ \item{q="konsertti"} {searches for events that have the word "konsertti" on them}
+ \item{input="konse"} {searches also for substrings inside words}
+ \item{type="event"} {returns only "events"}
+ \item{start="2017-01-01"} {events starting on 2017-01-01 or after}
+ \item{end="2017-01-10"} {events ending on 2017-01-10 or before}
+}
+
+For more detailed explanation, see http://api.hel.fi/linkedevents/v1/.
 }
 \examples{
 events <- get_linkedevents(query="search", q="teatteri", start="2020-01-01")

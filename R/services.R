@@ -20,9 +20,9 @@
 #' For more API documentation and license information see the API link.
 #' 
 #' @param query The API query as a string, for example "search", "service", or "unit".
-#' For full list of available options and details, see http://api.hel.fi/servicemap/v2/. 
-#' @param ... Additional parameters to the API (optional).
-#' For details, see http://api.hel.fi/servicemap/v2/. 
+#' For full list of available options and details, see https://dev.hel.fi/apis/service-map-backend-api. 
+#' @param ... Additional parameters to the API (optional). 
+#' For additional details, see https://dev.hel.fi/apis/service-map-backend-api. 
 #'
 #' @return Data frame or a list
 #' 
@@ -32,6 +32,13 @@
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}, Pyry Kantanen
 #' @examples 
 #' search.puisto <- get_servicemap(query="search", q="puisto")
+#' 
+#' @source API contents: All content is available under CC BY 4.0, 
+#' except where otherwise stated. The City of Helsinki logo is a registered 
+#' trademark. The Helsinki Grotesk Typeface is a proprietary typeface licensed 
+#' by Camelot Typefaces.
+#' <https://creativecommons.org/licenses/by/4.0/>
+#' API Location: https://api.hel.fi/servicemap/v2/
 #' 
 #' @export
 
@@ -56,6 +63,12 @@ get_servicemap <- function(query, ...) {
   res_list <- jsonlite::fromJSON(url)
   # the element might not always be called data, making this dangerous
   # res_list <- res_list$data 
+  
+  message("All content is available under CC BY 4.0, except where otherwise 
+  stated. The City of Helsinki logo is a registered trademark. The Helsinki 
+  Grotesk Typeface is a proprietary typeface licensed by Camelot Typefaces. 
+  CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/>")
+  
   return(res_list)
 }
 
@@ -63,15 +76,37 @@ get_servicemap <- function(query, ...) {
 
 #' @title Access Helsinki Linked Events API
 #'
-#' Access the new Helsinki Linked Events API: http://api.hel.fi/linkedevents/v0.1/.
-#' The API contains data from the Helsinki City Tourist & Convention Bureau, 
-#' the City of Helsinki Cultural Office and the Helmet metropolitan area public libraries.
-#' For more API documentation and license information see the API link.
+#' @description Easy access to Helsinki Linked Events API
 #' 
-#' @param query The API query as a string, one of "category", "event", "language", or "place".
-#' For details, see http://api.hel.fi/linkedevents/v1/. 
-#' @param ... Additional parameters to the API (optional).
-#' For details, see http://api.hel.fi/linkedevents/v1/. 
+#' @source Helsinki Linked Events API v1. Developed by the City of Helsinki 
+#' Open Software Development team. Event data from Helsinki Marketing, Helsinki 
+#' Cultural Centres, Helmet metropolitan area public libraries and City of 
+#' Helsinki registry of service unit. 
+#' CC BY 4.0. <https://creativecommons.org/licenses/by/4.0/>
+#' 
+#' For more API documentation and license information see the API link:
+#' http://api.hel.fi/linkedevents/v1/
+#' 
+#' @param query The API query as a string, for example "event", "category",
+#' "language", "place" or "keyword". 
+#' @param ... Additional parameters that narrow down the output (optional). 
+#'
+#' @details 
+#' Complete list of possible query input: "keyword", "keyword_set", "place",
+#' "language", "organization", "image", "event", "search", "user".
+#' 
+#' With "..." the user can pass on additional parameters that depend on the
+#' chosen query input. For example, when performing a search (query = "search"), 
+#' the search can be narrowed down with parameters such as:
+#' \itemize{
+#'  \item{q="konsertti"} {searches for events that have the word "konsertti" on them}
+#'  \item{input="konse"} {searches also for substrings inside words}
+#'  \item{type="event"} {returns only "events"}
+#'  \item{start="2017-01-01"} {events starting on 2017-01-01 or after}
+#'  \item{end="2017-01-10"} {events ending on 2017-01-10 or before}
+#' }
+#' 
+#' For more detailed explanation, see http://api.hel.fi/linkedevents/v1/. 
 #'
 #' @return Data frame or a list
 #' 
@@ -107,5 +142,11 @@ get_linkedevents <- function(query, ...) {
   res_list <- jsonlite::fromJSON(url)
   # the element might not always be called data, making this dangerous
   # res_list <- res_list$data 
+  message("Source: Helsinki Linked Events API v1. Developed by the City of
+  Helsinki Open Software Development team. Event data from Helsinki Marketing,
+  Helsinki Cultural Centres, Helmet metropolitan area public libraries and
+  City of Helsinki registry of service unit. 
+  CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/>")
+  
   return(res_list)
 }

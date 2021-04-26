@@ -17,6 +17,13 @@ Produces an sf object for Väestötietoruudukko (population grid)
 }
 \details{
 Additional data not available here can be manually downloaded from HRI website: https://hri.fi/data/fi/dataset/vaestotietoruudukko
+
+Years 2015-2019 are tested to work at the time of development. 
+Additional years may be added in the future and older datasets may be removed
+from the API. 
+
+The current datasets can be listed with get_feature_list()
+or select_feature().
 }
 \examples{
 \dontrun{

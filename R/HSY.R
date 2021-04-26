@@ -51,6 +51,13 @@ get_hsy <- function(which.data=NULL, which.year=2013, data.dir=tempdir(), verbos
 #' 
 #' @details Additional data not available here can be manually downloaded from HRI website: https://hri.fi/data/fi/dataset/vaestotietoruudukko
 #' 
+#' Years 2015-2019 are tested to work at the time of development. 
+#' Additional years may be added in the future and older datasets may be removed
+#' from the API. 
+#' 
+#' The current datasets can be listed with get_feature_list()
+#' or select_feature(). 
+#' 
 #' @param year year as numeric from range 2015:2019
 #'
 #' @return sf object
@@ -73,7 +80,8 @@ get_vaestotietoruudukko <- function(year = NULL) {
   }
   
   if (!(year %in% valid.years)) {
-    stop(cat("Input valid year from range:", valid.years))
+    message(paste0("It is strongly suggested to use a valid year from range: 2015-2019. 
+                   Using other years may result in an error."))
   }
   
   selection <- paste(namespace_title, year, sep = "_")
@@ -87,6 +95,13 @@ get_vaestotietoruudukko <- function(year = NULL) {
 #' @description Produces an sf object for Rakennustietoruudukko (building information grid)
 #' 
 #' @details Additional data not available here can be manually downloaded from HRI website: https://hri.fi/data/fi/dataset/rakennustietoruudukko
+#' 
+#' Years 2015-2019 are tested to work at the time of development. 
+#' Additional years may be added in the future and older datasets may be removed
+#' from the API. 
+#' 
+#' The current datasets can be listed with get_feature_list()
+#' or select_feature(). 
 #' 
 #' @param year year as numeric from range 2015:2019
 #'
@@ -110,7 +125,8 @@ get_rakennustietoruudukko <- function(year = NULL) {
   }
   
   if (!(year %in% valid.years)) {
-    stop(cat("Input valid year from range:", valid.years))
+    message(paste0("It is strongly suggested to use a valid year from range: 2015-2019. 
+                   Using other years may result in an error."))
   }
   
   if (year == 2016) {

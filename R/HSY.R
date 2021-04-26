@@ -87,7 +87,7 @@ get_vaestotietoruudukko <- function(year = NULL) {
   
   selection <- paste(namespace_title, year, sep = "_")
   
-  feature <- get_feature(base.url = base_url, typeName = selection)
+  feature <- get_feature(base.url = base_url, typename = selection)
   feature
 }
 
@@ -137,6 +137,6 @@ get_rakennustietoruudukko <- function(year = NULL) {
     selection <- paste(namespace_title, year, sep = "_")
   }
   
-  feature <- get_feature(base.url = base_url, typeName = selection)
+  feature <- get_feature(base.url = base_url, typename = selection)
   feature
 }

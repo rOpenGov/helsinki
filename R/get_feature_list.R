@@ -82,7 +82,7 @@ select_feature <- function(base.url = NULL, get = FALSE) {
                      title = "Which dataset?")
   selected_dataset_name <- df$Name[which(df$Title == df$Title[selection2])]
   if (get == TRUE) {
-    object <- get_feature(base.url = base.url ,typename = selected_dataset_name)
+    object <- get_feature(base.url = base.url, typename = selected_dataset_name)
     return(object)
   } else {
     return(selected_dataset_name)

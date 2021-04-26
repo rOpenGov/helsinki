@@ -87,9 +87,7 @@ wfs_api <- function(base.url = NULL, queries) {
     ),
     class = "wfs_api"
   )
-  
-  api_obj$content <- content
-  
+
   # Attach the nodes to the API object
   api_obj$content <- content
   

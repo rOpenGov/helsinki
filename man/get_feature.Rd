@@ -6,7 +6,8 @@
 \usage{
 get_feature(
   base.url = "https://kartta.hsy.fi/geoserver/wfs",
-  typename = "asuminen_ja_maankaytto:Vaestotietoruudukko_2015"
+  typename = "asuminen_ja_maankaytto:Vaestotietoruudukko_2015",
+  CRS = 3879
 )
 }
 \arguments{
@@ -14,6 +15,8 @@ get_feature(
 
 \item{typename}{accepts feature names, e.g. "asuminen_ja_maankaytto:1000m_verkostobufferi"
 No short form titles here, e.g. "1000m_verkostobufferi"!}
+
+\item{CRS}{Default CRS is 3879 (or EPSG:3879), see ?sf::st_crs for other input options}
 }
 \value{
 sf object

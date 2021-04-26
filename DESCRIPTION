@@ -11,13 +11,12 @@ Authors@R: c(
 Description: Tools for accessing various open data sources in the Helsinki
     region in Finland. Current data sources include
     the Real Estate Department (<http://ptp.hel.fi/avoindata/>),
-    Service Map API (<http://api.hel.fi/servicemap/v1/>),
-    Linked Events API (<http://api.hel.fi/linkedevents/v0.1/>),
+    Service Map API (<http://api.hel.fi/servicemap/v2/>),
+    Linked Events API (<http://api.hel.fi/linkedevents/v1/>),
     Helsinki Region Infoshare statistics API (<https://dev.hel.fi/stats/>).
 License: BSD_2_clause + file LICENSE
 Depends:
-    R (>= 3.1.0),
-    maptools
+    R (>= 3.1.0)
 Suggests:
     knitr,
     rmarkdown,

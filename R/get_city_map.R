@@ -84,7 +84,7 @@ get_city_map <- function(city = NULL, level = NULL) {
   }
   
   message("Source: Metropolitan area in districts. The maintainer of the dataset 
-  is Helsingin kaupunkiympäristön toimiala / Kaupunkimittauspalvelut and the 
+  is Helsingin kaupunkiympariston toimiala / Kaupunkimittauspalvelut and the 
   original author is Helsingin, Espoon, Vantaan ja Kauniaisten 
   mittausorganisaatiot. The dataset has been downloaded from Helsinki Region 
   Infoshare service. CC BY 4.0. <https://creativecommons.org/licenses/by/4.0/>")

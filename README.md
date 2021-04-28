@@ -25,3 +25,7 @@ You are welcome to contact us:
 * [send a pull request](https://github.com/ropengov/helsinki/)
 * [be in touch](http://ropengov.org/community/) and follow us in social media
   
+[github-watch-badge]: https://img.shields.io/github/watchers/ropengov/helsinki.svg?style=social
+[github-watch]: https://github.com/ropengov/helsinki/watchers
+[github-star-badge]: https://img.shields.io/github/stars/ropengov/helsinki.svg?style=social
+[github-star]: https://github.com/ropengov/helsinki/stargazers

@@ -2,10 +2,13 @@ helsinki - Helsinki open data R tools
 ========
 
 <!-- badges: start -->
-[![R build status](https://github.com/rOpenGov/helsinki/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/helsinki/actions)
-[![Build Status](https://api.travis-ci.org/rOpenGov/helsinki.png)](https://travis-ci.org/rOpenGov/helsinki)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/helsinki)](http://www.r-pkg.org/pkg/helsinki)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/helsinki)](http://www.r-pkg.org/pkg/helsinki)
+  [![R build status](https://github.com/rOpenGov/helsinki/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/helsinki/actions)
+  [![CRAN Status Badge](http://www.r-pkg.org/badges/version/helsinki)](http://www.r-pkg.org/pkg/helsinki)
+  [![Downloads total](http://cranlogs.r-pkg.org/badges/grand-total/helsinki)](https://cran.r-project.org/package=helsinki)
+  [![Downloads monthly](http://cranlogs.r-pkg.org/badges/helsinki)](http://www.r-pkg.org/pkg/helsinki)
+  [![Watch on GitHub][github-watch-badge]][github-watch]
+  [![Star on GitHub][github-star-badge]][github-star]
+  [![Follow on Twitter](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
 <!--[![Stories in Ready](https://badge.waffle.io/ropengov/helsinki.png?label=Ready)](http://waffle.io/ropengov/helsinki)-->
 <!--[![codecov.io](https://codecov.io/github/rOpenGov/helsinki/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/helsinki?branch=master)-->
 <!-- badges: end -->

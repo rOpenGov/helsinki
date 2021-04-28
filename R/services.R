@@ -15,7 +15,7 @@
 
 #' @title Access Helsinki region Service Map API
 #'
-#' Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
+#' @description Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
 #' http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v2/. 
 #' For more API documentation and license information see the API link.
 #' 
@@ -24,6 +24,35 @@
 #' @param ... Additional parameters to the API (optional). 
 #' For additional details, see https://dev.hel.fi/apis/service-map-backend-api. 
 #'
+#' @details 
+#' Complete list of possible query input: 
+#' \itemize{
+#'  \item{"unit"} {unit, or service point}
+#'  \item{"service"} {category of service provided by a unit}
+#'  \item{"organization"} {organization providing services}
+#'  \item{"search"} {full text search for units, services and street addresses}
+#'  \item{"accessibility"} {rule database for calculating accessibility scores} 
+#'  \item{"geography"} {spatial information, where services are located}
+#'  }
+#' 
+#' With "..." the user can pass on additional parameters that depend on the
+#' chosen query input. For example, when performing a search (query = "search"), 
+#' the search can be narrowed down with parameters such as:
+#' \itemize{
+#'  \item{"q"} {complete search}
+#'  \item{"input"} {partial search}
+#'  \item{"type"} {valid types: service_node, service, unit, address}
+#'  \item{"language"} {as two-character ISO-639-1 code: fi, sv, en}
+#'  \item{"municipality"} {comma-separated list of municipalities, lower-case, in Finnish}
+#'  \item{"service"} {comma-separated list of service IDs}
+#'  \item{"include"} {include the complete content from certain fields with a comma-separated list of field names  with a valid type prefix}
+#'  \item{"only"} {restricts the results with a comma-separated list of field names with a valid type prefix}
+#'  \item{"page"} {request a certain page number}
+#'  \item{"page_size"} {determine number of entries in one page}
+#' }
+#' 
+#' For more detailed explanation, see https://dev.hel.fi/apis/service-map-backend-api. 
+#'
 #' @return Data frame or a list
 #' 
 #' @importFrom httr parse_url build_url
@@ -31,14 +60,19 @@
 #' 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}, Pyry Kantanen
 #' @examples 
-#' search.puisto <- get_servicemap(query="search", q="puisto")
+#' # A data.frame with 47 variables
+#' search_puisto <- get_servicemap(query="search", q="puisto")
+#' # A data.frame with 7 variables
+#' search_padel <- get_servicemap(query="search", input="padel", only="unit.name, unit.location.coordinates, unit.street_address", municipality="helsinki")
 #' 
 #' @source API contents: All content is available under CC BY 4.0, 
 #' except where otherwise stated. The City of Helsinki logo is a registered 
 #' trademark. The Helsinki Grotesk Typeface is a proprietary typeface licensed 
 #' by Camelot Typefaces.
 #' <https://creativecommons.org/licenses/by/4.0/>
+#' 
 #' API Location: https://api.hel.fi/servicemap/v2/
+#' API documentation: https://dev.hel.fi/apis/service-map-backend-api
 #' 
 #' @export
 
@@ -61,13 +95,13 @@ get_servicemap <- function(query, ...) {
   }
 
   res_list <- jsonlite::fromJSON(url)
-  # the element might not always be called data, making this dangerous
-  # res_list <- res_list$data 
+  # res_list <- res_list$results 
   
-  message("All content is available under CC BY 4.0, except where otherwise 
-  stated. The City of Helsinki logo is a registered trademark. The Helsinki 
-  Grotesk Typeface is a proprietary typeface licensed by Camelot Typefaces. 
-  CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/>")
+  message(
+"All content is available under CC BY 4.0, except where otherwise stated. 
+The City of Helsinki logo is a registered trademark. The Helsinki Grotesk 
+Typeface is a proprietary typeface licensed by Camelot Typefaces. 
+CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/>")
   
   return(res_list)
 }
@@ -99,8 +133,8 @@ get_servicemap <- function(query, ...) {
 #' chosen query input. For example, when performing a search (query = "search"), 
 #' the search can be narrowed down with parameters such as:
 #' \itemize{
-#'  \item{q="konsertti"} {searches for events that have the word "konsertti" on them}
-#'  \item{input="konse"} {searches also for substrings inside words}
+#'  \item{q="konsertti"} {complete search, returns events that have the word "konsertti"}
+#'  \item{input="konse"} {partial search, returns events with words that contain "konse"}
 #'  \item{type="event"} {returns only "events"}
 #'  \item{start="2017-01-01"} {events starting on 2017-01-01 or after}
 #'  \item{end="2017-01-10"} {events ending on 2017-01-10 or before}
@@ -140,10 +174,11 @@ get_linkedevents <- function(query, ...) {
   }
 
   res_list <- jsonlite::fromJSON(url)
-  # the element might not always be called data, making this dangerous
   # res_list <- res_list$data 
-  message("Source: Helsinki Linked Events API v1. Developed by the City of
-  Helsinki Open Software Development team. Event data from Helsinki Marketing,
+  
+  message(
+  "Source: Helsinki Linked Events API v1. Developed by the City of Helsinki 
+  Open Software Development team. Event data from Helsinki Marketing,
   Helsinki Cultural Centres, Helmet metropolitan area public libraries and
   City of Helsinki registry of service unit. 
   CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/>")

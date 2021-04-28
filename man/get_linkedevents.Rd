@@ -36,8 +36,8 @@ With "..." the user can pass on additional parameters that depend on the
 chosen query input. For example, when performing a search (query = "search"), 
 the search can be narrowed down with parameters such as:
 \itemize{
- \item{q="konsertti"} {searches for events that have the word "konsertti" on them}
- \item{input="konse"} {searches also for substrings inside words}
+ \item{q="konsertti"} {complete search, returns events that have the word "konsertti"}
+ \item{input="konse"} {partial search, returns events with words that contain "konse"}
  \item{type="event"} {returns only "events"}
  \item{start="2017-01-01"} {events starting on 2017-01-01 or after}
  \item{end="2017-01-10"} {events ending on 2017-01-10 or before}

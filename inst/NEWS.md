@@ -13,6 +13,7 @@ helsinki 0.9.31 (2021-04-27)
     
   * Improved output for `get_servicemap()` and `get_linkedevents()`
   * Rmarkdown added as an explicit dependency, as required by knitr-package maintainers
+  * Using period.separated naming for function parameters and underscore_separated naming for function names and objects inside functions, as distinction between the two is sometimes useful for increased code legibility
         
 ### DEPRECATED AND DEFUNCT
         
@@ -30,6 +31,7 @@ helsinki 0.9.16 (2014-05-12)
 =========================
           
   * Package updated a lot
+
 
 helsinki 0.9.01 (2013-12-17)
 =========================

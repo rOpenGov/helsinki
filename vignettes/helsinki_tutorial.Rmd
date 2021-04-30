@@ -95,7 +95,8 @@ The main takeaway is that "suuralue" is the highest-level division and "pienalue
 
 In addition, it is possible to download "aanestysalue" (voting district) divisions for the city of Helsinki. Currently this data is not available for other cities.
 
-```{r}
+```{r city_map_visuals, message=FALSE}
+library(sf)
 map <- get_city_map(city = "helsinki", level = "suuralue")
 plot(sf::st_geometry(map))
 

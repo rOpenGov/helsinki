@@ -63,7 +63,9 @@
 #' # A data.frame with 47 variables
 #' search_puisto <- get_servicemap(query="search", q="puisto")
 #' # A data.frame with 7 variables
-#' search_padel <- get_servicemap(query="search", input="padel", only="unit.name, unit.location.coordinates, unit.street_address", municipality="helsinki")
+#' search_padel <- get_servicemap(query="search", input="padel", 
+#' only="unit.name, unit.location.coordinates, unit.street_address", 
+#' municipality="helsinki")
 #' 
 #' @source API contents: All content is available under CC BY 4.0, 
 #' except where otherwise stated. The City of Helsinki logo is a registered 
@@ -72,6 +74,7 @@
 #' <https://creativecommons.org/licenses/by/4.0/>
 #' 
 #' API Location: https://api.hel.fi/servicemap/v2/
+#' 
 #' API documentation: https://dev.hel.fi/apis/service-map-backend-api
 #' 
 #' @export

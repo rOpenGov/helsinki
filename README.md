@@ -17,7 +17,7 @@ R tools for open data from the Helsinki region in Finland from the [rOpenGov](ht
 
 For installation and usage, check the [tutorial page](https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md). 
 
-Authors: [Juuso Parkkinen](https://github.com/ouzor), [Joona Lehtomäki](https://github.com/jlehtoma), [Leo Lahti](https://github.com/antagomir)
+Authors: [Juuso Parkkinen](https://github.com/ouzor), [Joona Lehtomäki](https://github.com/jlehtoma), [Pyry Kantanen](https://github.com/pitkant), [Leo Lahti](https://github.com/antagomir)
   
 You are welcome to contact us:
 

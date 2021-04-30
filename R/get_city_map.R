@@ -16,6 +16,9 @@
 #' @source Metropolitan area in districts: <https://hri.fi/data/fi/dataset/paakaupunkiseudun-aluejakokartat>
 #'
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
+#' 
+#' @examples 
+#' map <- get_city_map(city = "helsinki", level = "suuralue")
 #'
 #' @export
 get_city_map <- function(city = NULL, level = NULL) {

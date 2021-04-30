@@ -1,6 +1,6 @@
 #' @title Print all available Features
 #' 
-#' @description Basically "request=GetCapabilities" as a neat data frame.
+#' @description Basically a neat wrapper for "request=GetCapabilities".
 #' 
 #' @details Lists all <FeatureType> nodes.
 #' 
@@ -12,6 +12,9 @@
 #' @importFrom xml2 as_list xml_find_all xml_ns_strip
 #'
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
+#' 
+#' @examples 
+#' dat <- get_feature_list(base.url = "https://kartta.hsy.fi/geoserver/wfs")
 #'
 #' @export
 get_feature_list <- function(base.url = NULL) {

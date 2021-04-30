@@ -53,8 +53,8 @@ Helsinki Real Estate Department (HKK:n avointa dataa)
 
 [Service and event information](#servicemap)
 
-* [Helsinki region Service Map API](http://api.hel.fi/servicemap/v1/) (Pääkaupunkiseudun Palvelukartta)
-* [Helsinki Linked Event API](http://api.hel.fi/linkedevents/v0.1/)
+* [Helsinki region Service Map API](http://api.hel.fi/servicemap/v2/) (Pääkaupunkiseudun Palvelukartta)
+* [Helsinki Linked Event API](http://api.hel.fi/linkedevents/v1/)
 
 [Helsinki Region Infoshare statistics API](#hri_stats)
 
@@ -87,7 +87,23 @@ library(helsinki)
 
 ## <a name="aluejakokartat"></a>Helsinki region district maps
 
-Helsinki region district maps (Helsingin seudun aluejakokartat) and election maps (äänestysalueet) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) are available in the helsinki package with `data(aluejakokartat)`. The data are available as both spatial object (`sp`) and data frame (`df`). These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, and more examples can be found in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). 
+Helsinki region geographic data can be accessed from a WFS API by using the get_city_map() function. Data is available for all 4 cities in the capital region: Helsinki, Espoo, Vantaa and Kauniainen. 
+
+Administrative divisions can be accessed on 3 distinct levels: "suuralue", "tilastoalue" and "pienalue". Literal, completely unofficial translations for these could be "grand district", "statistical area" and "(minor) district". The naming convention of these levels is sometimes confusing even in Finnish documents and different names can vary by city and time. 
+
+The main takeaway is that "suuralue" is the highest-level division and "pienalue" is the most granular level of division. "Tilastoalue" is between these two.
+
+In addition, it is possible to download "aanestysalue" (voting district) divisions for the city of Helsinki. Currently this data is not available for other cities.
+
+```{r}
+map <- get_city_map(city = "helsinki", level = "suuralue")
+plot(sf::st_geometry(map))
+
+voting_district <- get_city_map(city = "helsinki", level = "aanestysalue")
+plot(sf::st_geometry(voting_district))
+```
+
+For other cities than Helsinki voting areas (and other district maps) can be viewed from the legacy dataset with `data(aluejakokartat)`. The data included with the packaged is available as both spatial object (`sp`) and data frame (`df`). This data was preprocessed with the now-defunct gisfin-package (actively maintained version is called [geofi](https://github.com/rOpenGov/geofi)) and its inclusion in the package may change in the next releases.
 
 ```{r aluejako_data, message=FALSE}
 # Load aluejakokartat and study contents

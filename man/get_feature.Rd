@@ -25,7 +25,7 @@ sf object
 Produces an sf object for easy visualization
 }
 \details{
-See list_features() for a list of all available features
+See \code{list_features()} for a list of all available features
 }
 \author{
 Pyry Kantanen <pyry.kantanen@gmail.com>

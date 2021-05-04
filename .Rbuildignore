@@ -8,8 +8,11 @@ inst/blog
 
 # Git related
 ./.git*
-# Travis scripts
-.travis.yml
+# README related
+README.Rmd
+README.html
+# pkgdown-website
+docs
 # Misc
 ./.*~
 ./*~
@@ -23,3 +26,5 @@ inst/blog
 ^\.github$
 ^doc$
 ^Meta$
+
+

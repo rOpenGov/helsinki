@@ -1,4 +1,4 @@
-helsinki 0.9.31 (2021-04-27)
+helsinki 0.9.40 (2021-04-27)
 =========================
   
 ### NEW FEATURES
@@ -27,13 +27,20 @@ helsinki 0.9.31 (2021-04-27)
   * Improved documentation for `get_servicemap()` and `get_linkedevents()`
         
         
+helsinki 0.9.29 (2017-02-18)
+=========================
+
+ * Package released in CRAN
+        
+        
 helsinki 0.9.16 (2014-05-12)
 =========================
           
-  * Package updated a lot
+ * Package updated a lot
 
 
 helsinki 0.9.01 (2013-12-17)
 =========================
   
-  * Package separated from sorvi
+ * Package separated from sorvi
+

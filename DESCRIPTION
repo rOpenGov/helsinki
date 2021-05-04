@@ -1,12 +1,13 @@
 Package: helsinki
 Type: Package
 Title: R Tools for Helsinki Open Data
-Version: 0.9.31
-Date: 2021-04-21
+Date: 2021-05-04
+Version: 0.9.40
+Encoding: UTF-8
 Authors@R: c(
   person("Juuso", "Parkkinen", email = "juuso.parkkinen@iki.fi", role = c("aut", "cre")),
   person("Joona", "Lehtomaki", role = "ctb"),
-  person("Pyry", "Kantanen", role = "ctb"),
+  person("Pyry", "Kantanen", role = "aut"),
   person("Leo", "Lahti", role = c("aut"), comment = c(ORCID = "0000-0001-5537-637X")))
 Description: Tools for accessing various open data sources in the Helsinki
     region in Finland. Current data sources include

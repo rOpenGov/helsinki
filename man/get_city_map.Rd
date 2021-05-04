@@ -24,6 +24,10 @@ Sf object of city districts
 \details{
 See list_features() for a list of all available features
 }
+\examples{
+map <- get_city_map(city = "helsinki", level = "suuralue")
+
+}
 \author{
 Pyry Kantanen <pyry.kantanen@gmail.com>
 }

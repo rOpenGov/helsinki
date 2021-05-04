@@ -13,10 +13,14 @@ get_feature_list(base.url = NULL)
 data frame
 }
 \description{
-Basically "request=GetCapabilities" as a neat data frame.
+Basically a neat wrapper for "request=GetCapabilities".
 }
 \details{
 Lists all <FeatureType> nodes.
+}
+\examples{
+dat <- get_feature_list(base.url = "https://kartta.hsy.fi/geoserver/wfs")
+
 }
 \author{
 Pyry Kantanen <pyry.kantanen@gmail.com>

@@ -19,7 +19,9 @@ Basically a neat wrapper for "request=GetCapabilities".
 Lists all <FeatureType> nodes.
 }
 \examples{
+\dontrun{
 dat <- get_feature_list(base.url = "https://kartta.hsy.fi/geoserver/wfs")
+}
 
 }
 \author{

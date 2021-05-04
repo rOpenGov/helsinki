@@ -14,7 +14,9 @@
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
 #' 
 #' @examples 
+#' \dontrun{
 #' dat <- get_feature_list(base.url = "https://kartta.hsy.fi/geoserver/wfs")
+#' }
 #'
 #' @export
 get_feature_list <- function(base.url = NULL) {

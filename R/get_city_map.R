@@ -18,7 +18,9 @@
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
 #' 
 #' @examples 
+#' \dontrun{
 #' map <- get_city_map(city = "helsinki", level = "suuralue")
+#' }
 #'
 #' @export
 get_city_map <- function(city = NULL, level = NULL) {

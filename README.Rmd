@@ -35,19 +35,27 @@ R tools for accessing and downloading open data from the Helsinki capital region
 ### Installation
 
 ```{r, eval=FALSE}
+# Stable release
 install.packages("helsinki")
+# Development version
+library(remotes)
+remotes::install_github("ropengov/helsinki")
 ```
 
 ### Simple example
 
-List available features from HSY:
+Load the package, list available features from HSY and download the 20th feature from that list:
   
-  ```{r, warning=FALSE, message=FALSE, eval=FALSE}
+```{r, warning=FALSE, message=FALSE, eval=FALSE}
 library(helsinki) 
-hsy_features <- dat <- get_feature_list(base.url = "https://kartta.hsy.fi/geoserver/wfs")
+url <- "https://kartta.hsy.fi/geoserver/wfs"
+
+hsy_features <- get_feature_list(base.url = url)
+
+get_feature(base.url = url, typename = hsy_features$Name[20])
 ```
 
-For further usage instructions, check the [tutorial page](https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md). 
+For more examples, check the [tutorial page](https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md). 
 
 ### Meta
 

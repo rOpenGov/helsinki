@@ -176,14 +176,25 @@ pre code {
 <p>R tools for accessing and downloading open data from the Helsinki capital region in Finland.</p>
 <div id="installation" class="section level3">
 <h3>Installation</h3>
-<pre class="r"><code>install.packages(&quot;helsinki&quot;)</code></pre>
+<pre class="r"><code># Stable release
+install.packages(&quot;helsinki&quot;)
+# Development version
+library(remotes)
+remotes::install_github(&quot;ropengov/helsinki&quot;)</code></pre>
 </div>
 <div id="simple-example" class="section level3">
 <h3>Simple example</h3>
-<p>List available features from HSY:</p>
+<p>Load the package, list available features from HSY and download the 20th feature from that list:</p>
 <pre class="r"><code>library(helsinki) 
-hsy_features &lt;- dat &lt;- get_feature_list(base.url = &quot;https://kartta.hsy.fi/geoserver/wfs&quot;)</code></pre>
-<p>For further usage instructions, check the <a href="https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md">tutorial page</a>.</p>
+url &lt;- &quot;https://kartta.hsy.fi/geoserver/wfs&quot;
+
+hsy_features &lt;- get_feature_list(base.url = url)
+
+get_feature(base.url = url, typename = hsy_features$Name[20])</code></pre>
+<p>For more examples, check the <a href="https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md">tutorial page</a>.</p>
+</div>
+<div id="meta" class="section level3">
+<h3>Meta</h3>
 <p>Authors: <a href="https://github.com/ouzor">Juuso Parkkinen</a>, <a href="https://github.com/jlehtoma">Joona Lehtomäki</a>, <a href="https://github.com/pitkant">Pyry Kantanen</a>, <a href="https://github.com/antagomir">Leo Lahti</a>. Part of the <a href="http://ropengov.org">rOpenGov</a> project.</p>
 <p>You are welcome to contact us:</p>
 <ul>

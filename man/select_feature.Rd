@@ -9,13 +9,14 @@ select_feature(base.url = NULL, get = FALSE)
 \arguments{
 \item{base.url}{WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"}
 
-\item{get}{Should the selected feature be also downloaded? Default is FALSE}
+\item{get}{Should the selected feature be downloaded? Default is \code{FALSE}}
 }
 \value{
-feature Title (character) or feature object
+feature Title (character) or feature object (sf), if \code{get} parameter is TRUE
 }
 \description{
-Select wanted feature for use in other functions
+Use an interactive menu to select and download a feature 
+for use in other functions
 }
 \examples{
 \dontrun{
@@ -25,6 +26,9 @@ ggplot(feature) +
   geom_sf()
 }
 
+}
+\seealso{
+\code{\link{get_feature}}, \code{\link{get_feature_list}}
 }
 \author{
 Pyry Kantanen <pyry.kantanen@gmail.com>

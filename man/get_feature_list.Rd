@@ -24,6 +24,10 @@ dat <- get_feature_list(base.url = "https://kartta.hsy.fi/geoserver/wfs")
 }
 
 }
+\seealso{
+Use \code{\link{get_feature}} to download feature, 
+\code{\link{select_feature}} for menu-driven listing and downloading
+}
 \author{
 Pyry Kantanen <pyry.kantanen@gmail.com>
 }

@@ -4,6 +4,9 @@
 #' 
 #' @details Lists all <FeatureType> nodes.
 #' 
+#' @seealso Use \code{\link{get_feature}} to download feature, 
+#' \code{\link{select_feature}} for menu-driven listing and downloading
+#' 
 #' @param base.url a WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
 #'
 #' @return data frame
@@ -58,12 +61,15 @@ get_feature_list <- function(base.url = NULL) {
 
 #' @title Interactively browse and select features
 #' 
-#' @description Select wanted feature for use in other functions
+#' @description Use an interactive menu to select and download a feature 
+#' for use in other functions
 #'
-#' @return feature Title (character) or feature object
+#' @seealso \code{\link{get_feature}}, \code{\link{get_feature_list}}
+#'
+#' @return feature Title (character) or feature object (sf), if \code{get} parameter is TRUE
 #' 
 #' @param base.url WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
-#' @param get Should the selected feature be also downloaded? Default is FALSE
+#' @param get Should the selected feature be downloaded? Default is \code{FALSE}
 #' 
 #' @importFrom utils menu
 #'

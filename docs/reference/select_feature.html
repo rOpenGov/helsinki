@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Interactively browse and select features — select_feature" />
-<meta property="og:description" content="Select wanted feature for use in other functions" />
+<meta property="og:description" content="Use an interactive menu to select and download a feature 
+for use in other functions" />
 
 
 
@@ -134,7 +135,8 @@
     </div>
 
     <div class="ref-description">
-    <p>Select wanted feature for use in other functions</p>
+    <p>Use an interactive menu to select and download a feature 
+for use in other functions</p>
     </div>
 
     <pre class="usage"><span class='fu'>select_feature</span><span class='op'>(</span>base.url <span class='op'>=</span> <span class='cn'>NULL</span>, get <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
@@ -148,13 +150,16 @@
     </tr>
     <tr>
       <th>get</th>
-      <td><p>Should the selected feature be also downloaded? Default is FALSE</p></td>
+      <td><p>Should the selected feature be downloaded? Default is <code>FALSE</code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>feature Title (character) or feature object</p>
+    <p>feature Title (character) or feature object (sf), if <code>get</code> parameter is TRUE</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='get_feature.html'>get_feature</a></code>, <code><a href='get_feature_list.html'>get_feature_list</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Pyry Kantanen &lt;pyry.kantanen@gmail.com&gt;</p>

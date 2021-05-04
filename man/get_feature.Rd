@@ -24,8 +24,10 @@ sf object
 \description{
 Produces an sf object for easy visualization
 }
-\details{
-See \code{list_features()} for a list of all available features
+\seealso{
+Use \code{\link{get_feature_list}} to list all available features 
+for a given WFS, \code{\link{select_feature}} for listing and selecting a 
+feature
 }
 \author{
 Pyry Kantanen <pyry.kantanen@gmail.com>

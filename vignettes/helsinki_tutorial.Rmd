@@ -1,13 +1,14 @@
 ---
 title: "Helsinki open data R tools"
+author: "Pyry Kantanen"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette: >
   %\VignetteIndexEntry{Helsinki open data R tools}
+  %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
 ---
 
 
@@ -53,39 +54,67 @@ Load the package.
 library(helsinki)
 ```
 
-## Helsinki region district maps
+## API Access
 
-Helsinki region geographic data can be accessed from a WFS API by using the get_city_map() function. Data is available for all 4 cities in the capital region: Helsinki, Espoo, Vantaa and Kauniainen. 
+The package has basic functionalities for interacting with WFS APIs. 
 
-Administrative divisions can be accessed on 3 distinct levels: "suuralue", "tilastoalue" and "pienalue". Literal, completely unofficial translations for these could be "grand district", "statistical area" and "(minor) district". The naming convention of these levels is sometimes confusing even in Finnish documents and different names can vary by city and time. 
+All available features of a given API can be easily listed with `get_feature_list()`:
 
-The main takeaway is that "suuralue" is the highest-level division and "pienalue" is the most granular level of division. "Tilastoalue" is between these two.
+```{r wfs1, eval = TRUE}
+url <- "https://kartta.hsy.fi/geoserver/wfs"
 
-In addition, it is possible to download "aanestysalue" (voting district) divisions for the city of Helsinki. Currently this data is not available for other cities and it must be accessed from other sources.
-
-```{r city_map_visuals, eval=FALSE}
-library(sf)
-map <- get_city_map(city = "helsinki", level = "suuralue")
-plot(sf::st_geometry(map))
-
-voting_district <- get_city_map(city = "helsinki", level = "aanestysalue")
-plot(sf::st_geometry(voting_district))
+hsy_features <- get_feature_list(base.url = url)
+feature_of_interest <- hsy_features$Name[20]
+# Location of waterposts
+feature_of_interest
 ```
 
-For other cities than Helsinki voting areas (and other district maps) can be viewed from the legacy dataset with `data(aluejakokartat)`. The data included with the packaged is available as both spatial object (`sp`) and data frame (`df`). This data was preprocessed with the now-defunct gisfin-package. The current, actively maintained version of gisfin is called [geofi](https://github.com/rOpenGov/geofi)).
+When the wanted feature and its Name (in other words: Namespace:Title combination) is known, it can be downloaded with `get_feature()` by providing the correct base.url and the Name as the typename parameter.
 
-The inclusion of this legacy dataset in this package may change in the future.
-
-```{r aluejako_data, message=FALSE}
-# Load aluejakokartat and study contents
-data(aluejakokartat)
-str(aluejakokartat, m=2)
+```{r wfs2, eval = TRUE}
+# downloading a feature
+waterposts <- get_feature(base.url = url, typename = feature_of_interest)
+# Visualizing the location of waterposts
+plot(waterposts$geom)
 ```
 
+Dots on a blank canvas do not make much sense and therefore helsinki-package has `get_city_map()` function for downloading city district boundaries. An example of this is provided in the [Helsinki region district maps](#helsinki-region-district-maps) section of this vignette.
+
+Helsinki-package provides an easy-to-use menu-driven `select_feature()` function that effectively combines `get_feature_list()` and `get_feature()`. At default it only returns the Name of the wanted function, but if download parameter is set to TRUE, it returns an sf_object which can be easily visualized.
+
+```{r wfs3, eval = FALSE}
+# Standard use
+selected_feature <- select_feature(base.url = url)
+feature <- get_feature(base.url = url, typename = selected_feature)
+
+# Skipping a redundant step with parameter get = TRUE
+feature <- select_feature(base.url = url, get = TRUE)
+```
+
+### Helsinki Region Environmental Services HSY open data
+
+The above example shows a general use case which can easily be applied to Helsinki Region Environmental Services (HSY) WFS API as well as other service providers' APIs. 
+
+For legacy reasons, helsinki-package has also some specialized functions that aim to make downloading often used data as easy as possible. 
+
+Specifically, there are two new functions that replace deprecated functionalities from `get_hsy()` function: `get_vaestotietoruudukko()` (population grid) and `get_rakennustietoruudukko()` (building information grid). As of writing, years 2015 to 2019 are supported but the API may be updated at any time and `get_feature_list()` can be used to download datasets that are not baked into these functions.
+
+```{r get_hsy_examples, eval = TRUE}
+pop_grid <- get_vaestotietoruudukko(year = 2018)
+building_grid <- get_rakennustietoruudukko(year = 2016)
+
+library(ggplot2)
+
+# Logarithmic scales to make the visualizations more discernible
+ggplot(pop_grid) + geom_sf(aes(colour=log(asukkaita), fill=log(asukkaita)))
+ggplot(building_grid) + geom_sf(aes(colour=log(kerala_yht), fill=log(kerala_yht)))
+```
+
+While easy enough to build, specialized functions such as these are probably not something that power users want to rely on in their work flows. They also add more manual phases to package maintenance and therefore are probably not the direction we're heading in the future. If you feel differently about this and there is a dataset that gets a lot of use, feel free to drop us a suggestion in [GitHub](https://github.com/rOpenGov/helsinki/issues).
 
 ## Service and event information
 
-Function `get_servicemap()` retrieves regional service data from the new [Service Map API](http://api.hel.fi/servicemap/v2/), that contains data from the [Service Map](http://dev.hel.fi/servicemap/).
+Function `get_servicemap()` retrieves regional service data from city of Helsinki [Service Map API](http://api.hel.fi/servicemap/v2/), that contains data from the [Service Map](http://dev.hel.fi/servicemap/).
 
 ```{r servicemap, message=FALSE, warning=FALSE}
 # Search for "puisto" (park) (specify q="query")
@@ -128,6 +157,55 @@ events <- get_linkedevents(query="event")
 events$data$name$fi
 # See what kind of data is given for events
 names(events$data)
+```
+
+## Helsinki region district maps
+
+Helsinki region geographic data can be accessed from a WFS API by using the get_city_map() function. Data is available for all 4 cities in the capital region: Helsinki, Espoo, Vantaa and Kauniainen. 
+
+Administrative divisions can be accessed on 3 distinct levels: "suuralue", "tilastoalue" and "pienalue". Literal, completely unofficial translations for these could be "grand district", "statistical area" and "(minor) district". The naming convention of these levels is sometimes confusing even in Finnish documents and different names can vary by city and time. 
+
+The main takeaway is that "suuralue" is the highest-level division and "pienalue" is the most granular level of division. "Tilastoalue" is somewhere between these two.
+
+As promised earlier in [API Access](#api-access), the following example gives an idea on how to visualize waterpost locations (and, you guessed right, other kinds of spatial data) on a map.
+
+```{r maps1, eval = TRUE}
+helsinki <- get_city_map(city = "helsinki", level = "suuralue")
+espoo <- get_city_map(city = "espoo", level = "suuralue")
+vantaa <- get_city_map(city = "vantaa", level = "suuralue")
+kauniainen <- get_city_map(city = "kauniainen", level = "suuralue")
+
+library(ggplot2)
+
+ggplot() +
+  geom_sf(data = helsinki) +
+  geom_sf(data = espoo) +
+  geom_sf(data = vantaa) +
+  geom_sf(data = kauniainen) +
+  geom_sf(data = waterposts)
+```
+
+In addition, it is possible to download "aanestysalue" (voting district) divisions for the city of Helsinki. Currently this data is not available for other cities and it must be accessed from other sources.
+
+```{r maps2, eval=FALSE}
+library(sf)
+map <- get_city_map(city = "helsinki", level = "suuralue")
+plot(sf::st_geometry(map))
+
+voting_district <- get_city_map(city = "helsinki", level = "aanestysalue")
+plot(sf::st_geometry(voting_district))
+```
+
+For other cities than Helsinki voting areas (and older district maps that shouldn't be too different from current maps) can be viewed from the legacy dataset with `data(aluejakokartat)`. The data included with the packaged is available as both spatial object (`sp`) and data frame (`df`). This data was preprocessed with the now-defunct gisfin-package. The current, actively maintained version of gisfin is called [geofi](https://github.com/rOpenGov/geofi)).
+
+The included aluejakokartat-dataset can also be used if there is for some reason a temporary internet outage in your area and you just need to draw maps on Finnish capital region. It will be bundled with the package for the time being.
+
+Here are the contents of `data(aluejakokartat)`:
+
+```{r maps3, message=FALSE}
+# Load aluejakokartat and study contents
+data(aluejakokartat)
+str(aluejakokartat, m=2)
 ```
 
 ## Helsinki Region Infoshare statistics API

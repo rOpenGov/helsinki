@@ -2,7 +2,9 @@
 #' 
 #' @description Produces an sf object for easy visualization
 #' 
-#' @details See \code{list_features()} for a list of all available features
+#' @seealso Use \code{\link{get_feature_list}} to list all available features 
+#' for a given WFS, \code{\link{select_feature}} for listing and selecting a 
+#' feature
 #' 
 #' @param base.url WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
 #' @param typename accepts feature names, e.g. "asuminen_ja_maankaytto:1000m_verkostobufferi"

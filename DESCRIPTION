@@ -30,7 +30,8 @@ Imports:
     methods,
     sf,
     httpcache,
-    ggplot2
+    ggplot2,
+    dplyr
 URL: https://github.com/rOpenGov/helsinki
 BugReports: https://github.com/ropengov/helsinki/issues
 VignetteBuilder: knitr

@@ -1,24 +1,81 @@
-helsinki - Helsinki open data R tools
-========
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# helsinki - Helsinki open data R tools
 
 <!-- badges: start -->
-[![R build status](https://github.com/rOpenGov/helsinki/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/helsinki/actions)
-[![Build Status](https://api.travis-ci.org/rOpenGov/helsinki.png)](https://travis-ci.org/rOpenGov/helsinki)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/helsinki)](http://www.r-pkg.org/pkg/helsinki)
-[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/helsinki)](http://www.r-pkg.org/pkg/helsinki)
+
+[![R build
+status](https://github.com/rOpenGov/helsinki/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/helsinki/actions)
+[![CRAN Status
+Badge](http://www.r-pkg.org/badges/version/helsinki)](http://www.r-pkg.org/pkg/helsinki)
+[![Downloads
+total](http://cranlogs.r-pkg.org/badges/grand-total/helsinki)](https://cran.r-project.org/package=helsinki)
+[![Downloads
+monthly](http://cranlogs.r-pkg.org/badges/helsinki)](http://www.r-pkg.org/pkg/helsinki)
+[![Watch on
+GitHub](https://img.shields.io/github/watchers/ropengov/helsinki.svg?style=social)](https://github.com/ropengov/helsinki/watchers)
+[![Star on
+GitHub](https://img.shields.io/github/stars/ropengov/helsinki.svg?style=social)](https://github.com/ropengov/helsinki/stargazers)
+[![Follow on
+Twitter](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
 <!--[![Stories in Ready](https://badge.waffle.io/ropengov/helsinki.png?label=Ready)](http://waffle.io/ropengov/helsinki)-->
 <!--[![codecov.io](https://codecov.io/github/rOpenGov/helsinki/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/helsinki?branch=master)-->
 <!-- badges: end -->
 
-R tools for open data from the Helsinki region in Finland from the [rOpenGov](http://ropengov.org) project.   
+R tools for accessing and downloading open data from City of Helsinki
+and the Helsinki metropolitan area (Finnish capital region).
 
-For installation and usage, check the [tutorial page](https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md). 
+### Installation
 
-Authors: [Juuso Parkkinen](https://github.com/ouzor), [Joona Lehtomäki](https://github.com/jlehtoma), [Leo Lahti](https://github.com/antagomir)
-  
+``` r
+# Stable release
+install.packages("helsinki")
+# Development version
+library(remotes)
+remotes::install_github("ropengov/helsinki")
+```
+
+### Using the package
+
+As a simple example we load the package, list available features from
+Helsinki Region Environmental Services HSY WFS API and download the 20th
+feature from that list:
+
+``` r
+library(helsinki) 
+url <- "https://kartta.hsy.fi/geoserver/wfs"
+
+hsy_features <- get_feature_list(base.url = url)
+
+get_feature(base.url = url, typename = hsy_features$Name[20])
+```
+
+For more examples, check the [tutorial
+page](https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md).
+
+### Contributing
+
 You are welcome to contact us:
 
-* [submit suggestions and bug-reports](https://github.com/ropengov/helsinki/issues)
-* [send a pull request](https://github.com/ropengov/helsinki/)
-* [be in touch](http://ropengov.org/community/) and follow us in social media
-  
+-   [Submit suggestions and bug
+    reports](https://github.com/ropengov/helsinki/issues) (provide the
+    output of `sessionInfo()` and `packageVersion("helsinki")` and
+    preferably provide a [reproducible
+    example](http://adv-r.had.co.nz/Reproducibility.html))
+-   [Send a pull request](https://github.com/ropengov/helsinki/)
+-   [Star us on the Github page](https://github.com/ropengov/helsinki/)
+-   [Contact us otherwise](http://ropengov.org/community/)
+
+### Acknowledgements
+
+**Kindly cite this work** as follows: [Juuso
+Parkkinen](https://github.com/ouzor), [Joona
+Lehtomäki](https://github.com/jlehtoma), [Pyry
+Kantanen](https://github.com/pitkant), and [Leo
+Lahti](https://github.com/antagomir). helsinki - Helsinki open data R
+tools. URL: <https://github.com/rOpenGov/helsinki>
+
+We are grateful to all
+[contributors](https://github.com/rOpenGov/helsinki/graphs/contributors)!
+This project is part of [rOpenGov](http://ropengov.org).

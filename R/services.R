@@ -1,113 +1,175 @@
-# This file is a part of the helsinki package (http://github.com/rOpenGov/helsinki)
-# in association with the rOpenGov project (http://ropengov.org)
-
-# Copyright (C) 2010-2021 Juuso Parkkinen, Leo Lahti and Joona Lehtomaki / Louhos <louhos.github.com>. 
-# All rights reserved.
-
-# This program is open source software; you can redistribute it and/or modify 
-# it under the terms of the FreeBSD License (keep this notice): 
-# http://en.wikipedia.org/wiki/BSD_licenses
-
-# This program is distributed in the hope that it will be useful, 
-# but WITHOUT ANY WARRANTY; without even the implied warranty of 
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-
-#' Access Helsinki region Service Map API
+#' @title Access Helsinki region Service Map API
 #'
-#' Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
-#' http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v1/. 
+#' @description Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
+#' http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v2/. 
 #' For more API documentation and license information see the API link.
 #' 
 #' @param query The API query as a string, for example "search", "service", or "unit".
-#' For full list of available options and details, see http://api.hel.fi/servicemap/v1/. 
-#' @param ... Additional parameters to the API (optional).
-#' For details, see http://api.hel.fi/servicemap/v1/. 
+#' For full list of available options and details, see https://dev.hel.fi/apis/service-map-backend-api. 
+#' @param ... Additional parameters to the API (optional). 
+#' For additional details, see https://dev.hel.fi/apis/service-map-backend-api. 
 #'
-#' @return List of results
-#' @export
-#' @importFrom RCurl getCurlHandle
-#' @importFrom RCurl getForm
-#' @importFrom rjson fromJSON
+#' @details 
+#' Complete list of possible query input: 
+#' \itemize{
+#'  \item{"unit"} {unit, or service point}
+#'  \item{"service"} {category of service provided by a unit}
+#'  \item{"organization"} {organization providing services}
+#'  \item{"search"} {full text search for units, services and street addresses}
+#'  \item{"accessibility"} {rule database for calculating accessibility scores} 
+#'  \item{"geography"} {spatial information, where services are located}
+#'  }
 #' 
-#' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples search.puisto <- get_servicemap(query="search", q="puisto")
+#' With "..." the user can pass on additional parameters that depend on the
+#' chosen query input. For example, when performing a search (query = "search"), 
+#' the search can be narrowed down with parameters such as:
+#' \itemize{
+#'  \item{"q"} {complete search}
+#'  \item{"input"} {partial search}
+#'  \item{"type"} {valid types: service_node, service, unit, address}
+#'  \item{"language"} {as two-character ISO-639-1 code: fi, sv, en}
+#'  \item{"municipality"} {comma-separated list of municipalities, lower-case, in Finnish}
+#'  \item{"service"} {comma-separated list of service IDs}
+#'  \item{"include"} {include the complete content from certain fields with a comma-separated list of field names  with a valid type prefix}
+#'  \item{"only"} {restricts the results with a comma-separated list of field names with a valid type prefix}
+#'  \item{"page"} {request a certain page number}
+#'  \item{"page_size"} {determine number of entries in one page}
+#' }
+#' 
+#' For more detailed explanation, see https://dev.hel.fi/apis/service-map-backend-api. 
+#'
+#' @return Data frame or a list
+#' 
+#' @importFrom httr parse_url build_url
+#' @importFrom jsonlite fromJSON
+#' 
+#' @author Juuso Parkkinen \email{louhos@@googlegroups.com}, Pyry Kantanen
+#' @examples 
+#' # A data.frame with 47 variables
+#' search_puisto <- get_servicemap(query="search", q="puisto")
+#' # A data.frame with 7 variables
+#' search_padel <- get_servicemap(query="search", input="padel", 
+#' only="unit.name, unit.location.coordinates, unit.street_address", 
+#' municipality="helsinki")
+#' 
+#' @source API contents: All content is available under CC BY 4.0, 
+#' except where otherwise stated. The City of Helsinki logo is a registered 
+#' trademark. The Helsinki Grotesk Typeface is a proprietary typeface licensed 
+#' by Camelot Typefaces.
+#' <https://creativecommons.org/licenses/by/4.0/>
+#' 
+#' API Location: https://api.hel.fi/servicemap/v2/
+#' 
+#' API documentation: https://dev.hel.fi/apis/service-map-backend-api
+#' 
+#' @export
 
 get_servicemap <- function(query, ...) {
   
-  # api.url <- "http://www.hel.fi/palvelukarttaws/rest/v2/"
-  # Define query url
-  # New API (13.5.2014)
-  api.url <- "http://api.hel.fi/servicemap/v1/"
+  api_url <- "http://api.hel.fi/servicemap/v2/"
+  query_url <- paste0(api_url, query, "/")
+  
+  url <- httr::parse_url(query_url)
+  url$query <- list(...)
+  url <- httr::build_url(url)
   
   # Check whether API url available
-  if (!RCurl::url.exists(api.url)) {
-    message(paste("Sorry! API", api.url, "not available!\nReturned NULL."))
+  conn<-url(api_url)
+  doesnotexist<-inherits(try(suppressWarnings(readLines(conn)),silent=TRUE),"try-error")
+  close(conn)
+  if (doesnotexist) {
+    warning(paste("Sorry! API", api_url, "not available! Returning NULL"))
     return(NULL)
   }
+
+  res_list <- jsonlite::fromJSON(url)
+  # res_list <- res_list$results 
   
-  query.url <- paste0(api.url, query, "/")
+  message(
+"All content is available under CC BY 4.0, except where otherwise stated. 
+The City of Helsinki logo is a registered trademark. The Helsinki Grotesk 
+Typeface is a proprietary typeface licensed by Camelot Typefaces. 
+CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/>")
   
-  # Get Curl handle
-  curl <- RCurl::getCurlHandle(cookiefile = "")
-  
-  # Get data as json using getForm
-  # Note! Warnings suppressed because getForm outputs warning when no parameters (...) given
-  suppressWarnings(
-    res.json <- RCurl::getForm(uri=query.url, ..., curl=curl)
-  )
-  # Transform results into list from JSON
-  res.list <- rjson::fromJSON(res.json)
-  return(res.list)
+  return(res_list)
 }
 
 
 
-#' Access Helsinki Linked Events API
+#' @title Access Helsinki Linked Events API
 #'
-#' Access the new Helsinki Linked Events API: http://api.hel.fi/linkedevents/v0.1/.
-#' The API contains data from the Helsinki City Tourist & Convention Bureau, 
-#' the City of Helsinki Cultural Office and the Helmet metropolitan area public libraries.
-#' For more API documentation and license information see the API link.
+#' @description Easy access to Helsinki Linked Events API
 #' 
-#' @param query The API query as a string, one of "category", "event", "language", or "place".
-#' For details, see http://api.hel.fi/linkedevents/v0.1/. 
-#' @param ... Additional parameters to the API (optional).
-#' For details, see http://api.hel.fi/linkedevents/v0.1/. 
+#' @source Helsinki Linked Events API v1. Developed by the City of Helsinki 
+#' Open Software Development team. Event data from Helsinki Marketing, Helsinki 
+#' Cultural Centres, Helmet metropolitan area public libraries and City of 
+#' Helsinki registry of service unit. 
+#' CC BY 4.0. <https://creativecommons.org/licenses/by/4.0/>
+#' 
+#' For more API documentation and license information see the API link:
+#' http://api.hel.fi/linkedevents/v1/
+#' 
+#' @param query The API query as a string, for example "event", "category",
+#' "language", "place" or "keyword". 
+#' @param ... Additional parameters that narrow down the output (optional). 
 #'
-#' @return List of results
+#' @details 
+#' Complete list of possible query input: "keyword", "keyword_set", "place",
+#' "language", "organization", "image", "event", "search", "user".
+#' 
+#' With "..." the user can pass on additional parameters that depend on the
+#' chosen query input. For example, when performing a search (query = "search"), 
+#' the search can be narrowed down with parameters such as:
+#' \itemize{
+#'  \item{q="konsertti"} {complete search, returns events that have the word "konsertti"}
+#'  \item{input="konse"} {partial search, returns events with words that contain "konse"}
+#'  \item{type="event"} {returns only "events"}
+#'  \item{start="2017-01-01"} {events starting on 2017-01-01 or after}
+#'  \item{end="2017-01-10"} {events ending on 2017-01-10 or before}
+#' }
+#' 
+#' For more detailed explanation, see http://api.hel.fi/linkedevents/v1/. 
+#'
+#' @return Data frame or a list
+#' 
+#' @importFrom httr parse_url build_url
+#' @importFrom jsonlite fromJSON
+#' 
+#' @author Juuso Parkkinen \email{louhos@@googlegroups.com}, Pyry Kantanen
+#' 
+#' @examples 
+#' events <- get_linkedevents(query="search", q="teatteri", start="2020-01-01")
+#' 
 #' @export
-#' @importFrom RCurl getCurlHandle
-#' @importFrom RCurl getForm
-#' @importFrom rjson fromJSON
-#' 
-#' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples events <- get_linkedevents(query="event")
 
 get_linkedevents <- function(query, ...) {
   
-  # Define query url
-  api.url <- "http://api.hel.fi/linkedevents/v0.1/"
+  # Build query url
+  api_url <- "http://api.hel.fi/linkedevents/v1/"
+  query_url <- paste0(api_url, query, "/")
+  
+  url <- httr::parse_url(query_url)
+  url$query <- list(...)
+  url <- httr::build_url(url)
   
   # Check whether API url available
-  if (!RCurl::url.exists(api.url)) {
-    message(paste("Sorry! API", api.url, "not available!\nReturned NULL."))
+  conn<-url(api_url)
+  doesnotexist<-inherits(try(suppressWarnings(readLines(conn)),silent=TRUE),"try-error")
+  close(conn)
+  if (doesnotexist) {
+    warning(paste("Sorry! API", api_url, "not available! Returning NULL"))
     return(NULL)
   }
+
+  res_list <- jsonlite::fromJSON(url)
+  # res_list <- res_list$data 
   
-  query.url <- paste0(api.url, query, "/")
+  message(
+  "Source: Helsinki Linked Events API v1. Developed by the City of Helsinki 
+  Open Software Development team. Event data from Helsinki Marketing,
+  Helsinki Cultural Centres, Helmet metropolitan area public libraries and
+  City of Helsinki registry of service unit. 
+  CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/>")
   
-  # Get Curl handle
-  curl <- RCurl::getCurlHandle(cookiefile = "")
-  
-  # Get data as json using getForm
-  # Note! Warnings suppressed because getForm outputs warning when no parameters (...) given
-  suppressWarnings(
-    res.json <- RCurl::getForm(uri=query.url, ..., curl=curl)
-  )
-  # Transform results into list from JSON
-  res.list <- rjson::fromJSON(res.json)
-  return(res.list)
+  return(res_list)
 }
-
-

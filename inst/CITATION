@@ -5,12 +5,13 @@ citEntry(entry="misc",
          author = personList(
      person(given ="Juuso", family="Parkkinen", email = "juuso.parkkinen@iki.fi"),
 	   person(given ="Joona", family="Lehtomaki"),
-           person(given ="Leo", family="Lahti")	   
+	   person(given ="Pyry", family="Kantanen"),
+     person(given ="Leo", family="Lahti")	   
          ),
 	 journal = "",
-	 year = "2014",
+	 year = "2014-2021",
          textVersion =
-         paste("(C) Juuso Parkkinen, Leo Lahti and Joona Lehtomaki 2014.",
+         paste("(C) Juuso Parkkinen, Joona Lehtomaki, Pyry Kantanen and Leo Lahti 2014-2021.",
                "helsinki R package",
                sep=" ")
          )

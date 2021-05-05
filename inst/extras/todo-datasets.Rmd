@@ -5,11 +5,44 @@ output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Helsinki R package tutorial - data sets todo}
+  %\VignetteIndexEntry{Data set todo list for the helsinki R package}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
 
+
+helsinki - Already added data sources
+==========
+
+[Helsinki region district maps](#aluejakokartat) (Helsingin seudun aluejakokartat)
+
+* Aluejakokartat: kunta, pien-, suur-, tilastoalueet (Helsinki region district maps)
+* Äänestysaluejako: (Helsinki region election district maps)
+* Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
+
+Helsinki Real Estate Department (HKK:n avointa dataa)
+
+* Spatial data from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
+
+[Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
+
+* Väestötietoruudukko (population grid)
+* Rakennustietoruudukko (building information grid)
+* SeutuRAMAVA (building land resource information(?))
+* Source: Helsingin seudun ympäristöpalvelut, HSY
+
+[Service and event information](#servicemap)
+
+* [Helsinki region Service Map API](http://api.hel.fi/servicemap/v2/) (Pääkaupunkiseudun Palvelukartta)
+* [Helsinki Linked Event API](http://api.hel.fi/linkedevents/v1/)
+
+[Helsinki Region Infoshare statistics API](#hri_stats)
+
+* [Aluesarjat (original source)](http://www.aluesarjat.fi/) (regional time series data)
+* Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
+
+
+List of potential data sources to be added to the package can be found [here](todo-datasets.Rmd).
 
 helsinki - Potential data sources to be added
 ==========

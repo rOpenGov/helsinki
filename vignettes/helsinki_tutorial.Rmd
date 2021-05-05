@@ -1,13 +1,14 @@
 ---
 title: "Helsinki open data R tools"
+author: "Juuso Parkkinen, Pyry Kantanen"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette: >
   %\VignetteIndexEntry{Helsinki open data R tools}
+  %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
 ---
 
 
@@ -27,140 +28,222 @@ knitr::opts_chunk$set(
 helsinki - tutorial
 ===========
 
-This R package provides tools to access open data from the Helsinki region in Finland
-as part of the [rOpenGov](http://ropengov.org) project.
+helsinki R package provides tools to access open data from the Helsinki region in Finland. 
 
-For contact information and source code, see the [github page](https://github.com/rOpenGov/helsinki). 
-
-## Available data sources
-
-[Helsinki region district maps](#aluejakokartat) (Helsingin seudun aluejakokartat)
-
-* Aluejakokartat: kunta, pien-, suur-, tilastoalueet (Helsinki region district maps)
-* Äänestysaluejako: (Helsinki region election district maps)
-* Source: [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/)
-
-Helsinki Real Estate Department (HKK:n avointa dataa)
-
-* Spatial data from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) availabe in the [gisfin](https://github.com/rOpenGov/gisfin) package, see [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md) for examples
-
-[Helsinki region environmental services](#hsy) (HSY:n avointa dataa)
-
-* Väestötietoruudukko (population grid)
-* Rakennustietoruudukko (building information grid)
-* SeutuRAMAVA (building land resource information(?))
-* Source: Helsingin seudun ympäristöpalvelut, HSY
-
-[Service and event information](#servicemap)
-
-* [Helsinki region Service Map API](http://api.hel.fi/servicemap/v1/) (Pääkaupunkiseudun Palvelukartta)
-* [Helsinki Linked Event API](http://api.hel.fi/linkedevents/v0.1/)
-
-[Helsinki Region Infoshare statistics API](#hri_stats)
-
-* [Aluesarjat (original source)](http://www.aluesarjat.fi/) (regional time series data)
-* Source: [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/)
-
-
-List of potential data sources to be added to the package can be found [here](todo-datasets.Rmd).
+For contact information, source code and bug reports, see the project's [GitHub page](https://github.com/rOpenGov/helsinki). For other similar packages and related blog posts, see the [rOpenGov](http://ropengov.org) project website.
 
 ## Installation
 
-Release version for general users:
+Release version for most users:
 
 ```{r install_default, eval=FALSE}
 install.packages("helsinki")
 ```
 
-Development version for developers:
+Development version for developers and other interested parties:
 
 ```{r install_remotes, eval=FALSE}
 library(remotes)
 remotes::install_github("ropengov/helsinki")
 ```
 
-Load package.
+Load the package.
 
 ```{r load, message=FALSE, warning=FALSE, results='hide'}
 library(helsinki)
 ```
 
-## <a name="aluejakokartat"></a>Helsinki region district maps
+## API Access
 
-Helsinki region district maps (Helsingin seudun aluejakokartat) and election maps (äänestysalueet) from [Helsingin kaupungin Kiinteistövirasto (HKK)](http://ptp.hel.fi/avoindata/) are available in the helsinki package with `data(aluejakokartat)`. The data are available as both spatial object (`sp`) and data frame (`df`). These are preprocessed in the [gisfin](https://github.com/rOpenGov/gisfin) package, and more examples can be found in the [gisfin tutorial](https://github.com/rOpenGov/gisfin/blob/master/vignettes/gisfin_tutorial.md). 
+The package has basic functions for interacting with WFS APIs, courtesy of [FMI2-package](https://ropengov.github.io/fmi2/): `wfs_api()` for returning "wfs_api" and `to_sf()` for turning these objects to sf-objects.
 
-```{r aluejako_data, message=FALSE}
-# Load aluejakokartat and study contents
-data(aluejakokartat)
-str(aluejakokartat, m=2)
+All available features of a given API can be easily listed with the `get_feature_list()` function. Partly due to legacy considerations, partly due to user convenience we often use HSY API url in these function examples, sometimes even as a default option. The API functions can, however, be used with a wide variety of different `base.url` parameters.
+
+```{r wfs1, eval = TRUE}
+url <- "https://kartta.hsy.fi/geoserver/wfs"
+
+hsy_features <- get_feature_list(base.url = url)
+feature_of_interest <- hsy_features$Name[20]
+# Location of waterposts
+feature_of_interest
 ```
 
+When the wanted feature and its Name (in other words: Namespace:Title combination) is known, it can be downloaded with `get_feature()` by providing the correct `base.url` and the Name as the `typename` parameter.
 
-## <a name="servicemap"></a>Service and event information
+```{r wfs2, eval = TRUE}
+# downloading a feature
+waterposts <- get_feature(base.url = url, typename = feature_of_interest)
+# Visualizing the location of waterposts
+plot(waterposts$geom)
+```
 
-Function `get_servicemap()` retrieves regional service data from the new [Service Map API](http://api.hel.fi/servicemap/v1/), that contains data from the [Service Map](http://dev.hel.fi/servicemap/).
+Dots on a blank canvas do not make much sense and therefore helsinki-package has `get_city_map()` function for downloading city district boundaries. An example of this is provided in the [Helsinki region district maps](#helsinki-region-district-maps) section of this vignette.
+
+Helsinki-package provides an easy-to-use menu-driven `select_feature()` function that effectively combines `get_feature_list()` and `get_feature()`. At default it only returns the Name of the wanted function, but if `get` parameter is set to TRUE, it returns an sf_object which can be easily visualized.
+
+```{r wfs3, eval = FALSE}
+# Standard use
+selected_feature <- select_feature(base.url = url)
+feature <- get_feature(base.url = url, typename = selected_feature)
+
+# Skipping a redundant step with parameter get = TRUE
+feature <- select_feature(base.url = url, get = TRUE)
+```
+
+### Helsinki Region Environmental Services HSY open data
+
+The above example shows a general use case which can easily be applied to Helsinki Region Environmental Services (HSY) WFS API as well as other service providers' APIs. 
+
+For legacy reasons, helsinki-package has also some specialized functions that aim to make downloading often used data as easy as possible. 
+
+Specifically, there are two new functions that replace deprecated functionalities from `get_hsy()` function: `get_vaestotietoruudukko()` (population grid) and `get_rakennustietoruudukko()` (building information grid). As of writing, years 2015 to 2019 are supported but the API may be updated at any time and `get_feature_list()` can be used to download datasets that are not baked into these functions.
+
+```{r get_hsy_examples, eval = TRUE}
+pop_grid <- get_vaestotietoruudukko(year = 2018)
+building_grid <- get_rakennustietoruudukko(year = 2016)
+
+library(ggplot2)
+
+# Logarithmic scales to make the visualizations more discernible
+ggplot(pop_grid) + geom_sf(aes(colour=log(asukkaita), fill=log(asukkaita)))
+ggplot(building_grid) + geom_sf(aes(colour=log(kerala_yht), fill=log(kerala_yht)))
+```
+
+While easy enough to build, specialized functions such as these are probably not something that power users want to rely on in their work flows. They also add more manual phases to package maintenance and therefore are probably not the direction we're heading in the future. If you feel differently about this and there is a dataset that gets a lot of use, feel free to drop us a suggestion in [GitHub](https://github.com/rOpenGov/helsinki/issues).
+
+## Service and event information
+
+Function `get_servicemap()` retrieves regional service data from city of Helsinki [Service Map API](http://api.hel.fi/servicemap/v2/), that contains data from the [Service Map](http://dev.hel.fi/servicemap/).
 
 ```{r servicemap, message=FALSE, warning=FALSE}
 # Search for "puisto" (park) (specify q="query")
-search.puisto <- get_servicemap(query="search", q="puisto")
-# Study results
-str(search.puisto, m=1)
-# A lot of results found (count > 1000)
-# Get names for the first 20 results
-sapply(search.puisto$results, function(x) x$name$fi)
-# See what data is given for one service
-names(search.puisto$results[[1]])
-# More results could be retrieved by specifying 'page=2' etc.
+search_puisto <- get_servicemap(query="search", q="puisto")
+# Study results: 47 variables in the data frame
+str(search_puisto, max.level = 1)
 ```
 
-Function `get_linkedevents()` retrieves regional event data from the new [Linked Events API](http://api.hel.fi/linkedevents/v0.1/).
+We can see that this search returns a large number of results, over 2000. The results are returned as pages, where each page has 20 results by default. By giving no additional search parameters, we get 20 results from the first page of search results.
+
+```{r}
+# Get names for the first 20 results
+search_puisto$results$name$fi
+
+# See what kind of data is given for services
+names(search_puisto$results)
+```
+
+More results could be retrieved and viewed by giving additional `search` parameters.
+
+```{r}
+search_puisto <- get_servicemap(query="search", q="puisto", page_size = 30, page = 2)
+search_puisto$results$name$fi
+```
+
+As we could see from above example, the returned data frame had 47 observations. At full width this output can be messy to handle in R console. One possible option would be to turn it into a more easily manageable tibble (which often is not a bad idea), another is to limit the extent of the query at the start. We do the latter and it can be done with the function parameter `only`:
+
+```{r}
+# Search for padel-related services in Helsinki
+search_padel <- get_servicemap(query="search", input="padel", only="unit.name, unit.location.coordinates, unit.street_address", municipality="helsinki")
+search_padel$results
+```
+
+The function parameter `only` is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case "unit". Other valid input in this case would be "service_node", "service" and "address", but during testing unit-prefix seemed to work best. When in doubt, checking the [original documentation](https://dev.hel.fi/apis/service-map-backend-api) may help.
+
+Function `get_linkedevents()` retrieves regional event data from the new [Linked Events API](http://api.hel.fi/linkedevents/v1/).
 
 ```{r linkedevents, message=FALSE, warning=FALSE}
 # Search for current events
 events <- get_linkedevents(query="event")
 # Get names for the first 20 results
-sapply(events$data, function(x) x$name$fi)
-# See what data is given for the first event
-names(events$data[[1]])
+events$data$name$fi
+# See what kind of data is given for events
+names(events$data)
 ```
 
+## Helsinki region district maps
 
+Helsinki region geographic data can be accessed from a WFS API by using the get_city_map() function. Data is available for all 4 cities in the capital region: Helsinki, Espoo, Vantaa and Kauniainen. 
 
-## <a name="hri_stats"></a> Helsinki Region Infoshare statistics API
+Administrative divisions can be accessed on 3 distinct levels: "suuralue", "tilastoalue" and "pienalue". Literal, completely unofficial translations for these could be "grand district", "statistical area" and "(minor) district". The naming convention of these levels is sometimes confusing even in Finnish documents and different names can vary by city and time. 
+
+The main takeaway is that "suuralue" is the highest-level division and "pienalue" is the most granular level of division. "Tilastoalue" is somewhere between these two. These are the names to be used even if the city of interest might not use them in their Finnish or English website.
+
+As promised earlier in [API Access](#api-access), the following example gives an idea on how to visualize waterpost locations (and, of course, other types of spatial data as well) on capital region map.
+
+```{r maps1, eval = TRUE}
+helsinki <- get_city_map(city = "helsinki", level = "suuralue")
+espoo <- get_city_map(city = "espoo", level = "suuralue")
+vantaa <- get_city_map(city = "vantaa", level = "suuralue")
+kauniainen <- get_city_map(city = "kauniainen", level = "suuralue")
+
+library(ggplot2)
+
+ggplot() +
+  geom_sf(data = helsinki) +
+  geom_sf(data = espoo) +
+  geom_sf(data = vantaa) +
+  geom_sf(data = kauniainen) +
+  geom_sf(data = waterposts)
+```
+
+In addition, it is possible to download "aanestysalue" (voting district) divisions for the city of Helsinki. Currently this data is not available for other cities and it must be accessed from other sources.
+
+```{r maps2, eval=FALSE}
+library(sf)
+map <- get_city_map(city = "helsinki", level = "suuralue")
+plot(sf::st_geometry(map))
+
+voting_district <- get_city_map(city = "helsinki", level = "aanestysalue")
+plot(sf::st_geometry(voting_district))
+```
+
+For other cities than Helsinki voting areas (and older district maps that shouldn't be too different from current maps) can be viewed from the legacy dataset with `data(aluejakokartat)`. The data included with the packaged is available as both spatial object (`sp`) and data frame (`df`). This data was preprocessed with the now-defunct gisfin-package. The current, actively maintained version of gisfin is called [geofi](https://github.com/rOpenGov/geofi)).
+
+The included aluejakokartat-dataset can also be used if there is for some reason a temporary internet outage in your area and you just need to draw maps on Finnish capital region. It will be bundled with the package for the time being.
+
+Below are the contents of `data(aluejakokartat)`:
+
+```{r maps3, message=FALSE}
+# Load aluejakokartat and study contents
+data(aluejakokartat)
+str(aluejakokartat, m=2)
+```
+
+## Helsinki Region Infoshare statistics API
 
 Function `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/).
 
 ```{r hri_stats1, message=FALSE, warning=FALSE}
 # Retrieve list of available data
-stats.list <- get_hri_stats(query="")
+stats_list <- get_hri_stats(query="")
 # Show first results
-head(stats.list)
+head(stats_list)
 ```
 
-Specify a dataset to retrieve. The output is currently a three-dimensional array.
+Specify a dataset to retrieve. In this specific example we will download the first item on the stats_list object. The output is a three-dimensional array.
 
 ```{r hri_stats2, message=FALSE, warning=FALSE}
 # Retrieve a specific dataset
-stats.res <- get_hri_stats(query=stats.list[1])
+stats_res <- get_hri_stats(query=stats_list[1])
 # Show the structure of the results
-str(stats.res)
+str(stats_res)
 ```
 
-The implementation will be updated and more examples will be added in the near future.
+## Licensing and Citations
 
+### Citing the data 
 
-### Citation
+See `help()` to get citation information for each function and related data sources. 
 
-**Citing the data:** See `help()` to get citation information for each data source individually.
+If no such information is explicitly stated, see data provider's website for more information.
 
-**Citing the R package:**
+### Citing the R package
 
 ```{r citation, comment=NA}
 citation("helsinki")
 ```
 
 ### Session info
-
 
 This vignette was created with
 

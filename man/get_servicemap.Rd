@@ -3,27 +3,73 @@
 \name{get_servicemap}
 \alias{get_servicemap}
 \title{Access Helsinki region Service Map API}
+\source{
+API contents: All content is available under CC BY 4.0, 
+except where otherwise stated. The City of Helsinki logo is a registered 
+trademark. The Helsinki Grotesk Typeface is a proprietary typeface licensed 
+by Camelot Typefaces.
+<https://creativecommons.org/licenses/by/4.0/>
+
+API Location: https://api.hel.fi/servicemap/v2/
+
+API documentation: https://dev.hel.fi/apis/service-map-backend-api
+}
 \usage{
 get_servicemap(query, ...)
 }
 \arguments{
 \item{query}{The API query as a string, for example "search", "service", or "unit".
-For full list of available options and details, see http://api.hel.fi/servicemap/v1/.}
+For full list of available options and details, see https://dev.hel.fi/apis/service-map-backend-api.}
 
-\item{...}{Additional parameters to the API (optional).
-For details, see http://api.hel.fi/servicemap/v1/.}
+\item{...}{Additional parameters to the API (optional). 
+For additional details, see https://dev.hel.fi/apis/service-map-backend-api.}
 }
 \value{
-List of results
+Data frame or a list
 }
 \description{
 Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
-http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v1/. 
+http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v2/. 
 For more API documentation and license information see the API link.
 }
+\details{
+Complete list of possible query input: 
+\itemize{
+ \item{"unit"} {unit, or service point}
+ \item{"service"} {category of service provided by a unit}
+ \item{"organization"} {organization providing services}
+ \item{"search"} {full text search for units, services and street addresses}
+ \item{"accessibility"} {rule database for calculating accessibility scores} 
+ \item{"geography"} {spatial information, where services are located}
+ }
+
+With "..." the user can pass on additional parameters that depend on the
+chosen query input. For example, when performing a search (query = "search"), 
+the search can be narrowed down with parameters such as:
+\itemize{
+ \item{"q"} {complete search}
+ \item{"input"} {partial search}
+ \item{"type"} {valid types: service_node, service, unit, address}
+ \item{"language"} {as two-character ISO-639-1 code: fi, sv, en}
+ \item{"municipality"} {comma-separated list of municipalities, lower-case, in Finnish}
+ \item{"service"} {comma-separated list of service IDs}
+ \item{"include"} {include the complete content from certain fields with a comma-separated list of field names  with a valid type prefix}
+ \item{"only"} {restricts the results with a comma-separated list of field names with a valid type prefix}
+ \item{"page"} {request a certain page number}
+ \item{"page_size"} {determine number of entries in one page}
+}
+
+For more detailed explanation, see https://dev.hel.fi/apis/service-map-backend-api.
+}
 \examples{
-search.puisto <- get_servicemap(query="search", q="puisto")
+# A data.frame with 47 variables
+search_puisto <- get_servicemap(query="search", q="puisto")
+# A data.frame with 7 variables
+search_padel <- get_servicemap(query="search", input="padel", 
+only="unit.name, unit.location.coordinates, unit.street_address", 
+municipality="helsinki")
+
 }
 \author{
-Juuso Parkkinen \email{louhos@googlegroups.com}
+Juuso Parkkinen \email{louhos@googlegroups.com}, Pyry Kantanen
 }

@@ -1,41 +1,29 @@
-# This file is a part of the helsinki package (http://github.com/rOpenGov/helsinki)
-# in association with the rOpenGov project (http://ropengov.org)
-
-# Copyright (C) 2010-2021 Juuso Parkkinen / Louhos <louhos.github.com>. 
-# All rights reserved.
-
-# This program is open source software; you can redistribute it and/or modify 
-# it under the terms of the FreeBSD License (keep this notice): 
-# http://en.wikipedia.org/wiki/BSD_licenses
-
-# This program is distributed in the hope that it will be useful, 
-# but WITHOUT ANY WARRANTY; without even the implied warranty of 
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-
-#' Helsinki Region Infoshare statistics API
+#' @title Helsinki Region Infoshare statistics API
 #'
-#' Retrieves data from the Helsinki Region Infoshare (HRI) statistics API:
+#' @description Retrieves data from the Helsinki Region Infoshare (HRI) statistics API:
 #' http://dev.hel.fi/stats/.
 #' Currently provides access to the 'aluesarja't data: http://www.aluesarjat.fi/.
 #' 
-#' Current implementation is very simple.
+#' @details Current implementation is very simple.
 #' You can either get the list of resources with query="",
 #' or query for a specific resources and retrieve it in a
 #' three-dimensional array form.
 #'
 #' @param query A string, specifying the dataset to query
-#' @param verbose logical. Should R report extra information on progress? 
-#' @return results A three-dimensional array of results.
+#' @param verbose logical. Should R report extra information on progress? Default is TRUE
+#' @return multi-dimensional array
 #' 
-#' @importFrom RCurl getCurlHandle
-#' @importFrom RCurl getForm
-#' @importFrom rjson fromJSON
-#' @export
+#' @importFrom httr parse_url build_url
+#' @importFrom jsonlite fromJSON
 #' 
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples stats.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
+#' @examples stats_array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
+#' 
+#' @seealso See \url{https://dev.hel.fi/apis/statistics}{dev.hel.fi website} and 
+#' \url{http://dev.hel.fi/stats/}{API documentation} (in Finnish)
+#' 
+#' @export
 
 get_hri_stats <- function (query="", verbose=TRUE) {
   
@@ -45,31 +33,34 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     message("Accessing Helsinki Region Infoshare statistics API...")
   
   # Use the regional statistics API
-  api.url <- "http://dev.hel.fi/stats/resources/"
+  api_url <- "http://dev.hel.fi/stats/resources/"
   # For resources list
   if (query=="")
-    query.url <- paste0(api.url, query)
-  # For a specific resource, use jsontstat
+    query_url <- paste0(api_url, query)
+  # For a specific resource, use jsonstat
   else
-    query.url <- paste0(api.url, query, "/jsonstat")
+    query_url <- paste0(api_url, query, "/jsonstat")
   
   # Check whether url available
-  if (!RCurl::url.exists(query.url)) {
-    message(paste("Sorry! Url", query.url, "not available!\nReturned NULL."))
+  conn<-url(query_url)
+  doesnotexist<-inherits(try(suppressWarnings(readLines(conn)),silent=TRUE),"try-error")
+  close(conn)
+  if (doesnotexist) {
+    warning(paste("Sorry! Url", query_url, "not available! Returning NULL"))
     return(NULL)
   }
-  # Access data with RCurl
-  curl <- RCurl::getCurlHandle(cookiefile = "")
-  suppressWarnings(
-    res.json <- RCurl::getForm(uri=query.url, curl=curl)
-  )
+  
+  # Access data with httr
+  url <- httr::parse_url(query_url)
+  url <- httr::build_url(url)
+  
   # Process json into a list
-  res.list <- rjson::fromJSON(res.json)
+  res_list <- jsonlite::fromJSON(url)
   
   # Process and show list of resources
   if (query=="") {
-    resources <- names(res.list[["_embedded"]])
-    names(resources) <- sapply(res.list[["_embedded"]], function(x) x$metadata$label)
+    resources <- names(res_list[["_embedded"]])
+    names(resources) <- sapply(res_list[["_embedded"]], function(x) x$metadata$label)
     if (verbose)
       message("Retrieved list of available resources.")
     return(resources)
@@ -81,9 +72,9 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     # Possible R package ot use: https://github.com/ajschumacher/rjstat
     
     # Process dimensions metadata
-    dims <- res.list$dataset$dimension$size
-    names(dims) <- res.list$dataset$dimension$id
-    dimnames <- lapply(res.list$dataset$dimension[3:(length(dims)+2)], function(x) {res=unlist(x$category$label); names(res)=NULL; res})
+    dims <- res_list$dataset$dimension$size
+    names(dims) <- res_list$dataset$dimension$id
+    dimnames <- lapply(res_list$dataset$dimension[3:(length(dims)+2)], function(x) {res=unlist(x$category$label); names(res)=NULL; res})
     
     # Construct an array
     
@@ -97,8 +88,8 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     
     # Have to reverse the dimensions, because in arrays
     # "The values in data are taken to be those in the array with the leftmost subscript moving fastest."
-    res.list$dataset$value[res.list$dataset$value %in% c(".", "..")] <- NA
-    res.array <- array(data=as.numeric(res.list$dataset$value), dim=rev(dims), dimnames=rev(dimnames))
+    res_list$dataset$value[res_list$dataset$value %in% c(".", "..")] <- NA
+    res.array <- array(data=as.numeric(res_list$dataset$value), dim=rev(dims), dimnames=rev(dimnames))
     if (verbose)
       message("Retrieved resource '",query,"'")
     return(res.array)

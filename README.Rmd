@@ -1,8 +1,5 @@
 ---
-title: 'helsinki - Helsinki open data R tools'
-output: 
-  html_document: 
-    keep_md: yes
+output: github_document
 ---
   
 ```{r, echo = FALSE}

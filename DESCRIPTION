@@ -2,7 +2,7 @@ Package: helsinki
 Type: Package
 Title: R Tools for Helsinki Open Data
 Date: 2021-05-05
-Version: 0.9.40
+Version: 1.0.0
 Authors@R: 
     c(person(given = "Juuso",
              family = "Parkkinen",

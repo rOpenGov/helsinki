@@ -87,8 +87,7 @@
 <a href="#helsinki---helsinki-open-data-r-tools" class="anchor" aria-hidden="true"></a>helsinki - Helsinki open data R tools</h1></div>
 <!-- badges: start -->
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-<p>R tools for accessing and downloading open data from the Helsinki capital region in Finland.</p>
+<p>R tools for accessing and downloading open data from City of Helsinki and the Helsinki metropolitan area (Finnish capital region).</p>
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h3>
@@ -99,10 +98,10 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ropengov/helsinki"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="simple-example" class="section level3">
+<div id="using-the-package" class="section level3">
 <h3 class="hasAnchor">
-<a href="#simple-example" class="anchor" aria-hidden="true"></a>Simple example</h3>
-<p>Load the package, list available features from HSY and download the 20th feature from that list:</p>
+<a href="#using-the-package" class="anchor" aria-hidden="true"></a>Using the package</h3>
+<p>As a simple example we load the package, list available features from Helsinki Region Environmental Services HSY WFS API and download the 20th feature from that list:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rOpenGov/helsinki" class="external-link">helsinki</a></span><span class="op">)</span> 
 <span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://kartta.hsy.fi/geoserver/wfs"</span>
@@ -112,17 +111,23 @@
 <span class="fu"><a href="reference/get_feature.html">get_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">url</span>, typename <span class="op">=</span> <span class="va">hsy_features</span><span class="op">$</span><span class="va">Name</span><span class="op">[</span><span class="fl">20</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <p>For more examples, check the <a href="https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.md" class="external-link">tutorial page</a>.</p>
 </div>
-<div id="meta" class="section level3">
+<div id="contributing" class="section level3">
 <h3 class="hasAnchor">
-<a href="#meta" class="anchor" aria-hidden="true"></a>Meta</h3>
-<p>Authors: <a href="https://github.com/ouzor" class="external-link">Juuso Parkkinen</a>, <a href="https://github.com/jlehtoma" class="external-link">Joona Lehtomäki</a>, <a href="https://github.com/pitkant" class="external-link">Pyry Kantanen</a>, <a href="https://github.com/antagomir" class="external-link">Leo Lahti</a>. Part of the <a href="http://ropengov.org" class="external-link">rOpenGov</a> project.</p>
+<a href="#contributing" class="anchor" aria-hidden="true"></a>Contributing</h3>
 <p>You are welcome to contact us:</p>
 <ul>
-<li><a href="https://github.com/ropengov/helsinki/issues" class="external-link">submit suggestions and bug-reports</a></li>
-<li><a href="https://github.com/ropengov/helsinki/" class="external-link">send a pull request</a></li>
 <li>
-<a href="http://ropengov.org/community/" class="external-link">be in touch</a> and follow us in social media</li>
+<a href="https://github.com/ropengov/helsinki/issues" class="external-link">Submit suggestions and bug reports</a> (provide the output of <code><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo()</a></code> and <code>packageVersion("helsinki")</code> and preferably provide a <a href="http://adv-r.had.co.nz/Reproducibility.html" class="external-link">reproducible example</a>)</li>
+<li><a href="https://github.com/ropengov/helsinki/" class="external-link">Send a pull request</a></li>
+<li><a href="https://github.com/ropengov/helsinki/" class="external-link">Star us on the Github page</a></li>
+<li><a href="http://ropengov.org/community/" class="external-link">Contact us otherwise</a></li>
 </ul>
+</div>
+<div id="acknowledgements" class="section level3">
+<h3 class="hasAnchor">
+<a href="#acknowledgements" class="anchor" aria-hidden="true"></a>Acknowledgements</h3>
+<p><strong>Kindly cite this work</strong> as follows: <a href="https://github.com/ouzor" class="external-link">Juuso Parkkinen</a>, <a href="https://github.com/jlehtoma" class="external-link">Joona Lehtomäki</a>, <a href="https://github.com/pitkant" class="external-link">Pyry Kantanen</a>, and <a href="https://github.com/antagomir" class="external-link">Leo Lahti</a>. helsinki - Helsinki open data R tools. URL: <a href="https://github.com/rOpenGov/helsinki" class="external-link uri">https://github.com/rOpenGov/helsinki</a></p>
+<p>We are grateful to all <a href="https://github.com/rOpenGov/helsinki/graphs/contributors" class="external-link">contributors</a>! This project is part of <a href="http://ropengov.org" class="external-link">rOpenGov</a>.</p>
 </div>
 </div>
   </div>

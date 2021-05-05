@@ -12,7 +12,7 @@ get_hri_stats(query = "", verbose = TRUE)
 \item{verbose}{logical. Should R report extra information on progress? Default is TRUE}
 }
 \value{
-results A three-dimensional array of results.
+multi-dimensional array
 }
 \description{
 Retrieves data from the Helsinki Region Infoshare (HRI) statistics API:

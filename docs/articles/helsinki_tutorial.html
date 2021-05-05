@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">helsinki</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.40</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -179,8 +179,8 @@
 <span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
 <span class="co">#&gt;  [1] "Sinebrychoffin puiston yleisövessa"                                </span>
 <span class="co">#&gt;  [2] "Sibeliuksen puiston yleisövessa"                                   </span>
-<span class="co">#&gt;  [3] "Esplanadin puiston WLAN-tukiasema"                                 </span>
-<span class="co">#&gt;  [4] "Töölönlahden puisto / Leikkipaikka"                                </span>
+<span class="co">#&gt;  [3] "Töölönlahden puisto / Leikkipaikka"                                </span>
+<span class="co">#&gt;  [4] "Esplanadin puiston WLAN-tukiasema"                                 </span>
 <span class="co">#&gt;  [5] "Hesperian puiston yleisövessa"                                     </span>
 <span class="co">#&gt;  [6] "Topeliuksen puiston yleisövessa"                                   </span>
 <span class="co">#&gt;  [7] "Sibeliuksen puiston yleisövessa"                                   </span>
@@ -190,9 +190,9 @@
 <span class="co">#&gt; [11] "Shakkilauta, Von Glanin puisto"                                    </span>
 <span class="co">#&gt; [12] "Matti Heleniuksen puiston yleisövessa"                             </span>
 <span class="co">#&gt; [13] "Shakkilauta, Katri Valan puisto"                                   </span>
-<span class="co">#&gt; [14] "Ala-Malmin puisto"                                                 </span>
-<span class="co">#&gt; [15] "Pyhän Birgitan puisto"                                             </span>
-<span class="co">#&gt; [16] "Tove Janssonin puiston yleisövessa"                                </span>
+<span class="co">#&gt; [14] "Tove Janssonin puiston yleisövessa"                                </span>
+<span class="co">#&gt; [15] "Ala-Malmin puisto"                                                 </span>
+<span class="co">#&gt; [16] "Pyhän Birgitan puisto"                                             </span>
 <span class="co">#&gt; [17] "Everstinpuisto"                                                    </span>
 <span class="co">#&gt; [18] "Kirkkojärvenpuisto"                                                </span>
 <span class="co">#&gt; [19] "Lehtikaskenpuisto"                                                 </span>
@@ -228,10 +228,10 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span>, page_size <span class="op">=</span> <span class="fl">30</span>, page <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "Kaupungintalon puisto"                             </span>
-<span class="co">#&gt;  [2] "Ankkuripohjanpuisto"                               </span>
-<span class="co">#&gt;  [3] "Kuttulammenpuisto"                                 </span>
-<span class="co">#&gt;  [4] "Rinkelipuisto"                                     </span>
+<span class="co">#&gt;  [1] "Ankkuripohjanpuisto"                               </span>
+<span class="co">#&gt;  [2] "Kuttulammenpuisto"                                 </span>
+<span class="co">#&gt;  [3] "Rinkelipuisto"                                     </span>
+<span class="co">#&gt;  [4] "Kaupungintalon puisto"                             </span>
 <span class="co">#&gt;  [5] "Alli Tryggin puiston opaskoira-aitaus"             </span>
 <span class="co">#&gt;  [6] "Hurtigin puisto"                                   </span>
 <span class="co">#&gt;  [7] "Nurmilinnunpuisto"                                 </span>
@@ -243,9 +243,9 @@
 <span class="co">#&gt; [13] "Matinkylän asukaspuisto"                           </span>
 <span class="co">#&gt; [14] "Asematien leikkipuisto"                            </span>
 <span class="co">#&gt; [15] "Stenbergin puisto"                                 </span>
-<span class="co">#&gt; [16] "Kasavuoren puisto"                                 </span>
-<span class="co">#&gt; [17] "Karakallion asukaspuisto"                          </span>
-<span class="co">#&gt; [18] "Suvelan asukaspuisto"                              </span>
+<span class="co">#&gt; [16] "Karakallion asukaspuisto"                          </span>
+<span class="co">#&gt; [17] "Suvelan asukaspuisto"                              </span>
+<span class="co">#&gt; [18] "Kasavuoren puisto"                                 </span>
 <span class="co">#&gt; [19] "Veijarivuoren puiston talviuintipaikka (Humaus ry)"</span>
 <span class="co">#&gt; [20] "Viherkallion asukaspuisto"                         </span>
 <span class="co">#&gt; [21] "Kylätalo Palttinan asukaspuisto"                   </span>
@@ -297,16 +297,16 @@
 <span class="co">#&gt; 9              Depåvägen 4                Varikkotie 4         Point</span>
 <span class="co">#&gt; 10           Fladabågen 23           Sarvastonkaari 23         Point</span>
 <span class="co">#&gt;    location.coordinates sort_index object_type    score</span>
-<span class="co">#&gt; 1    24.93146, 60.15325          0        unit 7.927960</span>
-<span class="co">#&gt; 2    24.86652, 60.16435          1        unit 7.419153</span>
-<span class="co">#&gt; 3    24.93602, 60.20486          2        unit 7.419153</span>
-<span class="co">#&gt; 4    24.94567, 60.19430          3        unit 7.417117</span>
-<span class="co">#&gt; 5    25.07979, 60.22095          4        unit 7.069697</span>
-<span class="co">#&gt; 6    24.98746, 60.21826          5        unit 6.645979</span>
-<span class="co">#&gt; 7    24.96320, 60.18242          6        unit 2.783526</span>
-<span class="co">#&gt; 8    24.87776, 60.21116          7        unit 2.781992</span>
-<span class="co">#&gt; 9    25.06807, 60.20983          8        unit 2.269385</span>
-<span class="co">#&gt; 10   25.05760, 60.17415          9        unit 2.267900</span></code></pre></div>
+<span class="co">#&gt; 1    24.93146, 60.15325          0        unit 7.929287</span>
+<span class="co">#&gt; 2    24.86652, 60.16435          1        unit 7.419197</span>
+<span class="co">#&gt; 3    24.93602, 60.20486          2        unit 7.419197</span>
+<span class="co">#&gt; 4    24.94567, 60.19430          3        unit 7.418997</span>
+<span class="co">#&gt; 5    25.07979, 60.22095          4        unit 7.070877</span>
+<span class="co">#&gt; 6    24.98746, 60.21826          5        unit 6.647654</span>
+<span class="co">#&gt; 7    24.96320, 60.18242          6        unit 2.783547</span>
+<span class="co">#&gt; 8    24.87776, 60.21116          7        unit 2.782710</span>
+<span class="co">#&gt; 9    25.06807, 60.20983          8        unit 2.269403</span>
+<span class="co">#&gt; 10   25.05760, 60.17415          9        unit 2.268481</span></code></pre></div>
 <p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api" class="external-link">original documentation</a> may help.</p>
 <p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v1/" class="external-link">Linked Events API</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -314,26 +314,26 @@
 <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"event"</span><span class="op">)</span>
 <span class="co"># Get names for the first 20 results</span>
 <span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "Virtuaalinen taidenäyttely: Eeva-Lotta Rikbergin Kuvakudoksia"</span>
-<span class="co">#&gt;  [2] "Digital guidance online in Arabic and English"                </span>
-<span class="co">#&gt;  [3] "Digital guidance online in Arabic and English"                </span>
-<span class="co">#&gt;  [4] "Club Act!One"                                                 </span>
-<span class="co">#&gt;  [5] "Paahtimo"                                                     </span>
-<span class="co">#&gt;  [6] "Lapset"                                                       </span>
-<span class="co">#&gt;  [7] "Once + Replik!"                                               </span>
-<span class="co">#&gt;  [8] "Bolla"                                                        </span>
-<span class="co">#&gt;  [9] NA                                                             </span>
-<span class="co">#&gt; [10] "Niin Kuin Taivaassa"                                          </span>
-<span class="co">#&gt; [11] "Everstinna"                                                   </span>
-<span class="co">#&gt; [12] "Den Besynnerliga Händelsen Med Hunden Om Natten"              </span>
-<span class="co">#&gt; [13] "Saikkua, Kiitos! Osa 3"                                       </span>
-<span class="co">#&gt; [14] "Baskervillen Koira"                                           </span>
-<span class="co">#&gt; [15] "Turvamies"                                                    </span>
-<span class="co">#&gt; [16] "Kiviä Taskussa"                                               </span>
-<span class="co">#&gt; [17] "Tatu Ja Patu Helsingissä"                                     </span>
-<span class="co">#&gt; [18] "Lapset"                                                       </span>
-<span class="co">#&gt; [19] "Niin Kuin Taivaassa"                                          </span>
-<span class="co">#&gt; [20] "Kiviä Taskussa"</span>
+<span class="co">#&gt;  [1] "Digital guidance online in Arabic and English"  </span>
+<span class="co">#&gt;  [2] "Digital guidance online in Arabic and English"  </span>
+<span class="co">#&gt;  [3] "Bolla"                                          </span>
+<span class="co">#&gt;  [4] "Turvamies"                                      </span>
+<span class="co">#&gt;  [5] "Saikkua, Kiitos! Osa 3"                         </span>
+<span class="co">#&gt;  [6] "Club Act!One"                                   </span>
+<span class="co">#&gt;  [7] "Paahtimo"                                       </span>
+<span class="co">#&gt;  [8] "Lapset"                                         </span>
+<span class="co">#&gt;  [9] "Once + Replik!"                                 </span>
+<span class="co">#&gt; [10] NA                                               </span>
+<span class="co">#&gt; [11] "Niin Kuin Taivaassa"                            </span>
+<span class="co">#&gt; [12] "Everstinna"                                     </span>
+<span class="co">#&gt; [13] "Den Besynnerliga Händelsen Med Hunden Om Natten"</span>
+<span class="co">#&gt; [14] "Baskervillen Koira"                             </span>
+<span class="co">#&gt; [15] "Kiviä Taskussa"                                 </span>
+<span class="co">#&gt; [16] "Tatu Ja Patu Helsingissä"                       </span>
+<span class="co">#&gt; [17] "Lapset"                                         </span>
+<span class="co">#&gt; [18] "Niin Kuin Taivaassa"                            </span>
+<span class="co">#&gt; [19] "Kiviä Taskussa"                                 </span>
+<span class="co">#&gt; [20] "Lapset"</span>
 <span class="co"># See what kind of data is given for events</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "id"                    "location"              "keywords"             </span>
@@ -489,7 +489,7 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] sp_1.4-5        ggplot2_3.3.3   helsinki_0.9.40</span>
+<span class="co">#&gt; [1] sp_1.4-5       ggplot2_3.3.3  helsinki_1.0.0</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
 <span class="co">#&gt;  [1] tidyselect_1.1.0   xfun_0.22          bslib_0.2.4        purrr_0.3.4       </span>

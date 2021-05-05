@@ -1,32 +1,17 @@
-# This file is a part of the helsinki package (http://github.com/rOpenGov/helsinki)
-# in association with the rOpenGov project (http://ropengov.org)
-
-# Copyright (C) 2010-2021 Juuso Parkkinen / Louhos <louhos.github.com>. 
-# All rights reserved.
-
-# This program is open source software; you can redistribute it and/or modify 
-# it under the terms of the FreeBSD License (keep this notice): 
-# http://en.wikipedia.org/wiki/BSD_licenses
-
-# This program is distributed in the hope that it will be useful, 
-# but WITHOUT ANY WARRANTY; without even the implied warranty of 
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-
-#' Helsinki Region Infoshare statistics API
+#' @title Helsinki Region Infoshare statistics API
 #'
-#' Retrieves data from the Helsinki Region Infoshare (HRI) statistics API:
+#' @description Retrieves data from the Helsinki Region Infoshare (HRI) statistics API:
 #' http://dev.hel.fi/stats/.
 #' Currently provides access to the 'aluesarja't data: http://www.aluesarjat.fi/.
 #' 
-#' Current implementation is very simple.
+#' @details Current implementation is very simple.
 #' You can either get the list of resources with query="",
 #' or query for a specific resources and retrieve it in a
 #' three-dimensional array form.
 #'
 #' @param query A string, specifying the dataset to query
 #' @param verbose logical. Should R report extra information on progress? Default is TRUE
-#' @return results A three-dimensional array of results.
+#' @return multi-dimensional array
 #' 
 #' @importFrom httr parse_url build_url
 #' @importFrom jsonlite fromJSON

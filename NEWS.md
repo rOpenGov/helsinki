@@ -1,4 +1,4 @@
-helsinki 0.9.40 (2021-04-27)
+helsinki 1.0.0 (2021-05-05)
 =========================
   
 ### NEW FEATURES
@@ -23,7 +23,7 @@ helsinki 0.9.40 (2021-04-27)
         
 ### DOCUMENTATION FIXES
         
-  * Slightly updated vignettes to reflect on changes
+  * Updated vignette
   * Improved documentation for `get_servicemap()` and `get_linkedevents()`
         
         

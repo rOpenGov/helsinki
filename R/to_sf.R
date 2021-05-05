@@ -1,6 +1,6 @@
 #' @title Transform to sf-object
 #' 
-#' @description Transform a fmi_api object into a sf object.
+#' @description Transform a wfs_api object into a sf object.
 #'
 #' @details FMI API response object's XML (GML) content is temporarily wrtitten on disk
 #' and then immediately read back in into a sf object.

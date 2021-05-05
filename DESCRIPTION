@@ -1,13 +1,23 @@
 Package: helsinki
 Type: Package
 Title: R Tools for Helsinki Open Data
-Date: 2021-05-04
+Date: 2021-05-05
 Version: 0.9.40
-Authors@R: c(
-  person("Juuso", "Parkkinen", email = "juuso.parkkinen@iki.fi", role = c("aut", "cre")),
-  person("Joona", "Lehtomaki", role = "ctb"),
-  person("Pyry", "Kantanen", role = "aut"),
-  person("Leo", "Lahti", role = c("aut"), comment = c(ORCID = "0000-0001-5537-637X")))
+Authors@R: 
+    c(person(given = "Juuso",
+             family = "Parkkinen",
+             role = c("aut", "cre"),
+             email = "juuso.parkkinen@iki.fi"),
+      person(given = "Joona",
+             family = "Lehtomaki",
+             role = "ctb"),
+      person(given = "Pyry",
+             family = "Kantanen",
+             role = "aut"),
+      person(given = "Leo",
+             family = "Lahti",
+             role = "aut",
+             comment = c(ORCID = "0000-0001-5537-637X")))
 Description: Tools for accessing various open data sources in the Helsinki
     region in Finland. Current data sources include
     the Real Estate Department (<http://ptp.hel.fi/avoindata/>),

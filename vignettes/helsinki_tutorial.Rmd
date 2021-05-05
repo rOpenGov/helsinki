@@ -1,6 +1,6 @@
 ---
 title: "Helsinki open data R tools"
-author: "Pyry Kantanen"
+author: "Juuso Parkkinen, Pyry Kantanen"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -28,10 +28,9 @@ knitr::opts_chunk$set(
 helsinki - tutorial
 ===========
 
-This R package provides tools to access open data from the Helsinki region in Finland
-as part of the [rOpenGov](http://ropengov.org) project.
+helsinki R package provides tools to access open data from the Helsinki region in Finland. 
 
-For contact information and source code, see the project's [GitHub page](https://github.com/rOpenGov/helsinki).
+For contact information, source code and bug reports, see the project's [GitHub page](https://github.com/rOpenGov/helsinki). For other similar packages and related blog posts, see the [rOpenGov](http://ropengov.org) project website.
 
 ## Installation
 
@@ -56,9 +55,9 @@ library(helsinki)
 
 ## API Access
 
-The package has basic functionalities for interacting with WFS APIs. 
+The package has basic functions for interacting with WFS APIs, courtesy of [FMI2-package](https://ropengov.github.io/fmi2/): `wfs_api()` for returning "wfs_api" and `to_sf()` for turning these objects to sf-objects.
 
-All available features of a given API can be easily listed with `get_feature_list()`:
+All available features of a given API can be easily listed with the `get_feature_list()` function. Partly due to legacy considerations, partly due to user convenience we often use HSY API url in these function examples, sometimes even as a default option. The API functions can, however, be used with a wide variety of different `base.url` parameters.
 
 ```{r wfs1, eval = TRUE}
 url <- "https://kartta.hsy.fi/geoserver/wfs"
@@ -69,7 +68,7 @@ feature_of_interest <- hsy_features$Name[20]
 feature_of_interest
 ```
 
-When the wanted feature and its Name (in other words: Namespace:Title combination) is known, it can be downloaded with `get_feature()` by providing the correct base.url and the Name as the typename parameter.
+When the wanted feature and its Name (in other words: Namespace:Title combination) is known, it can be downloaded with `get_feature()` by providing the correct `base.url` and the Name as the `typename` parameter.
 
 ```{r wfs2, eval = TRUE}
 # downloading a feature
@@ -80,7 +79,7 @@ plot(waterposts$geom)
 
 Dots on a blank canvas do not make much sense and therefore helsinki-package has `get_city_map()` function for downloading city district boundaries. An example of this is provided in the [Helsinki region district maps](#helsinki-region-district-maps) section of this vignette.
 
-Helsinki-package provides an easy-to-use menu-driven `select_feature()` function that effectively combines `get_feature_list()` and `get_feature()`. At default it only returns the Name of the wanted function, but if download parameter is set to TRUE, it returns an sf_object which can be easily visualized.
+Helsinki-package provides an easy-to-use menu-driven `select_feature()` function that effectively combines `get_feature_list()` and `get_feature()`. At default it only returns the Name of the wanted function, but if `get` parameter is set to TRUE, it returns an sf_object which can be easily visualized.
 
 ```{r wfs3, eval = FALSE}
 # Standard use
@@ -133,14 +132,14 @@ search_puisto$results$name$fi
 names(search_puisto$results)
 ```
 
-More results could be retrieved and viewed by giving additional search parameters.
+More results could be retrieved and viewed by giving additional `search` parameters.
 
 ```{r}
 search_puisto <- get_servicemap(query="search", q="puisto", page_size = 30, page = 2)
 search_puisto$results$name$fi
 ```
 
-As we could see from above example, the returned data frame had 47 observations. At full width this output can be messy to handle. One option would be to turn it into a tibble, the other to limit the extent of the query at the start. This can be done with only parameter:
+As we could see from above example, the returned data frame had 47 observations. At full width this output can be messy to handle in R console. One possible option would be to turn it into a more easily manageable tibble (which often is not a bad idea), another is to limit the extent of the query at the start. We do the latter and it can be done with the function parameter `only`:
 
 ```{r}
 # Search for padel-related services in Helsinki
@@ -148,7 +147,9 @@ search_padel <- get_servicemap(query="search", input="padel", only="unit.name, u
 search_padel$results
 ```
 
-Function `get_linkedevents()` retrieves regional event data from the new [Linked Events API](http://api.hel.fi/linkedevents/v0.1/).
+The function parameter `only` is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case "unit". Other valid input in this case would be "service_node", "service" and "address", but during testing unit-prefix seemed to work best. When in doubt, checking the [original documentation](https://dev.hel.fi/apis/service-map-backend-api) may help.
+
+Function `get_linkedevents()` retrieves regional event data from the new [Linked Events API](http://api.hel.fi/linkedevents/v1/).
 
 ```{r linkedevents, message=FALSE, warning=FALSE}
 # Search for current events
@@ -165,9 +166,9 @@ Helsinki region geographic data can be accessed from a WFS API by using the get_
 
 Administrative divisions can be accessed on 3 distinct levels: "suuralue", "tilastoalue" and "pienalue". Literal, completely unofficial translations for these could be "grand district", "statistical area" and "(minor) district". The naming convention of these levels is sometimes confusing even in Finnish documents and different names can vary by city and time. 
 
-The main takeaway is that "suuralue" is the highest-level division and "pienalue" is the most granular level of division. "Tilastoalue" is somewhere between these two.
+The main takeaway is that "suuralue" is the highest-level division and "pienalue" is the most granular level of division. "Tilastoalue" is somewhere between these two. These are the names to be used even if the city of interest might not use them in their Finnish or English website.
 
-As promised earlier in [API Access](#api-access), the following example gives an idea on how to visualize waterpost locations (and, you guessed right, other kinds of spatial data) on a map.
+As promised earlier in [API Access](#api-access), the following example gives an idea on how to visualize waterpost locations (and, of course, other types of spatial data as well) on capital region map.
 
 ```{r maps1, eval = TRUE}
 helsinki <- get_city_map(city = "helsinki", level = "suuralue")
@@ -200,7 +201,7 @@ For other cities than Helsinki voting areas (and older district maps that should
 
 The included aluejakokartat-dataset can also be used if there is for some reason a temporary internet outage in your area and you just need to draw maps on Finnish capital region. It will be bundled with the package for the time being.
 
-Here are the contents of `data(aluejakokartat)`:
+Below are the contents of `data(aluejakokartat)`:
 
 ```{r maps3, message=FALSE}
 # Load aluejakokartat and study contents
@@ -214,18 +215,18 @@ Function `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare st
 
 ```{r hri_stats1, message=FALSE, warning=FALSE}
 # Retrieve list of available data
-stats.list <- get_hri_stats(query="")
+stats_list <- get_hri_stats(query="")
 # Show first results
-head(stats.list)
+head(stats_list)
 ```
 
-Specify a dataset to retrieve. The output is currently a three-dimensional array.
+Specify a dataset to retrieve. In this specific example we will download the first item on the stats_list object. The output is a three-dimensional array.
 
 ```{r hri_stats2, message=FALSE, warning=FALSE}
 # Retrieve a specific dataset
-stats.res <- get_hri_stats(query=stats.list[1])
+stats_res <- get_hri_stats(query=stats_list[1])
 # Show the structure of the results
-str(stats.res)
+str(stats_res)
 ```
 
 ## Licensing and Citations

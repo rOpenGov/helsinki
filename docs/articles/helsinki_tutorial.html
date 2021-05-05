@@ -79,9 +79,9 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Helsinki open data R tools</h1>
-                        <h4 data-toc-skip class="author">Pyry Kantanen</h4>
+                        <h4 data-toc-skip class="author">Juuso Parkkinen, Pyry Kantanen</h4>
             
-            <h4 data-toc-skip class="date">2021-05-04</h4>
+            <h4 data-toc-skip class="date">2021-05-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/helsinki/blob/master/vignettes/helsinki_tutorial.Rmd" class="external-link"><code>vignettes/helsinki_tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>helsinki_tutorial.Rmd</code></div>
@@ -93,8 +93,8 @@
 <div id="helsinki---tutorial" class="section level1">
 <h1 class="hasAnchor">
 <a href="#helsinki---tutorial" class="anchor" aria-hidden="true"></a>helsinki - tutorial</h1>
-<p>This R package provides tools to access open data from the Helsinki region in Finland as part of the <a href="http://ropengov.org" class="external-link">rOpenGov</a> project.</p>
-<p>For contact information and source code, see the project’s <a href="https://github.com/rOpenGov/helsinki" class="external-link">GitHub page</a>.</p>
+<p>helsinki R package provides tools to access open data from the Helsinki region in Finland.</p>
+<p>For contact information, source code and bug reports, see the project’s <a href="https://github.com/rOpenGov/helsinki" class="external-link">GitHub page</a>. For other similar packages and related blog posts, see the <a href="http://ropengov.org" class="external-link">rOpenGov</a> project website.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
@@ -112,8 +112,8 @@
 <div id="api-access" class="section level2">
 <h2 class="hasAnchor">
 <a href="#api-access" class="anchor" aria-hidden="true"></a>API Access</h2>
-<p>The package has basic functionalities for interacting with WFS APIs.</p>
-<p>All available features of a given API can be easily listed with <code><a href="../reference/get_feature_list.html">get_feature_list()</a></code>:</p>
+<p>The package has basic functions for interacting with WFS APIs, courtesy of <a href="https://ropengov.github.io/fmi2/" class="external-link">FMI2-package</a>: <code><a href="../reference/wfs_api.html">wfs_api()</a></code> for returning “wfs_api” and <code><a href="../reference/to_sf.html">to_sf()</a></code> for turning these objects to sf-objects.</p>
+<p>All available features of a given API can be easily listed with the <code><a href="../reference/get_feature_list.html">get_feature_list()</a></code> function. Partly due to legacy considerations, partly due to user convenience we often use HSY API url in these function examples, sometimes even as a default option. The API functions can, however, be used with a wide variety of different <code>base.url</code> parameters.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://kartta.hsy.fi/geoserver/wfs"</span>
 
@@ -122,7 +122,7 @@
 <span class="co"># Location of waterposts</span>
 <span class="va">feature_of_interest</span>
 <span class="co">#&gt; [1] "vesihuolto:HSY_vesipostit_2014"</span></code></pre></div>
-<p>When the wanted feature and its Name (in other words: Namespace:Title combination) is known, it can be downloaded with <code><a href="../reference/get_feature.html">get_feature()</a></code> by providing the correct base.url and the Name as the typename parameter.</p>
+<p>When the wanted feature and its Name (in other words: Namespace:Title combination) is known, it can be downloaded with <code><a href="../reference/get_feature.html">get_feature()</a></code> by providing the correct <code>base.url</code> and the Name as the <code>typename</code> parameter.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># downloading a feature</span>
 <span class="va">waterposts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_feature.html">get_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">url</span>, typename <span class="op">=</span> <span class="va">feature_of_interest</span><span class="op">)</span>
@@ -130,7 +130,7 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">waterposts</span><span class="op">$</span><span class="va">geom</span><span class="op">)</span></code></pre></div>
 <p><img src="helsinki_tutorial_files/figure-html/wfs2-1.png" width="525"></p>
 <p>Dots on a blank canvas do not make much sense and therefore helsinki-package has <code><a href="../reference/get_city_map.html">get_city_map()</a></code> function for downloading city district boundaries. An example of this is provided in the <a href="#helsinki-region-district-maps">Helsinki region district maps</a> section of this vignette.</p>
-<p>Helsinki-package provides an easy-to-use menu-driven <code><a href="../reference/select_feature.html">select_feature()</a></code> function that effectively combines <code><a href="../reference/get_feature_list.html">get_feature_list()</a></code> and <code><a href="../reference/get_feature.html">get_feature()</a></code>. At default it only returns the Name of the wanted function, but if download parameter is set to TRUE, it returns an sf_object which can be easily visualized.</p>
+<p>Helsinki-package provides an easy-to-use menu-driven <code><a href="../reference/select_feature.html">select_feature()</a></code> function that effectively combines <code><a href="../reference/get_feature_list.html">get_feature_list()</a></code> and <code><a href="../reference/get_feature.html">get_feature()</a></code>. At default it only returns the Name of the wanted function, but if <code>get</code> parameter is set to TRUE, it returns an sf_object which can be easily visualized.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Standard use</span>
 <span class="va">selected_feature</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_feature.html">select_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">url</span><span class="op">)</span>
@@ -169,7 +169,7 @@
 <span class="co"># Study results: 47 variables in the data frame</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">search_puisto</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ count   : int 2088</span>
+<span class="co">#&gt;  $ count   : int 2089</span>
 <span class="co">#&gt;  $ next    : chr "https://api.hel.fi/servicemap/v2/search/?page=2&amp;q=puisto"</span>
 <span class="co">#&gt;  $ previous: NULL</span>
 <span class="co">#&gt;  $ results :'data.frame':    20 obs. of  47 variables:</span></code></pre></div>
@@ -224,7 +224,7 @@
 <span class="co">#&gt; [43] "location"                        "accessibility_shortcoming_count"</span>
 <span class="co">#&gt; [45] "sort_index"                      "object_type"                    </span>
 <span class="co">#&gt; [47] "score"</span></code></pre></div>
-<p>More results could be retrieved and viewed by giving additional search parameters.</p>
+<p>More results could be retrieved and viewed by giving additional <code>search</code> parameters.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span>, page_size <span class="op">=</span> <span class="fl">30</span>, page <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
@@ -239,10 +239,10 @@
 <span class="co">#&gt;  [9] "Tynnyripuisto"                                     </span>
 <span class="co">#&gt; [10] "Olarin asukaspuisto"                               </span>
 <span class="co">#&gt; [11] "Perkkaan asukaspuisto"                             </span>
-<span class="co">#&gt; [12] "Asematien leikkipuisto"                            </span>
-<span class="co">#&gt; [13] "Stenbergin puisto"                                 </span>
-<span class="co">#&gt; [14] "Leppävaaran asukaspuisto"                          </span>
-<span class="co">#&gt; [15] "Matinkylän asukaspuisto"                           </span>
+<span class="co">#&gt; [12] "Leppävaaran asukaspuisto"                          </span>
+<span class="co">#&gt; [13] "Matinkylän asukaspuisto"                           </span>
+<span class="co">#&gt; [14] "Asematien leikkipuisto"                            </span>
+<span class="co">#&gt; [15] "Stenbergin puisto"                                 </span>
 <span class="co">#&gt; [16] "Kasavuoren puisto"                                 </span>
 <span class="co">#&gt; [17] "Karakallion asukaspuisto"                          </span>
 <span class="co">#&gt; [18] "Suvelan asukaspuisto"                              </span>
@@ -258,7 +258,7 @@
 <span class="co">#&gt; [28] "Träskändan kartanopuisto"                          </span>
 <span class="co">#&gt; [29] "Laivatorin puisto"                                 </span>
 <span class="co">#&gt; [30] "Rantaraitin puisto"</span></code></pre></div>
-<p>As we could see from above example, the returned data frame had 47 observations. At full width this output can be messy to handle. One option would be to turn it into a tibble, the other to limit the extent of the query at the start. This can be done with only parameter:</p>
+<p>As we could see from above example, the returned data frame had 47 observations. At full width this output can be messy to handle in R console. One possible option would be to turn it into a more easily manageable tibble (which often is not a bad idea), another is to limit the extent of the query at the start. We do the latter and it can be done with the function parameter <code>only</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Search for padel-related services in Helsinki</span>
 <span class="va">search_padel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, input<span class="op">=</span><span class="st">"padel"</span>, only<span class="op">=</span><span class="st">"unit.name, unit.location.coordinates, unit.street_address"</span>, municipality<span class="op">=</span><span class="st">"helsinki"</span><span class="op">)</span>
@@ -297,42 +297,43 @@
 <span class="co">#&gt; 9              Depåvägen 4                Varikkotie 4         Point</span>
 <span class="co">#&gt; 10           Fladabågen 23           Sarvastonkaari 23         Point</span>
 <span class="co">#&gt;    location.coordinates sort_index object_type    score</span>
-<span class="co">#&gt; 1    24.93146, 60.15325          0        unit 7.931016</span>
-<span class="co">#&gt; 2    24.86652, 60.16435          1        unit 7.419246</span>
-<span class="co">#&gt; 3    24.93602, 60.20486          2        unit 7.419246</span>
-<span class="co">#&gt; 4    24.94567, 60.19430          3        unit 7.418701</span>
-<span class="co">#&gt; 5    25.07979, 60.22095          4        unit 7.072420</span>
-<span class="co">#&gt; 6    24.98746, 60.21826          5        unit 6.647412</span>
-<span class="co">#&gt; 7    24.96320, 60.18242          6        unit 2.783587</span>
-<span class="co">#&gt; 8    24.87776, 60.21116          7        unit 2.782728</span>
-<span class="co">#&gt; 9    25.06807, 60.20983          8        unit 2.269441</span>
-<span class="co">#&gt; 10   25.05760, 60.17415          9        unit 2.268535</span></code></pre></div>
-<p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v0.1/" class="external-link">Linked Events API</a>.</p>
+<span class="co">#&gt; 1    24.93146, 60.15325          0        unit 7.933976</span>
+<span class="co">#&gt; 2    24.86652, 60.16435          1        unit 7.417926</span>
+<span class="co">#&gt; 3    24.93602, 60.20486          2        unit 7.417926</span>
+<span class="co">#&gt; 4    24.94567, 60.19430          3        unit 7.417086</span>
+<span class="co">#&gt; 5    25.07979, 60.22095          4        unit 7.075028</span>
+<span class="co">#&gt; 6    24.98746, 60.21826          5        unit 6.645955</span>
+<span class="co">#&gt; 7    24.96320, 60.18242          6        unit 2.782919</span>
+<span class="co">#&gt; 8    24.87776, 60.21116          7        unit 2.782000</span>
+<span class="co">#&gt; 9    25.06807, 60.20983          8        unit 2.268850</span>
+<span class="co">#&gt; 10   25.05760, 60.17415          9        unit 2.267913</span></code></pre></div>
+<p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api" class="external-link">original documentation</a> may help.</p>
+<p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v1/" class="external-link">Linked Events API</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Search for current events</span>
 <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"event"</span><span class="op">)</span>
 <span class="co"># Get names for the first 20 results</span>
 <span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "Digital guidance online in Arabic and English"  </span>
-<span class="co">#&gt;  [2] "Digital guidance online in Arabic and English"  </span>
-<span class="co">#&gt;  [3] "Turvamies"                                      </span>
-<span class="co">#&gt;  [4] NA                                               </span>
-<span class="co">#&gt;  [5] "Saikkua, Kiitos! Osa 3"                         </span>
-<span class="co">#&gt;  [6] "Everstinna"                                     </span>
-<span class="co">#&gt;  [7] "Niin Kuin Taivaassa"                            </span>
-<span class="co">#&gt;  [8] "Club Act!One"                                   </span>
-<span class="co">#&gt;  [9] "Kiviä Taskussa"                                 </span>
-<span class="co">#&gt; [10] "Lapset"                                         </span>
-<span class="co">#&gt; [11] "Paahtimo"                                       </span>
-<span class="co">#&gt; [12] "Once + Replik!"                                 </span>
-<span class="co">#&gt; [13] "Den Besynnerliga Händelsen Med Hunden Om Natten"</span>
-<span class="co">#&gt; [14] "Baskervillen Koira"                             </span>
-<span class="co">#&gt; [15] "Bolla"                                          </span>
-<span class="co">#&gt; [16] "Tatu Ja Patu Helsingissä"                       </span>
-<span class="co">#&gt; [17] "Lapset"                                         </span>
-<span class="co">#&gt; [18] "Niin Kuin Taivaassa"                            </span>
-<span class="co">#&gt; [19] "Kiviä Taskussa"                                 </span>
-<span class="co">#&gt; [20] "Lapset"</span>
+<span class="co">#&gt;  [1] "Taidepiste: Pilaako liika sensitiivisyys taiteen?"        </span>
+<span class="co">#&gt;  [2] "Luova lava -leiri Maunulassa"                             </span>
+<span class="co">#&gt;  [3] "Luova lava -leiri Maunulassa"                             </span>
+<span class="co">#&gt;  [4] "Mustapuron kunnostussuunnitelman yleisötilaisuus verkossa"</span>
+<span class="co">#&gt;  [5] "Digital guidance online in Arabic and English"            </span>
+<span class="co">#&gt;  [6] "Digital guidance online in Arabic and English"            </span>
+<span class="co">#&gt;  [7] "Digital guidance online in Arabic and English"            </span>
+<span class="co">#&gt;  [8] "Luova lava -leiri Maunulassa"                             </span>
+<span class="co">#&gt;  [9] "Club Act!One"                                             </span>
+<span class="co">#&gt; [10] "Paahtimo"                                                 </span>
+<span class="co">#&gt; [11] NA                                                         </span>
+<span class="co">#&gt; [12] "Bolla"                                                    </span>
+<span class="co">#&gt; [13] "Niin Kuin Taivaassa"                                      </span>
+<span class="co">#&gt; [14] "Everstinna"                                               </span>
+<span class="co">#&gt; [15] "Baskervillen Koira"                                       </span>
+<span class="co">#&gt; [16] "Once + Replik!"                                           </span>
+<span class="co">#&gt; [17] "Kiviä Taskussa"                                           </span>
+<span class="co">#&gt; [18] "Lapset"                                                   </span>
+<span class="co">#&gt; [19] "Den Besynnerliga Händelsen Med Hunden Om Natten"          </span>
+<span class="co">#&gt; [20] "Saikkua, Kiitos! Osa 3"</span>
 <span class="co"># See what kind of data is given for events</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "id"                    "location"              "keywords"             </span>
@@ -353,8 +354,8 @@
 <a href="#helsinki-region-district-maps" class="anchor" aria-hidden="true"></a>Helsinki region district maps</h2>
 <p>Helsinki region geographic data can be accessed from a WFS API by using the get_city_map() function. Data is available for all 4 cities in the capital region: Helsinki, Espoo, Vantaa and Kauniainen.</p>
 <p>Administrative divisions can be accessed on 3 distinct levels: “suuralue”, “tilastoalue” and “pienalue”. Literal, completely unofficial translations for these could be “grand district”, “statistical area” and “(minor) district”. The naming convention of these levels is sometimes confusing even in Finnish documents and different names can vary by city and time.</p>
-<p>The main takeaway is that “suuralue” is the highest-level division and “pienalue” is the most granular level of division. “Tilastoalue” is somewhere between these two.</p>
-<p>As promised earlier in <a href="#api-access">API Access</a>, the following example gives an idea on how to visualize waterpost locations (and, you guessed right, other kinds of spatial data) on a map.</p>
+<p>The main takeaway is that “suuralue” is the highest-level division and “pienalue” is the most granular level of division. “Tilastoalue” is somewhere between these two. These are the names to be used even if the city of interest might not use them in their Finnish or English website.</p>
+<p>As promised earlier in <a href="#api-access">API Access</a>, the following example gives an idea on how to visualize waterpost locations (and, of course, other types of spatial data as well) on capital region map.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">helsinki</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"helsinki"</span>, level <span class="op">=</span> <span class="st">"suuralue"</span><span class="op">)</span>
 <span class="va">espoo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"espoo"</span>, level <span class="op">=</span> <span class="st">"suuralue"</span><span class="op">)</span>
@@ -380,7 +381,7 @@
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">voting_district</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>For other cities than Helsinki voting areas (and older district maps that shouldn’t be too different from current maps) can be viewed from the legacy dataset with <code>data(aluejakokartat)</code>. The data included with the packaged is available as both spatial object (<code>sp</code>) and data frame (<code>df</code>). This data was preprocessed with the now-defunct gisfin-package. The current, actively maintained version of gisfin is called <a href="https://github.com/rOpenGov/geofi" class="external-link">geofi</a>).</p>
 <p>The included aluejakokartat-dataset can also be used if there is for some reason a temporary internet outage in your area and you just need to draw maps on Finnish capital region. It will be bundled with the package for the time being.</p>
-<p>Here are the contents of <code>data(aluejakokartat)</code>:</p>
+<p>Below are the contents of <code>data(aluejakokartat)</code>:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load aluejakokartat and study contents</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">aluejakokartat</span><span class="op">)</span>
@@ -411,9 +412,9 @@
 <p>Function <code><a href="../reference/get_hri_stats.html">get_hri_stats()</a></code> retrieves data from the <a href="http://dev.hel.fi/stats/" class="external-link">Helsinki Region Infoshare statistics API</a>.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Retrieve list of available data</span>
-<span class="va">stats.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">""</span><span class="op">)</span>
+<span class="va">stats_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">""</span><span class="op">)</span>
 <span class="co"># Show first results</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">stats.list</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">stats_list</span><span class="op">)</span>
 <span class="co">#&gt;                                      NULL </span>
 <span class="co">#&gt;             "L113_viheralue_kaupunginosa" </span>
 <span class="co">#&gt;                                      NULL </span>
@@ -426,12 +427,12 @@
 <span class="co">#&gt;       "J13_sekajatteen_maara_kiinteistot" </span>
 <span class="co">#&gt;  Helsingin väestö äidinkielen mukaan 1.1. </span>
 <span class="co">#&gt; "aluesarjat_a03s_hki_vakiluku_aidinkieli"</span></code></pre></div>
-<p>Specify a dataset to retrieve. The output is currently a three-dimensional array.</p>
+<p>Specify a dataset to retrieve. In this specific example we will download the first item on the stats_list object. The output is a three-dimensional array.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Retrieve a specific dataset</span>
-<span class="va">stats.res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">stats.list</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
+<span class="va">stats_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">stats_list</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 <span class="co"># Show the structure of the results</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">stats.res</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">stats_res</span><span class="op">)</span>
 <span class="co">#&gt;  num [1:6, 1:34] 11606 5607 2.07 0.65 0.15 ...</span>
 <span class="co">#&gt;  - attr(*, "dimnames")=List of 2</span>
 <span class="co">#&gt;   ..$ muuttuja  : chr [1:6] "Asukkaita" "Asukastiheys (hlö/km2)" "Maapinta-ala (km2)" "Viheralueiden pinta-ala (km2)" ...</span>
@@ -491,23 +492,23 @@
 <span class="co">#&gt; [1] sp_1.4-5        ggplot2_3.3.3   helsinki_0.9.40</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] Rcpp_1.0.6         lattice_0.20-41    class_7.3-18       assertthat_0.2.1  </span>
-<span class="co">#&gt;  [5] rprojroot_2.0.2    digest_0.6.27      utf8_1.2.1         R6_2.5.0          </span>
-<span class="co">#&gt;  [9] evaluate_0.14      e1071_1.7-6        httr_1.4.2         highr_0.9         </span>
-<span class="co">#&gt; [13] pillar_1.6.0       rlang_0.4.11       curl_4.3.1         jquerylib_0.1.4   </span>
-<span class="co">#&gt; [17] rmarkdown_2.7      pkgdown_1.6.1.9001 textshaping_0.3.3  desc_1.3.0        </span>
-<span class="co">#&gt; [21] labeling_0.4.2     stringr_1.4.0      munsell_0.5.0      proxy_0.4-25      </span>
-<span class="co">#&gt; [25] compiler_4.0.5     xfun_0.22          pkgconfig_2.0.3    systemfonts_1.0.1 </span>
-<span class="co">#&gt; [29] htmltools_0.5.1.1  tidyselect_1.1.0   tibble_3.1.1       fansi_0.4.2       </span>
-<span class="co">#&gt; [33] crayon_1.4.1       dplyr_1.0.5        withr_2.4.2        sf_0.9-8          </span>
-<span class="co">#&gt; [37] grid_4.0.5         jsonlite_1.7.2     gtable_0.3.0       lifecycle_1.0.0   </span>
-<span class="co">#&gt; [41] DBI_1.1.1          magrittr_2.0.1     units_0.7-1        scales_1.1.1      </span>
-<span class="co">#&gt; [45] KernSmooth_2.23-18 stringi_1.5.3      cachem_1.0.4       farver_2.1.0      </span>
-<span class="co">#&gt; [49] fs_1.5.0           xml2_1.3.2         bslib_0.2.4        ellipsis_0.3.2    </span>
-<span class="co">#&gt; [53] ragg_1.1.2         generics_0.1.0     vctrs_0.3.8        httpcache_1.2.0   </span>
-<span class="co">#&gt; [57] tools_4.0.5        glue_1.4.2         purrr_0.3.4        fastmap_1.1.0     </span>
-<span class="co">#&gt; [61] yaml_2.2.1         colorspace_2.0-0   classInt_0.4-3     memoise_2.0.0     </span>
-<span class="co">#&gt; [65] knitr_1.33         sass_0.3.1</span></code></pre></div>
+<span class="co">#&gt;  [1] tidyselect_1.1.0   xfun_0.22          bslib_0.2.4        purrr_0.3.4       </span>
+<span class="co">#&gt;  [5] sf_0.9-8           lattice_0.20-41    colorspace_2.0-0   vctrs_0.3.8       </span>
+<span class="co">#&gt;  [9] generics_0.1.0     htmltools_0.5.1.1  yaml_2.2.1         utf8_1.2.1        </span>
+<span class="co">#&gt; [13] rlang_0.4.11       e1071_1.7-6        pkgdown_1.6.1.9001 jquerylib_0.1.4   </span>
+<span class="co">#&gt; [17] pillar_1.6.0       withr_2.4.2        glue_1.4.2         DBI_1.1.1         </span>
+<span class="co">#&gt; [21] lifecycle_1.0.0    stringr_1.4.0      munsell_0.5.0      gtable_0.3.0      </span>
+<span class="co">#&gt; [25] ragg_1.1.2         memoise_2.0.0      evaluate_0.14      labeling_0.4.2    </span>
+<span class="co">#&gt; [29] knitr_1.33         fastmap_1.1.0      curl_4.3.1         class_7.3-18      </span>
+<span class="co">#&gt; [33] fansi_0.4.2        highr_0.9          Rcpp_1.0.6         KernSmooth_2.23-18</span>
+<span class="co">#&gt; [37] scales_1.1.1       classInt_0.4-3     cachem_1.0.4       desc_1.3.0        </span>
+<span class="co">#&gt; [41] jsonlite_1.7.2     farver_2.1.0       systemfonts_1.0.1  fs_1.5.0          </span>
+<span class="co">#&gt; [45] textshaping_0.3.3  digest_0.6.27      stringi_1.5.3      dplyr_1.0.5       </span>
+<span class="co">#&gt; [49] rprojroot_2.0.2    grid_4.0.5         tools_4.0.5        magrittr_2.0.1    </span>
+<span class="co">#&gt; [53] sass_0.3.1         proxy_0.4-25       tibble_3.1.1       crayon_1.4.1      </span>
+<span class="co">#&gt; [57] httpcache_1.2.0    pkgconfig_2.0.3    ellipsis_0.3.2     xml2_1.3.2        </span>
+<span class="co">#&gt; [61] assertthat_0.2.1   rmarkdown_2.7      httr_1.4.2         R6_2.5.0          </span>
+<span class="co">#&gt; [65] units_0.7-1        compiler_4.0.5</span></code></pre></div>
 </div>
 </div>
 </div>

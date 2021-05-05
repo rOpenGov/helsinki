@@ -25,7 +25,7 @@
 #' three-dimensional array form.
 #'
 #' @param query A string, specifying the dataset to query
-#' @param verbose logical. Should R report extra information on progress? 
+#' @param verbose logical. Should R report extra information on progress? Default is TRUE
 #' @return results A three-dimensional array of results.
 #' 
 #' @importFrom httr parse_url build_url
@@ -33,7 +33,10 @@
 #' 
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples stats.array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
+#' @examples stats_array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
+#' 
+#' @seealso See \url{https://dev.hel.fi/apis/statistics}{dev.hel.fi website} and 
+#' \url{http://dev.hel.fi/stats/}{API documentation} (in Finnish)
 #' 
 #' @export
 

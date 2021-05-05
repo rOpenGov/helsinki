@@ -13,7 +13,7 @@ to_sf(api_obj)
 sf object
 }
 \description{
-Transform a fmi_api object into a sf object.
+Transform a wfs_api object into a sf object.
 }
 \details{
 FMI API response object's XML (GML) content is temporarily wrtitten on disk

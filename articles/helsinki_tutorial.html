@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">helsinki</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Helsinki open data R tools</h1>
                         <h4 class="author">Juuso Parkkinen, Pyry Kantanen</h4>
             
-            <h4 class="date">2021-05-05</h4>
+            <h4 class="date">2021-05-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/helsinki/blob/master/vignettes/helsinki_tutorial.Rmd"><code>vignettes/helsinki_tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>helsinki_tutorial.Rmd</code></div>
@@ -166,14 +166,14 @@
 <div id="service-and-event-information" class="section level2">
 <h2 class="hasAnchor">
 <a href="#service-and-event-information" class="anchor"></a>Service and event information</h2>
-<p>Function <code><a href="../reference/get_servicemap.html">get_servicemap()</a></code> retrieves regional service data from city of Helsinki <a href="http://api.hel.fi/servicemap/v2/">Service Map API</a>, that contains data from the <a href="http://dev.hel.fi/servicemap/">Service Map</a>.</p>
+<p>Function <code><a href="../reference/get_servicemap.html">get_servicemap()</a></code> retrieves regional service data from city of Helsinki <a href="http://api.hel.fi/servicemap/v2/">Service Map API</a>, that contains data from the <a href="https://palvelukartta.hel.fi/fi/">Service Map</a>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Search for "puisto" (park) (specify q="query")</span>
 <span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span><span class="op">)</span>
 <span class="co"># Study results: 47 variables in the data frame</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">search_puisto</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ count   : int 2089</span>
+<span class="co">#&gt;  $ count   : int 2087</span>
 <span class="co">#&gt;  $ next    : chr "https://api.hel.fi/servicemap/v2/search/?page=2&amp;q=puisto"</span>
 <span class="co">#&gt;  $ previous: NULL</span>
 <span class="co">#&gt;  $ results :'data.frame':    20 obs. of  47 variables:</span></code></pre></div>
@@ -232,10 +232,10 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span>, page_size <span class="op">=</span> <span class="fl">30</span>, page <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "Ankkuripohjanpuisto"                               </span>
-<span class="co">#&gt;  [2] "Kuttulammenpuisto"                                 </span>
-<span class="co">#&gt;  [3] "Rinkelipuisto"                                     </span>
-<span class="co">#&gt;  [4] "Kaupungintalon puisto"                             </span>
+<span class="co">#&gt;  [1] "Kaupungintalon puisto"                             </span>
+<span class="co">#&gt;  [2] "Ankkuripohjanpuisto"                               </span>
+<span class="co">#&gt;  [3] "Kuttulammenpuisto"                                 </span>
+<span class="co">#&gt;  [4] "Rinkelipuisto"                                     </span>
 <span class="co">#&gt;  [5] "Alli Tryggin puiston opaskoira-aitaus"             </span>
 <span class="co">#&gt;  [6] "Hurtigin puisto"                                   </span>
 <span class="co">#&gt;  [7] "Nurmilinnunpuisto"                                 </span>
@@ -247,9 +247,9 @@
 <span class="co">#&gt; [13] "Matinkylän asukaspuisto"                           </span>
 <span class="co">#&gt; [14] "Asematien leikkipuisto"                            </span>
 <span class="co">#&gt; [15] "Stenbergin puisto"                                 </span>
-<span class="co">#&gt; [16] "Karakallion asukaspuisto"                          </span>
-<span class="co">#&gt; [17] "Suvelan asukaspuisto"                              </span>
-<span class="co">#&gt; [18] "Kasavuoren puisto"                                 </span>
+<span class="co">#&gt; [16] "Kasavuoren puisto"                                 </span>
+<span class="co">#&gt; [17] "Karakallion asukaspuisto"                          </span>
+<span class="co">#&gt; [18] "Suvelan asukaspuisto"                              </span>
 <span class="co">#&gt; [19] "Veijarivuoren puiston talviuintipaikka (Humaus ry)"</span>
 <span class="co">#&gt; [20] "Viherkallion asukaspuisto"                         </span>
 <span class="co">#&gt; [21] "Kylätalo Palttinan asukaspuisto"                   </span>
@@ -301,17 +301,17 @@
 <span class="co">#&gt; 9              Depåvägen 4                Varikkotie 4         Point</span>
 <span class="co">#&gt; 10           Fladabågen 23           Sarvastonkaari 23         Point</span>
 <span class="co">#&gt;    location.coordinates sort_index object_type    score</span>
-<span class="co">#&gt; 1    24.93146, 60.15325          0        unit 7.929287</span>
-<span class="co">#&gt; 2    24.86652, 60.16435          1        unit 7.419197</span>
-<span class="co">#&gt; 3    24.93602, 60.20486          2        unit 7.419197</span>
-<span class="co">#&gt; 4    24.94567, 60.19430          3        unit 7.418997</span>
-<span class="co">#&gt; 5    25.07979, 60.22095          4        unit 7.070877</span>
-<span class="co">#&gt; 6    24.98746, 60.21826          5        unit 6.647654</span>
-<span class="co">#&gt; 7    24.96320, 60.18242          6        unit 2.783547</span>
-<span class="co">#&gt; 8    24.87776, 60.21116          7        unit 2.782710</span>
-<span class="co">#&gt; 9    25.06807, 60.20983          8        unit 2.269403</span>
-<span class="co">#&gt; 10   25.05760, 60.17415          9        unit 2.268481</span></code></pre></div>
-<p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api">original documentation</a> may help.</p>
+<span class="co">#&gt; 1    24.93146, 60.15325          0        unit 7.930239</span>
+<span class="co">#&gt; 2    24.86652, 60.16435          1        unit 7.416847</span>
+<span class="co">#&gt; 3    24.93602, 60.20486          2        unit 7.416847</span>
+<span class="co">#&gt; 4    24.94567, 60.19430          3        unit 7.415386</span>
+<span class="co">#&gt; 5    25.07979, 60.22095          4        unit 7.071722</span>
+<span class="co">#&gt; 6    24.98746, 60.21826          5        unit 6.644442</span>
+<span class="co">#&gt; 7    24.96320, 60.18242          6        unit 2.782445</span>
+<span class="co">#&gt; 8    24.87776, 60.21116          7        unit 2.781358</span>
+<span class="co">#&gt; 9    25.06807, 60.20983          8        unit 2.268449</span>
+<span class="co">#&gt; 10   25.05760, 60.17415          9        unit 2.267396</span></code></pre></div>
+<p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api/">original documentation</a> may help.</p>
 <p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v1/">Linked Events API</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Search for current events</span>
@@ -320,24 +320,24 @@
 <span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
 <span class="co">#&gt;  [1] "Digital guidance online in Arabic and English"  </span>
 <span class="co">#&gt;  [2] "Digital guidance online in Arabic and English"  </span>
-<span class="co">#&gt;  [3] "Digital guidance online in Arabic and English"  </span>
-<span class="co">#&gt;  [4] "Bolla"                                          </span>
-<span class="co">#&gt;  [5] "Turvamies"                                      </span>
-<span class="co">#&gt;  [6] "Saikkua, Kiitos! Osa 3"                         </span>
-<span class="co">#&gt;  [7] "Club Act!One"                                   </span>
-<span class="co">#&gt;  [8] "Paahtimo"                                       </span>
-<span class="co">#&gt;  [9] "Lapset"                                         </span>
-<span class="co">#&gt; [10] "Once + Replik!"                                 </span>
-<span class="co">#&gt; [11] NA                                               </span>
-<span class="co">#&gt; [12] "Niin Kuin Taivaassa"                            </span>
-<span class="co">#&gt; [13] "Everstinna"                                     </span>
-<span class="co">#&gt; [14] "Den Besynnerliga Händelsen Med Hunden Om Natten"</span>
-<span class="co">#&gt; [15] "Baskervillen Koira"                             </span>
-<span class="co">#&gt; [16] "Kiviä Taskussa"                                 </span>
-<span class="co">#&gt; [17] "Tatu Ja Patu Helsingissä"                       </span>
-<span class="co">#&gt; [18] "Lapset"                                         </span>
-<span class="co">#&gt; [19] "Niin Kuin Taivaassa"                            </span>
-<span class="co">#&gt; [20] "Kiviä Taskussa"</span>
+<span class="co">#&gt;  [3] "Lapset"                                         </span>
+<span class="co">#&gt;  [4] "Turvamies"                                      </span>
+<span class="co">#&gt;  [5] "Saikkua, Kiitos! Osa 3"                         </span>
+<span class="co">#&gt;  [6] "Den Besynnerliga Händelsen Med Hunden Om Natten"</span>
+<span class="co">#&gt;  [7] "Niin Kuin Taivaassa"                            </span>
+<span class="co">#&gt;  [8] NA                                               </span>
+<span class="co">#&gt;  [9] "Everstinna"                                     </span>
+<span class="co">#&gt; [10] "Baskervillen Koira"                             </span>
+<span class="co">#&gt; [11] "Once + Replik!"                                 </span>
+<span class="co">#&gt; [12] "Kiviä Taskussa"                                 </span>
+<span class="co">#&gt; [13] "Club Act!One"                                   </span>
+<span class="co">#&gt; [14] "Paahtimo"                                       </span>
+<span class="co">#&gt; [15] "Bolla"                                          </span>
+<span class="co">#&gt; [16] "Tatu Ja Patu Helsingissä"                       </span>
+<span class="co">#&gt; [17] "Lapset"                                         </span>
+<span class="co">#&gt; [18] "Niin Kuin Taivaassa"                            </span>
+<span class="co">#&gt; [19] "Kiviä Taskussa"                                 </span>
+<span class="co">#&gt; [20] "Lapset"</span>
 <span class="co"># See what kind of data is given for events</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "id"                    "location"              "keywords"             </span>
@@ -493,7 +493,7 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] sp_1.4-5       ggplot2_3.3.3  helsinki_1.0.0</span>
+<span class="co">#&gt; [1] sp_1.4-5       ggplot2_3.3.3  helsinki_1.0.1</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
 <span class="co">#&gt;  [1] tidyselect_1.1.1   xfun_0.22          purrr_0.3.4        sf_0.9-8          </span>
@@ -510,7 +510,7 @@
 <span class="co">#&gt; [45] stringi_1.5.3      dplyr_1.0.6        rprojroot_2.0.2    grid_4.0.5        </span>
 <span class="co">#&gt; [49] tools_4.0.5        magrittr_2.0.1     proxy_0.4-25       tibble_3.1.1      </span>
 <span class="co">#&gt; [53] crayon_1.4.1       httpcache_1.2.0    pkgconfig_2.0.3    ellipsis_0.3.2    </span>
-<span class="co">#&gt; [57] xml2_1.3.2         rmarkdown_2.7      httr_1.4.2         R6_2.5.0          </span>
+<span class="co">#&gt; [57] xml2_1.3.2         rmarkdown_2.8      httr_1.4.2         R6_2.5.0          </span>
 <span class="co">#&gt; [61] units_0.7-1        compiler_4.0.5</span></code></pre></div>
 </div>
 </div>

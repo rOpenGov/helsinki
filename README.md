@@ -28,11 +28,13 @@ and the Helsinki metropolitan area (Finnish capital region).
 
 ### Installation
 
-    # Stable release
-    install.packages("helsinki")
-    # Development version
-    library(remotes)
-    remotes::install_github("ropengov/helsinki")
+``` r
+# Stable release
+install.packages("helsinki")
+# Development version
+library(remotes)
+remotes::install_github("ropengov/helsinki")
+```
 
 ### Using the package
 
@@ -40,12 +42,14 @@ As a simple example we load the package, list available features from
 Helsinki Region Environmental Services HSY WFS API and download the 20th
 feature from that list:
 
-    library(helsinki) 
-    url <- "https://kartta.hsy.fi/geoserver/wfs"
+``` r
+library(helsinki) 
+url <- "https://kartta.hsy.fi/geoserver/wfs"
 
-    hsy_features <- get_feature_list(base.url = url)
+hsy_features <- get_feature_list(base.url = url)
 
-    get_feature(base.url = url, typename = hsy_features$Name[20])
+get_feature(base.url = url, typename = hsy_features$Name[20])
+```
 
 For more examples, check the [tutorial
 page](http://ropengov.github.io/helsinki/articles/helsinki_tutorial.html).
@@ -61,8 +65,8 @@ You are welcome to contact us:
     example](http://adv-r.had.co.nz/Reproducibility.html))
 -   [Send a pull request](https://github.com/ropengov/helsinki/)
 -   [Star us on the Github page](https://github.com/ropengov/helsinki/)
--   [See our website](http://ropengov.org/community/) for more contact
-    information
+-   [See our website](http://ropengov.org/community/) for additional
+    contact information
 
 ### Acknowledgements
 

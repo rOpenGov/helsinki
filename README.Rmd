@@ -61,7 +61,7 @@ You are welcome to contact us:
   * [Submit suggestions and bug reports](https://github.com/ropengov/helsinki/issues) (provide the output of `sessionInfo()` and `packageVersion("helsinki")` and preferably provide a [reproducible example](http://adv-r.had.co.nz/Reproducibility.html))
   * [Send a pull request](https://github.com/ropengov/helsinki/)
   * [Star us on the Github page](https://github.com/ropengov/helsinki/)
-  * [See our website](http://ropengov.org/community/) for more contact information
+  * [See our website](http://ropengov.org/community/) for additional contact information
 
 ### Acknowledgements
 

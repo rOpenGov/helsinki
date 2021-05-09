@@ -12,24 +12,24 @@ by Camelot Typefaces.
 
 API Location: https://api.hel.fi/servicemap/v2/
 
-API documentation: https://dev.hel.fi/apis/service-map-backend-api
+API documentation: https://dev.hel.fi/apis/service-map-backend-api/
 }
 \usage{
 get_servicemap(query, ...)
 }
 \arguments{
 \item{query}{The API query as a string, for example "search", "service", or "unit".
-For full list of available options and details, see https://dev.hel.fi/apis/service-map-backend-api.}
+For full list of available options and details, see https://dev.hel.fi/apis/service-map-backend-api/.}
 
 \item{...}{Additional parameters to the API (optional). 
-For additional details, see https://dev.hel.fi/apis/service-map-backend-api.}
+For additional details, see https://dev.hel.fi/apis/service-map-backend-api/.}
 }
 \value{
 Data frame or a list
 }
 \description{
 Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
-http://dev.hel.fi/servicemap/ data through the API: http://api.hel.fi/servicemap/v2/. 
+https://palvelukartta.hel.fi/fi/ data through the API: http://api.hel.fi/servicemap/v2/. 
 For more API documentation and license information see the API link.
 }
 \details{
@@ -59,7 +59,7 @@ the search can be narrowed down with parameters such as:
  \item{"page_size"} {determine number of entries in one page}
 }
 
-For more detailed explanation, see https://dev.hel.fi/apis/service-map-backend-api.
+For more detailed explanation, see https://dev.hel.fi/apis/service-map-backend-api/.
 }
 \examples{
 # A data.frame with 47 variables

@@ -113,7 +113,7 @@ While easy enough to build, specialized functions such as these are probably not
 
 ## Service and event information
 
-Function `get_servicemap()` retrieves regional service data from city of Helsinki [Service Map API](http://api.hel.fi/servicemap/v2/), that contains data from the [Service Map](http://dev.hel.fi/servicemap/).
+Function `get_servicemap()` retrieves regional service data from city of Helsinki [Service Map API](http://api.hel.fi/servicemap/v2/), that contains data from the [Service Map](https://palvelukartta.hel.fi/fi/).
 
 ```{r servicemap, message=FALSE, warning=FALSE}
 # Search for "puisto" (park) (specify q="query")
@@ -147,7 +147,7 @@ search_padel <- get_servicemap(query="search", input="padel", only="unit.name, u
 search_padel$results
 ```
 
-The function parameter `only` is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case "unit". Other valid input in this case would be "service_node", "service" and "address", but during testing unit-prefix seemed to work best. When in doubt, checking the [original documentation](https://dev.hel.fi/apis/service-map-backend-api) may help.
+The function parameter `only` is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case "unit". Other valid input in this case would be "service_node", "service" and "address", but during testing unit-prefix seemed to work best. When in doubt, checking the [original documentation](https://dev.hel.fi/apis/service-map-backend-api/) may help.
 
 Function `get_linkedevents()` retrieves regional event data from the new [Linked Events API](http://api.hel.fi/linkedevents/v1/).
 

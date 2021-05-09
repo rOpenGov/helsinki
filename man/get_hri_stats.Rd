@@ -33,7 +33,7 @@ stats_array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
 See citation("helsinki")
 }
 \seealso{
-See \url{https://dev.hel.fi/apis/statistics}{dev.hel.fi website} and 
+See \url{https://dev.hel.fi/apis/statistics/}{dev.hel.fi website} and 
 \url{http://dev.hel.fi/stats/}{API documentation} (in Finnish)
 }
 \author{

@@ -20,7 +20,7 @@
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
 #' @examples stats_array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
 #' 
-#' @seealso See \url{https://dev.hel.fi/apis/statistics}{dev.hel.fi website} and 
+#' @seealso See \url{https://dev.hel.fi/apis/statistics/}{dev.hel.fi website} and 
 #' \url{http://dev.hel.fi/stats/}{API documentation} (in Finnish)
 #' 
 #' @export

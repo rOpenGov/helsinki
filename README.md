@@ -8,11 +8,11 @@
 [![R build
 status](https://github.com/rOpenGov/helsinki/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/helsinki/actions)
 [![CRAN Status
-Badge](http://www.r-pkg.org/badges/version/helsinki)](http://www.r-pkg.org/pkg/helsinki)
+Badge](https://www.r-pkg.org/badges/version/helsinki)](https://www.r-pkg.org/pkg/helsinki)
 [![Downloads
 total](http://cranlogs.r-pkg.org/badges/grand-total/helsinki)](https://cran.r-project.org/package=helsinki)
 [![Downloads
-monthly](http://cranlogs.r-pkg.org/badges/helsinki)](http://www.r-pkg.org/pkg/helsinki)
+monthly](https://cranlogs.r-pkg.org/badges/helsinki)](https://www.r-pkg.org/pkg/helsinki)
 [![Watch on
 GitHub](https://img.shields.io/github/watchers/ropengov/helsinki.svg?style=social)](https://github.com/ropengov/helsinki/watchers)
 [![Star on
@@ -28,13 +28,11 @@ and the Helsinki metropolitan area (Finnish capital region).
 
 ### Installation
 
-``` r
-# Stable release
-install.packages("helsinki")
-# Development version
-library(remotes)
-remotes::install_github("ropengov/helsinki")
-```
+    # Stable release
+    install.packages("helsinki")
+    # Development version
+    library(remotes)
+    remotes::install_github("ropengov/helsinki")
 
 ### Using the package
 
@@ -42,14 +40,12 @@ As a simple example we load the package, list available features from
 Helsinki Region Environmental Services HSY WFS API and download the 20th
 feature from that list:
 
-``` r
-library(helsinki) 
-url <- "https://kartta.hsy.fi/geoserver/wfs"
+    library(helsinki) 
+    url <- "https://kartta.hsy.fi/geoserver/wfs"
 
-hsy_features <- get_feature_list(base.url = url)
+    hsy_features <- get_feature_list(base.url = url)
 
-get_feature(base.url = url, typename = hsy_features$Name[20])
-```
+    get_feature(base.url = url, typename = hsy_features$Name[20])
 
 For more examples, check the [tutorial
 page](http://ropengov.github.io/helsinki/articles/helsinki_tutorial.html).

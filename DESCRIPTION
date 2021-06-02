@@ -1,8 +1,8 @@
 Package: helsinki
 Type: Package
 Title: R Tools for Helsinki Open Data
-Date: 2021-05-09
-Version: 1.0.1
+Date: 2021-06-02
+Version: 1.0.2
 Authors@R: 
     c(person(given = "Juuso",
              family = "Parkkinen",

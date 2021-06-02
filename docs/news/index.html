@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">helsinki</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -131,73 +131,55 @@
 
     <div id="helsinki-101-2021-05-09" class="section level1">
 <h1 class="page-header" data-toc-text="1.0.1">
-<a href="#helsinki-101-2021-05-09" class="anchor" aria-hidden="true"></a>helsinki 1.0.1 (2021-05-09)<small> Unreleased </small>
-</h1>
+<a href="#helsinki-101-2021-05-09" class="anchor" aria-hidden="true"></a>helsinki 1.0.1 (2021-05-09)<small> 2021-05-09 </small></h1>
 <div id="new-features" class="section level3">
 <h3 class="hasAnchor">
 <a href="#new-features" class="anchor" aria-hidden="true"></a>NEW FEATURES</h3>
-<ul>
-<li>New function <code><a href="../reference/get_feature_list.html">get_feature_list()</a></code> added to easily list all available features in a WFS API</li>
+<ul><li>New function <code><a href="../reference/get_feature_list.html">get_feature_list()</a></code> added to easily list all available features in a WFS API</li>
 <li>New function <code><a href="../reference/select_feature.html">select_feature()</a></code> added to interactively browse and select features from WFS API</li>
 <li>New function <code><a href="../reference/get_feature.html">get_feature()</a></code> added for a simplified experience when interacting with wfs_api()</li>
 <li>New function <code><a href="../reference/get_city_map.html">get_city_map()</a></code> added to interactively download city administrative boundaries from an API instead of having to provide them with the package</li>
 <li>New functions <code><a href="../reference/wfs_api.html">wfs_api()</a></code> and <code><a href="../reference/to_sf.html">to_sf()</a></code> added from another rOpenGov-package, fmi2, to interact with WFS APIs</li>
-</ul>
-</div>
+</ul></div>
 <div id="minor-improvements" class="section level3">
 <h3 class="hasAnchor">
 <a href="#minor-improvements" class="anchor" aria-hidden="true"></a>MINOR IMPROVEMENTS</h3>
-<ul>
-<li>Improved output for <code><a href="../reference/get_servicemap.html">get_servicemap()</a></code> and <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code>
+<ul><li>Improved output for <code><a href="../reference/get_servicemap.html">get_servicemap()</a></code> and <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code>
 </li>
 <li>Rmarkdown added as an explicit dependency, as required by knitr-package maintainers</li>
 <li>Using period.separated naming for function parameters and underscore_separated naming for function names and objects inside functions, as distinction between the two is sometimes useful for increased code legibility</li>
-</ul>
-</div>
+</ul></div>
 <div id="deprecated-and-defunct" class="section level3">
 <h3 class="hasAnchor">
 <a href="#deprecated-and-defunct" class="anchor" aria-hidden="true"></a>DEPRECATED AND DEFUNCT</h3>
-<ul>
-<li>
+<ul><li>
 <code><a href="../reference/helsinki-deprecated.html">get_hsy()</a></code> now deprecated due to URL changes. Use <code><a href="../reference/get_vaestotietoruudukko.html">get_vaestotietoruudukko()</a></code> and <code>get_rakennustietoruudukko</code> instead.</li>
-<li>Older datasets must now be downloaded directly from Helsinki Region Infoshare website (for example https://hri.fi/data/en_GB/dataset/rakennustietoruudukko in the case of Building Information Grid) whereas package functionalities revolve around interacting with and downloading data from WFS API.</li>
+<li>Older datasets must now be downloaded directly from Helsinki Region Infoshare website (for example <a href="https://hri.fi/data/en_GB/dataset/rakennustietoruudukko" class="external-link uri">https://hri.fi/data/en_GB/dataset/rakennustietoruudukko</a> in the case of Building Information Grid) whereas package functionalities revolve around interacting with and downloading data from WFS API.</li>
 <li>Package no longer has <code>maptools</code> and <code>RCurl</code> as dependencies and no longer imports <code>rjson</code>, uses <code>httr</code>, <code>httpcache</code> and <code>jsonlite</code> instead</li>
-</ul>
-</div>
+</ul></div>
 <div id="documentation-fixes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#documentation-fixes" class="anchor" aria-hidden="true"></a>DOCUMENTATION FIXES</h3>
-<ul>
-<li>Updated vignette</li>
+<ul><li>Updated vignette</li>
 <li>Improved documentation for <code><a href="../reference/get_servicemap.html">get_servicemap()</a></code> and <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code>
 </li>
-</ul>
-</div>
+</ul></div>
 </div>
     <div id="helsinki-0929-2017-02-18" class="section level1">
 <h1 class="page-header" data-toc-text="0.9.29">
-<a href="#helsinki-0929-2017-02-18" class="anchor" aria-hidden="true"></a>helsinki 0.9.29 (2017-02-18)<small> 2017-02-18 </small>
-</h1>
-<ul>
-<li>Package released in CRAN</li>
-</ul>
-</div>
+<a href="#helsinki-0929-2017-02-18" class="anchor" aria-hidden="true"></a>helsinki 0.9.29 (2017-02-18)<small> 2017-02-18 </small></h1>
+<ul><li>Package released in CRAN</li>
+</ul></div>
     <div id="helsinki-0916-2014-05-12" class="section level1">
 <h1 class="page-header" data-toc-text="0.9.16">
-<a href="#helsinki-0916-2014-05-12" class="anchor" aria-hidden="true"></a>helsinki 0.9.16 (2014-05-12)<small> Unreleased </small>
-</h1>
-<ul>
-<li>Package updated a lot</li>
-</ul>
-</div>
+<a href="#helsinki-0916-2014-05-12" class="anchor" aria-hidden="true"></a>helsinki 0.9.16 (2014-05-12)<small> Unreleased </small></h1>
+<ul><li>Package updated a lot</li>
+</ul></div>
     <div id="helsinki-0901-2013-12-17" class="section level1">
 <h1 class="page-header" data-toc-text="0.9.01">
-<a href="#helsinki-0901-2013-12-17" class="anchor" aria-hidden="true"></a>helsinki 0.9.01 (2013-12-17)<small> Unreleased </small>
-</h1>
-<ul>
-<li>Package separated from sorvi</li>
-</ul>
-</div>
+<a href="#helsinki-0901-2013-12-17" class="anchor" aria-hidden="true"></a>helsinki 0.9.01 (2013-12-17)<small> Unreleased </small></h1>
+<ul><li>Package separated from sorvi</li>
+</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

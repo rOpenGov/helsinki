@@ -14,6 +14,8 @@
 #' @return sf object
 #'
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
+#' 
+#' @importFrom sf st_crs
 #'
 #' @export
 get_feature <- function(base.url = "https://kartta.hsy.fi/geoserver/wfs", 

@@ -16,7 +16,8 @@
 #' @docType package
 #' @title Helsinki open data R tools
 #'
-#' @author Juuso Parkkinen, Leo Lahti, Joona Lehtomaki and Pyry Kantanen \email{louhos@@googlegroups.com}
+#' @author Juuso Parkkinen, Leo Lahti, Joona Lehtomaki and 
+#'    Pyry Kantanen \email{louhos@@googlegroups.com}
 #' @references
 #' See citation("helsinki")
 #' \url{https://github.com/rOpenGov/helsinki}

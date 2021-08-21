@@ -12,10 +12,7 @@
 #' @param query A string, specifying the dataset to query
 #' @param verbose logical. Should R report extra information on progress? Default is TRUE
 #' @return multi-dimensional array
-#' 
-#' @importFrom httr parse_url build_url
-#' @importFrom jsonlite fromJSON
-#' 
+#'
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
 #' @examples stats_array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
@@ -23,10 +20,12 @@
 #' @seealso See \url{https://dev.hel.fi/apis/statistics/}{dev.hel.fi website} and 
 #' \url{http://dev.hel.fi/stats/}{API documentation} (in Finnish)
 #' 
+#' @importFrom httr parse_url build_url
+#' @importFrom jsonlite fromJSON
+#' 
 #' @export
-
 get_hri_stats <- function (query="", verbose=TRUE) {
-  
+
   ## TODO
   # implement grepping for resources? as in eurostat
   if (verbose)
@@ -74,7 +73,8 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     # Process dimensions metadata
     dims <- res_list$dataset$dimension$size
     names(dims) <- res_list$dataset$dimension$id
-    dimnames <- lapply(res_list$dataset$dimension[3:(length(dims)+2)], function(x) {res=unlist(x$category$label); names(res)=NULL; res})
+    dimnames <- lapply(res_list$dataset$dimension[3:(length(dims)+2)], 
+                       function(x) {res=unlist(x$category$label); names(res)=NULL; res})
     
     # Construct an array
     
@@ -89,7 +89,9 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     # Have to reverse the dimensions, because in arrays
     # "The values in data are taken to be those in the array with the leftmost subscript moving fastest."
     res_list$dataset$value[res_list$dataset$value %in% c(".", "..")] <- NA
-    res.array <- array(data=as.numeric(res_list$dataset$value), dim=rev(dims), dimnames=rev(dimnames))
+    res.array <- array(data=as.numeric(res_list$dataset$value), 
+                       dim=rev(dims), 
+                       dimnames=rev(dimnames))
     if (verbose)
       message("Retrieved resource '",query,"'")
     return(res.array)

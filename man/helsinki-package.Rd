@@ -28,6 +28,7 @@ See citation("helsinki")
 \url{https://github.com/rOpenGov/helsinki}
 }
 \author{
-Juuso Parkkinen, Leo Lahti, Joona Lehtomaki and Pyry Kantanen \email{louhos@googlegroups.com}
+Juuso Parkkinen, Leo Lahti, Joona Lehtomaki and 
+   Pyry Kantanen \email{louhos@googlegroups.com}
 }
 \keyword{package}

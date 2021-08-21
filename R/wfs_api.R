@@ -3,20 +3,24 @@
 #' @description Requests to various WFS API.
 #'
 #' @details Make a request to the spesific WFS API. The base url is
-#' https://kartta.hsy.fi/geoserver/wfs to which other
-#' components defined by the arguments are appended.
-#'
-#' This is a low-level function intended to be used by other higher level
-#' functions in the package.
-#'
-#' Note that GET requests are used using `httpcache` meaning that requests
-#' are cached. If you want clear cache, use [httpcache::clearCache()]. To turn
-#' the cache off completely, use [httpcache::cacheOff()]
+#'    https://kartta.hsy.fi/geoserver/wfs to which other
+#'    components defined by the arguments are appended.
+#'    
+#'    This is a low-level function intended to be used by other higher level
+#'    functions in the package.
+#'    
+#'    Note that GET requests are used using `httpcache` meaning that requests
+#'    are cached. If you want clear cache, use [httpcache::clearCache()]. To 
+#'    turn the cache off completely, use [httpcache::cacheOff()]
+#' 
+#' @source Gracefully failing HTTP request code (slightly adapted by Pyry 
+#'    Kantanen) from RStudio community member kvasilopoulos. Many thanks!
+#'    
+#'    Source of the original RStudio community discussion:
+#'    \url{https://community.rstudio.com/t/internet-resources-should-fail-gracefully/49199}
 #'
 #' @param base.url WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
 #' @param queries List of query parameters
-#' @importFrom xml2 read_xml xml_find_all xml_text
-#' @importFrom httpcache GET
 #'
 #' @return wfs_api (S3) object with the following attributes:
 #'        \describe{
@@ -25,13 +29,20 @@
 #'           \item{response}{the original response object.}
 #'         }
 #'
-#' @author Joona Lehtomäki <joona.lehtomaki@@iki.fi>
+#' @author Joona Lehtomäki <joona.lehtomaki@@iki.fi>, Kostas Vasilopoulos,
+#'    Pyry Kantanen
 #'
 #' @examples
 #'   wfs_api(base.url = "https://kartta.hsy.fi/geoserver/wfs", 
 #'           queries = append(list("service" = "WFS", "version" = "1.0.0"), 
 #'                 list(request = "getFeature", 
 #'                      layer = "tilastointialueet:kunta4500k_2017")))
+#'                      
+#' @importFrom xml2 read_xml xml_text xml_has_attr xml_children
+#' @importFrom httpcache GET
+#' @importFrom httr timeout user_agent modify_url http_error
+#' @importFrom curl has_internet
+#'                      
 #' @export
 wfs_api <- function(base.url = NULL, queries) {
   
@@ -50,34 +61,56 @@ wfs_api <- function(base.url = NULL, queries) {
   # Print out the URL
   message("Requesting response from: ", url)
   
+  # Following code snippet from RStudio Community contributor kvasilopoulos
+  # See function help for more details ________________________________________
+  try_GET <- function(x, ...) {
+    tryCatch(
+      GET(url = x, httr::timeout(10), ...),
+      error = function(e) conditionMessage(e),
+      warning = function(w) conditionMessage(w)
+    )
+  }
+  is_response <- function(x) {
+    class(x) == "response"
+  }
+  
+  # First check internet connection
+  if (!curl::has_internet()) {
+    message("No internet connection.")
+    return(invisible(NULL))
+  }
+  # Then try for timeout problems
+  resp <- try_GET(url)
+  if (!is_response(resp)) {
+    message(resp)
+    return(invisible(NULL))
+  }
+  # Then stop if status > 400
+  if (httr::http_error(resp)) { 
+    message_for_status(resp)
+    return(invisible(NULL))
+  }
+  # Many thanks! ______________________________________________________________
+  
   # Get the response and check the response.
   resp <- httpcache::GET(url, ua)
   
   # Parse the response XML content
   content <- xml2::read_xml(resp$content)
   
-  # Strip the namespace as it will be only trouble
-  # xml2::xml_ns_strip(content)
+  # Object for checking exceptions
+  content_child <- xml2::xml_children(content)
+  truth_table <- vapply(X = content_child, 
+                        FUN = xml2::xml_has_attr,
+                        FUN.VALUE = logical(1),
+                        "exceptionCode")
   
-  if (httr::http_error(resp)) {
-    status_code <- httr::status_code(resp)
-    # If status code is 400, there might be more information available
-    exception_texts <- ""
-    if (status_code == 400) {
-      exception_texts <- xml2::xml_text(xml2::xml_find_all(content, "//ExceptionText"))
-      # Remove URI since full URL is going to be displayed
-      exception_texts <- exception_texts[!grepl("^(URI)", exception_texts)]
-      exception_texts <- c(exception_texts, paste("URL: ", url))
-    }
-    stop(
-      sprintf(
-        "WFS API %s request failed [%s]\n %s",
-        paste(url),
-        httr::http_status(status_code)$message,
-        paste0(exception_texts, collapse = "\n ")
-      ),
-      call. = FALSE
-    )
+  # Even if GET and read_xml work properly, content can be unusable
+  if (any(truth_table)) {
+    warning(paste("Please check your download parameters.", 
+                  "Detected following exception(s):\n", 
+                  xml2::xml_text(content)))
+    # return(invisible(NULL))
   }
   
   api_obj <- structure(

@@ -3,6 +3,13 @@
 \name{wfs_api}
 \alias{wfs_api}
 \title{WFS API}
+\source{
+Gracefully failing HTTP request code (slightly adapted by Pyry 
+   Kantanen) from RStudio community member kvasilopoulos. Many thanks!
+   
+   Source of the original RStudio community discussion:
+   \url{https://community.rstudio.com/t/internet-resources-should-fail-gracefully/49199}
+}
 \usage{
 wfs_api(base.url = NULL, queries)
 }
@@ -24,22 +31,24 @@ Requests to various WFS API.
 }
 \details{
 Make a request to the spesific WFS API. The base url is
-https://kartta.hsy.fi/geoserver/wfs to which other
-components defined by the arguments are appended.
-
-This is a low-level function intended to be used by other higher level
-functions in the package.
-
-Note that GET requests are used using `httpcache` meaning that requests
-are cached. If you want clear cache, use [httpcache::clearCache()]. To turn
-the cache off completely, use [httpcache::cacheOff()]
+   https://kartta.hsy.fi/geoserver/wfs to which other
+   components defined by the arguments are appended.
+   
+   This is a low-level function intended to be used by other higher level
+   functions in the package.
+   
+   Note that GET requests are used using `httpcache` meaning that requests
+   are cached. If you want clear cache, use [httpcache::clearCache()]. To 
+   turn the cache off completely, use [httpcache::cacheOff()]
 }
 \examples{
   wfs_api(base.url = "https://kartta.hsy.fi/geoserver/wfs", 
           queries = append(list("service" = "WFS", "version" = "1.0.0"), 
                 list(request = "getFeature", 
                      layer = "tilastointialueet:kunta4500k_2017")))
+                     
 }
 \author{
-Joona Lehtomäki <joona.lehtomaki@iki.fi>
+Joona Lehtomäki <joona.lehtomaki@iki.fi>, Kostas Vasilopoulos,
+   Pyry Kantanen
 }

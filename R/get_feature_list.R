@@ -10,10 +10,6 @@
 #' @param base.url a WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
 #'
 #' @return data frame
-#' 
-#' @import dplyr
-#' @importFrom purrr flatten_dfc
-#' @importFrom xml2 as_list xml_find_all xml_ns_strip
 #'
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
 #' 
@@ -21,16 +17,21 @@
 #' \dontrun{
 #' dat <- get_feature_list(base.url = "https://kartta.hsy.fi/geoserver/wfs")
 #' }
+#' 
+#' @import dplyr
+#' @importFrom purrr flatten_dfc
+#' @importFrom xml2 as_list xml_find_all xml_ns_strip
 #'
 #' @export
-get_feature_list <- function(base.url = NULL) {
+get_feature_list <- function(base.url = NULL, 
+                             queries = "request=GetCapabilities") {
   
   if (is.null(base.url)) {
     message("base.url = NULL. Using https://kartta.hsy.fi/geoserver/wfs")
     base.url <- "https://kartta.hsy.fi/geoserver/wfs"
   }
   
-  resp <- wfs_api(base.url = base.url, queries = "request=GetCapabilities")
+  resp <- wfs_api(base.url = base.url, queries = queries)
   content <- resp$content
   
   # For some reason this seems to be a necessary step for xml_find_all to work
@@ -64,8 +65,6 @@ get_feature_list <- function(base.url = NULL) {
 #' 
 #' @param base.url WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
 #' @param get Should the selected feature be downloaded? Default is \code{FALSE}
-#' 
-#' @importFrom utils select.list
 #'
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
 #' 
@@ -76,6 +75,8 @@ get_feature_list <- function(base.url = NULL) {
 #' ggplot(feature) +
 #'   geom_sf()
 #' }
+#' 
+#' @importFrom utils select.list
 #'
 #' @export
 select_feature <- function(base.url = NULL, get = FALSE) {

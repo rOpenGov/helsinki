@@ -147,6 +147,12 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>Gracefully failing HTTP request code (slightly adapted by Pyry 
+   Kantanen) from RStudio community member kvasilopoulos. Many thanks!</p>   
+<p>Source of the original RStudio community discussion:
+   <a href='https://community.rstudio.com/t/internet-resources-should-fail-gracefully/49199'>https://community.rstudio.com/t/internet-resources-should-fail-gracefully/49199</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>wfs_api (S3) object with the following attributes:</p><dl>
@@ -159,16 +165,17 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Make a request to the spesific WFS API. The base url is
-https://kartta.hsy.fi/geoserver/wfs to which other
-components defined by the arguments are appended.</p>
+   https://kartta.hsy.fi/geoserver/wfs to which other
+   components defined by the arguments are appended.</p>   
 <p>This is a low-level function intended to be used by other higher level
-functions in the package.</p>
+   functions in the package.</p>   
 <p>Note that GET requests are used using `httpcache` meaning that requests
-are cached. If you want clear cache, use [httpcache::clearCache()]. To turn
-the cache off completely, use [httpcache::cacheOff()]</p>
+   are cached. If you want clear cache, use [httpcache::clearCache()]. To 
+   turn the cache off completely, use [httpcache::cacheOff()]</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Joona Lehtomäki &lt;joona.lehtomaki@iki.fi&gt;</p>
+    <p>Joona Lehtomäki &lt;joona.lehtomaki@iki.fi&gt;, Kostas Vasilopoulos,
+   Pyry Kantanen</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>  <span class='fu'>wfs_api</span><span class='op'>(</span>base.url <span class='op'>=</span> <span class='st'>"https://kartta.hsy.fi/geoserver/wfs"</span>, 
@@ -180,7 +187,7 @@ the cache off completely, use [httpcache::cacheOff()]</p>
 #&gt; 
 #&gt; $response
 #&gt; Response [https://kartta.hsy.fi/geoserver/wfs?service=WFS&amp;version=1.0.0&amp;request=getFeature&amp;layer=tilastointialueet%3Akunta4500k_2017]
-#&gt;   Date: 2021-06-02 11:59
+#&gt;   Date: 2021-08-21 09:32
 #&gt;   Status: 200
 #&gt;   Content-Type: text/xml;charset=UTF-8
 #&gt;   Size: 450 B
@@ -199,7 +206,8 @@ the cache off completely, use [httpcache::cacheOff()]</p>
 #&gt; [1] &lt;ServiceException code="MissingParameterValue"&gt;\n      The query should s ...
 #&gt; 
 #&gt; attr(,"class")
-#&gt; [1] "wfs_api"</div></pre>
+#&gt; [1] "wfs_api"</div><div class='input'>                     
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

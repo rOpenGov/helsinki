@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Helsinki open data R tools</h1>
                         <h4 class="author">Juuso Parkkinen, Pyry Kantanen</h4>
             
-            <h4 class="date">2021-06-02</h4>
+            <h4 class="date">2021-08-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/helsinki/blob/master/vignettes/helsinki_tutorial.Rmd"><code>vignettes/helsinki_tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>helsinki_tutorial.Rmd</code></div>
@@ -173,7 +173,7 @@
 <span class="co"># Study results: 47 variables in the data frame</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">search_puisto</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ count   : int 2105</span>
+<span class="co">#&gt;  $ count   : int 2130</span>
 <span class="co">#&gt;  $ next    : chr "https://api.hel.fi/servicemap/v2/search/?page=2&amp;q=puisto"</span>
 <span class="co">#&gt;  $ previous: NULL</span>
 <span class="co">#&gt;  $ results :'data.frame':    20 obs. of  47 variables:</span></code></pre></div>
@@ -181,26 +181,26 @@
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Get names for the first 20 results</span>
 <span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "Sibeliuksen puiston yleisövessa"                                   </span>
-<span class="co">#&gt;  [2] "Sinebrychoffin puiston yleisövessa"                                </span>
+<span class="co">#&gt;  [1] "Sinebrychoffin puiston yleisövessa"                                </span>
+<span class="co">#&gt;  [2] "Sibeliuksen puiston yleisövessa"                                   </span>
 <span class="co">#&gt;  [3] "Töölönlahden puisto / Leikkipaikka"                                </span>
 <span class="co">#&gt;  [4] "Esplanadin puiston WLAN-tukiasema"                                 </span>
 <span class="co">#&gt;  [5] "Hesperian puiston yleisövessa"                                     </span>
 <span class="co">#&gt;  [6] "Topeliuksen puiston yleisövessa"                                   </span>
-<span class="co">#&gt;  [7] "Pysäköintilippuautomaatti 334, Castreninkatu, puisto, korttimaksu" </span>
-<span class="co">#&gt;  [8] "Sibeliuksen puiston yleisövessa"                                   </span>
-<span class="co">#&gt;  [9] "Shakkilauta, Von Glanin puisto"                                    </span>
-<span class="co">#&gt; [10] "Pysäköintilippuautomaatti 132, Merimiehenkatu, puisto, korttimaksu"</span>
-<span class="co">#&gt; [11] "Pysäköintilippuautomaatti 88, Pengerkatu, puisto, kolikkomaksu"    </span>
+<span class="co">#&gt;  [7] "Sibeliuksen puiston yleisövessa"                                   </span>
+<span class="co">#&gt;  [8] "Pysäköintilippuautomaatti 334, Castreninkatu, puisto, korttimaksu" </span>
+<span class="co">#&gt;  [9] "Pysäköintilippuautomaatti 132, Merimiehenkatu, puisto, korttimaksu"</span>
+<span class="co">#&gt; [10] "Pysäköintilippuautomaatti 88, Pengerkatu, puisto, kolikkomaksu"    </span>
+<span class="co">#&gt; [11] "Shakkilauta, Von Glanin puisto"                                    </span>
 <span class="co">#&gt; [12] "Matti Heleniuksen puiston yleisövessa"                             </span>
-<span class="co">#&gt; [13] "Tove Janssonin puiston yleisövessa"                                </span>
-<span class="co">#&gt; [14] "Everstinpuisto"                                                    </span>
-<span class="co">#&gt; [15] "Kirkkojärvenpuisto"                                                </span>
-<span class="co">#&gt; [16] "Lehtikaskenpuisto"                                                 </span>
-<span class="co">#&gt; [17] "Leppäviidanpuisto"                                                 </span>
-<span class="co">#&gt; [18] "Puutarhapuisto"                                                    </span>
-<span class="co">#&gt; [19] "Ala-Malmin puisto"                                                 </span>
-<span class="co">#&gt; [20] "Pyhän Birgitan puisto"</span>
+<span class="co">#&gt; [13] "Shakkilauta, Katri Valan puisto"                                   </span>
+<span class="co">#&gt; [14] "Tove Janssonin puiston yleisövessa"                                </span>
+<span class="co">#&gt; [15] "Ala-Malmin puisto"                                                 </span>
+<span class="co">#&gt; [16] "Pyhän Birgitan puisto"                                             </span>
+<span class="co">#&gt; [17] "Everstinpuisto"                                                    </span>
+<span class="co">#&gt; [18] "Kirkkojärvenpuisto"                                                </span>
+<span class="co">#&gt; [19] "Lehtikaskenpuisto"                                                 </span>
+<span class="co">#&gt; [20] "Leppäviidanpuisto"</span>
 
 <span class="co"># See what kind of data is given for services</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">)</span>
@@ -232,26 +232,26 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span>, page_size <span class="op">=</span> <span class="fl">30</span>, page <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "Tikanpuisto"                                       </span>
+<span class="co">#&gt;  [1] "Kaupungintalon puisto"                             </span>
 <span class="co">#&gt;  [2] "Ankkuripohjanpuisto"                               </span>
 <span class="co">#&gt;  [3] "Kuttulammenpuisto"                                 </span>
 <span class="co">#&gt;  [4] "Rinkelipuisto"                                     </span>
-<span class="co">#&gt;  [5] "Alli Tryggin puiston opaskoira-aitaus"             </span>
-<span class="co">#&gt;  [6] "Olarin asukaspuisto"                               </span>
-<span class="co">#&gt;  [7] "Perkkaan asukaspuisto"                             </span>
-<span class="co">#&gt;  [8] "Nurmilinnunpuisto"                                 </span>
-<span class="co">#&gt;  [9] "Ruusutorpanpuisto"                                 </span>
-<span class="co">#&gt; [10] "Tynnyripuisto"                                     </span>
-<span class="co">#&gt; [11] "Hurtigin puisto"                                   </span>
-<span class="co">#&gt; [12] "Leppävaaran asukaspuisto"                          </span>
-<span class="co">#&gt; [13] "Matinkylän asukaspuisto"                           </span>
+<span class="co">#&gt;  [5] "Olarin asukaspuisto"                               </span>
+<span class="co">#&gt;  [6] "Perkkaan asukaspuisto"                             </span>
+<span class="co">#&gt;  [7] "Alli Tryggin puiston opaskoira-aitaus"             </span>
+<span class="co">#&gt;  [8] "Leppävaaran asukaspuisto"                          </span>
+<span class="co">#&gt;  [9] "Matinkylän asukaspuisto"                           </span>
+<span class="co">#&gt; [10] "Hurtigin puisto"                                   </span>
+<span class="co">#&gt; [11] "Nurmilinnunpuisto"                                 </span>
+<span class="co">#&gt; [12] "Ruusutorpanpuisto"                                 </span>
+<span class="co">#&gt; [13] "Tynnyripuisto"                                     </span>
 <span class="co">#&gt; [14] "Karakallion asukaspuisto"                          </span>
 <span class="co">#&gt; [15] "Asematien leikkipuisto"                            </span>
 <span class="co">#&gt; [16] "Stenbergin puisto"                                 </span>
-<span class="co">#&gt; [17] "Viherkallion asukaspuisto"                         </span>
-<span class="co">#&gt; [18] "Kasavuoren puisto"                                 </span>
-<span class="co">#&gt; [19] "Suvelan asukaspuisto"                              </span>
-<span class="co">#&gt; [20] "Veijarivuoren puiston talviuintipaikka (Humaus ry)"</span>
+<span class="co">#&gt; [17] "Veijarivuoren puiston talviuintipaikka (Humaus ry)"</span>
+<span class="co">#&gt; [18] "Suvelan asukaspuisto"                              </span>
+<span class="co">#&gt; [19] "Kasavuoren puisto"                                 </span>
+<span class="co">#&gt; [20] "Viherkallion asukaspuisto"                         </span>
 <span class="co">#&gt; [21] "Kylätalo Palttinan asukaspuisto"                   </span>
 <span class="co">#&gt; [22] "Mankkaan asukaspuisto"                             </span>
 <span class="co">#&gt; [23] "Tapiolan asukaspuisto"                             </span>
@@ -260,57 +260,69 @@
 <span class="co">#&gt; [26] "Alberganesplanadin puisto"                         </span>
 <span class="co">#&gt; [27] "Parkvillanpihan puisto"                            </span>
 <span class="co">#&gt; [28] "Träskändan kartanopuisto"                          </span>
-<span class="co">#&gt; [29] "Espoon keskuspuisto"                               </span>
-<span class="co">#&gt; [30] "Ryytimaan puisto"</span></code></pre></div>
+<span class="co">#&gt; [29] "Laivatorin puisto"                                 </span>
+<span class="co">#&gt; [30] "Rantaraitin puisto"</span></code></pre></div>
 <p>As we could see from above example, the returned data frame had 47 observations. At full width this output can be messy to handle in R console. One possible option would be to turn it into a more easily manageable tibble (which often is not a bad idea), another is to limit the extent of the query at the start. We do the latter and it can be done with the function parameter <code>only</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Search for padel-related services in Helsinki</span>
 <span class="va">search_padel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, input<span class="op">=</span><span class="st">"padel"</span>, only<span class="op">=</span><span class="st">"unit.name, unit.location.coordinates, unit.street_address"</span>, municipality<span class="op">=</span><span class="st">"helsinki"</span><span class="op">)</span>
 <span class="va">search_padel</span><span class="op">$</span><span class="va">results</span>
 <span class="co">#&gt;       id                                    name.fi</span>
-<span class="co">#&gt; 1  45413         PadelCenter Helsinki / Padelkentät</span>
-<span class="co">#&gt; 2  59998               Padel Helsinki / Padelkentät</span>
-<span class="co">#&gt; 3  63925                          Padel Messukeskus</span>
-<span class="co">#&gt; 4  63927               Padel Arena Center Myllypuro</span>
+<span class="co">#&gt; 1  59998               Padel Helsinki / Padelkentät</span>
+<span class="co">#&gt; 2  63925            Padel Messukeskus / Padelkentät</span>
+<span class="co">#&gt; 3  64716           Padel Aurinkolahti / Padelkenttä</span>
+<span class="co">#&gt; 4  45413         PadelCenter Helsinki / Padelkentät</span>
 <span class="co">#&gt; 5  57222       Padel Club Viikinranta / Padelkenttä</span>
-<span class="co">#&gt; 6  57221           ProPADEL Sörnäinen / Padelkenttä</span>
-<span class="co">#&gt; 7  63926                           Billebeino Padel</span>
-<span class="co">#&gt; 8  62776                    Talihalli / Padelkenttä</span>
-<span class="co">#&gt; 9  42296                 Smash Center / Padelkenttä</span>
-<span class="co">#&gt; 10 62904 Laajasalon Palloiluhallit Oy / Padelkenttä</span>
-<span class="co">#&gt;                                     name.sv           street_address.fi</span>
-<span class="co">#&gt; 1     PadelCenter Helsingfors / Padelplaner          Hernesaarenranta 1</span>
-<span class="co">#&gt; 2                                      &lt;NA&gt;           Lahnalahdentie 11</span>
-<span class="co">#&gt; 3                                      &lt;NA&gt;                Messuaukio 1</span>
-<span class="co">#&gt; 4                                      &lt;NA&gt;                Arena Center</span>
-<span class="co">#&gt; 5                                      &lt;NA&gt;               Jokisuuntie 5</span>
-<span class="co">#&gt; 6               ProPadel Sörnäs / Padelplan Sörnäisten rantapromenadi 1</span>
-<span class="co">#&gt; 7                                      &lt;NA&gt;             Traverssikuja 3</span>
-<span class="co">#&gt; 8                     Talihalli / Padelplan           Huopalahdentie 28</span>
-<span class="co">#&gt; 9                  Smash Center / Padelplan                Varikkotie 4</span>
-<span class="co">#&gt; 10 Laajasalon Palloiluhallit Oy / Padelplan           Sarvastonkaari 23</span>
+<span class="co">#&gt; 6  63927 Padel Arena Center Myllypuro / Padelkentät</span>
+<span class="co">#&gt; 7  66781     Padel Messukeskus / Padelkentät (ulko)</span>
+<span class="co">#&gt; 8  57221           ProPADEL Sörnäinen / Padelkenttä</span>
+<span class="co">#&gt; 9  63926             Billebeino Padel / Padelkenttä</span>
+<span class="co">#&gt; 10 62776                    Talihalli / Padelkenttä</span>
+<span class="co">#&gt; 11 64747       Urheiluhallit Vuosaari / Padelkentät</span>
+<span class="co">#&gt; 12 42296                 Smash Center / Padelkenttä</span>
+<span class="co">#&gt; 13 62904 Laajasalon Palloiluhallit Oy / Padelkenttä</span>
+<span class="co">#&gt;                                       name.sv           street_address.fi</span>
+<span class="co">#&gt; 1                Padel Helsinki / Padelplaner           Lahnalahdentie 11</span>
+<span class="co">#&gt; 2             Padel Mässcentrum / Padelplaner                Messuaukio 1</span>
+<span class="co">#&gt; 3              Padel Aurinkolahti / Padelplan     Urheilukalastajankuja 1</span>
+<span class="co">#&gt; 4       PadelCenter Helsingfors / Padelplaner          Hernesaarenranta 1</span>
+<span class="co">#&gt; 5          Padel Club Viikinranta / Padelplan               Jokisuuntie 5</span>
+<span class="co">#&gt; 6  Padel Arena Center Myllypuro / Padelplaner               Alakiventie 2</span>
+<span class="co">#&gt; 7             Padel Mässcentrum / Padelplaner                Messuaukio 1</span>
+<span class="co">#&gt; 8                 ProPADEL Sörnäs / Padelplan Sörnäisten rantapromenadi 1</span>
+<span class="co">#&gt; 9                Billebeino Padel / Padelplan             Traverssikuja 3</span>
+<span class="co">#&gt; 10                      Talihalli / Padelplan           Huopalahdentie 28</span>
+<span class="co">#&gt; 11       Urheiluhallit Vuosaari / Padelplaner              Vuosaarentie 5</span>
+<span class="co">#&gt; 12                   Smash Center / Padelplan                Varikkotie 4</span>
+<span class="co">#&gt; 13   Laajasalon Palloiluhallit Oy / Padelplan           Sarvastonkaari 23</span>
 <span class="co">#&gt;          street_address.sv           street_address.en location.type</span>
-<span class="co">#&gt; 1       Ärtholmsstranden 1          Hernesaarenranta 1         Point</span>
-<span class="co">#&gt; 2         Braxviksvägen 11           Lahnalahdentie 11         Point</span>
-<span class="co">#&gt; 3            Mässplatsen 1                Messuaukio 1         Point</span>
-<span class="co">#&gt; 4             Arena Center                Arena Center         Point</span>
+<span class="co">#&gt; 1         Braxviksvägen 11           Lahnalahdentie 11         Point</span>
+<span class="co">#&gt; 2            Mässplatsen 1                Messuaukio 1         Point</span>
+<span class="co">#&gt; 3     Sportfiskargränden 1     Urheilukalastajankuja 1         Point</span>
+<span class="co">#&gt; 4       Ärtholmsstranden 1          Hernesaarenranta 1         Point</span>
 <span class="co">#&gt; 5            Åminnevägen 5               Jokisuuntie 5         Point</span>
-<span class="co">#&gt; 6  Sörnäs strandpromenad 1 Sörnäisten rantapromenadi 1         Point</span>
-<span class="co">#&gt; 7         Traversgränden 3             Traverssikuja 3         Point</span>
-<span class="co">#&gt; 8          Hoplaksvägen 28           Huopalahdentie 28         Point</span>
-<span class="co">#&gt; 9              Depåvägen 4                Varikkotie 4         Point</span>
-<span class="co">#&gt; 10           Fladabågen 23           Sarvastonkaari 23         Point</span>
+<span class="co">#&gt; 6        Understensvägen 2               Alakiventie 2         Point</span>
+<span class="co">#&gt; 7            Mässplatsen 1                Messuaukio 1         Point</span>
+<span class="co">#&gt; 8  Sörnäs strandpromenad 1 Sörnäisten rantapromenadi 1         Point</span>
+<span class="co">#&gt; 9         Traversgränden 3             Traverssikuja 3         Point</span>
+<span class="co">#&gt; 10         Hoplaksvägen 28           Huopalahdentie 28         Point</span>
+<span class="co">#&gt; 11          Nordsjövägen 5              Vuosaarentie 5         Point</span>
+<span class="co">#&gt; 12             Depåvägen 4                Varikkotie 4         Point</span>
+<span class="co">#&gt; 13           Fladabågen 23           Sarvastonkaari 23         Point</span>
 <span class="co">#&gt;    location.coordinates sort_index object_type    score</span>
-<span class="co">#&gt; 1    24.93146, 60.15325          0        unit 7.930914</span>
-<span class="co">#&gt; 2    24.86652, 60.16435          1        unit 7.412384</span>
-<span class="co">#&gt; 3    24.93602, 60.20486          2        unit 7.412384</span>
-<span class="co">#&gt; 4    25.07979, 60.22095          3        unit 7.072218</span>
-<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.798299</span>
-<span class="co">#&gt; 6    24.96320, 60.18242          5        unit 2.780101</span>
-<span class="co">#&gt; 7    24.94567, 60.19430          6        unit 2.763678</span>
-<span class="co">#&gt; 8    24.87776, 60.21116          7        unit 2.763678</span>
-<span class="co">#&gt; 9    25.06807, 60.20983          8        unit 2.266331</span>
-<span class="co">#&gt; 10   25.05760, 60.17415          9        unit 2.252660</span></code></pre></div>
+<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.414505</span>
+<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.414505</span>
+<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.303819</span>
+<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.303819</span>
+<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.798873</span>
+<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.528854</span>
+<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.528854</span>
+<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.780866</span>
+<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.764076</span>
+<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.764076</span>
+<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.277178</span>
+<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.266940</span>
+<span class="co">#&gt; 13   25.05760, 60.17415         12        unit 2.253031</span></code></pre></div>
 <p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api/">original documentation</a> may help.</p>
 <p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v1/">Linked Events API</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -318,11 +330,16 @@
 <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"event"</span><span class="op">)</span>
 <span class="co"># Get names for the first 20 results</span>
 <span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "POP UP Kesä 2021" "POP UP Kesä 2021" "POP UP Kesä 2021" "POP UP Kesä 2021"</span>
-<span class="co">#&gt;  [5] "POP UP Kesä 2021" "POP UP Kesä 2021" "POP UP Kesä 2021" "POP UP Kesä 2021"</span>
-<span class="co">#&gt;  [9] "POP UP Kesä 2021" "POP UP Kesä 2021" "POP UP Kesä 2021" "POP UP Kesä 2021"</span>
-<span class="co">#&gt; [13] "POP UP Kesä 2021" "POP UP Kesä 2021" "POP UP Kesä 2021" "POP UP Kesä 2021"</span>
-<span class="co">#&gt; [17] "POP UP Kesä 2021" "POP UP Kesä 2021" "POP UP Kesä 2021" "POP UP Kesä 2021"</span>
+<span class="co">#&gt;  [1] "Luetaan yhdessä ryhmä"             "Etätapahtuma: Opitaan kielioppia!"</span>
+<span class="co">#&gt;  [3] "Luetaan yhdessä ryhmä"             "Etätapahtuma: Opitaan kielioppia!"</span>
+<span class="co">#&gt;  [5] "Luetaan yhdessä ryhmä"             "Etätapahtuma: Opitaan kielioppia!"</span>
+<span class="co">#&gt;  [7] "Luetaan yhdessä ryhmä"             "Etätapahtuma: Opitaan kielioppia!"</span>
+<span class="co">#&gt;  [9] "Luetaan yhdessä ryhmä"             "Etätapahtuma: Opitaan kielioppia!"</span>
+<span class="co">#&gt; [11] "Luetaan yhdessä ryhmä"             "Etätapahtuma: Opitaan kielioppia!"</span>
+<span class="co">#&gt; [13] "Luetaan yhdessä ryhmä"             "Etätapahtuma: Opitaan kielioppia!"</span>
+<span class="co">#&gt; [15] "Luetaan yhdessä ryhmä"             "Etätapahtuma: Opitaan kielioppia!"</span>
+<span class="co">#&gt; [17] "Luetaan yhdessä ryhmä"             "Etätapahtuma: Opitaan kielioppia!"</span>
+<span class="co">#&gt; [19] "Luetaan yhdessä ryhmä"             "Etätapahtuma: Opitaan kielioppia!"</span>
 <span class="co"># See what kind of data is given for events</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "id"                          "location"                   </span>
@@ -343,9 +360,9 @@
 <span class="co">#&gt; [31] "local"                       "search_vector_fi"           </span>
 <span class="co">#&gt; [33] "search_vector_en"            "search_vector_sv"           </span>
 <span class="co">#&gt; [35] "replaced_by"                 "provider"                   </span>
-<span class="co">#&gt; [37] "short_description"           "location_extra_info"        </span>
-<span class="co">#&gt; [39] "description"                 "name"                       </span>
-<span class="co">#&gt; [41] "info_url"                    "provider_contact_info"      </span>
+<span class="co">#&gt; [37] "info_url"                    "provider_contact_info"      </span>
+<span class="co">#&gt; [39] "short_description"           "description"                </span>
+<span class="co">#&gt; [41] "location_extra_info"         "name"                       </span>
 <span class="co">#&gt; [43] "@id"                         "@context"                   </span>
 <span class="co">#&gt; [45] "@type"</span></code></pre></div>
 </div>
@@ -474,12 +491,12 @@
 <p>This vignette was created with</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; R version 4.1.0 (2021-05-18)</span>
+<span class="co">#&gt; R version 4.1.1 (2021-08-10)</span>
 <span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span>
 <span class="co">#&gt; Running under: macOS Catalina 10.15.7</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Matrix products: default</span>
-<span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.dylib</span>
+<span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRblas.0.dylib</span>
 <span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; locale:</span>
@@ -489,25 +506,25 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] sp_1.4-5       ggplot2_3.3.3  helsinki_1.0.2</span>
+<span class="co">#&gt; [1] sp_1.4-5       ggplot2_3.3.5  helsinki_1.0.2</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] tidyselect_1.1.1   xfun_0.23          purrr_0.3.4        sf_0.9-8          </span>
-<span class="co">#&gt;  [5] lattice_0.20-44    colorspace_2.0-1   vctrs_0.3.8        generics_0.1.0    </span>
-<span class="co">#&gt;  [9] htmltools_0.5.1.1  yaml_2.2.1         utf8_1.2.1         rlang_0.4.11      </span>
-<span class="co">#&gt; [13] e1071_1.7-7        pkgdown_1.6.1      pillar_1.6.1       glue_1.4.2        </span>
+<span class="co">#&gt;  [1] tidyselect_1.1.1   xfun_0.25          purrr_0.3.4        sf_1.0-2          </span>
+<span class="co">#&gt;  [5] lattice_0.20-44    colorspace_2.0-2   vctrs_0.3.8        generics_0.1.0    </span>
+<span class="co">#&gt;  [9] htmltools_0.5.1.1  yaml_2.2.1         utf8_1.2.2         rlang_0.4.11      </span>
+<span class="co">#&gt; [13] e1071_1.7-8        pkgdown_1.6.1      pillar_1.6.2       glue_1.4.2        </span>
 <span class="co">#&gt; [17] withr_2.4.2        DBI_1.1.1          lifecycle_1.0.0    stringr_1.4.0     </span>
-<span class="co">#&gt; [21] munsell_0.5.0      gtable_0.3.0       ragg_1.1.2         memoise_2.0.0     </span>
+<span class="co">#&gt; [21] munsell_0.5.0      gtable_0.3.0       ragg_1.1.3         memoise_2.0.0     </span>
 <span class="co">#&gt; [25] evaluate_0.14      labeling_0.4.2     knitr_1.33         fastmap_1.1.0     </span>
-<span class="co">#&gt; [29] curl_4.3.1         class_7.3-19       fansi_0.5.0        highr_0.9         </span>
-<span class="co">#&gt; [33] Rcpp_1.0.6         KernSmooth_2.23-20 scales_1.1.1       classInt_0.4-3    </span>
+<span class="co">#&gt; [29] curl_4.3.2         class_7.3-19       fansi_0.5.0        highr_0.9         </span>
+<span class="co">#&gt; [33] Rcpp_1.0.7         KernSmooth_2.23-20 scales_1.1.1       classInt_0.4-3    </span>
 <span class="co">#&gt; [37] cachem_1.0.5       desc_1.3.0         jsonlite_1.7.2     farver_2.1.0      </span>
-<span class="co">#&gt; [41] systemfonts_1.0.2  fs_1.5.0           textshaping_0.3.4  digest_0.6.27     </span>
-<span class="co">#&gt; [45] stringi_1.6.2      dplyr_1.0.6        rprojroot_2.0.2    grid_4.1.0        </span>
-<span class="co">#&gt; [49] tools_4.1.0        magrittr_2.0.1     proxy_0.4-25       tibble_3.1.2      </span>
+<span class="co">#&gt; [41] systemfonts_1.0.2  fs_1.5.0           textshaping_0.3.5  digest_0.6.27     </span>
+<span class="co">#&gt; [45] stringi_1.7.3      dplyr_1.0.7        rprojroot_2.0.2    grid_4.1.1        </span>
+<span class="co">#&gt; [49] tools_4.1.1        magrittr_2.0.1     proxy_0.4-26       tibble_3.1.3      </span>
 <span class="co">#&gt; [53] crayon_1.4.1       httpcache_1.2.0    pkgconfig_2.0.3    ellipsis_0.3.2    </span>
-<span class="co">#&gt; [57] xml2_1.3.2         rmarkdown_2.8      httr_1.4.2         R6_2.5.0          </span>
-<span class="co">#&gt; [61] units_0.7-1        compiler_4.1.0</span></code></pre></div>
+<span class="co">#&gt; [57] xml2_1.3.2         rmarkdown_2.10     httr_1.4.2         R6_2.5.1          </span>
+<span class="co">#&gt; [61] units_0.7-2        compiler_4.1.1</span></code></pre></div>
 </div>
 </div>
 </div>

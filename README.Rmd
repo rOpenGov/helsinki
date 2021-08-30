@@ -49,7 +49,7 @@ url <- "https://kartta.hsy.fi/geoserver/wfs"
 
 hsy_features <- get_feature_list(base.url = url)
 
-get_feature(base.url = url, typename = hsy_features$Name[18])
+get_feature(base.url = url, typename = hsy_features$Name[17])
 ```
 
 For more examples, check the [tutorial page](http://ropengov.github.io/helsinki/articles/helsinki_tutorial.html). 

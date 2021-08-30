@@ -48,7 +48,7 @@ url <- "https://kartta.hsy.fi/geoserver/wfs"
 
 hsy_features <- get_feature_list(base.url = url)
 
-get_feature(base.url = url, typename = hsy_features$Name[20])
+get_feature(base.url = url, typename = hsy_features$Name[18])
 ```
 
 For more examples, check the [tutorial
@@ -58,14 +58,14 @@ page](http://ropengov.github.io/helsinki/articles/helsinki_tutorial.html).
 
 You are welcome to contact us:
 
--   [Submit suggestions and bug
+  - [Submit suggestions and bug
     reports](https://github.com/ropengov/helsinki/issues) (provide the
     output of `sessionInfo()` and `packageVersion("helsinki")` and
     preferably provide a [reproducible
     example](http://adv-r.had.co.nz/Reproducibility.html))
--   [Send a pull request](https://github.com/ropengov/helsinki/)
--   [Star us on the Github page](https://github.com/ropengov/helsinki/)
--   [See our website](http://ropengov.org/community/) for additional
+  - [Send a pull request](https://github.com/ropengov/helsinki/)
+  - [Star us on the Github page](https://github.com/ropengov/helsinki/)
+  - [See our website](http://ropengov.org/community/) for additional
     contact information
 
 ### Acknowledgements
@@ -78,5 +78,5 @@ Lahti](https://github.com/antagomir). helsinki - Helsinki open data R
 tools. URL: <http://ropengov.github.io/helsinki/>
 
 We are grateful to all
-[contributors](https://github.com/rOpenGov/helsinki/graphs/contributors)!
+[contributors](https://github.com/rOpenGov/helsinki/graphs/contributors)\!
 This project is part of [rOpenGov](http://ropengov.org).

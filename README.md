@@ -23,8 +23,8 @@ Twitter](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https
 <!--[![codecov.io](https://codecov.io/github/rOpenGov/helsinki/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/helsinki?branch=master)-->
 <!-- badges: end -->
 
-R tools for accessing and downloading open data from City of Helsinki
-and the Helsinki metropolitan area (Finnish capital region).
+R tools to access and download open data from City of Helsinki and the
+Helsinki metropolitan area (Finnish capital region).
 
 ### Installation
 

@@ -28,3 +28,6 @@ docs
 ^Meta$
 
 
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

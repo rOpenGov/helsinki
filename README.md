@@ -39,8 +39,8 @@ remotes::install_github("ropengov/helsinki")
 ### Using the package
 
 As a simple example we load the package, list available features from
-Helsinki Region Environmental Services HSY WFS API and download the 20th
-feature from that list:
+Helsinki Region Environmental Services HSY WFS API, and then download
+the 20th feature from that list:
 
 ``` r
 library(helsinki) 

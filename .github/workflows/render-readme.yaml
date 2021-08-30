@@ -16,9 +16,9 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown
-        run: install.packages("rmarkdown")
+        run: Rscript -e 'install.packages("rmarkdown")'
       - name: Render README
-        run: Rscript -e 'rmarkdown::render("examples/README.Rmd")'
+        run: Rscript -e 'rmarkdown::render("README.Rmd")'
       - name: Commit results
         run: |
           git config --local user.email "actions@github.com"

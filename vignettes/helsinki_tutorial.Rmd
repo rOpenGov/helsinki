@@ -63,9 +63,11 @@ All available features of a given API can be easily listed with the `get_feature
 url <- "https://kartta.hsy.fi/geoserver/wfs"
 
 hsy_features <- get_feature_list(base.url = url)
-feature_of_interest <- hsy_features$Name[20]
-# Location of waterposts
-feature_of_interest
+# Select only features which are related to water utilities and services
+hsy_vesihuolto <- hsy_features[which(hsy_features$Namespace == "vesihuolto"),]
+hsy_vesihuolto
+# We select our feature of interest from this list: Location of waterposts
+feature_of_interest <- "vesihuolto:VH_Vesipostit_HSY"
 ```
 
 When the wanted feature and its Name (in other words: Namespace:Title combination) is known, it can be downloaded with `get_feature()` by providing the correct `base.url` and the Name as the `typename` parameter.
@@ -82,7 +84,7 @@ Dots on a blank canvas do not make much sense and therefore helsinki-package has
 Helsinki-package provides an easy-to-use menu-driven `select_feature()` function that effectively combines `get_feature_list()` and `get_feature()`. At default it only returns the Name of the wanted function, but if `get` parameter is set to TRUE, it returns an sf_object which can be easily visualized.
 
 ```{r wfs3, eval = FALSE}
-# Standard use
+# Interactive example with select_feature
 selected_feature <- select_feature(base.url = url)
 feature <- get_feature(base.url = url, typename = selected_feature)
 
@@ -96,11 +98,11 @@ The above example shows a general use case which can easily be applied to Helsin
 
 For legacy reasons, helsinki-package has also some specialized functions that aim to make downloading often used data as easy as possible. 
 
-Specifically, there are two new functions that replace deprecated functionalities from `get_hsy()` function: `get_vaestotietoruudukko()` (population grid) and `get_rakennustietoruudukko()` (building information grid). As of writing, years 2015 to 2019 are supported but the API may be updated at any time and `get_feature_list()` can be used to download datasets that are not baked into these functions.
+Specifically, there are two new functions that replace deprecated functionalities from `get_hsy()` function: `get_vaestotietoruudukko()` (population grid) and `get_rakennustietoruudukko()` (building information grid). As of writing, years 2015 to 2020 are supported but the API may be updated at any time and `get_feature_list()` can be used to download datasets that are not baked into these functions.
 
 ```{r get_hsy_examples, eval = TRUE}
 pop_grid <- get_vaestotietoruudukko(year = 2018)
-building_grid <- get_rakennustietoruudukko(year = 2016)
+building_grid <- get_rakennustietoruudukko(year = 2020)
 
 library(ggplot2)
 

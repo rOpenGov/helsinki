@@ -1,8 +1,8 @@
 Package: helsinki
 Type: Package
 Title: R Tools for Helsinki Open Data
-Date: 2021-06-02
-Version: 1.0.2
+Date: 2021-08-30
+Version: 1.0.3
 Authors@R: 
     c(person(given = "Juuso",
              family = "Parkkinen",
@@ -36,13 +36,14 @@ Imports:
     xml2,
     methods,
     sf,
-    httpcache
+    httpcache,
+    curl
 Suggests:
     knitr,
     rmarkdown,
     remotes,
     ggplot2
-URL: https://github.com/rOpenGov/helsinki
+URL: http://ropengov.github.io/helsinki, https://github.com/rOpenGov/helsinki
 BugReports: https://github.com/ropengov/helsinki/issues
 VignetteBuilder: knitr
 NeedsCompilation: no

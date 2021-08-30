@@ -40,7 +40,7 @@
 #'                      
 #' @importFrom xml2 read_xml xml_text xml_has_attr xml_children
 #' @importFrom httpcache GET
-#' @importFrom httr timeout user_agent modify_url http_error
+#' @importFrom httr timeout user_agent modify_url http_error message_for_status
 #' @importFrom curl has_internet
 #'                      
 #' @export
@@ -87,7 +87,7 @@ wfs_api <- function(base.url = NULL, queries) {
   }
   # Then stop if status > 400
   if (httr::http_error(resp)) { 
-    message_for_status(resp)
+    httr::message_for_status(resp)
     return(invisible(NULL))
   }
   # Many thanks! ______________________________________________________________

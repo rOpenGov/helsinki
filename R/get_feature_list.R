@@ -7,7 +7,9 @@
 #' @seealso Use \code{\link{get_feature}} to download feature, 
 #' \code{\link{select_feature}} for menu-driven listing and downloading
 #' 
-#' @param base.url a WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
+#' @param base.url WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
+#' @param queries desired query for acquiring the list of features, default 
+#'    is "request=GetCapabilities"
 #'
 #' @return data frame
 #'

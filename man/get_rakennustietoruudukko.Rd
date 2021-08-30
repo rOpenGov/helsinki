@@ -27,7 +27,7 @@ or select_feature().
 }
 \examples{
 \dontrun{
-building_grid <- get_rakennustietoruudukko(year = 2016)
+building_grid <- get_rakennustietoruudukko(year = 2018)
 }
 
 }

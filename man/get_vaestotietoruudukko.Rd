@@ -27,7 +27,7 @@ or select_feature().
 }
 \examples{
 \dontrun{
-pop_grid <- get_vaestotietoruudukko(year = 2015)
+pop_grid <- get_vaestotietoruudukko(year = 2017)
 }
 
 }

@@ -66,14 +66,14 @@ get_hsy <- function(which.data=NULL, which.year=2013, data.dir=tempdir(), verbos
 #'
 #' @examples
 #' \dontrun{
-#' pop_grid <- get_vaestotietoruudukko(year = 2015)
+#' pop_grid <- get_vaestotietoruudukko(year = 2017)
 #' }
 #'
 #' @export
 get_vaestotietoruudukko <- function(year = NULL) {
   namespace_title <- "asuminen_ja_maankaytto:Vaestotietoruudukko"
   base_url <- "https://kartta.hsy.fi/geoserver/wfs"
-  valid_years <- 2015:2019
+  valid_years <- 2015:2020
   
   if (is.null(year)) {
     message(paste0("year = NULL! Retrieving feature from year ", max(valid_years)))
@@ -112,14 +112,14 @@ get_vaestotietoruudukko <- function(year = NULL) {
 #' 
 #' @examples
 #' \dontrun{
-#' building_grid <- get_rakennustietoruudukko(year = 2016)
+#' building_grid <- get_rakennustietoruudukko(year = 2018)
 #' }
 #'
 #' @export
 get_rakennustietoruudukko <- function(year = NULL) {
   namespace_title <- "asuminen_ja_maankaytto:Rakennustietoruudukko"
   base_url <- "https://kartta.hsy.fi/geoserver/wfs"
-  valid_years <- 2015:2019
+  valid_years <- 2015:2020
   
   if (is.null(year)) {
     message(paste0("year = NULL! Retrieving feature from year ", max(valid_years)))
@@ -130,12 +130,8 @@ get_rakennustietoruudukko <- function(year = NULL) {
     message(paste0("It is strongly suggested to use a valid year from range: 2015-2019. 
                    Using other years may result in an error."))
   }
-  
-  if (year == 2016) {
-    selection <- paste(namespace_title, year, "2", sep = "_")
-  } else {
-    selection <- paste(namespace_title, year, sep = "_")
-  }
+
+  selection <- paste(namespace_title, year, sep = "_")
   
   feature <- get_feature(base.url = base_url, typename = selection)
   feature

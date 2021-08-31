@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Helsinki open data R tools</h1>
                         <h4 class="author">Juuso Parkkinen, Pyry Kantanen</h4>
             
-            <h4 class="date">2021-08-30</h4>
+            <h4 class="date">2021-08-31</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/helsinki/blob/master/vignettes/helsinki_tutorial.Rmd"><code>vignettes/helsinki_tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>helsinki_tutorial.Rmd</code></div>
@@ -206,7 +206,7 @@
 <span class="co"># Study results: 47 variables in the data frame</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">search_puisto</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ count   : int 2147</span>
+<span class="co">#&gt;  $ count   : int 2149</span>
 <span class="co">#&gt;  $ next    : chr "https://api.hel.fi/servicemap/v2/search/?page=2&amp;q=puisto"</span>
 <span class="co">#&gt;  $ previous: NULL</span>
 <span class="co">#&gt;  $ results :'data.frame':    20 obs. of  47 variables:</span></code></pre></div>
@@ -343,19 +343,19 @@
 <span class="co">#&gt; 12             Depåvägen 4                Varikkotie 4         Point</span>
 <span class="co">#&gt; 13           Fladabågen 23           Sarvastonkaari 23         Point</span>
 <span class="co">#&gt;    location.coordinates sort_index object_type    score</span>
-<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.417053</span>
-<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.417053</span>
-<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.305774</span>
-<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.305774</span>
-<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.799767</span>
-<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.530637</span>
-<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.530637</span>
-<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.782363</span>
-<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.764969</span>
-<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.764969</span>
-<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.278045</span>
-<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.268311</span>
-<span class="co">#&gt; 13   25.05760, 60.17415         12        unit 2.253923</span></code></pre></div>
+<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.425970</span>
+<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.425970</span>
+<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.311637</span>
+<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.311637</span>
+<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.805974</span>
+<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.535963</span>
+<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.535963</span>
+<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.786447</span>
+<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.768192</span>
+<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.768192</span>
+<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.280520</span>
+<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.271821</span>
+<span class="co">#&gt; 13   25.05760, 60.17415         12        unit 2.256711</span></code></pre></div>
 <p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api/">original documentation</a> may help.</p>
 <p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v1/">Linked Events API</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -363,16 +363,26 @@
 <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"event"</span><span class="op">)</span>
 <span class="co"># Get names for the first 20 results</span>
 <span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "Mies miehelle"                     "Etäsatutuokio"                    </span>
-<span class="co">#&gt;  [3] "Etäsatutuokio"                     "Etäsatutuokio"                    </span>
-<span class="co">#&gt;  [5] "Luetaan yhdessä ryhmä"             "Etäsatutuokio"                    </span>
-<span class="co">#&gt;  [7] "Etätapahtuma: Opitaan kielioppia!" "Luetaan yhdessä ryhmä"            </span>
-<span class="co">#&gt;  [9] "Etäsatutuokio"                     "Etätapahtuma: Opitaan kielioppia!"</span>
-<span class="co">#&gt; [11] "Luetaan yhdessä ryhmä"             "Etäsatutuokio"                    </span>
-<span class="co">#&gt; [13] "Etätapahtuma: Opitaan kielioppia!" "Luetaan yhdessä ryhmä"            </span>
-<span class="co">#&gt; [15] "Etäsatutuokio"                     "Etätapahtuma: Opitaan kielioppia!"</span>
-<span class="co">#&gt; [17] "Luetaan yhdessä ryhmä"             "Etäsatutuokio"                    </span>
-<span class="co">#&gt; [19] "Etätapahtuma: Opitaan kielioppia!" "Luetaan yhdessä ryhmä"</span>
+<span class="co">#&gt;  [1] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt;  [2] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt;  [3] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt;  [4] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt;  [5] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt;  [6] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt;  [7] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt;  [8] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt;  [9] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt; [10] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt; [11] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt; [12] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt; [13] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt; [14] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt; [15] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt; [16] "Piha-Puuhat lapsiperheille Leikkipuisto Soihdussa, Paloheinässä"</span>
+<span class="co">#&gt; [17] "Perheperjantai Leikkipuisto Soihdussa, Paloheinässä"            </span>
+<span class="co">#&gt; [18] "Perheperjantai Leikkipuisto Soihdussa, Paloheinässä"            </span>
+<span class="co">#&gt; [19] "Perheperjantai Leikkipuisto Soihdussa, Paloheinässä"            </span>
+<span class="co">#&gt; [20] "Perheperjantai Leikkipuisto Soihdussa, Paloheinässä"</span>
 <span class="co"># See what kind of data is given for events</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "id"                          "location"                   </span>

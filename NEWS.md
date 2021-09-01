@@ -5,7 +5,7 @@ helsinki 1.0.3 (2021-08-30)
 
  * wfs_api made to output messages instead of warnings and errors in case of connectivity and other problems
  * `get_rakennustietoruudukko()` and `get_vaestotietoruudukko()` now have 2020 data, one exceptionally named dataset from 2016 now downloads correctly
- * Vignette examples now more robust
+ * Vignette examples now more robust against unexpected errors
 
 helsinki 1.0.1 (2021-05-09)
 =========================

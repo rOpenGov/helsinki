@@ -1,7 +1,6 @@
 Package: helsinki
 Type: Package
 Title: R Tools for Helsinki Open Data
-Date: 2021-08-30
 Version: 1.0.3
 Authors@R: 
     c(person(given = "Juuso",
@@ -13,7 +12,8 @@ Authors@R:
              role = "aut"),
       person(given = "Pyry",
              family = "Kantanen",
-             role = "aut"),
+             role = "aut",
+             comment = c(ORCID = "0000-0003-2853-2765")),
       person(given = "Leo",
              family = "Lahti",
              role = "aut",
@@ -43,7 +43,7 @@ Suggests:
     rmarkdown,
     remotes,
     ggplot2
-URL: http://ropengov.github.io/helsinki, https://github.com/rOpenGov/helsinki
+URL: http://ropengov.github.io/helsinki/, https://github.com/rOpenGov/helsinki
 BugReports: https://github.com/ropengov/helsinki/issues
 VignetteBuilder: knitr
 NeedsCompilation: no

@@ -1,7 +1,7 @@
 Package: helsinki
 Type: Package
 Title: R Tools for Helsinki Open Data
-Version: 1.0.3
+Version: 1.0.4
 Authors@R: 
     c(person(given = "Juuso",
              family = "Parkkinen",
@@ -29,7 +29,6 @@ Depends:
     R (>= 3.1.0)
 Imports:
     jsonlite,
-    sp,
     httr,
     purrr,
     dplyr,

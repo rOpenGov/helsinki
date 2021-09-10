@@ -50,7 +50,9 @@ wfs_api <- function(base.url = NULL, queries) {
     stop("base.url = NULL. Please input a valid WFS url")
   }
   
-  if (!grepl("^http", base.url)) stop("Invalid base URL")
+  if (!grepl("^http", base.url)) {
+    stop("Invalid base URL")
+  }
   
   # Set the user agent
   ua <- httr::user_agent("https://github.com/rOpenGov/helsinki")

@@ -42,7 +42,8 @@ Suggests:
     rmarkdown,
     remotes,
     ggplot2,
-    sp
+    sp,
+    covr
 URL: http://ropengov.github.io/helsinki/, https://github.com/rOpenGov/helsinki
 BugReports: https://github.com/ropengov/helsinki/issues
 VignetteBuilder: knitr

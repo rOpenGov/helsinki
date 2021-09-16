@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Helsinki open data R tools</h1>
                         <h4 class="author">Juuso Parkkinen, Pyry Kantanen</h4>
             
-            <h4 class="date">2021-09-10</h4>
+            <h4 class="date">2021-09-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/helsinki/blob/master/vignettes/helsinki_tutorial.Rmd"><code>vignettes/helsinki_tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>helsinki_tutorial.Rmd</code></div>
@@ -135,12 +135,12 @@
 <span class="co">#&gt; 85                       vesihuolto:Vh_HSY_toiminta_al_2017_2019</span>
 <span class="co">#&gt; 86               vesihuolto:Vh_Muu_vesihuo_toiminta_al_2017_2019</span>
 <span class="co">#&gt; 87                  vesihuolto:Vh_Vedenjak_toiminta_al_2017_2019</span>
-<span class="co">#&gt; 200                          vesihuolto:vesihuollon_toimipisteet</span>
-<span class="co">#&gt; 202                        vesihuolto:vh_hulevesiviemaroity_alue</span>
-<span class="co">#&gt; 203                            vesihuolto:vh_hva_laajennusalueet</span>
-<span class="co">#&gt; 204               vesihuolto:vh_jatevesi_matkaaika_puhdistamolle</span>
-<span class="co">#&gt; 205                            vesihuolto:vh_sekaviemarointialue</span>
-<span class="co">#&gt; 212                        vesihuolto:ylimaarainen_verkostopaine</span>
+<span class="co">#&gt; 202                          vesihuolto:vesihuollon_toimipisteet</span>
+<span class="co">#&gt; 204                        vesihuolto:vh_hulevesiviemaroity_alue</span>
+<span class="co">#&gt; 205                            vesihuolto:vh_hva_laajennusalueet</span>
+<span class="co">#&gt; 206               vesihuolto:vh_jatevesi_matkaaika_puhdistamolle</span>
+<span class="co">#&gt; 207                            vesihuolto:vh_sekaviemarointialue</span>
+<span class="co">#&gt; 214                        vesihuolto:ylimaarainen_verkostopaine</span>
 <span class="co">#&gt;                                                 Title  Namespace</span>
 <span class="co">#&gt; 73                                  VH_Vesipostit_HSY vesihuolto</span>
 <span class="co">#&gt; 74           VH_muut_vesihuollon_toiminta_alueet_2020 vesihuolto</span>
@@ -151,12 +151,12 @@
 <span class="co">#&gt; 85                       Vh_HSY_toiminta_al_2017_2019 vesihuolto</span>
 <span class="co">#&gt; 86               Vh_Muu_vesihuo_toiminta_al_2017_2019 vesihuolto</span>
 <span class="co">#&gt; 87                  Vh_Vedenjak_toiminta_al_2017_2019 vesihuolto</span>
-<span class="co">#&gt; 200                          vesihuollon_toimipisteet vesihuolto</span>
-<span class="co">#&gt; 202                        vh_hulevesiviemaroity_alue vesihuolto</span>
-<span class="co">#&gt; 203                            vh_hva_laajennusalueet vesihuolto</span>
-<span class="co">#&gt; 204               vh_jatevesi_matkaaika_puhdistamolle vesihuolto</span>
-<span class="co">#&gt; 205                            vh_sekaviemarointialue vesihuolto</span>
-<span class="co">#&gt; 212                        ylimaarainen_verkostopaine vesihuolto</span>
+<span class="co">#&gt; 202                          vesihuollon_toimipisteet vesihuolto</span>
+<span class="co">#&gt; 204                        vh_hulevesiviemaroity_alue vesihuolto</span>
+<span class="co">#&gt; 205                            vh_hva_laajennusalueet vesihuolto</span>
+<span class="co">#&gt; 206               vh_jatevesi_matkaaika_puhdistamolle vesihuolto</span>
+<span class="co">#&gt; 207                            vh_sekaviemarointialue vesihuolto</span>
+<span class="co">#&gt; 214                        ylimaarainen_verkostopaine vesihuolto</span>
 <span class="co"># We select our feature of interest from this list: Location of waterposts</span>
 <span class="va">feature_of_interest</span> <span class="op">&lt;-</span> <span class="st">"vesihuolto:VH_Vesipostit_HSY"</span></code></pre></div>
 <p>When the wanted feature and its Name (in other words: Namespace:Title combination) is known, it can be downloaded with <code><a href="../reference/get_feature.html">get_feature()</a></code> by providing the correct <code>base.url</code> and the Name as the <code>typename</code> parameter.</p>
@@ -206,7 +206,7 @@
 <span class="co"># Study results: 47 variables in the data frame</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">search_puisto</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ count   : int 2159</span>
+<span class="co">#&gt;  $ count   : int 2155</span>
 <span class="co">#&gt;  $ next    : chr "https://api.hel.fi/servicemap/v2/search/?page=2&amp;q=puisto"</span>
 <span class="co">#&gt;  $ previous: NULL</span>
 <span class="co">#&gt;  $ results :'data.frame':    20 obs. of  47 variables:</span></code></pre></div>
@@ -216,8 +216,8 @@
 <span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
 <span class="co">#&gt;  [1] "Sinebrychoffin puiston yleisövessa"                                </span>
 <span class="co">#&gt;  [2] "Sibeliuksen puiston yleisövessa"                                   </span>
-<span class="co">#&gt;  [3] "Esplanadin puiston WLAN-tukiasema"                                 </span>
-<span class="co">#&gt;  [4] "Töölönlahden puisto / Leikkipaikka"                                </span>
+<span class="co">#&gt;  [3] "Töölönlahden puisto / Leikkipaikka"                                </span>
+<span class="co">#&gt;  [4] "Esplanadin puiston WLAN-tukiasema"                                 </span>
 <span class="co">#&gt;  [5] "Hesperian puiston yleisövessa"                                     </span>
 <span class="co">#&gt;  [6] "Topeliuksen puiston yleisövessa"                                   </span>
 <span class="co">#&gt;  [7] "Ankkuripohjanpuisto"                                               </span>
@@ -264,29 +264,29 @@
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span>, page_size <span class="op">=</span> <span class="fl">30</span>, page <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "Kuttulammenpuisto"                                 </span>
-<span class="co">#&gt;  [2] "Rinkelipuisto"                                     </span>
-<span class="co">#&gt;  [3] "Kaupungintalon puisto"                             </span>
+<span class="co">#&gt;  [1] "Kaupungintalon puisto"                             </span>
+<span class="co">#&gt;  [2] "Kuttulammenpuisto"                                 </span>
+<span class="co">#&gt;  [3] "Rinkelipuisto"                                     </span>
 <span class="co">#&gt;  [4] "Olarin asukaspuisto"                               </span>
 <span class="co">#&gt;  [5] "Alli Tryggin puiston opaskoira-aitaus"             </span>
 <span class="co">#&gt;  [6] "Hurtigin puisto"                                   </span>
-<span class="co">#&gt;  [7] "Nurmilinnunpuisto"                                 </span>
-<span class="co">#&gt;  [8] "Ruusutorpanpuisto"                                 </span>
-<span class="co">#&gt;  [9] "Tynnyripuisto"                                     </span>
-<span class="co">#&gt; [10] "Perkkaan asukaspuisto"                             </span>
-<span class="co">#&gt; [11] "Asematien leikkipuisto"                            </span>
-<span class="co">#&gt; [12] "Stenbergin puisto"                                 </span>
-<span class="co">#&gt; [13] "Leppävaaran asukaspuisto"                          </span>
-<span class="co">#&gt; [14] "Matinkylän asukaspuisto"                           </span>
-<span class="co">#&gt; [15] "Veijarivuoren puiston talviuintipaikka (Humaus ry)"</span>
+<span class="co">#&gt;  [7] "Matinkylän asukaspuisto"                           </span>
+<span class="co">#&gt;  [8] "Nurmilinnunpuisto"                                 </span>
+<span class="co">#&gt;  [9] "Ruusutorpanpuisto"                                 </span>
+<span class="co">#&gt; [10] "Tynnyripuisto"                                     </span>
+<span class="co">#&gt; [11] "Perkkaan asukaspuisto"                             </span>
+<span class="co">#&gt; [12] "Asematien leikkipuisto"                            </span>
+<span class="co">#&gt; [13] "Stenbergin puisto"                                 </span>
+<span class="co">#&gt; [14] "Viherkallion asukaspuisto"                         </span>
+<span class="co">#&gt; [15] "Leppävaaran asukaspuisto"                          </span>
 <span class="co">#&gt; [16] "Suvelan asukaspuisto"                              </span>
-<span class="co">#&gt; [17] "Viherkallion asukaspuisto"                         </span>
+<span class="co">#&gt; [17] "Veijarivuoren puiston talviuintipaikka (Humaus ry)"</span>
 <span class="co">#&gt; [18] "Karakallion asukaspuisto"                          </span>
 <span class="co">#&gt; [19] "Kasavuoren puisto"                                 </span>
 <span class="co">#&gt; [20] "Marketanpuisto"                                    </span>
 <span class="co">#&gt; [21] "Kylätalo Palttinan asukaspuisto"                   </span>
-<span class="co">#&gt; [22] "Tapiolan asukaspuisto"                             </span>
-<span class="co">#&gt; [23] "Mankkaan asukaspuisto"                             </span>
+<span class="co">#&gt; [22] "Mankkaan asukaspuisto"                             </span>
+<span class="co">#&gt; [23] "Tapiolan asukaspuisto"                             </span>
 <span class="co">#&gt; [24] "Pohjankulman puisto"                               </span>
 <span class="co">#&gt; [25] "Suvelan puisto"                                    </span>
 <span class="co">#&gt; [26] "Alberganesplanadin puisto"                         </span>
@@ -342,19 +342,19 @@
 <span class="co">#&gt; 12             Depåvägen 4                Varikkotie 4         Point</span>
 <span class="co">#&gt; 13           Fladabågen 23           Sarvastonkaari 23         Point</span>
 <span class="co">#&gt;    location.coordinates sort_index object_type    score</span>
-<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.415374</span>
-<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.415374</span>
-<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.315655</span>
-<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.315655</span>
-<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.799521</span>
-<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.538805</span>
-<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.538805</span>
-<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.781539</span>
-<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.764865</span>
-<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.764865</span>
-<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.277005</span>
-<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.267589</span>
-<span class="co">#&gt; 13   25.05760, 60.17415         12        unit 2.253838</span></code></pre></div>
+<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.415328</span>
+<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.415328</span>
+<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.308518</span>
+<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.308518</span>
+<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.800417</span>
+<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.532986</span>
+<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.532986</span>
+<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.781820</span>
+<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.764986</span>
+<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.764986</span>
+<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.278262</span>
+<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.267907</span>
+<span class="co">#&gt; 13   25.05760, 60.17415         12        unit 2.253851</span></code></pre></div>
 <p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api/">original documentation</a> may help.</p>
 <p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v1/">Linked Events API</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -429,7 +429,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">vantaa</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kauniainen</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">waterposts</span><span class="op">)</span></code></pre></div>
-<p><img src="helsinki_tutorial_files/figure-html/maps1-1.png" width="525"></p>
+<p><img src="helsinki_tutorial_files/figure-html/mapping_example1-1.png" width="525"></p>
 <p>In addition, it is possible to download “aanestysalue” (voting district) divisions for the city of Helsinki. Currently this data is not available for other cities and it must be accessed from other sources.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
@@ -554,10 +554,10 @@
 <span class="co">#&gt; [1] sp_1.4-5       ggplot2_3.3.5  helsinki_1.0.4</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] tidyselect_1.1.1   xfun_0.25          purrr_0.3.4        sf_1.0-2          </span>
+<span class="co">#&gt;  [1] tidyselect_1.1.1   xfun_0.26          purrr_0.3.4        sf_1.0-2          </span>
 <span class="co">#&gt;  [5] lattice_0.20-44    colorspace_2.0-2   vctrs_0.3.8        generics_0.1.0    </span>
 <span class="co">#&gt;  [9] htmltools_0.5.2    yaml_2.2.1         utf8_1.2.2         rlang_0.4.11      </span>
-<span class="co">#&gt; [13] e1071_1.7-8        pkgdown_1.6.1      pillar_1.6.2       glue_1.4.2        </span>
+<span class="co">#&gt; [13] e1071_1.7-9        pkgdown_1.6.1      pillar_1.6.2       glue_1.4.2        </span>
 <span class="co">#&gt; [17] withr_2.4.2        DBI_1.1.1          lifecycle_1.0.0    stringr_1.4.0     </span>
 <span class="co">#&gt; [21] munsell_0.5.0      gtable_0.3.0       ragg_1.1.3         memoise_2.0.0     </span>
 <span class="co">#&gt; [25] evaluate_0.14      labeling_0.4.2     knitr_1.34         fastmap_1.1.0     </span>
@@ -568,7 +568,7 @@
 <span class="co">#&gt; [45] stringi_1.7.4      dplyr_1.0.7        rprojroot_2.0.2    grid_4.1.1        </span>
 <span class="co">#&gt; [49] tools_4.1.1        magrittr_2.0.1     proxy_0.4-26       tibble_3.1.4      </span>
 <span class="co">#&gt; [53] crayon_1.4.1       httpcache_1.2.0    pkgconfig_2.0.3    ellipsis_0.3.2    </span>
-<span class="co">#&gt; [57] xml2_1.3.2         rmarkdown_2.10     httr_1.4.2         R6_2.5.1          </span>
+<span class="co">#&gt; [57] xml2_1.3.2         rmarkdown_2.11     httr_1.4.2         R6_2.5.1          </span>
 <span class="co">#&gt; [61] units_0.7-2        compiler_4.1.1</span></code></pre></div>
 </div>
 </div>

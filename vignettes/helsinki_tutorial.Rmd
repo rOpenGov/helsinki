@@ -13,6 +13,7 @@ vignette: >
 
 
 ```{r setup, include = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -20,7 +21,9 @@ knitr::opts_chunk$set(
   warning = FALSE,
   fig.height = 7, 
   fig.width = 7,
-  dpi = 75
+  dpi = 75,
+  purl = NOT_CRAN,
+  eval = NOT_CRAN
 )
 ```
 
@@ -59,7 +62,7 @@ The package has basic functions for interacting with WFS APIs, courtesy of [FMI2
 
 All available features of a given API can be easily listed with the `get_feature_list()` function. Partly due to legacy considerations, partly due to user convenience we often use HSY API url in these function examples, sometimes even as a default option. The API functions can, however, be used with a wide variety of different `base.url` parameters.
 
-```{r wfs1, eval = TRUE}
+```{r wfs1}
 url <- "https://kartta.hsy.fi/geoserver/wfs"
 
 hsy_features <- get_feature_list(base.url = url)
@@ -72,7 +75,7 @@ feature_of_interest <- "vesihuolto:VH_Vesipostit_HSY"
 
 When the wanted feature and its Name (in other words: Namespace:Title combination) is known, it can be downloaded with `get_feature()` by providing the correct `base.url` and the Name as the `typename` parameter.
 
-```{r wfs2, eval = TRUE}
+```{r wfs2}
 # downloading a feature
 waterposts <- get_feature(base.url = url, typename = feature_of_interest)
 # Visualizing the location of waterposts
@@ -100,7 +103,7 @@ For legacy reasons, helsinki-package has also some specialized functions that ai
 
 Specifically, there are two new functions that replace deprecated functionalities from `get_hsy()` function: `get_vaestotietoruudukko()` (population grid) and `get_rakennustietoruudukko()` (building information grid). As of writing, years 2015 to 2020 are supported but the API may be updated at any time and `get_feature_list()` can be used to download datasets that are not baked into these functions.
 
-```{r get_hsy_examples, eval = TRUE}
+```{r get_hsy_examples}
 pop_grid <- get_vaestotietoruudukko(year = 2018)
 building_grid <- get_rakennustietoruudukko(year = 2020)
 
@@ -126,7 +129,7 @@ str(search_puisto, max.level = 1)
 
 We can see that this search returns a large number of results, over 2000. The results are returned as pages, where each page has 20 results by default. By giving no additional search parameters, we get 20 results from the first page of search results.
 
-```{r}
+```{r search_example1}
 # Get names for the first 20 results
 search_puisto$results$name$fi
 
@@ -136,14 +139,14 @@ names(search_puisto$results)
 
 More results could be retrieved and viewed by giving additional `search` parameters.
 
-```{r}
+```{r search_example2}
 search_puisto <- get_servicemap(query="search", q="puisto", page_size = 30, page = 2)
 search_puisto$results$name$fi
 ```
 
 As we could see from above example, the returned data frame had 47 observations. At full width this output can be messy to handle in R console. One possible option would be to turn it into a more easily manageable tibble (which often is not a bad idea), another is to limit the extent of the query at the start. We do the latter and it can be done with the function parameter `only`:
 
-```{r}
+```{r search_example3}
 # Search for padel-related services in Helsinki
 search_padel <- get_servicemap(query="search", input="padel", only="unit.name, unit.location.coordinates, unit.street_address", municipality="helsinki")
 search_padel$results
@@ -172,7 +175,7 @@ The main takeaway is that "suuralue" is the highest-level division and "pienalue
 
 As promised earlier in [API Access](#api-access), the following example gives an idea on how to visualize waterpost locations (and, of course, other types of spatial data as well) on capital region map.
 
-```{r maps1, eval = TRUE}
+```{r mapping_example1}
 helsinki <- get_city_map(city = "helsinki", level = "suuralue")
 espoo <- get_city_map(city = "espoo", level = "suuralue")
 vantaa <- get_city_map(city = "vantaa", level = "suuralue")
@@ -190,7 +193,7 @@ ggplot() +
 
 In addition, it is possible to download "aanestysalue" (voting district) divisions for the city of Helsinki. Currently this data is not available for other cities and it must be accessed from other sources.
 
-```{r maps2, eval=FALSE}
+```{r mapping_example2, eval=FALSE}
 library(sf)
 map <- get_city_map(city = "helsinki", level = "suuralue")
 plot(sf::st_geometry(map))
@@ -205,7 +208,7 @@ The included aluejakokartat-dataset can also be used if there is for some reason
 
 Below are the contents of `data(aluejakokartat)`:
 
-```{r maps3, message=FALSE}
+```{r mapping_example3, message=FALSE}
 # Load aluejakokartat and study contents
 data(aluejakokartat)
 str(aluejakokartat, m=2)

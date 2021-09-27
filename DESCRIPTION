@@ -6,7 +6,7 @@ Authors@R:
     c(person(given = "Juuso",
              family = "Parkkinen",
              role = c("aut", "cre"),
-             email = "pyry.kantanen@gmail.com"),
+             email = "juuso.parkkinen@iki.fi"),
       person(given = "Joona",
              family = "Lehtomaki",
              role = "aut"),

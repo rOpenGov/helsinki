@@ -342,19 +342,19 @@
 <span class="co">#&gt; 12             Depåvägen 4                Varikkotie 4         Point</span>
 <span class="co">#&gt; 13           Fladabågen 23           Sarvastonkaari 23         Point</span>
 <span class="co">#&gt;    location.coordinates sort_index object_type    score</span>
-<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.419424</span>
-<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.419424</span>
-<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.310621</span>
-<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.310621</span>
-<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.802314</span>
-<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.534974</span>
-<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.534974</span>
-<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.783712</span>
-<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.766519</span>
-<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.766519</span>
-<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.279634</span>
-<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.269542</span>
-<span class="co">#&gt; 13   25.05760, 60.17416         12        unit 2.255328</span></code></pre></div>
+<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.419777</span>
+<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.419777</span>
+<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.311420</span>
+<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.311420</span>
+<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.802891</span>
+<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.535632</span>
+<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.535632</span>
+<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.783641</span>
+<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.766456</span>
+<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.766456</span>
+<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.279535</span>
+<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.269423</span>
+<span class="co">#&gt; 13   25.05760, 60.17416         12        unit 2.255176</span></code></pre></div>
 <p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api/">original documentation</a> may help.</p>
 <p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v1/">Linked Events API</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -532,7 +532,7 @@
 <span class="co">#&gt;  [1] tidyselect_1.1.1   xfun_0.26          purrr_0.3.4        sf_1.0-2          </span>
 <span class="co">#&gt;  [5] colorspace_2.0-2   vctrs_0.3.8        generics_0.1.0     htmltools_0.5.2   </span>
 <span class="co">#&gt;  [9] yaml_2.2.1         utf8_1.2.2         rlang_0.4.11       e1071_1.7-9       </span>
-<span class="co">#&gt; [13] pkgdown_1.6.1      pillar_1.6.3       withr_2.4.2        glue_1.4.2        </span>
+<span class="co">#&gt; [13] pkgdown_1.6.1      pillar_1.6.3       glue_1.4.2         withr_2.4.2       </span>
 <span class="co">#&gt; [17] DBI_1.1.1          lifecycle_1.0.1    stringr_1.4.0      munsell_0.5.0     </span>
 <span class="co">#&gt; [21] gtable_0.3.0       ragg_1.1.3         memoise_2.0.0      evaluate_0.14     </span>
 <span class="co">#&gt; [25] labeling_0.4.2     knitr_1.34         fastmap_1.1.0      curl_4.3.2        </span>
@@ -540,7 +540,7 @@
 <span class="co">#&gt; [33] KernSmooth_2.23-20 scales_1.1.1       classInt_0.4-3     cachem_1.0.6      </span>
 <span class="co">#&gt; [37] desc_1.3.0         jsonlite_1.7.2     farver_2.1.0       systemfonts_1.0.2 </span>
 <span class="co">#&gt; [41] fs_1.5.0           textshaping_0.3.5  digest_0.6.28      stringi_1.7.4     </span>
-<span class="co">#&gt; [45] dplyr_1.0.7        grid_4.1.1         rprojroot_2.0.2    tools_4.1.1       </span>
+<span class="co">#&gt; [45] dplyr_1.0.7        rprojroot_2.0.2    grid_4.1.1         tools_4.1.1       </span>
 <span class="co">#&gt; [49] magrittr_2.0.1     proxy_0.4-26       tibble_3.1.4       crayon_1.4.1      </span>
 <span class="co">#&gt; [53] httpcache_1.2.0    pkgconfig_2.0.3    ellipsis_0.3.2     xml2_1.3.2        </span>
 <span class="co">#&gt; [57] rmarkdown_2.11     httr_1.4.2         R6_2.5.1           units_0.7-2       </span>

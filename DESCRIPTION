@@ -33,6 +33,7 @@ Imports:
     purrr,
     xml2,
     methods,
+    dplyr,
     sf,
     httpcache,
     curl

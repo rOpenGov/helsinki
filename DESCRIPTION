@@ -1,12 +1,12 @@
 Package: helsinki
 Type: Package
 Title: R Tools for Helsinki Open Data
-Version: 1.0.4
+Version: 1.0.5
 Authors@R: 
     c(person(given = "Juuso",
              family = "Parkkinen",
              role = c("aut", "cre"),
-             email = "juuso.parkkinen@iki.fi"),
+             email = "pyry.kantanen@gmail.com"),
       person(given = "Joona",
              family = "Lehtomaki",
              role = "aut"),

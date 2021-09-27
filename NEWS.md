@@ -1,3 +1,9 @@
+helsinki 1.0.4 (2021-09-27)
+
+### DEPRECATED AND DEFUNCT
+
+ * Dataset `aluejakokartat` now removed from package. As a replacement it is recommended to use `get_city_map()` function to download up-to-date maps of different cities.
+
 helsinki 1.0.3 (2021-08-30)
 =========================
 

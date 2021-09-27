@@ -42,7 +42,6 @@ Suggests:
     rmarkdown,
     remotes,
     ggplot2,
-    sp,
     covr,
     testthat (>= 3.0.0)
 URL: http://ropengov.github.io/helsinki/, https://github.com/rOpenGov/helsinki
@@ -51,5 +50,5 @@ VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Config/testthat/edition: 3

@@ -8,8 +8,8 @@
 #' @importFrom sf st_read read_sf st_crs
 #' 
 #' @param city The desired city. Options: Helsinki, Espoo, Vantaa, Kauniainen
-#' @param level The desired administrative level. Options are:
-#' - "suurpiiri", "tilastoalue", "pienalue" and "aanestysalue"
+#' @param level The desired administrative level. Options are: "suurpiiri", 
+#'    "tilastoalue", "pienalue" and "aanestysalue"
 #'
 #' @return sf object
 #' 

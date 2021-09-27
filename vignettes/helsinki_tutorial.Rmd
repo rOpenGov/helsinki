@@ -202,17 +202,7 @@ voting_district <- get_city_map(city = "helsinki", level = "aanestysalue")
 plot(sf::st_geometry(voting_district))
 ```
 
-For other cities than Helsinki voting areas (and older district maps that shouldn't be too different from current maps) can be viewed from the legacy dataset with `data(aluejakokartat)`. The data included with the packaged is available as both spatial object (`sp`) and data frame (`df`). This data was preprocessed with the now-defunct gisfin-package. The current, actively maintained version of gisfin is called [geofi](https://github.com/rOpenGov/geofi)).
-
-The included aluejakokartat-dataset can also be used if there is for some reason a temporary internet outage in your area and you just need to draw maps on Finnish capital region. It will be bundled with the package for the time being.
-
-Below are the contents of `data(aluejakokartat)`:
-
-```{r mapping_example3, message=FALSE}
-# Load aluejakokartat and study contents
-data(aluejakokartat)
-str(aluejakokartat, m=2)
-```
+For other cities than Helsinki voting districts are currently not available.
 
 ## Helsinki Region Infoshare statistics API
 

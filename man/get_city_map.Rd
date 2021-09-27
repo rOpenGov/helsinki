@@ -12,8 +12,8 @@ get_city_map(city = NULL, level = NULL)
 \arguments{
 \item{city}{The desired city. Options: Helsinki, Espoo, Vantaa, Kauniainen}
 
-\item{level}{The desired administrative level. Options are:
-- "suurpiiri", "tilastoalue", "pienalue" and "aanestysalue"}
+\item{level}{The desired administrative level. Options are: "suurpiiri", 
+"tilastoalue", "pienalue" and "aanestysalue"}
 }
 \value{
 sf object

@@ -85,7 +85,7 @@
       <h1 data-toc-skip>Helsinki open data R tools</h1>
                         <h4 class="author">Juuso Parkkinen, Pyry Kantanen</h4>
             
-            <h4 class="date">2021-09-17</h4>
+            <h4 class="date">2021-09-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/helsinki/blob/master/vignettes/helsinki_tutorial.Rmd"><code>vignettes/helsinki_tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>helsinki_tutorial.Rmd</code></div>
@@ -135,12 +135,12 @@
 <span class="co">#&gt; 85                       vesihuolto:Vh_HSY_toiminta_al_2017_2019</span>
 <span class="co">#&gt; 86               vesihuolto:Vh_Muu_vesihuo_toiminta_al_2017_2019</span>
 <span class="co">#&gt; 87                  vesihuolto:Vh_Vedenjak_toiminta_al_2017_2019</span>
-<span class="co">#&gt; 202                          vesihuolto:vesihuollon_toimipisteet</span>
-<span class="co">#&gt; 204                        vesihuolto:vh_hulevesiviemaroity_alue</span>
-<span class="co">#&gt; 205                            vesihuolto:vh_hva_laajennusalueet</span>
-<span class="co">#&gt; 206               vesihuolto:vh_jatevesi_matkaaika_puhdistamolle</span>
-<span class="co">#&gt; 207                            vesihuolto:vh_sekaviemarointialue</span>
-<span class="co">#&gt; 214                        vesihuolto:ylimaarainen_verkostopaine</span>
+<span class="co">#&gt; 204                          vesihuolto:vesihuollon_toimipisteet</span>
+<span class="co">#&gt; 206                        vesihuolto:vh_hulevesiviemaroity_alue</span>
+<span class="co">#&gt; 207                            vesihuolto:vh_hva_laajennusalueet</span>
+<span class="co">#&gt; 208               vesihuolto:vh_jatevesi_matkaaika_puhdistamolle</span>
+<span class="co">#&gt; 209                            vesihuolto:vh_sekaviemarointialue</span>
+<span class="co">#&gt; 216                        vesihuolto:ylimaarainen_verkostopaine</span>
 <span class="co">#&gt;                                                 Title  Namespace</span>
 <span class="co">#&gt; 73                                  VH_Vesipostit_HSY vesihuolto</span>
 <span class="co">#&gt; 74           VH_muut_vesihuollon_toiminta_alueet_2020 vesihuolto</span>
@@ -151,12 +151,12 @@
 <span class="co">#&gt; 85                       Vh_HSY_toiminta_al_2017_2019 vesihuolto</span>
 <span class="co">#&gt; 86               Vh_Muu_vesihuo_toiminta_al_2017_2019 vesihuolto</span>
 <span class="co">#&gt; 87                  Vh_Vedenjak_toiminta_al_2017_2019 vesihuolto</span>
-<span class="co">#&gt; 202                          vesihuollon_toimipisteet vesihuolto</span>
-<span class="co">#&gt; 204                        vh_hulevesiviemaroity_alue vesihuolto</span>
-<span class="co">#&gt; 205                            vh_hva_laajennusalueet vesihuolto</span>
-<span class="co">#&gt; 206               vh_jatevesi_matkaaika_puhdistamolle vesihuolto</span>
-<span class="co">#&gt; 207                            vh_sekaviemarointialue vesihuolto</span>
-<span class="co">#&gt; 214                        ylimaarainen_verkostopaine vesihuolto</span>
+<span class="co">#&gt; 204                          vesihuollon_toimipisteet vesihuolto</span>
+<span class="co">#&gt; 206                        vh_hulevesiviemaroity_alue vesihuolto</span>
+<span class="co">#&gt; 207                            vh_hva_laajennusalueet vesihuolto</span>
+<span class="co">#&gt; 208               vh_jatevesi_matkaaika_puhdistamolle vesihuolto</span>
+<span class="co">#&gt; 209                            vh_sekaviemarointialue vesihuolto</span>
+<span class="co">#&gt; 216                        ylimaarainen_verkostopaine vesihuolto</span>
 <span class="co"># We select our feature of interest from this list: Location of waterposts</span>
 <span class="va">feature_of_interest</span> <span class="op">&lt;-</span> <span class="st">"vesihuolto:VH_Vesipostit_HSY"</span></code></pre></div>
 <p>When the wanted feature and its Name (in other words: Namespace:Title combination) is known, it can be downloaded with <code><a href="../reference/get_feature.html">get_feature()</a></code> by providing the correct <code>base.url</code> and the Name as the <code>typename</code> parameter.</p>
@@ -214,8 +214,8 @@
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Get names for the first 20 results</span>
 <span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "Sibeliuksen puiston yleisövessa"                                   </span>
-<span class="co">#&gt;  [2] "Sinebrychoffin puiston yleisövessa"                                </span>
+<span class="co">#&gt;  [1] "Sinebrychoffin puiston yleisövessa"                                </span>
+<span class="co">#&gt;  [2] "Sibeliuksen puiston yleisövessa"                                   </span>
 <span class="co">#&gt;  [3] "Töölönlahden puisto / Leikkipaikka"                                </span>
 <span class="co">#&gt;  [4] "Esplanadin puiston WLAN-tukiasema"                                 </span>
 <span class="co">#&gt;  [5] "Hesperian puiston yleisövessa"                                     </span>
@@ -265,9 +265,9 @@
 <code class="sourceCode R"><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span>, page_size <span class="op">=</span> <span class="fl">30</span>, page <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
 <span class="co">#&gt;  [1] "Kaupungintalon puisto"                             </span>
-<span class="co">#&gt;  [2] "Olarin asukaspuisto"                               </span>
-<span class="co">#&gt;  [3] "Kuttulammenpuisto"                                 </span>
-<span class="co">#&gt;  [4] "Rinkelipuisto"                                     </span>
+<span class="co">#&gt;  [2] "Kuttulammenpuisto"                                 </span>
+<span class="co">#&gt;  [3] "Rinkelipuisto"                                     </span>
+<span class="co">#&gt;  [4] "Olarin asukaspuisto"                               </span>
 <span class="co">#&gt;  [5] "Alli Tryggin puiston opaskoira-aitaus"             </span>
 <span class="co">#&gt;  [6] "Hurtigin puisto"                                   </span>
 <span class="co">#&gt;  [7] "Matinkylän asukaspuisto"                           </span>
@@ -277,12 +277,12 @@
 <span class="co">#&gt; [11] "Perkkaan asukaspuisto"                             </span>
 <span class="co">#&gt; [12] "Asematien leikkipuisto"                            </span>
 <span class="co">#&gt; [13] "Stenbergin puisto"                                 </span>
-<span class="co">#&gt; [14] "Viherkallion asukaspuisto"                         </span>
-<span class="co">#&gt; [15] "Leppävaaran asukaspuisto"                          </span>
-<span class="co">#&gt; [16] "Suvelan asukaspuisto"                              </span>
-<span class="co">#&gt; [17] "Veijarivuoren puiston talviuintipaikka (Humaus ry)"</span>
-<span class="co">#&gt; [18] "Kasavuoren puisto"                                 </span>
-<span class="co">#&gt; [19] "Karakallion asukaspuisto"                          </span>
+<span class="co">#&gt; [14] "Leppävaaran asukaspuisto"                          </span>
+<span class="co">#&gt; [15] "Veijarivuoren puiston talviuintipaikka (Humaus ry)"</span>
+<span class="co">#&gt; [16] "Viherkallion asukaspuisto"                         </span>
+<span class="co">#&gt; [17] "Suvelan asukaspuisto"                              </span>
+<span class="co">#&gt; [18] "Karakallion asukaspuisto"                          </span>
+<span class="co">#&gt; [19] "Kasavuoren puisto"                                 </span>
 <span class="co">#&gt; [20] "Marketanpuisto"                                    </span>
 <span class="co">#&gt; [21] "Kylätalo Palttinan asukaspuisto"                   </span>
 <span class="co">#&gt; [22] "Mankkaan asukaspuisto"                             </span>
@@ -292,8 +292,8 @@
 <span class="co">#&gt; [26] "Alberganesplanadin puisto"                         </span>
 <span class="co">#&gt; [27] "Parkvillanpihan puisto"                            </span>
 <span class="co">#&gt; [28] "Träskändan kartanopuisto"                          </span>
-<span class="co">#&gt; [29] "Espoon keskuspuisto"                               </span>
-<span class="co">#&gt; [30] "Ryytimaan puisto"</span></code></pre></div>
+<span class="co">#&gt; [29] "Laivatorin puisto"                                 </span>
+<span class="co">#&gt; [30] "Rantaraitin puisto"</span></code></pre></div>
 <p>As we could see from above example, the returned data frame had 47 observations. At full width this output can be messy to handle in R console. One possible option would be to turn it into a more easily manageable tibble (which often is not a bad idea), another is to limit the extent of the query at the start. We do the latter and it can be done with the function parameter <code>only</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Search for padel-related services in Helsinki</span>
@@ -342,19 +342,19 @@
 <span class="co">#&gt; 12             Depåvägen 4                Varikkotie 4         Point</span>
 <span class="co">#&gt; 13           Fladabågen 23           Sarvastonkaari 23         Point</span>
 <span class="co">#&gt;    location.coordinates sort_index object_type    score</span>
-<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.415531</span>
-<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.415531</span>
-<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.306076</span>
-<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.306076</span>
-<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.800827</span>
-<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.531058</span>
-<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.531058</span>
-<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.781882</span>
-<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.765045</span>
-<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.765045</span>
-<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.279100</span>
-<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.267952</span>
-<span class="co">#&gt; 13   25.05760, 60.17415         12        unit 2.253860</span></code></pre></div>
+<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.419424</span>
+<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.419424</span>
+<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.310621</span>
+<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.310621</span>
+<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.802314</span>
+<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.534974</span>
+<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.534974</span>
+<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.783712</span>
+<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.766519</span>
+<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.766519</span>
+<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.279634</span>
+<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.269542</span>
+<span class="co">#&gt; 13   25.05760, 60.17416         12        unit 2.255328</span></code></pre></div>
 <p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api/">original documentation</a> may help.</p>
 <p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v1/">Linked Events API</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -362,26 +362,26 @@
 <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"event"</span><span class="op">)</span>
 <span class="co"># Get names for the first 20 results</span>
 <span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "You X by Helsinki Flow School - festivaali"       </span>
+<span class="co">#&gt;  [1] "Kirjastokurren etäsatutuokio"                     </span>
 <span class="co">#&gt;  [2] "Kirjastokurren etäsatutuokio"                     </span>
 <span class="co">#&gt;  [3] "Kirjastokurren etäsatutuokio"                     </span>
-<span class="co">#&gt;  [4] "Kirjastokurren etäsatutuokio"                     </span>
-<span class="co">#&gt;  [5] "Luetaan yhdessä ryhmä"                            </span>
-<span class="co">#&gt;  [6] "Kirjastokurren etäsatutuokio"                     </span>
-<span class="co">#&gt;  [7] "Etätapahtuma: Opitaan kielioppia!"                </span>
-<span class="co">#&gt;  [8] "Luetaan yhdessä ryhmä"                            </span>
-<span class="co">#&gt;  [9] "Kirjastokurren etäsatutuokio"                     </span>
-<span class="co">#&gt; [10] "Etätapahtuma: Opitaan kielioppia!"                </span>
-<span class="co">#&gt; [11] "Luetaan yhdessä ryhmä"                            </span>
-<span class="co">#&gt; [12] "Kirjastokurren etäsatutuokio"                     </span>
-<span class="co">#&gt; [13] "Etätapahtuma: Opitaan kielioppia!"                </span>
-<span class="co">#&gt; [14] "Luetaan yhdessä ryhmä"                            </span>
-<span class="co">#&gt; [15] "Kirjastokurren etäsatutuokio"                     </span>
-<span class="co">#&gt; [16] "Etätapahtuma: Opitaan kielioppia!"                </span>
-<span class="co">#&gt; [17] "Luetaan yhdessä ryhmä"                            </span>
-<span class="co">#&gt; [18] "Kirjastokurren etäsatutuokio"                     </span>
-<span class="co">#&gt; [19] "Etätapahtuma: Opitaan kielioppia!"                </span>
-<span class="co">#&gt; [20] "Tikkurilan Marttojen Kässäkahvila #opitaanyhdessä"</span>
+<span class="co">#&gt;  [4] "Luetaan yhdessä ryhmä"                            </span>
+<span class="co">#&gt;  [5] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt;  [6] "Etätapahtuma: Opitaan kielioppia!"                </span>
+<span class="co">#&gt;  [7] "Luetaan yhdessä ryhmä"                            </span>
+<span class="co">#&gt;  [8] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt;  [9] "Etätapahtuma: Opitaan kielioppia!"                </span>
+<span class="co">#&gt; [10] "Luetaan yhdessä ryhmä"                            </span>
+<span class="co">#&gt; [11] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt; [12] "Etätapahtuma: Opitaan kielioppia!"                </span>
+<span class="co">#&gt; [13] "Luetaan yhdessä ryhmä"                            </span>
+<span class="co">#&gt; [14] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt; [15] "Etätapahtuma: Opitaan kielioppia!"                </span>
+<span class="co">#&gt; [16] "Luetaan yhdessä ryhmä"                            </span>
+<span class="co">#&gt; [17] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt; [18] "Etätapahtuma: Opitaan kielioppia!"                </span>
+<span class="co">#&gt; [19] "Tikkurilan Marttojen Kässäkahvila #opitaanyhdessä"</span>
+<span class="co">#&gt; [20] "Luetaan yhdessä ryhmä"</span>
 <span class="co"># See what kind of data is given for events</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "id"                          "location"                   </span>
@@ -402,10 +402,10 @@
 <span class="co">#&gt; [31] "local"                       "search_vector_fi"           </span>
 <span class="co">#&gt; [33] "search_vector_en"            "search_vector_sv"           </span>
 <span class="co">#&gt; [35] "kulke_new"                   "replaced_by"                </span>
-<span class="co">#&gt; [37] "name"                        "short_description"          </span>
-<span class="co">#&gt; [39] "description"                 "info_url"                   </span>
-<span class="co">#&gt; [41] "provider_contact_info"       "provider"                   </span>
-<span class="co">#&gt; [43] "location_extra_info"         "@id"                        </span>
+<span class="co">#&gt; [37] "location_extra_info"         "provider"                   </span>
+<span class="co">#&gt; [39] "name"                        "info_url"                   </span>
+<span class="co">#&gt; [41] "provider_contact_info"       "short_description"          </span>
+<span class="co">#&gt; [43] "description"                 "@id"                        </span>
 <span class="co">#&gt; [45] "@context"                    "@type"</span></code></pre></div>
 </div>
 <div id="helsinki-region-district-maps" class="section level2">
@@ -438,38 +438,13 @@
 
 <span class="va">voting_district</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"helsinki"</span>, level <span class="op">=</span> <span class="st">"aanestysalue"</span><span class="op">)</span>
 <span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">voting_district</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>For other cities than Helsinki voting areas (and older district maps that shouldn’t be too different from current maps) can be viewed from the legacy dataset with <code><a href="https://rdrr.io/r/utils/data.html">data(aluejakokartat)</a></code>. The data included with the packaged is available as both spatial object (<code>sp</code>) and data frame (<code>df</code>). This data was preprocessed with the now-defunct gisfin-package. The current, actively maintained version of gisfin is called <a href="https://github.com/rOpenGov/geofi">geofi</a>).</p>
-<p>The included aluejakokartat-dataset can also be used if there is for some reason a temporary internet outage in your area and you just need to draw maps on Finnish capital region. It will be bundled with the package for the time being.</p>
-<p>Below are the contents of <code><a href="https://rdrr.io/r/utils/data.html">data(aluejakokartat)</a></code>:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Load aluejakokartat and study contents</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">aluejakokartat</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">aluejakokartat</span>, m<span class="op">=</span><span class="fl">2</span><span class="op">)</span>
-<span class="co">#&gt; List of 2</span>
-<span class="co">#&gt;  $ sp:List of 8</span>
-<span class="co">#&gt;   ..$ kunta            :Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots</span>
-<span class="co">#&gt;   ..$ pienalue         :Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots</span>
-<span class="co">#&gt;   ..$ pienalue_piste   :Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots</span>
-<span class="co">#&gt;   ..$ suuralue         :Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots</span>
-<span class="co">#&gt;   ..$ suuralue_piste   :Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots</span>
-<span class="co">#&gt;   ..$ tilastoalue      :Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots</span>
-<span class="co">#&gt;   ..$ tilastoalue_piste:Formal class 'SpatialPointsDataFrame' [package "sp"] with 5 slots</span>
-<span class="co">#&gt;   ..$ aanestysalue     :Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots</span>
-<span class="co">#&gt;  $ df:List of 8</span>
-<span class="co">#&gt;   ..$ kunta            :'data.frame':    1664 obs. of  7 variables:</span>
-<span class="co">#&gt;   ..$ pienalue         :'data.frame':    33594 obs. of  7 variables:</span>
-<span class="co">#&gt;   ..$ pienalue_piste   :'data.frame':    295 obs. of  3 variables:</span>
-<span class="co">#&gt;   ..$ suuralue         :'data.frame':    6873 obs. of  7 variables:</span>
-<span class="co">#&gt;   ..$ suuralue_piste   :'data.frame':    23 obs. of  3 variables:</span>
-<span class="co">#&gt;   ..$ tilastoalue      :'data.frame':    17279 obs. of  7 variables:</span>
-<span class="co">#&gt;   ..$ tilastoalue_piste:'data.frame':    125 obs. of  3 variables:</span>
-<span class="co">#&gt;   ..$ aanestysalue     :'data.frame':    35349 obs. of  11 variables:</span></code></pre></div>
+<p>For other cities than Helsinki voting districts are currently not available.</p>
 </div>
 <div id="helsinki-region-infoshare-statistics-api" class="section level2">
 <h2 class="hasAnchor">
 <a href="#helsinki-region-infoshare-statistics-api" class="anchor"></a>Helsinki Region Infoshare statistics API</h2>
 <p>Function <code><a href="../reference/get_hri_stats.html">get_hri_stats()</a></code> retrieves data from the <a href="http://dev.hel.fi/stats/">Helsinki Region Infoshare statistics API</a>.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Retrieve list of available data</span>
 <span class="va">stats_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">""</span><span class="op">)</span>
 <span class="co"># Show first results</span>
@@ -487,7 +462,7 @@
 <span class="co">#&gt;  Helsingin väestö äidinkielen mukaan 1.1. </span>
 <span class="co">#&gt; "aluesarjat_a03s_hki_vakiluku_aidinkieli"</span></code></pre></div>
 <p>Specify a dataset to retrieve. In this specific example we will download the first item on the stats_list object. The output is a three-dimensional array.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Retrieve a specific dataset</span>
 <span class="va">stats_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">stats_list</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 <span class="co"># Show the structure of the results</span>
@@ -509,29 +484,29 @@
 <div id="citing-the-r-package" class="section level3">
 <h3 class="hasAnchor">
 <a href="#citing-the-r-package" class="anchor"></a>Citing the R package</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">citation</span>(<span class="st">"helsinki"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2"></a></span>
-<span id="cb19-3"><a href="#cb19-3"></a>Kindly cite the helsinki R package as follows<span class="op">:</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a></span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="st">  </span>(C) Juuso Parkkinen, Joona Lehtomaki, Pyry Kantanen and Leo Lahti</span>
-<span id="cb19-6"><a href="#cb19-6"></a>  <span class="dv">2014</span><span class="fl">-2021.</span> helsinki R package</span>
-<span id="cb19-7"><a href="#cb19-7"></a></span>
-<span id="cb19-8"><a href="#cb19-8"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
-<span id="cb19-9"><a href="#cb19-9"></a></span>
-<span id="cb19-10"><a href="#cb19-10"></a>  <span class="op">@</span>Misc{,</span>
-<span id="cb19-11"><a href="#cb19-11"></a>    title =<span class="st"> </span>{helsinki R package},</span>
-<span id="cb19-12"><a href="#cb19-12"></a>    author =<span class="st"> </span>{Juuso Parkkinen and Joona Lehtomaki and Pyry Kantanen and Leo Lahti},</span>
-<span id="cb19-13"><a href="#cb19-13"></a>    year =<span class="st"> </span>{<span class="dv">2014-2021</span>},</span>
-<span id="cb19-14"><a href="#cb19-14"></a>  }</span>
-<span id="cb19-15"><a href="#cb19-15"></a></span>
-<span id="cb19-16"><a href="#cb19-16"></a>Many thanks <span class="cf">for</span> all contributors<span class="op">!</span><span class="st"> </span>For more info, see<span class="op">:</span></span>
-<span id="cb19-17"><a href="#cb19-17"></a>https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>rOpenGov<span class="op">/</span>helsinki</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">citation</span>(<span class="st">"helsinki"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>Kindly cite the helsinki R package as follows<span class="op">:</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="st">  </span>(C) Juuso Parkkinen, Joona Lehtomaki, Pyry Kantanen and Leo Lahti</span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="dv">2014</span><span class="fl">-2021.</span> helsinki R package</span>
+<span id="cb18-7"><a href="#cb18-7"></a></span>
+<span id="cb18-8"><a href="#cb18-8"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
+<span id="cb18-9"><a href="#cb18-9"></a></span>
+<span id="cb18-10"><a href="#cb18-10"></a>  <span class="op">@</span>Misc{,</span>
+<span id="cb18-11"><a href="#cb18-11"></a>    title =<span class="st"> </span>{helsinki R package},</span>
+<span id="cb18-12"><a href="#cb18-12"></a>    author =<span class="st"> </span>{Juuso Parkkinen and Joona Lehtomaki and Pyry Kantanen and Leo Lahti},</span>
+<span id="cb18-13"><a href="#cb18-13"></a>    year =<span class="st"> </span>{<span class="dv">2014-2021</span>},</span>
+<span id="cb18-14"><a href="#cb18-14"></a>  }</span>
+<span id="cb18-15"><a href="#cb18-15"></a></span>
+<span id="cb18-16"><a href="#cb18-16"></a>Many thanks <span class="cf">for</span> all contributors<span class="op">!</span><span class="st"> </span>For more info, see<span class="op">:</span></span>
+<span id="cb18-17"><a href="#cb18-17"></a>https<span class="op">:</span><span class="er">//</span>github.com<span class="op">/</span>rOpenGov<span class="op">/</span>helsinki</span></code></pre></div>
 </div>
 <div id="session-info" class="section level3">
 <h3 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session info</h3>
 <p>This vignette was created with</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; R version 4.1.1 (2021-08-10)</span>
 <span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
@@ -551,25 +526,25 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] sp_1.4-5       ggplot2_3.3.5  helsinki_1.0.4</span>
+<span class="co">#&gt; [1] ggplot2_3.3.5  helsinki_1.0.4</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
 <span class="co">#&gt;  [1] tidyselect_1.1.1   xfun_0.26          purrr_0.3.4        sf_1.0-2          </span>
-<span class="co">#&gt;  [5] lattice_0.20-44    colorspace_2.0-2   vctrs_0.3.8        generics_0.1.0    </span>
-<span class="co">#&gt;  [9] htmltools_0.5.2    yaml_2.2.1         utf8_1.2.2         rlang_0.4.11      </span>
-<span class="co">#&gt; [13] e1071_1.7-9        pkgdown_1.6.1      pillar_1.6.2       glue_1.4.2        </span>
-<span class="co">#&gt; [17] withr_2.4.2        DBI_1.1.1          lifecycle_1.0.0    stringr_1.4.0     </span>
-<span class="co">#&gt; [21] munsell_0.5.0      gtable_0.3.0       ragg_1.1.3         memoise_2.0.0     </span>
-<span class="co">#&gt; [25] evaluate_0.14      labeling_0.4.2     knitr_1.34         fastmap_1.1.0     </span>
-<span class="co">#&gt; [29] curl_4.3.2         class_7.3-19       fansi_0.5.0        highr_0.9         </span>
-<span class="co">#&gt; [33] Rcpp_1.0.7         KernSmooth_2.23-20 scales_1.1.1       classInt_0.4-3    </span>
-<span class="co">#&gt; [37] cachem_1.0.6       desc_1.3.0         jsonlite_1.7.2     farver_2.1.0      </span>
-<span class="co">#&gt; [41] systemfonts_1.0.2  fs_1.5.0           textshaping_0.3.5  digest_0.6.27     </span>
-<span class="co">#&gt; [45] stringi_1.7.4      dplyr_1.0.7        rprojroot_2.0.2    grid_4.1.1        </span>
-<span class="co">#&gt; [49] tools_4.1.1        magrittr_2.0.1     proxy_0.4-26       tibble_3.1.4      </span>
-<span class="co">#&gt; [53] crayon_1.4.1       httpcache_1.2.0    pkgconfig_2.0.3    ellipsis_0.3.2    </span>
-<span class="co">#&gt; [57] xml2_1.3.2         rmarkdown_2.11     httr_1.4.2         R6_2.5.1          </span>
-<span class="co">#&gt; [61] units_0.7-2        compiler_4.1.1</span></code></pre></div>
+<span class="co">#&gt;  [5] colorspace_2.0-2   vctrs_0.3.8        generics_0.1.0     htmltools_0.5.2   </span>
+<span class="co">#&gt;  [9] yaml_2.2.1         utf8_1.2.2         rlang_0.4.11       e1071_1.7-9       </span>
+<span class="co">#&gt; [13] pkgdown_1.6.1      pillar_1.6.3       withr_2.4.2        glue_1.4.2        </span>
+<span class="co">#&gt; [17] DBI_1.1.1          lifecycle_1.0.1    stringr_1.4.0      munsell_0.5.0     </span>
+<span class="co">#&gt; [21] gtable_0.3.0       ragg_1.1.3         memoise_2.0.0      evaluate_0.14     </span>
+<span class="co">#&gt; [25] labeling_0.4.2     knitr_1.34         fastmap_1.1.0      curl_4.3.2        </span>
+<span class="co">#&gt; [29] class_7.3-19       fansi_0.5.0        highr_0.9          Rcpp_1.0.7        </span>
+<span class="co">#&gt; [33] KernSmooth_2.23-20 scales_1.1.1       classInt_0.4-3     cachem_1.0.6      </span>
+<span class="co">#&gt; [37] desc_1.3.0         jsonlite_1.7.2     farver_2.1.0       systemfonts_1.0.2 </span>
+<span class="co">#&gt; [41] fs_1.5.0           textshaping_0.3.5  digest_0.6.28      stringi_1.7.4     </span>
+<span class="co">#&gt; [45] dplyr_1.0.7        grid_4.1.1         rprojroot_2.0.2    tools_4.1.1       </span>
+<span class="co">#&gt; [49] magrittr_2.0.1     proxy_0.4-26       tibble_3.1.4       crayon_1.4.1      </span>
+<span class="co">#&gt; [53] httpcache_1.2.0    pkgconfig_2.0.3    ellipsis_0.3.2     xml2_1.3.2        </span>
+<span class="co">#&gt; [57] rmarkdown_2.11     httr_1.4.2         R6_2.5.1           units_0.7-2       </span>
+<span class="co">#&gt; [61] compiler_4.1.1</span></code></pre></div>
 </div>
 </div>
 </div>

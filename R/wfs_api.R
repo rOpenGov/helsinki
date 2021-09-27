@@ -67,7 +67,7 @@ wfs_api <- function(base.url = NULL, queries) {
   # See function help for more details ________________________________________
   try_GET <- function(x, ...) {
     tryCatch(
-      GET(url = x, httr::timeout(10), ...),
+      GET(url = x, httr::timeout(20), ...),
       error = function(e) conditionMessage(e),
       warning = function(w) conditionMessage(w)
     )

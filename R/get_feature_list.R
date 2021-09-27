@@ -20,7 +20,6 @@
 #' dat <- get_feature_list(base.url = "https://kartta.hsy.fi/geoserver/wfs")
 #' }
 #' 
-#' @import dplyr
 #' @importFrom purrr flatten_dfc
 #' @importFrom xml2 as_list xml_find_all xml_ns_strip
 #'

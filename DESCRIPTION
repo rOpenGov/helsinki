@@ -31,7 +31,6 @@ Imports:
     jsonlite,
     httr,
     purrr,
-    dplyr,
     xml2,
     methods,
     sf,

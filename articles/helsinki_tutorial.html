@@ -266,8 +266,8 @@
 <span class="co">#&gt;  [3] "Rinkelipuisto"                                     </span>
 <span class="co">#&gt;  [4] "Olarin asukaspuisto"                               </span>
 <span class="co">#&gt;  [5] "Alli Tryggin puiston opaskoira-aitaus"             </span>
-<span class="co">#&gt;  [6] "Matinkylän asukaspuisto"                           </span>
-<span class="co">#&gt;  [7] "Hurtigin puisto"                                   </span>
+<span class="co">#&gt;  [6] "Hurtigin puisto"                                   </span>
+<span class="co">#&gt;  [7] "Matinkylän asukaspuisto"                           </span>
 <span class="co">#&gt;  [8] "Nurmilinnunpuisto"                                 </span>
 <span class="co">#&gt;  [9] "Ruusutorpanpuisto"                                 </span>
 <span class="co">#&gt; [10] "Tynnyripuisto"                                     </span>
@@ -277,8 +277,8 @@
 <span class="co">#&gt; [14] "Viherkallion asukaspuisto"                         </span>
 <span class="co">#&gt; [15] "Leppävaaran asukaspuisto"                          </span>
 <span class="co">#&gt; [16] "Veijarivuoren puiston talviuintipaikka (Humaus ry)"</span>
-<span class="co">#&gt; [17] "Kasavuoren puisto"                                 </span>
-<span class="co">#&gt; [18] "Suvelan asukaspuisto"                              </span>
+<span class="co">#&gt; [17] "Suvelan asukaspuisto"                              </span>
+<span class="co">#&gt; [18] "Kasavuoren puisto"                                 </span>
 <span class="co">#&gt; [19] "Karakallion asukaspuisto"                          </span>
 <span class="co">#&gt; [20] "Marketanpuisto"                                    </span>
 <span class="co">#&gt; [21] "Kylätalo Palttinan asukaspuisto"                   </span>
@@ -297,10 +297,10 @@
 <span class="va">search_padel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, input<span class="op">=</span><span class="st">"padel"</span>, only<span class="op">=</span><span class="st">"unit.name, unit.location.coordinates, unit.street_address"</span>, municipality<span class="op">=</span><span class="st">"helsinki"</span><span class="op">)</span>
 <span class="va">search_padel</span><span class="op">$</span><span class="va">results</span>
 <span class="co">#&gt;       id                                    name.fi</span>
-<span class="co">#&gt; 1  64716           Padel Aurinkolahti / Padelkenttä</span>
-<span class="co">#&gt; 2  45413         PadelCenter Helsinki / Padelkentät</span>
-<span class="co">#&gt; 3  59998               Padel Helsinki / Padelkentät</span>
-<span class="co">#&gt; 4  63925            Padel Messukeskus / Padelkentät</span>
+<span class="co">#&gt; 1  59998               Padel Helsinki / Padelkentät</span>
+<span class="co">#&gt; 2  63925            Padel Messukeskus / Padelkentät</span>
+<span class="co">#&gt; 3  64716           Padel Aurinkolahti / Padelkenttä</span>
+<span class="co">#&gt; 4  45413         PadelCenter Helsinki / Padelkentät</span>
 <span class="co">#&gt; 5  57222       Padel Club Viikinranta / Padelkenttä</span>
 <span class="co">#&gt; 6  63927 Padel Arena Center Myllypuro / Padelkentät</span>
 <span class="co">#&gt; 7  66781     Padel Messukeskus / Padelkentät (ulko)</span>
@@ -311,10 +311,10 @@
 <span class="co">#&gt; 12 42296                 Smash Center / Padelkenttä</span>
 <span class="co">#&gt; 13 62904 Laajasalon Palloiluhallit Oy / Padelkenttä</span>
 <span class="co">#&gt;                                       name.sv           street_address.fi</span>
-<span class="co">#&gt; 1              Padel Aurinkolahti / Padelplan     Urheilukalastajankuja 1</span>
-<span class="co">#&gt; 2       PadelCenter Helsingfors / Padelplaner          Hernesaarenranta 1</span>
-<span class="co">#&gt; 3                Padel Helsinki / Padelplaner           Lahnalahdentie 11</span>
-<span class="co">#&gt; 4             Padel Mässcentrum / Padelplaner                Messuaukio 1</span>
+<span class="co">#&gt; 1                Padel Helsinki / Padelplaner           Lahnalahdentie 11</span>
+<span class="co">#&gt; 2             Padel Mässcentrum / Padelplaner                Messuaukio 1</span>
+<span class="co">#&gt; 3              Padel Aurinkolahti / Padelplan     Urheilukalastajankuja 1</span>
+<span class="co">#&gt; 4       PadelCenter Helsingfors / Padelplaner          Hernesaarenranta 1</span>
 <span class="co">#&gt; 5          Padel Club Viikinranta / Padelplan               Jokisuuntie 5</span>
 <span class="co">#&gt; 6  Padel Arena Center Myllypuro / Padelplaner               Alakiventie 2</span>
 <span class="co">#&gt; 7             Padel Mässcentrum / Padelplaner                Messuaukio 1</span>
@@ -325,10 +325,10 @@
 <span class="co">#&gt; 12                   Smash Center / Padelplan                Varikkotie 4</span>
 <span class="co">#&gt; 13   Laajasalon Palloiluhallit Oy / Padelplan           Sarvastonkaari 23</span>
 <span class="co">#&gt;          street_address.sv           street_address.en location.type</span>
-<span class="co">#&gt; 1     Sportfiskargränden 1     Urheilukalastajankuja 1         Point</span>
-<span class="co">#&gt; 2       Ärtholmsstranden 1          Hernesaarenranta 1         Point</span>
-<span class="co">#&gt; 3         Braxviksvägen 11           Lahnalahdentie 11         Point</span>
-<span class="co">#&gt; 4            Mässplatsen 1                Messuaukio 1         Point</span>
+<span class="co">#&gt; 1         Braxviksvägen 11           Lahnalahdentie 11         Point</span>
+<span class="co">#&gt; 2            Mässplatsen 1                Messuaukio 1         Point</span>
+<span class="co">#&gt; 3     Sportfiskargränden 1     Urheilukalastajankuja 1         Point</span>
+<span class="co">#&gt; 4       Ärtholmsstranden 1          Hernesaarenranta 1         Point</span>
 <span class="co">#&gt; 5            Åminnevägen 5               Jokisuuntie 5         Point</span>
 <span class="co">#&gt; 6        Understensvägen 2               Alakiventie 2         Point</span>
 <span class="co">#&gt; 7            Mässplatsen 1                Messuaukio 1         Point</span>
@@ -339,19 +339,19 @@
 <span class="co">#&gt; 12             Depåvägen 4                Varikkotie 4         Point</span>
 <span class="co">#&gt; 13           Fladabågen 23           Sarvastonkaari 23         Point</span>
 <span class="co">#&gt;    location.coordinates sort_index object_type    score</span>
-<span class="co">#&gt; 1    25.15954, 60.20301          0        unit 6.856033</span>
-<span class="co">#&gt; 2    24.93146, 60.15325          1        unit 6.856033</span>
-<span class="co">#&gt; 3    24.86652, 60.16435          2        unit 6.820105</span>
-<span class="co">#&gt; 4    24.93602, 60.20486          3        unit 6.820105</span>
-<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.298549</span>
-<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.126649</span>
-<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.126649</span>
-<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.555290</span>
-<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.537304</span>
-<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.537304</span>
-<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.161625</span>
-<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.087424</span>
-<span class="co">#&gt; 13   25.05760, 60.17416         12        unit 2.072548</span></code></pre></div>
+<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.415779</span>
+<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.415779</span>
+<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.306788</span>
+<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.306788</span>
+<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.799599</span>
+<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.531640</span>
+<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.531640</span>
+<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.782494</span>
+<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.765604</span>
+<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.765604</span>
+<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.278966</span>
+<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.268611</span>
+<span class="co">#&gt; 13   25.05760, 60.17416         12        unit 2.254674</span></code></pre></div>
 <p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api/" class="external-link">original documentation</a> may help.</p>
 <p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v1/" class="external-link">Linked Events API</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -359,26 +359,26 @@
 <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"event"</span><span class="op">)</span>
 <span class="co"># Get names for the first 20 results</span>
 <span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span>
-<span class="co">#&gt;  [1] "Taide tuntuu "                                </span>
-<span class="co">#&gt;  [2] "Café Barock Universumissa: Dear if you change"</span>
-<span class="co">#&gt;  [3] "Kirjastokurren etäsatutuokio"                 </span>
-<span class="co">#&gt;  [4] "Kirjastokurren etäsatutuokio"                 </span>
-<span class="co">#&gt;  [5] "Kirjastokurren etäsatutuokio"                 </span>
-<span class="co">#&gt;  [6] "Luetaan yhdessä ryhmä"                        </span>
-<span class="co">#&gt;  [7] "Kirjastokurren etäsatutuokio"                 </span>
-<span class="co">#&gt;  [8] "Etätapahtuma: Opitaan kielioppia!"            </span>
-<span class="co">#&gt;  [9] "Luetaan yhdessä ryhmä"                        </span>
-<span class="co">#&gt; [10] "Kirjastokurren etäsatutuokio"                 </span>
-<span class="co">#&gt; [11] "Etätapahtuma: Opitaan kielioppia!"            </span>
-<span class="co">#&gt; [12] "Luetaan yhdessä ryhmä"                        </span>
-<span class="co">#&gt; [13] "Kirjastokurren etäsatutuokio"                 </span>
-<span class="co">#&gt; [14] "Etätapahtuma: Opitaan kielioppia!"            </span>
-<span class="co">#&gt; [15] "Luetaan yhdessä ryhmä"                        </span>
-<span class="co">#&gt; [16] "Kirjastokurren etäsatutuokio"                 </span>
-<span class="co">#&gt; [17] "Etätapahtuma: Opitaan kielioppia!"            </span>
-<span class="co">#&gt; [18] "Luetaan yhdessä ryhmä"                        </span>
-<span class="co">#&gt; [19] "Kirjastokurren etäsatutuokio"                 </span>
-<span class="co">#&gt; [20] "Etätapahtuma: Opitaan kielioppia!"</span>
+<span class="co">#&gt;  [1] "Kontulan kirjaston satutuokiot"                   </span>
+<span class="co">#&gt;  [2] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt;  [3] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt;  [4] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt;  [5] "Luetaan yhdessä ryhmä"                            </span>
+<span class="co">#&gt;  [6] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt;  [7] "Etätapahtuma: Opitaan kielioppia!"                </span>
+<span class="co">#&gt;  [8] "Luetaan yhdessä ryhmä"                            </span>
+<span class="co">#&gt;  [9] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt; [10] "Etätapahtuma: Opitaan kielioppia!"                </span>
+<span class="co">#&gt; [11] "Luetaan yhdessä ryhmä"                            </span>
+<span class="co">#&gt; [12] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt; [13] "Etätapahtuma: Opitaan kielioppia!"                </span>
+<span class="co">#&gt; [14] "Luetaan yhdessä ryhmä"                            </span>
+<span class="co">#&gt; [15] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt; [16] "Etätapahtuma: Opitaan kielioppia!"                </span>
+<span class="co">#&gt; [17] "Luetaan yhdessä ryhmä"                            </span>
+<span class="co">#&gt; [18] "Kirjastokurren etäsatutuokio"                     </span>
+<span class="co">#&gt; [19] "Etätapahtuma: Opitaan kielioppia!"                </span>
+<span class="co">#&gt; [20] "Tikkurilan Marttojen Kässäkahvila #opitaanyhdessä"</span>
 <span class="co"># See what kind of data is given for events</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "id"                          "location"                   </span>

@@ -32,3 +32,4 @@ docs
 ^docs$
 ^pkgdown$
 ^codecov\.yml$
+^README\.Rmd$

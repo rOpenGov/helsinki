@@ -78,7 +78,6 @@ You are welcome to contact us:
 
 We are grateful to all [contributors](https://github.com/rOpenGov/helsinki/graphs/contributors)! This project is part of [rOpenGov](http://ropengov.org).
 
-
 [github-watch-badge]: https://img.shields.io/github/watchers/ropengov/helsinki.svg?style=social
 [github-watch]: https://github.com/ropengov/helsinki/watchers
 [github-star-badge]: https://img.shields.io/github/stars/ropengov/helsinki.svg?style=social

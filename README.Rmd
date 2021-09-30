@@ -63,7 +63,7 @@ get_feature(base.url = url, typename = hsy_features$Name[15])
 
 For more examples, check the [tutorial page](http://ropengov.github.io/helsinki/articles/helsinki_tutorial.html).
 
-### Contributing
+## Contributing
 
 You are welcome to contact us:
 
@@ -72,7 +72,7 @@ You are welcome to contact us:
   * [Star us on the Github page](https://github.com/ropengov/helsinki/)
   * [See our website](http://ropengov.org/community/) for additional contact information
 
-### Acknowledgements
+## Acknowledgements
 
 **Kindly cite this work** as follows: [Juuso Parkkinen](https://github.com/ouzor), [Joona Lehtomäki](https://github.com/jlehtoma), [Pyry Kantanen](https://github.com/pitkant), and [Leo Lahti](https://github.com/antagomir). helsinki - Helsinki open data R tools. URL: [http://ropengov.github.io/helsinki/](http://ropengov.github.io/helsinki/)
 

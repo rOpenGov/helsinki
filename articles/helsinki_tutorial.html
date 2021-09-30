@@ -4,91 +4,87 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="helsinki">
 <title>Helsinki open data R tools • helsinki</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="../deps/bs3compat-0.3.0/transition.js"></script><script src="../deps/bs3compat-0.3.0/tabs.js"></script><script src="../deps/bs3compat-0.3.0/bs3compat.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<link href="../syntax-highlighting.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Helsinki open data R tools">
 <meta property="og:description" content="helsinki">
+<meta property="og:image" content="https://ropengov.github.io/helsinki/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@rOpenGov">
+<meta name="twitter:site" content="@rOpenGov">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=B612+Mono&amp;display=swap" rel="stylesheet">
+<!-- rogtemplate style sheet --><link href="../rogtemplate.css" rel="stylesheet">
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">helsinki</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.5</span>
-      </span>
-    </div>
+<body data-spy="scroll" data-target="#toc" data-headroom>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
+      <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <a class="navbar-brand mb-0 h1" href="../index.html">helsinki</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">1.0.5</button>
+
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto ml-3">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/helsinki_tutorial.html">Helsinki open data R tools</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/ropengov/helsinki/">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/helsinki_tutorial.html">Helsinki open data R tools</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control mr-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off">
+</form>
+
+      <ul class="navbar-nav ml-1">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/rOpenGov/helsinki/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
-
-      
-
-      </header><script src="helsinki_tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+  </div>
+</nav><div class="container template-article">
+<script src="helsinki_tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Helsinki open data R tools</h1>
-                        <h4 class="author">Juuso Parkkinen, Pyry Kantanen</h4>
+    <img src="../logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
+      <h1 class="display-4" data-toc-skip>Helsinki open data R tools</h1>
+                        <h4 data-toc-skip class="author">Juuso Parkkinen, Pyry Kantanen</h4>
             
-            <h4 class="date">2021-09-27</h4>
+            <h4 data-toc-skip class="date">2021-09-30</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/ropengov/helsinki/blob/master/vignettes/helsinki_tutorial.Rmd"><code>vignettes/helsinki_tutorial.Rmd</code></a></small>
-      <div class="hidden name"><code>helsinki_tutorial.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.Rmd" class="external-link"><code>vignettes/helsinki_tutorial.Rmd</code></a></small>
+      <div class="d-none name"><code>helsinki_tutorial.Rmd</code></div>
 
     </div>
 
@@ -96,34 +92,34 @@
     
 <div id="helsinki---tutorial" class="section level1">
 <h1 class="hasAnchor">
-<a href="#helsinki---tutorial" class="anchor"></a>helsinki - tutorial</h1>
+<a href="#helsinki---tutorial" class="anchor" aria-hidden="true"></a>helsinki - tutorial</h1>
 <p>helsinki R package provides tools to access open data from the Helsinki region in Finland.</p>
-<p>For contact information, source code and bug reports, see the project’s <a href="https://github.com/rOpenGov/helsinki">GitHub page</a>. For other similar packages and related blog posts, see the <a href="http://ropengov.org">rOpenGov</a> project website.</p>
+<p>For contact information, source code and bug reports, see the project’s <a href="https://github.com/rOpenGov/helsinki" class="external-link">GitHub page</a>. For other similar packages and related blog posts, see the <a href="http://ropengov.org" class="external-link">rOpenGov</a> project website.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
 <p>Release version for most users:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"helsinki"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"helsinki"</span><span class="op">)</span></code></pre></div>
 <p>Development version for developers and other interested parties:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"ropengov/helsinki"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ropengov/helsinki"</span><span class="op">)</span></code></pre></div>
 <p>Load the package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ropengov.github.io/helsinki/">helsinki</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://ropengov.github.io/helsinki/" class="external-link">helsinki</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div id="api-access" class="section level2">
 <h2 class="hasAnchor">
-<a href="#api-access" class="anchor"></a>API Access</h2>
-<p>The package has basic functions for interacting with WFS APIs, courtesy of <a href="https://ropengov.github.io/fmi2/">FMI2-package</a>: <code><a href="../reference/wfs_api.html">wfs_api()</a></code> for returning “wfs_api” and <code><a href="../reference/to_sf.html">to_sf()</a></code> for turning these objects to sf-objects.</p>
+<a href="#api-access" class="anchor" aria-hidden="true"></a>API Access</h2>
+<p>The package has basic functions for interacting with WFS APIs, courtesy of <a href="https://ropengov.github.io/fmi2/" class="external-link">FMI2-package</a>: <code><a href="../reference/wfs_api.html">wfs_api()</a></code> for returning “wfs_api” and <code><a href="../reference/to_sf.html">to_sf()</a></code> for turning these objects to sf-objects.</p>
 <p>All available features of a given API can be easily listed with the <code><a href="../reference/get_feature_list.html">get_feature_list()</a></code> function. Partly due to legacy considerations, partly due to user convenience we often use HSY API url in these function examples, sometimes even as a default option. The API functions can, however, be used with a wide variety of different <code>base.url</code> parameters.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://kartta.hsy.fi/geoserver/wfs"</span>
 
 <span class="va">hsy_features</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_feature_list.html">get_feature_list</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">url</span><span class="op">)</span>
 <span class="co"># Select only features which are related to water utilities and services</span>
-<span class="va">hsy_vesihuolto</span> <span class="op">&lt;-</span> <span class="va">hsy_features</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">hsy_features</span><span class="op">$</span><span class="va">Namespace</span> <span class="op">==</span> <span class="st">"vesihuolto"</span><span class="op">)</span>,<span class="op">]</span>
+<span class="va">hsy_vesihuolto</span> <span class="op">&lt;-</span> <span class="va">hsy_features</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">hsy_features</span><span class="op">$</span><span class="va">Namespace</span> <span class="op">==</span> <span class="st">"vesihuolto"</span><span class="op">)</span>,<span class="op">]</span>
 <span class="va">hsy_vesihuolto</span>
 <span class="co">#&gt;                                                             Name</span>
 <span class="co">#&gt; 73                                  vesihuolto:VH_Vesipostit_HSY</span>
@@ -164,7 +160,7 @@
 <code class="sourceCode R"><span class="co"># downloading a feature</span>
 <span class="va">waterposts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_feature.html">get_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">url</span>, typename <span class="op">=</span> <span class="va">feature_of_interest</span><span class="op">)</span>
 <span class="co"># Visualizing the location of waterposts</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">waterposts</span><span class="op">$</span><span class="va">geom</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">waterposts</span><span class="op">$</span><span class="va">geom</span><span class="op">)</span></code></pre></div>
 <p><img src="helsinki_tutorial_files/figure-html/wfs2-1.png" width="525"></p>
 <p>Dots on a blank canvas do not make much sense and therefore helsinki-package has <code><a href="../reference/get_city_map.html">get_city_map()</a></code> function for downloading city district boundaries. An example of this is provided in the <a href="#helsinki-region-district-maps">Helsinki region district maps</a> section of this vignette.</p>
 <p>Helsinki-package provides an easy-to-use menu-driven <code><a href="../reference/select_feature.html">select_feature()</a></code> function that effectively combines <code><a href="../reference/get_feature_list.html">get_feature_list()</a></code> and <code><a href="../reference/get_feature.html">get_feature()</a></code>. At default it only returns the Name of the wanted function, but if <code>get</code> parameter is set to TRUE, it returns an sf_object which can be easily visualized.</p>
@@ -177,36 +173,36 @@
 <span class="va">feature</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_feature.html">select_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">url</span>, get <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div id="helsinki-region-environmental-services-hsy-open-data" class="section level3">
 <h3 class="hasAnchor">
-<a href="#helsinki-region-environmental-services-hsy-open-data" class="anchor"></a>Helsinki Region Environmental Services HSY open data</h3>
+<a href="#helsinki-region-environmental-services-hsy-open-data" class="anchor" aria-hidden="true"></a>Helsinki Region Environmental Services HSY open data</h3>
 <p>The above example shows a general use case which can easily be applied to Helsinki Region Environmental Services (HSY) WFS API as well as other service providers’ APIs.</p>
 <p>For legacy reasons, helsinki-package has also some specialized functions that aim to make downloading often used data as easy as possible.</p>
-<p>Specifically, there are two new functions that replace deprecated functionalities from <code><a href="../reference/get_hsy.html">get_hsy()</a></code> function: <code><a href="../reference/get_vaestotietoruudukko.html">get_vaestotietoruudukko()</a></code> (population grid) and <code><a href="../reference/get_rakennustietoruudukko.html">get_rakennustietoruudukko()</a></code> (building information grid). As of writing, years 2015 to 2020 are supported but the API may be updated at any time and <code><a href="../reference/get_feature_list.html">get_feature_list()</a></code> can be used to download datasets that are not baked into these functions.</p>
+<p>Specifically, there are two new functions that replace deprecated functionalities from <code><a href="../reference/helsinki-deprecated.html">get_hsy()</a></code> function: <code><a href="../reference/get_vaestotietoruudukko.html">get_vaestotietoruudukko()</a></code> (population grid) and <code><a href="../reference/get_rakennustietoruudukko.html">get_rakennustietoruudukko()</a></code> (building information grid). As of writing, years 2015 to 2020 are supported but the API may be updated at any time and <code><a href="../reference/get_feature_list.html">get_feature_list()</a></code> can be used to download datasets that are not baked into these functions.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pop_grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_vaestotietoruudukko.html">get_vaestotietoruudukko</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2018</span><span class="op">)</span>
 <span class="va">building_grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_rakennustietoruudukko.html">get_rakennustietoruudukko</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 
 <span class="co"># Logarithmic scales to make the visualizations more discernible</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">pop_grid</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pop_grid</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="helsinki_tutorial_files/figure-html/get_hsy_examples-1.png" width="525"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">building_grid</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">building_grid</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="helsinki_tutorial_files/figure-html/get_hsy_examples-2.png" width="525"></p>
-<p>While easy enough to build, specialized functions such as these are probably not something that power users want to rely on in their work flows. They also add more manual phases to package maintenance and therefore are probably not the direction we’re heading in the future. If you feel differently about this and there is a dataset that gets a lot of use, feel free to drop us a suggestion in <a href="https://github.com/rOpenGov/helsinki/issues">GitHub</a>.</p>
+<p>While easy enough to build, specialized functions such as these are probably not something that power users want to rely on in their work flows. They also add more manual phases to package maintenance and therefore are probably not the direction we’re heading in the future. If you feel differently about this and there is a dataset that gets a lot of use, feel free to drop us a suggestion in <a href="https://github.com/rOpenGov/helsinki/issues" class="external-link">GitHub</a>.</p>
 </div>
 </div>
 <div id="service-and-event-information" class="section level2">
 <h2 class="hasAnchor">
-<a href="#service-and-event-information" class="anchor"></a>Service and event information</h2>
-<p>Function <code><a href="../reference/get_servicemap.html">get_servicemap()</a></code> retrieves regional service data from city of Helsinki <a href="http://api.hel.fi/servicemap/v2/">Service Map API</a>, that contains data from the <a href="https://palvelukartta.hel.fi/fi/">Service Map</a>.</p>
+<a href="#service-and-event-information" class="anchor" aria-hidden="true"></a>Service and event information</h2>
+<p>Function <code><a href="../reference/get_servicemap.html">get_servicemap()</a></code> retrieves regional service data from city of Helsinki <a href="http://api.hel.fi/servicemap/v2/" class="external-link">Service Map API</a>, that contains data from the <a href="https://palvelukartta.hel.fi/fi/" class="external-link">Service Map</a>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Search for "puisto" (park) (specify q="query")</span>
 <span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span><span class="op">)</span>
 <span class="co"># Study results: 47 variables in the data frame</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">search_puisto</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">search_puisto</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="co">#&gt; List of 4</span>
-<span class="co">#&gt;  $ count   : int 2155</span>
+<span class="co">#&gt;  $ count   : int 2149</span>
 <span class="co">#&gt;  $ next    : chr "https://api.hel.fi/servicemap/v2/search/?page=2&amp;q=puisto"</span>
 <span class="co">#&gt;  $ previous: NULL</span>
 <span class="co">#&gt;  $ results :'data.frame':    20 obs. of  47 variables:</span></code></pre></div>
@@ -234,8 +230,9 @@
 <span class="co">#&gt; [18] "Everstinpuisto"                                                    </span>
 <span class="co">#&gt; [19] "Kirkkojärvenpuisto"                                                </span>
 <span class="co">#&gt; [20] "Lehtikaskenpuisto"</span>
+
 <span class="co"># See what kind of data is given for services</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "id"                              "connections"                    </span>
 <span class="co">#&gt;  [3] "entrances"                       "accessibility_properties"       </span>
 <span class="co">#&gt;  [5] "identifiers"                     "department"                     </span>
@@ -277,12 +274,12 @@
 <span class="co">#&gt; [11] "Perkkaan asukaspuisto"                             </span>
 <span class="co">#&gt; [12] "Asematien leikkipuisto"                            </span>
 <span class="co">#&gt; [13] "Stenbergin puisto"                                 </span>
-<span class="co">#&gt; [14] "Leppävaaran asukaspuisto"                          </span>
-<span class="co">#&gt; [15] "Veijarivuoren puiston talviuintipaikka (Humaus ry)"</span>
-<span class="co">#&gt; [16] "Viherkallion asukaspuisto"                         </span>
+<span class="co">#&gt; [14] "Viherkallion asukaspuisto"                         </span>
+<span class="co">#&gt; [15] "Leppävaaran asukaspuisto"                          </span>
+<span class="co">#&gt; [16] "Veijarivuoren puiston talviuintipaikka (Humaus ry)"</span>
 <span class="co">#&gt; [17] "Suvelan asukaspuisto"                              </span>
-<span class="co">#&gt; [18] "Karakallion asukaspuisto"                          </span>
-<span class="co">#&gt; [19] "Kasavuoren puisto"                                 </span>
+<span class="co">#&gt; [18] "Kasavuoren puisto"                                 </span>
+<span class="co">#&gt; [19] "Karakallion asukaspuisto"                          </span>
 <span class="co">#&gt; [20] "Marketanpuisto"                                    </span>
 <span class="co">#&gt; [21] "Kylätalo Palttinan asukaspuisto"                   </span>
 <span class="co">#&gt; [22] "Mankkaan asukaspuisto"                             </span>
@@ -342,21 +339,21 @@
 <span class="co">#&gt; 12             Depåvägen 4                Varikkotie 4         Point</span>
 <span class="co">#&gt; 13           Fladabågen 23           Sarvastonkaari 23         Point</span>
 <span class="co">#&gt;    location.coordinates sort_index object_type    score</span>
-<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.419777</span>
-<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.419777</span>
-<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.311761</span>
-<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.311761</span>
-<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.803078</span>
-<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.535910</span>
-<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.535910</span>
-<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.783641</span>
-<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.766426</span>
-<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.766426</span>
-<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.279476</span>
-<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.269423</span>
-<span class="co">#&gt; 13   25.05760, 60.17416         12        unit 2.255116</span></code></pre></div>
-<p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api/">original documentation</a> may help.</p>
-<p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v1/">Linked Events API</a>.</p>
+<span class="co">#&gt; 1    24.86652, 60.16435          0        unit 7.415779</span>
+<span class="co">#&gt; 2    24.93602, 60.20486          1        unit 7.415779</span>
+<span class="co">#&gt; 3    25.15954, 60.20301          2        unit 7.312412</span>
+<span class="co">#&gt; 4    24.93146, 60.15325          3        unit 7.312412</span>
+<span class="co">#&gt; 5    24.98746, 60.21826          4        unit 6.800139</span>
+<span class="co">#&gt; 6    25.07979, 60.22095          5        unit 6.536219</span>
+<span class="co">#&gt; 7    24.93741, 60.20461          6        unit 6.536219</span>
+<span class="co">#&gt; 8    24.96320, 60.18242          7        unit 2.782494</span>
+<span class="co">#&gt; 9    24.94567, 60.19430          8        unit 2.765517</span>
+<span class="co">#&gt; 10   24.87776, 60.21116          9        unit 2.765517</span>
+<span class="co">#&gt; 11   25.14068, 60.20865         10        unit 2.277936</span>
+<span class="co">#&gt; 12   25.06807, 60.20983         11        unit 2.268611</span>
+<span class="co">#&gt; 13   25.05760, 60.17416         12        unit 2.254500</span></code></pre></div>
+<p>The function parameter <code>only</code> is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case “unit”. Other valid input in this case would be “service_node”, “service” and “address”, but during testing unit-prefix seemed to work best. When in doubt, checking the <a href="https://dev.hel.fi/apis/service-map-backend-api/" class="external-link">original documentation</a> may help.</p>
+<p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event data from the new <a href="http://api.hel.fi/linkedevents/v1/" class="external-link">Linked Events API</a>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Search for current events</span>
 <span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"event"</span><span class="op">)</span>
@@ -383,7 +380,7 @@
 <span class="co">#&gt; [19] "Tikkurilan Marttojen Kässäkahvila #opitaanyhdessä"</span>
 <span class="co">#&gt; [20] "Luetaan yhdessä ryhmä"</span>
 <span class="co"># See what kind of data is given for events</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "id"                          "location"                   </span>
 <span class="co">#&gt;  [3] "keywords"                    "super_event"                </span>
 <span class="co">#&gt;  [5] "event_status"                "type_id"                    </span>
@@ -402,15 +399,15 @@
 <span class="co">#&gt; [31] "local"                       "search_vector_fi"           </span>
 <span class="co">#&gt; [33] "search_vector_en"            "search_vector_sv"           </span>
 <span class="co">#&gt; [35] "kulke_new"                   "replaced_by"                </span>
-<span class="co">#&gt; [37] "location_extra_info"         "provider"                   </span>
-<span class="co">#&gt; [39] "name"                        "info_url"                   </span>
-<span class="co">#&gt; [41] "provider_contact_info"       "short_description"          </span>
-<span class="co">#&gt; [43] "description"                 "@id"                        </span>
+<span class="co">#&gt; [37] "location_extra_info"         "name"                       </span>
+<span class="co">#&gt; [39] "info_url"                    "short_description"          </span>
+<span class="co">#&gt; [41] "description"                 "provider"                   </span>
+<span class="co">#&gt; [43] "provider_contact_info"       "@id"                        </span>
 <span class="co">#&gt; [45] "@context"                    "@type"</span></code></pre></div>
 </div>
 <div id="helsinki-region-district-maps" class="section level2">
 <h2 class="hasAnchor">
-<a href="#helsinki-region-district-maps" class="anchor"></a>Helsinki region district maps</h2>
+<a href="#helsinki-region-district-maps" class="anchor" aria-hidden="true"></a>Helsinki region district maps</h2>
 <p>Helsinki region geographic data can be accessed from a WFS API by using the get_city_map() function. Data is available for all 4 cities in the capital region: Helsinki, Espoo, Vantaa and Kauniainen.</p>
 <p>Administrative divisions can be accessed on 3 distinct levels: “suuralue”, “tilastoalue” and “pienalue”. Literal, completely unofficial translations for these could be “grand district”, “statistical area” and “(minor) district”. The naming convention of these levels is sometimes confusing even in Finnish documents and different names can vary by city and time.</p>
 <p>The main takeaway is that “suuralue” is the highest-level division and “pienalue” is the most granular level of division. “Tilastoalue” is somewhere between these two. These are the names to be used even if the city of interest might not use them in their Finnish or English website.</p>
@@ -421,34 +418,34 @@
 <span class="va">vantaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"vantaa"</span>, level <span class="op">=</span> <span class="st">"suuralue"</span><span class="op">)</span>
 <span class="va">kauniainen</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"kauniainen"</span>, level <span class="op">=</span> <span class="st">"suuralue"</span><span class="op">)</span>
 
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">helsinki</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">espoo</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">vantaa</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kauniainen</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">waterposts</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">helsinki</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">espoo</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">vantaa</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kauniainen</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">waterposts</span><span class="op">)</span></code></pre></div>
 <p><img src="helsinki_tutorial_files/figure-html/mapping_example1-1.png" width="525"></p>
 <p>In addition, it is possible to download “aanestysalue” (voting district) divisions for the city of Helsinki. Currently this data is not available for other cities and it must be accessed from other sources.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>
 <span class="va">map</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"helsinki"</span>, level <span class="op">=</span> <span class="st">"suuralue"</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">map</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">map</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">voting_district</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"helsinki"</span>, level <span class="op">=</span> <span class="st">"aanestysalue"</span><span class="op">)</span>
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html">st_geometry</a></span><span class="op">(</span><span class="va">voting_district</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">voting_district</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>For other cities than Helsinki voting districts are currently not available.</p>
 </div>
 <div id="helsinki-region-infoshare-statistics-api" class="section level2">
 <h2 class="hasAnchor">
-<a href="#helsinki-region-infoshare-statistics-api" class="anchor"></a>Helsinki Region Infoshare statistics API</h2>
-<p>Function <code><a href="../reference/get_hri_stats.html">get_hri_stats()</a></code> retrieves data from the <a href="http://dev.hel.fi/stats/">Helsinki Region Infoshare statistics API</a>.</p>
+<a href="#helsinki-region-infoshare-statistics-api" class="anchor" aria-hidden="true"></a>Helsinki Region Infoshare statistics API</h2>
+<p>Function <code><a href="../reference/get_hri_stats.html">get_hri_stats()</a></code> retrieves data from the <a href="http://dev.hel.fi/stats/" class="external-link">Helsinki Region Infoshare statistics API</a>.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Retrieve list of available data</span>
 <span class="va">stats_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">""</span><span class="op">)</span>
 <span class="co"># Show first results</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">stats_list</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">stats_list</span><span class="op">)</span>
 <span class="co">#&gt;                                      NULL </span>
 <span class="co">#&gt;             "L113_viheralue_kaupunginosa" </span>
 <span class="co">#&gt;                                      NULL </span>
@@ -466,7 +463,7 @@
 <code class="sourceCode R"><span class="co"># Retrieve a specific dataset</span>
 <span class="va">stats_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">stats_list</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
 <span class="co"># Show the structure of the results</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">stats_res</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">stats_res</span><span class="op">)</span>
 <span class="co">#&gt;  num [1:6, 1:34] 11606 5607 2.07 0.65 0.15 ...</span>
 <span class="co">#&gt;  - attr(*, "dimnames")=List of 2</span>
 <span class="co">#&gt;   ..$ muuttuja  : chr [1:6] "Asukkaita" "Asukastiheys (hlö/km2)" "Maapinta-ala (km2)" "Viheralueiden pinta-ala (km2)" ...</span>
@@ -474,16 +471,16 @@
 </div>
 <div id="licensing-and-citations" class="section level2">
 <h2 class="hasAnchor">
-<a href="#licensing-and-citations" class="anchor"></a>Licensing and Citations</h2>
+<a href="#licensing-and-citations" class="anchor" aria-hidden="true"></a>Licensing and Citations</h2>
 <div id="citing-the-data" class="section level3">
 <h3 class="hasAnchor">
-<a href="#citing-the-data" class="anchor"></a>Citing the data</h3>
+<a href="#citing-the-data" class="anchor" aria-hidden="true"></a>Citing the data</h3>
 <p>See <code>help()</code> to get citation information for each function and related data sources.</p>
 <p>If no such information is explicitly stated, see data provider’s website for more information.</p>
 </div>
 <div id="citing-the-r-package" class="section level3">
 <h3 class="hasAnchor">
-<a href="#citing-the-r-package" class="anchor"></a>Citing the R package</h3>
+<a href="#citing-the-r-package" class="anchor" aria-hidden="true"></a>Citing the R package</h3>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">citation</span>(<span class="st">"helsinki"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2"></a></span>
 <span id="cb18-3"><a href="#cb18-3"></a>Kindly cite the helsinki R package as follows<span class="op">:</span></span>
@@ -504,10 +501,10 @@
 </div>
 <div id="session-info" class="section level3">
 <h3 class="hasAnchor">
-<a href="#session-info" class="anchor"></a>Session info</h3>
+<a href="#session-info" class="anchor" aria-hidden="true"></a>Session info</h3>
 <p>This vignette was created with</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; R version 4.1.1 (2021-08-10)</span>
 <span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
 <span class="co">#&gt; Running under: Ubuntu 20.04.3 LTS</span>
@@ -529,43 +526,46 @@
 <span class="co">#&gt; [1] ggplot2_3.3.5  helsinki_1.0.5</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] tidyselect_1.1.1   xfun_0.26          purrr_0.3.4        sf_1.0-2          </span>
-<span class="co">#&gt;  [5] colorspace_2.0-2   vctrs_0.3.8        generics_0.1.0     htmltools_0.5.2   </span>
-<span class="co">#&gt;  [9] yaml_2.2.1         utf8_1.2.2         rlang_0.4.11       e1071_1.7-9       </span>
-<span class="co">#&gt; [13] pkgdown_1.6.1      pillar_1.6.3       glue_1.4.2         withr_2.4.2       </span>
-<span class="co">#&gt; [17] DBI_1.1.1          lifecycle_1.0.1    stringr_1.4.0      munsell_0.5.0     </span>
-<span class="co">#&gt; [21] gtable_0.3.0       ragg_1.1.3         memoise_2.0.0      evaluate_0.14     </span>
-<span class="co">#&gt; [25] labeling_0.4.2     knitr_1.34         fastmap_1.1.0      curl_4.3.2        </span>
-<span class="co">#&gt; [29] class_7.3-19       fansi_0.5.0        highr_0.9          Rcpp_1.0.7        </span>
-<span class="co">#&gt; [33] KernSmooth_2.23-20 scales_1.1.1       classInt_0.4-3     cachem_1.0.6      </span>
-<span class="co">#&gt; [37] desc_1.3.0         jsonlite_1.7.2     farver_2.1.0       systemfonts_1.0.2 </span>
-<span class="co">#&gt; [41] fs_1.5.0           textshaping_0.3.5  digest_0.6.28      stringi_1.7.4     </span>
-<span class="co">#&gt; [45] dplyr_1.0.7        rprojroot_2.0.2    grid_4.1.1         tools_4.1.1       </span>
-<span class="co">#&gt; [49] magrittr_2.0.1     proxy_0.4-26       tibble_3.1.4       crayon_1.4.1      </span>
-<span class="co">#&gt; [53] httpcache_1.2.0    pkgconfig_2.0.3    ellipsis_0.3.2     xml2_1.3.2        </span>
-<span class="co">#&gt; [57] rmarkdown_2.11     httr_1.4.2         R6_2.5.1           units_0.7-2       </span>
-<span class="co">#&gt; [61] compiler_4.1.1</span></code></pre></div>
+<span class="co">#&gt;  [1] tidyselect_1.1.1   xfun_0.26          bslib_0.3.0        purrr_0.3.4       </span>
+<span class="co">#&gt;  [5] sf_1.0-2           colorspace_2.0-2   vctrs_0.3.8        generics_0.1.0    </span>
+<span class="co">#&gt;  [9] htmltools_0.5.2    yaml_2.2.1         utf8_1.2.2         rlang_0.4.11      </span>
+<span class="co">#&gt; [13] e1071_1.7-9        pkgdown_1.6.1.9001 jquerylib_0.1.4    pillar_1.6.3      </span>
+<span class="co">#&gt; [17] withr_2.4.2        glue_1.4.2         DBI_1.1.1          lifecycle_1.0.1   </span>
+<span class="co">#&gt; [21] stringr_1.4.0      munsell_0.5.0      gtable_0.3.0       ragg_1.1.3        </span>
+<span class="co">#&gt; [25] memoise_2.0.0      evaluate_0.14      labeling_0.4.2     knitr_1.36        </span>
+<span class="co">#&gt; [29] fastmap_1.1.0      curl_4.3.2         class_7.3-19       fansi_0.5.0       </span>
+<span class="co">#&gt; [33] highr_0.9          Rcpp_1.0.7         KernSmooth_2.23-20 scales_1.1.1      </span>
+<span class="co">#&gt; [37] classInt_0.4-3     cachem_1.0.6       desc_1.4.0         jsonlite_1.7.2    </span>
+<span class="co">#&gt; [41] farver_2.1.0       systemfonts_1.0.2  fs_1.5.0           textshaping_0.3.5 </span>
+<span class="co">#&gt; [45] digest_0.6.28      stringi_1.7.4      dplyr_1.0.7        rprojroot_2.0.2   </span>
+<span class="co">#&gt; [49] grid_4.1.1         tools_4.1.1        magrittr_2.0.1     sass_0.4.0        </span>
+<span class="co">#&gt; [53] proxy_0.4-26       tibble_3.1.4       crayon_1.4.1       httpcache_1.2.0   </span>
+<span class="co">#&gt; [57] pkgconfig_2.0.3    ellipsis_0.3.2     xml2_1.3.2         rmarkdown_2.11    </span>
+<span class="co">#&gt; [61] httr_1.4.2         R6_2.5.1           units_0.7-2        compiler_4.1.1</span></code></pre></div>
 </div>
 </div>
 </div>
   </div>
+ <div class="col-md-3 d-none d-md-block" id="pkgdown-sidebar">
+        <div class="sticky-top">
+    <nav id="toc"><h2 data-toc-skip>Contents</h2>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
     </nav>
 </div>
+      </div>
 
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by Juuso Parkkinen, Joona Lehtomaki, Pyry Kantanen, Leo Lahti.</p>
+      <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by Juuso Parkkinen, Joona Lehtomaki, Pyry Kantanen, Leo Lahti.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
@@ -573,6 +573,7 @@
 
   
 
-
-  </body>
+    <!-- Add ropengov logo -->
+  <script src="../logo.js"></script>
+</body>
 </html>

@@ -12,10 +12,10 @@ knitr::opts_chunk$set(
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-helsinki - Helsinki open data R tools
-========
+# helsinki - Helsinki open data R tools <a href="https://ropengov.github.io/hetu/"><img src="man/figures/logo.png" align="right" height="139"/></a>
   
 <!-- badges: start -->
+[![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
 [![R build status](https://github.com/rOpenGov/helsinki/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/helsinki/actions)
 [![CRAN Status Badge](https://www.r-pkg.org/badges/version/helsinki)](https://www.r-pkg.org/pkg/helsinki)
 [![Codecov test coverage](https://codecov.io/gh/rOpenGov/helsinki/branch/master/graph/badge.svg)](https://codecov.io/gh/rOpenGov/helsinki?branch=master)

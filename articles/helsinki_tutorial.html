@@ -131,9 +131,9 @@ for turning these objects into sf-objects.</p>
 however, be used with a wide variety of different <code>base.url</code>
 parameters.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://kartta.hsy.fi/geoserver/wfs"</span></span>
+<code class="sourceCode R"><span><span class="va">input_url</span> <span class="op">&lt;-</span> <span class="st">"https://kartta.hsy.fi/geoserver/wfs"</span></span>
 <span></span>
-<span><span class="va">hsy_features</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_feature_list.html">get_feature_list</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">url</span><span class="op">)</span></span>
+<span><span class="va">hsy_features</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_feature_list.html">get_feature_list</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">input_url</span><span class="op">)</span></span>
 <span><span class="co"># Select only features which are related to water utilities and services</span></span>
 <span><span class="va">hsy_vesihuolto</span> <span class="op">&lt;-</span> <span class="va">hsy_features</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">hsy_features</span><span class="op">$</span><span class="va">Namespace</span> <span class="op">==</span> <span class="st">"vesihuolto"</span><span class="op">)</span>,<span class="op">]</span></span>
 <span><span class="va">hsy_vesihuolto</span></span>
@@ -179,10 +179,18 @@ combination) is known, it can be downloaded with
 <code>base.url</code> and the Name as the <code>typename</code>
 parameter.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># downloading a feature</span></span>
-<span><span class="va">waterposts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_feature.html">get_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">url</span>, typename <span class="op">=</span> <span class="va">feature_of_interest</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">input_url</span> <span class="op">&lt;-</span> <span class="st">"https://kartta.hsy.fi/geoserver/wfs"</span></span>
+<span><span class="va">feature_of_interest</span> <span class="op">&lt;-</span> <span class="st">"vesihuolto:VH_Vesipostit_HSY"</span></span>
+<span></span>
+<span><span class="co"># downloading a feature</span></span>
+<span><span class="va">waterposts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_feature.html">get_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">input_url</span>, typename <span class="op">=</span> <span class="va">feature_of_interest</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co"># Visualizing the location of waterposts</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">waterposts</span><span class="op">$</span><span class="va">geom</span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/exists.html" class="external-link">exists</a></span><span class="op">(</span><span class="st">"waterposts"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">waterposts</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">waterposts</span><span class="op">$</span><span class="va">geom</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p><img src="helsinki_tutorial_files/figure-html/wfs2-1.png" width="525"></p>
 <p>Dots on a blank canvas do not make much sense and therefore
 helsinki-package has <code><a href="../reference/get_city_map.html">get_city_map()</a></code> function for
@@ -196,12 +204,14 @@ default it only returns the Name of the wanted function, but if
 <code>get</code> parameter is set to TRUE, it returns an sf_object which
 can be easily visualized.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Interactive example with select_feature</span></span>
-<span><span class="va">selected_feature</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_feature.html">select_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">url</span><span class="op">)</span></span>
-<span><span class="va">feature</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_feature.html">get_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">url</span>, typename <span class="op">=</span> <span class="va">selected_feature</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">input_url</span> <span class="op">&lt;-</span> <span class="st">"https://kartta.hsy.fi/geoserver/wfs"</span></span>
+<span></span>
+<span><span class="co"># Interactive example with select_feature</span></span>
+<span><span class="va">selected_feature</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_feature.html">select_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">input_url</span><span class="op">)</span></span>
+<span><span class="va">feature</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_feature.html">get_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">input_url</span>, typename <span class="op">=</span> <span class="va">selected_feature</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Skipping a redundant step with parameter get = TRUE</span></span>
-<span><span class="va">feature</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_feature.html">select_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">url</span>, get <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">feature</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/select_feature.html">select_feature</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">input_url</span>, get <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="helsinki-region-environmental-services-hsy-open-data">Helsinki Region Environmental Services HSY open data<a class="anchor" aria-label="anchor" href="#helsinki-region-environmental-services-hsy-open-data"></a>
 </h4>
@@ -223,11 +233,11 @@ grid).</p>
 <span><span class="va">building_grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_rakennustietoruudukko.html">get_rakennustietoruudukko</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Logarithmic scales to make the visualizations more discernible</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pop_grid</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">pop_grid</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">building_grid</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pop_grid</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">building_grid</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p><img src="helsinki_tutorial_files/figure-html/hsy_examples-1.png" width="525"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">building_grid</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="helsinki_tutorial_files/figure-html/hsy_examples-2.png" width="525"></p>
 <p>With the previous version of the helsinki package, years 2015 to 2020
 were supported. In 2022 a new year was added, 2011, demonstrating how
 the API may be updated more regularly than the package. The
@@ -239,17 +249,17 @@ added the functionality to download datasets from a wider selection of
 years, as zip files from a different file repository. These files may
 differ slightly from those downloaded via API and have different column
 names and larger grid squares and so on.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">pop_grid2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_vaestotietoruudukko.html">get_vaestotietoruudukko</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2011</span><span class="op">)</span></span>
 <span><span class="va">building_grid2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_rakennustietoruudukko.html">get_rakennustietoruudukko</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2011</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pop_grid2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASUKKAITA</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASUKKAITA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">pop_grid2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">building_grid2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pop_grid2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASUKKAITA</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASUKKAITA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">building_grid2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASVALJYYS</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASVALJYYS</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p><img src="helsinki_tutorial_files/figure-html/hsy_examples2-1.png" width="525"></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">building_grid2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASVALJYYS</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASVALJYYS</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="helsinki_tutorial_files/figure-html/hsy_examples2-2.png" width="525"></p>
 <p>While easy enough to build, specialized functions such as these are
 probably not something that power users want to rely on in their work
 flows. They also add more manual phases to package maintenance and
@@ -264,7 +274,7 @@ of use, feel free to drop us a suggestion in <a href="https://github.com/rOpenGo
 <p>Function <code><a href="../reference/get_servicemap.html">get_servicemap()</a></code> retrieves regional service
 data from city of Helsinki <a href="http://api.hel.fi/servicemap/v2/" class="external-link">Service Map API</a>, that
 contains data from the <a href="https://palvelukartta.hel.fi/fi/" class="external-link">Service Map</a>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Search for "puisto" (park) (specify q="query")</span></span>
 <span><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span><span class="op">)</span></span>
 <span><span class="co"># Study results: 47 variables in the data frame</span></span>
@@ -278,7 +288,7 @@ contains data from the <a href="https://palvelukartta.hel.fi/fi/" class="externa
 2000. The results are returned as pages, where each page has 20 results
 by default. By giving no additional search parameters, we get 20 results
 from the first page of search results.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get names for the first 20 results</span></span>
 <span><span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name.fi</span></span>
 <span><span class="co">#&gt;  [1] "Puistopolun peruskoulu"              "Puistolan peruskoulu"               </span></span>
@@ -325,7 +335,7 @@ from the first page of search results.</p>
 <span><span class="co">#&gt; [29] "location.coordinates"</span></span></code></pre></div>
 <p>More results could be retrieved and viewed by giving additional
 <code>search</code> parameters.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span>, page_size <span class="op">=</span> <span class="fl">30</span>, page <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">search_puisto</span><span class="op">)</span></span>
@@ -417,31 +427,31 @@ is to limit the extent of the query at the start.</p>
 <p>Function <code><a href="../reference/get_linkedevents.html">get_linkedevents()</a></code> retrieves regional event
 data from the new <a href="http://api.hel.fi/linkedevents/v1/" class="external-link">Linked
 Events API</a>.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Search for current events</span></span>
 <span><span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"event"</span><span class="op">)</span></span>
 <span><span class="co"># Get names for the first 20 results</span></span>
 <span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span></span>
-<span><span class="co">#&gt;  [1] "Talven valoa - tanssillinen levädyspaikka talvipäivänseisauksena"</span></span>
-<span><span class="co">#&gt;  [2] "Talven valoa - tanssillinen levädyspaikka talvipäivänseisauksena"</span></span>
-<span><span class="co">#&gt;  [3] "Showkuoro Aventur: The Joulukonsertti"                           </span></span>
-<span><span class="co">#&gt;  [4] "Showkuoro Aventur: The Joulukonsertti"                           </span></span>
-<span><span class="co">#&gt;  [5] "Showkuoro Aventur: The Joulukonsertti"                           </span></span>
-<span><span class="co">#&gt;  [6] "Laura Pohjonen: Vieraat"                                         </span></span>
-<span><span class="co">#&gt;  [7] "Den Besynnerliga Händelsen Med Hunden Om Natten"                 </span></span>
-<span><span class="co">#&gt;  [8] "Tatu Ja Patu Helsingissä"                                        </span></span>
-<span><span class="co">#&gt;  [9] NA                                                                </span></span>
-<span><span class="co">#&gt; [10] "Once + Replik!"                                                  </span></span>
-<span><span class="co">#&gt; [11] "Saikkua, Kiitos! Osa 3"                                          </span></span>
-<span><span class="co">#&gt; [12] "Bolla"                                                           </span></span>
-<span><span class="co">#&gt; [13] "Turvamies"                                                       </span></span>
-<span><span class="co">#&gt; [14] "Niin Kuin Taivaassa"                                             </span></span>
-<span><span class="co">#&gt; [15] "Paahtimo"                                                        </span></span>
-<span><span class="co">#&gt; [16] "Everstinna"                                                      </span></span>
-<span><span class="co">#&gt; [17] "Club Act!One"                                                    </span></span>
-<span><span class="co">#&gt; [18] "Kiviä Taskussa"                                                  </span></span>
-<span><span class="co">#&gt; [19] "Lapset"                                                          </span></span>
-<span><span class="co">#&gt; [20] "Baskervillen Koira"</span></span>
+<span><span class="co">#&gt;  [1] "Den Besynnerliga Händelsen Med Hunden Om Natten"</span></span>
+<span><span class="co">#&gt;  [2] "Tatu Ja Patu Helsingissä"                       </span></span>
+<span><span class="co">#&gt;  [3] NA                                               </span></span>
+<span><span class="co">#&gt;  [4] "Once + Replik!"                                 </span></span>
+<span><span class="co">#&gt;  [5] "Saikkua, Kiitos! Osa 3"                         </span></span>
+<span><span class="co">#&gt;  [6] "Bolla"                                          </span></span>
+<span><span class="co">#&gt;  [7] "Turvamies"                                      </span></span>
+<span><span class="co">#&gt;  [8] "Niin Kuin Taivaassa"                            </span></span>
+<span><span class="co">#&gt;  [9] "Paahtimo"                                       </span></span>
+<span><span class="co">#&gt; [10] "Everstinna"                                     </span></span>
+<span><span class="co">#&gt; [11] "Lapset"                                         </span></span>
+<span><span class="co">#&gt; [12] "Club Act!One"                                   </span></span>
+<span><span class="co">#&gt; [13] "Kiviä Taskussa"                                 </span></span>
+<span><span class="co">#&gt; [14] "Baskervillen Koira"                             </span></span>
+<span><span class="co">#&gt; [15] "Lapset"                                         </span></span>
+<span><span class="co">#&gt; [16] "Niin Kuin Taivaassa"                            </span></span>
+<span><span class="co">#&gt; [17] "Kiviä Taskussa"                                 </span></span>
+<span><span class="co">#&gt; [18] "Lapset"                                         </span></span>
+<span><span class="co">#&gt; [19] "Niin Kuin Taivaassa"                            </span></span>
+<span><span class="co">#&gt; [20] NA</span></span>
 <span><span class="co"># See what kind of data is given for events</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "id"                          "location"                   </span></span>
@@ -489,7 +499,7 @@ website.</p>
 following example gives an idea on how to visualize waterpost locations
 (and, of course, other types of spatial data as well) on capital region
 map.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">helsinki</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"helsinki"</span>, level <span class="op">=</span> <span class="st">"suuralue"</span><span class="op">)</span></span>
 <span><span class="va">espoo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"espoo"</span>, level <span class="op">=</span> <span class="st">"suuralue"</span><span class="op">)</span></span>
 <span><span class="va">vantaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"vantaa"</span>, level <span class="op">=</span> <span class="st">"suuralue"</span><span class="op">)</span></span>
@@ -497,23 +507,25 @@ map.</p>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">helsinki</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">espoo</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">vantaa</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kauniainen</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">waterposts</span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">helsinki</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">espoo</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">vantaa</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">kauniainen</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">waterposts</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">helsinki</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">espoo</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">vantaa</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">kauniainen</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">waterposts</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
 <p><img src="helsinki_tutorial_files/figure-html/mapping_example1-1.png" width="525"></p>
 <p>In addition, it is possible to download “aanestysalue” (voting
 district) divisions for the city of Helsinki. Currently this data is not
 available for other cities and it must be accessed from other
 sources.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"helsinki"</span>, level <span class="op">=</span> <span class="st">"suuralue"</span><span class="op">)</span></span>
+<span><span class="va">voting_district</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"helsinki"</span>, level <span class="op">=</span> <span class="st">"aanestysalue"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
-<span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"helsinki"</span>, level <span class="op">=</span> <span class="st">"suuralue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">map</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">voting_district</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_city_map.html">get_city_map</a></span><span class="op">(</span>city <span class="op">=</span> <span class="st">"helsinki"</span>, level <span class="op">=</span> <span class="st">"aanestysalue"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_geometry.html" class="external-link">st_geometry</a></span><span class="op">(</span><span class="va">voting_district</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>For other cities than Helsinki voting districts are currently not
 available.</p>
@@ -522,8 +534,10 @@ available.</p>
 <h3 id="helsinki-region-infoshare-statistics-api">Helsinki Region Infoshare statistics API<a class="anchor" aria-label="anchor" href="#helsinki-region-infoshare-statistics-api"></a>
 </h3>
 <p>Function <code><a href="../reference/get_hri_stats.html">get_hri_stats()</a></code> retrieves data from the <a href="http://dev.hel.fi/stats/" class="external-link">Helsinki Region Infoshare statistics
-API</a>.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+API</a>. Specify a dataset to retrieve. In this specific example we will
+download the first item on the stats_list object. The output is a
+three-dimensional array.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieve list of available data</span></span>
 <span><span class="va">stats_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
 <span><span class="co"># Show first results</span></span>
@@ -539,15 +553,14 @@ API</a>.</p>
 <span><span class="co">#&gt;                                      NULL </span></span>
 <span><span class="co">#&gt;       "J13_sekajatteen_maara_kiinteistot" </span></span>
 <span><span class="co">#&gt;  Helsingin väestö äidinkielen mukaan 1.1. </span></span>
-<span><span class="co">#&gt; "aluesarjat_a03s_hki_vakiluku_aidinkieli"</span></span></code></pre></div>
-<p>Specify a dataset to retrieve. In this specific example we will
-download the first item on the stats_list object. The output is a
-three-dimensional array.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Retrieve a specific dataset</span></span>
-<span><span class="va">stats_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">stats_list</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co"># Show the structure of the results</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">stats_res</span><span class="op">)</span></span>
+<span><span class="co">#&gt; "aluesarjat_a03s_hki_vakiluku_aidinkieli"</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">stats_list</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># Retrieve a specific dataset</span></span>
+<span>  <span class="va">stats_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">stats_list</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="co"># Show the structure of the results</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">stats_res</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
 <span><span class="co">#&gt;  num [1:6, 1:34] 11606 5607 2.07 0.65 0.15 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "dimnames")=List of 2</span></span>
 <span><span class="co">#&gt;   ..$ muuttuja  : chr [1:6] "Asukkaita" "Asukastiheys (hlö/km2)" "Maapinta-ala (km2)" "Viheralueiden pinta-ala (km2)" ...</span></span>
@@ -567,32 +580,32 @@ website for more information.</p>
 <div class="section level4">
 <h4 id="citing-the-r-package">Citing the R package<a class="anchor" aria-label="anchor" href="#citing-the-r-package"></a>
 </h4>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"helsinki"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>Kindly cite the helsinki R package as follows<span class="sc">:</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  Juuso Parkkinen, Joona Lehtomaki, Pyry Kantanen, and Leo Lahti</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">2022</span>). helsinki R package. R package version <span class="dv">1</span>.<span class="fl">0.6</span> URL<span class="sc">:</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>Misc{,</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">=</span> {helsinki R package},</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    author <span class="ot">=</span> {Juuso Parkkinen and Joona Lehtomaki and Pyry Kantanen and Leo Lahti},</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki},</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2022</span>},</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    note <span class="ot">=</span> {R package version <span class="dv">1</span>.<span class="fl">0.6</span>},</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>Many thanks <span class="cf">for</span> all contributors<span class="sc">!</span> For more info, see<span class="sc">:</span></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"helsinki"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>Kindly cite the helsinki R package as follows<span class="sc">:</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  Juuso Parkkinen, Joona Lehtomaki, Pyry Kantanen, and Leo Lahti</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">2022</span>). helsinki R package. R package version <span class="dv">1</span>.<span class="fl">0.6</span> URL<span class="sc">:</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>Misc{,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">=</span> {helsinki R package},</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    author <span class="ot">=</span> {Juuso Parkkinen and Joona Lehtomaki and Pyry Kantanen and Leo Lahti},</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki},</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2022</span>},</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    note <span class="ot">=</span> {R package version <span class="dv">1</span>.<span class="fl">0.6</span>},</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>Many thanks <span class="cf">for</span> all contributors<span class="sc">!</span> For more info, see<span class="sc">:</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki</span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="session-info">Session info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h4>
 <p>This vignette was created with</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; R version 4.2.2 (2022-10-31)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>

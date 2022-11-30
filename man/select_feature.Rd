@@ -15,7 +15,7 @@ select_feature(base.url = NULL, get = FALSE)
 feature Title (character) or feature object (sf), if \code{get} parameter is TRUE
 }
 \description{
-Use an interactive menu to select and download a feature 
+Use an interactive menu to select and download a feature
 for use in other functions
 }
 \examples{
@@ -31,5 +31,5 @@ ggplot(feature) +
 \code{\link{get_feature}}, \code{\link{get_feature_list}}
 }
 \author{
-Pyry Kantanen <pyry.kantanen@gmail.com>
+Pyry Kantanen \href{mailto:pyry.kantanen@gmail.com}{pyry.kantanen@gmail.com}
 }

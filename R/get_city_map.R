@@ -1,19 +1,20 @@
 #' @title Get city administrative regions
 #' 
-#' @description Sf object of city districts
+#' @description Sf object of city districts in the Helsinki Capital Region.
 #' 
-#' @details See list_features() for a list of all available features
+#' @details See [get_feature_list()] for a list of all available features
 #' 
-#' @importFrom httr parse_url build_url
-#' @importFrom sf st_read read_sf st_crs
-#' 
-#' @param city The desired city. Options: Helsinki, Espoo, Vantaa, Kauniainen
-#' @param level The desired administrative level. Options are: "suurpiiri", 
-#'    "tilastoalue", "pienalue" and "aanestysalue"
+#' @param city The desired city. Valid options: *Helsinki*, *Espoo*, *Vantaa*, 
+#' *Kauniainen*
+#' @param level The desired administrative level. Valid options: *suurpiiri*, 
+#' *tilastoalue*, *pienalue* and *aanestysalue*
+#' @param ... For passing parameters to embedded functions, for example 
+#' *timeout.s* (timeout in seconds) in the case of **gracefully_fail()** 
+#' internal function
 #'
 #' @return sf object
 #' 
-#' @source Metropolitan area in districts: <https://hri.fi/data/fi/dataset/paakaupunkiseudun-aluejakokartat>
+#' @source Metropolitan area in districts: <https://hri.fi/data/en_GB/dataset/seutukartta>
 #'
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
 #' 
@@ -21,9 +22,14 @@
 #' \dontrun{
 #' map <- get_city_map(city = "helsinki", level = "suuralue")
 #' }
+#' 
+#' @importFrom httr parse_url build_url
+#' @importFrom sf st_read read_sf st_crs
 #'
 #' @export
-get_city_map <- function(city = NULL, level = NULL) {
+get_city_map <- function(city = NULL, level = NULL, ...) {
+  
+  args <- list(...)
   
   if (is.null(city)) {
     stop("city = NULL. Following inputs are supported: helsinki, 
@@ -66,6 +72,14 @@ get_city_map <- function(city = NULL, level = NULL) {
                     outputFormat = "GML2")
   
   request <- httr::build_url(url)
+  
+  graceful_result <- gracefully_fail(request, ...)
+  
+  if (is.null(graceful_result)) {
+    message("Please check your settings or function parameters \n")
+    return(invisible(NULL))
+  }
+  
   pk_regions <- sf::read_sf(request)
   
   if (city == "helsinki") {

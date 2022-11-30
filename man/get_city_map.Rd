@@ -4,25 +4,30 @@
 \alias{get_city_map}
 \title{Get city administrative regions}
 \source{
-Metropolitan area in districts: <https://hri.fi/data/fi/dataset/paakaupunkiseudun-aluejakokartat>
+Metropolitan area in districts: \url{https://hri.fi/data/en_GB/dataset/seutukartta}
 }
 \usage{
-get_city_map(city = NULL, level = NULL)
+get_city_map(city = NULL, level = NULL, ...)
 }
 \arguments{
-\item{city}{The desired city. Options: Helsinki, Espoo, Vantaa, Kauniainen}
+\item{city}{The desired city. Valid options: \emph{Helsinki}, \emph{Espoo}, \emph{Vantaa},
+\emph{Kauniainen}}
 
-\item{level}{The desired administrative level. Options are: "suurpiiri", 
-"tilastoalue", "pienalue" and "aanestysalue"}
+\item{level}{The desired administrative level. Valid options: \emph{suurpiiri},
+\emph{tilastoalue}, \emph{pienalue} and \emph{aanestysalue}}
+
+\item{...}{For passing parameters to embedded functions, for example
+\emph{timeout.s} (timeout in seconds) in the case of \strong{gracefully_fail()}
+internal function}
 }
 \value{
 sf object
 }
 \description{
-Sf object of city districts
+Sf object of city districts in the Helsinki Capital Region.
 }
 \details{
-See list_features() for a list of all available features
+See \code{\link[=get_feature_list]{get_feature_list()}} for a list of all available features
 }
 \examples{
 \dontrun{
@@ -31,5 +36,5 @@ map <- get_city_map(city = "helsinki", level = "suuralue")
 
 }
 \author{
-Pyry Kantanen <pyry.kantanen@gmail.com>
+Pyry Kantanen \href{mailto:pyry.kantanen@gmail.com}{pyry.kantanen@gmail.com}
 }

@@ -9,15 +9,17 @@ get_hri_stats(query = "", verbose = TRUE)
 \arguments{
 \item{query}{A string, specifying the dataset to query}
 
-\item{verbose}{logical. Should R report extra information on progress? Default is TRUE}
+\item{verbose}{logical. Should R report extra information on progress?
+Default is TRUE}
 }
 \value{
 multi-dimensional array
 }
 \description{
-Retrieves data from the Helsinki Region Infoshare (HRI) statistics API:
-http://dev.hel.fi/stats/.
-Currently provides access to the 'aluesarja't data: http://www.aluesarjat.fi/.
+Retrieves data from the Helsinki Region Infoshare (HRI)
+statistics API: \url{http://dev.hel.fi/stats/}.
+Currently provides access to the \emph{aluesarjat} data:
+\url{http://www.aluesarjat.fi/}.
 }
 \details{
 Current implementation is very simple.
@@ -26,14 +28,16 @@ or query for a specific resources and retrieve it in a
 three-dimensional array form.
 }
 \examples{
+\dontrun{
 stats_array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
+}
 
 }
 \references{
 See citation("helsinki")
 }
 \seealso{
-See \url{https://dev.hel.fi/apis/statistics/}{dev.hel.fi website} and 
+See \url{https://dev.hel.fi/apis/statistics/}{dev.hel.fi website} and
 \url{http://dev.hel.fi/stats/}{API documentation} (in Finnish)
 }
 \author{

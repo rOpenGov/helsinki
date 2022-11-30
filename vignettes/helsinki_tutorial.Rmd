@@ -33,7 +33,7 @@ helsinki - tutorial
 
 helsinki R package provides tools to access open data from the Helsinki region in Finland. 
 
-For contact information, source code and bug reports, see the project's [GitHub page](https://github.com/rOpenGov/helsinki). For other similar packages and related blog posts, see the [rOpenGov](http://ropengov.org) project website.
+For contact information, source code and bug reports, see the project's [GitHub page](https://github.com/rOpenGov/helsinki). For other similar packages and related blog posts, see the [rOpenGov](https://ropengov.org) project website.
 
 ## Installation
 
@@ -58,9 +58,9 @@ library(helsinki)
 
 ## API Access
 
-The package has basic functions for interacting with WFS APIs, courtesy of [FMI2-package](https://ropengov.github.io/fmi2/): `wfs_api()` for returning "wfs_api" and `to_sf()` for turning these objects to sf-objects.
+The package has basic functions for interacting with WFS APIs, courtesy of [FMI2-package](https://ropengov.github.io/fmi2/): `wfs_api()` for returning "wfs_api" and `to_sf()` for turning these objects into sf-objects.
 
-All available features of a given API can be easily listed with the `get_feature_list()` function. Partly due to legacy considerations, partly due to user convenience we often use HSY API url in these function examples, sometimes even as a default option. The API functions can, however, be used with a wide variety of different `base.url` parameters.
+All available features of a given API can be easily listed with the `get_feature_list()` function. The API functions can, however, be used with a wide variety of different `base.url` parameters.
 
 ```{r wfs1}
 url <- "https://kartta.hsy.fi/geoserver/wfs"
@@ -101,17 +101,31 @@ The above example shows a general use case which can easily be applied to Helsin
 
 For legacy reasons, helsinki-package has also some specialized functions that aim to make downloading often used data as easy as possible. 
 
-Specifically, there are two new functions that replace deprecated functionalities from `get_hsy()` function: `get_vaestotietoruudukko()` (population grid) and `get_rakennustietoruudukko()` (building information grid). As of writing, years 2015 to 2020 are supported but the API may be updated at any time and `get_feature_list()` can be used to download datasets that are not baked into these functions.
+Specifically, there are two new functions that replace deprecated functionalities from `get_hsy()` function: `get_vaestotietoruudukko()` (population grid) and `get_rakennustietoruudukko()` (building information grid).
 
-```{r get_hsy_examples}
+```{r hsy_examples}
+library(ggplot2)
+
 pop_grid <- get_vaestotietoruudukko(year = 2018)
 building_grid <- get_rakennustietoruudukko(year = 2020)
-
-library(ggplot2)
 
 # Logarithmic scales to make the visualizations more discernible
 ggplot(pop_grid) + geom_sf(aes(colour=log(asukkaita), fill=log(asukkaita)))
 ggplot(building_grid) + geom_sf(aes(colour=log(kerala_yht), fill=log(kerala_yht)))
+```
+
+With the previous version of the helsinki package, years 2015 to 2020 were supported. In 2022 a new year was added, 2011, demonstrating how the API may be updated more regularly than the package. The `get_feature_list()` function can be used to download datasets that are not baked into included functions. 
+
+In addition to the datasets listed in the API getting updated, there are also legacy datasets that were never included in the API. We have added the functionality to download datasets from a wider selection of years, as zip files from a different file repository. These files may differ slightly from those downloaded via API and have different column names and larger grid squares and so on.
+
+```{r hsy_examples2}
+library(ggplot2)
+
+pop_grid2 <- get_vaestotietoruudukko(year = 2011)
+building_grid2 <- get_rakennustietoruudukko(year = 2011)
+
+ggplot(pop_grid2) + geom_sf(aes(colour=log(ASUKKAITA), fill=log(ASUKKAITA)))
+ggplot(building_grid2) + geom_sf(aes(colour=log(ASVALJYYS), fill=log(ASVALJYYS)))
 ```
 
 While easy enough to build, specialized functions such as these are probably not something that power users want to rely on in their work flows. They also add more manual phases to package maintenance and therefore are probably not the direction we're heading in the future. If you feel differently about this and there is a dataset that gets a lot of use, feel free to drop us a suggestion in [GitHub](https://github.com/rOpenGov/helsinki/issues).
@@ -131,7 +145,7 @@ We can see that this search returns a large number of results, over 2000. The re
 
 ```{r search_example1}
 # Get names for the first 20 results
-search_puisto$results$name$fi
+search_puisto$results$name.fi
 
 # See what kind of data is given for services
 names(search_puisto$results)
@@ -141,18 +155,12 @@ More results could be retrieved and viewed by giving additional `search` paramet
 
 ```{r search_example2}
 search_puisto <- get_servicemap(query="search", q="puisto", page_size = 30, page = 2)
-search_puisto$results$name$fi
+
+str(search_puisto)
+search_puisto$results$name.fi
 ```
 
-As we could see from above example, the returned data frame had 47 observations. At full width this output can be messy to handle in R console. One possible option would be to turn it into a more easily manageable tibble (which often is not a bad idea), another is to limit the extent of the query at the start. We do the latter and it can be done with the function parameter `only`:
-
-```{r search_example3}
-# Search for padel-related services in Helsinki
-search_padel <- get_servicemap(query="search", input="padel", only="unit.name, unit.location.coordinates, unit.street_address", municipality="helsinki")
-search_padel$results
-```
-
-The function parameter `only` is not as straightforward as filtering and subsetting columns in a data.frame / tibble, as it requires a valid type prefix in the beginning, in this case "unit". Other valid input in this case would be "service_node", "service" and "address", but during testing unit-prefix seemed to work best. When in doubt, checking the [original documentation](https://dev.hel.fi/apis/service-map-backend-api/) may help.
+As we could see from above example, the returned data frame had 30 observations with 29 variables. At full width this output can be messy to handle in R console. One possible option would be to turn it into a more easily manageable tibble (which often is not a bad idea), another is to limit the extent of the query at the start.
 
 Function `get_linkedevents()` retrieves regional event data from the new [Linked Events API](http://api.hel.fi/linkedevents/v1/).
 

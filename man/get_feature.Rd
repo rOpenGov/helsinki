@@ -25,10 +25,10 @@ sf object
 Produces an sf object for easy visualization
 }
 \seealso{
-Use \code{\link{get_feature_list}} to list all available features 
-for a given WFS, \code{\link{select_feature}} for listing and selecting a 
+Use \code{\link{get_feature_list}} to list all available features
+for a given WFS, \code{\link{select_feature}} for listing and selecting a
 feature
 }
 \author{
-Pyry Kantanen <pyry.kantanen@gmail.com>
+Pyry Kantanen \href{mailto:pyry.kantanen@gmail.com}{pyry.kantanen@gmail.com}
 }

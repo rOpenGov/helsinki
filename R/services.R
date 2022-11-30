@@ -1,13 +1,16 @@
 #' @title Access Helsinki region Service Map API
 #'
-#' @description Access the new Helsinki region Service Map (Paakaupunkiseudun Palvelukartta)
-#' https://palvelukartta.hel.fi/fi/ data through the API: http://api.hel.fi/servicemap/v2/. 
-#' For more API documentation and license information see the API link.
+#' @description Access the new Helsinki region Service Map (Paakaupunkiseudun 
+#' Palvelukartta, <https://palvelukartta.hel.fi/fi/>) data through the API: 
+#' <http://api.hel.fi/servicemap/v2/>. For more API documentation and license 
+#' information see the API link.
 #' 
-#' @param query The API query as a string, for example "search", "service", or "unit".
-#' For full list of available options and details, see https://dev.hel.fi/apis/service-map-backend-api/. 
+#' @param query The API query as a string, for example *search*, *service*, 
+#' or *unit*. For full list of available options and details, see 
+#' <https://dev.hel.fi/apis/service-map-backend-api/>. 
 #' @param ... Additional parameters to the API (optional). 
-#' For additional details, see https://dev.hel.fi/apis/service-map-backend-api/. 
+#' For additional details, see 
+#' <https://dev.hel.fi/apis/service-map-backend-api/>. 
 #'
 #' @details 
 #' Complete list of possible query input: 
@@ -36,7 +39,7 @@
 #'  \item{"page_size"} {determine number of entries in one page}
 #' }
 #' 
-#' For more detailed explanation, see https://dev.hel.fi/apis/service-map-backend-api/. 
+#' For more detailed explanation, see <https://dev.hel.fi/apis/service-map-backend-api/>. 
 #'
 #' @return Data frame or a list
 #' 
@@ -44,23 +47,24 @@
 #' @importFrom jsonlite fromJSON
 #' 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}, Pyry Kantanen
-#' @examples 
+#' @examples
+#' \dontrun{
 #' # A data.frame with 47 variables
 #' search_puisto <- get_servicemap(query="search", q="puisto")
 #' # A data.frame with 7 variables
 #' search_padel <- get_servicemap(query="search", input="padel", 
 #' only="unit.name, unit.location.coordinates, unit.street_address", 
 #' municipality="helsinki")
+#' }
 #' 
 #' @source API contents: All content is available under CC BY 4.0, 
 #' except where otherwise stated. The City of Helsinki logo is a registered 
 #' trademark. The Helsinki Grotesk Typeface is a proprietary typeface licensed 
-#' by Camelot Typefaces.
-#' <https://creativecommons.org/licenses/by/4.0/>
+#' by Camelot Typefaces. <https://creativecommons.org/licenses/by/4.0/>
 #' 
-#' API Location: https://api.hel.fi/servicemap/v2/
+#' API Location: <https://api.hel.fi/servicemap/v2/>
 #' 
-#' API documentation: https://dev.hel.fi/apis/service-map-backend-api/
+#' API documentation: <https://dev.hel.fi/apis/service-map-backend-api/>
 #' 
 #' @export
 
@@ -72,17 +76,14 @@ get_servicemap <- function(query, ...) {
   url <- httr::parse_url(query_url)
   url$query <- list(...)
   url <- httr::build_url(url)
-  
-  # Check whether API url available
-  conn<-url(api_url)
-  doesnotexist<-inherits(try(suppressWarnings(readLines(conn)),silent=TRUE),"try-error")
-  close(conn)
-  if (doesnotexist) {
-    warning(paste("Sorry! API", api_url, "not available! Returning NULL"))
-    return(NULL)
+
+  graceful_result <- gracefully_fail(url)
+  if (is.null(graceful_result)) {
+    message("Please check your settings or function parameters \n")
+    return(invisible(NULL))
   }
 
-  res_list <- jsonlite::fromJSON(url)
+  res_list <- jsonlite::fromJSON(url, flatten = TRUE)
   # res_list <- res_list$results 
   
   message(
@@ -93,8 +94,6 @@ CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/>")
   
   return(res_list)
 }
-
-
 
 #' @title Access Helsinki Linked Events API
 #'
@@ -107,7 +106,7 @@ CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/>")
 #' CC BY 4.0. <https://creativecommons.org/licenses/by/4.0/>
 #' 
 #' For more API documentation and license information see the API link:
-#' http://api.hel.fi/linkedevents/v1/
+#' <http://api.hel.fi/linkedevents/v1/>
 #' 
 #' @param query The API query as a string, for example "event", "category",
 #' "language", "place" or "keyword". 
@@ -128,7 +127,7 @@ CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/>")
 #'  \item{end="2017-01-10"} {events ending on 2017-01-10 or before}
 #' }
 #' 
-#' For more detailed explanation, see http://api.hel.fi/linkedevents/v1/. 
+#' For more detailed explanation, see <http://api.hel.fi/linkedevents/v1/>. 
 #'
 #' @return Data frame or a list
 #' 
@@ -138,7 +137,9 @@ CC BY 4.0: <https://creativecommons.org/licenses/by/4.0/>")
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}, Pyry Kantanen
 #' 
 #' @examples 
+#' \dontrun{
 #' events <- get_linkedevents(query="search", q="teatteri", start="2020-01-01")
+#' }
 #' 
 #' @export
 
@@ -151,14 +152,11 @@ get_linkedevents <- function(query, ...) {
   url <- httr::parse_url(query_url)
   url$query <- list(...)
   url <- httr::build_url(url)
-  
-  # Check whether API url available
-  conn<-url(api_url)
-  doesnotexist<-inherits(try(suppressWarnings(readLines(conn)),silent=TRUE),"try-error")
-  close(conn)
-  if (doesnotexist) {
-    warning(paste("Sorry! API", api_url, "not available! Returning NULL"))
-    return(NULL)
+
+  graceful_result <- gracefully_fail(url)
+  if (is.null(graceful_result)) {
+    message("Please check your settings or function parameters \n")
+    return(invisible(NULL))
   }
 
   res_list <- jsonlite::fromJSON(url)

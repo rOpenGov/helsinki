@@ -1,19 +1,27 @@
 citHeader("Kindly cite the helsinki R package as follows:")
 
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
 citEntry(entry="misc",
          title = "helsinki R package",
          author = personList(
-     person(given ="Juuso", family="Parkkinen", email = "juuso.parkkinen@iki.fi"),
-	   person(given ="Joona", family="Lehtomaki"),
-	   person(given ="Pyry", family="Kantanen"),
-     person(given ="Leo", family="Lahti")	   
+          person(given ="Juuso", family="Parkkinen", email = "juuso.parkkinen@iki.fi"),
+          person(given ="Joona", family="Lehtomaki"),
+          person(given ="Pyry", family="Kantanen"),
+          person(given ="Leo", family="Lahti")	   
          ),
-	 journal = "",
-	 year = "2014-2021",
+	       journal = "",
+	       URL = "https://github.com/rOpenGov/helsinki",
+	       year = year,
+	       note = vers,
          textVersion =
-         paste("(C) Juuso Parkkinen, Joona Lehtomaki, Pyry Kantanen and Leo Lahti 2014-2021.",
-               "helsinki R package",
-               sep=" ")
+         paste("Juuso Parkkinen, Joona Lehtomaki, Pyry Kantanen, and Leo Lahti (",year,"). ",
+               "helsinki R package. ",
+               vers,
+               " ",
+               "URL: https://github.com/rOpenGov/helsinki",
+               sep="")
          )
 
 citFooter("\nMany thanks for all contributors! For more info, see: https://github.com/rOpenGov/helsinki")

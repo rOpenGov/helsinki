@@ -1,7 +1,8 @@
 Package: helsinki
 Type: Package
 Title: R Tools for Helsinki Open Data
-Version: 1.0.5
+Version: 1.0.6
+Date: 2022-11-30
 Authors@R: 
     c(person(given = "Juuso",
              family = "Parkkinen",
@@ -18,12 +19,9 @@ Authors@R:
              family = "Lahti",
              role = "aut",
              comment = c(ORCID = "0000-0001-5537-637X")))
-Description: Tools for accessing various open data sources in the Helsinki
-    region in Finland. Current data sources include
-    the Real Estate Department (<http://ptp.hel.fi/avoindata/>),
-    Service Map API (<http://api.hel.fi/servicemap/v2/>),
-    Linked Events API (<http://api.hel.fi/linkedevents/v1/>),
-    Helsinki Region Infoshare statistics API (<https://dev.hel.fi/stats/>).
+Description: Tools for accessing various open data APIs in the Helsinki
+    region in Finland. Current data sources include the Service Map API,
+    Linked Events API, and Helsinki Region Infoshare statistics API.
 License: BSD_2_clause + file LICENSE
 Depends:
     R (>= 3.1.0)
@@ -35,22 +33,22 @@ Imports:
     methods,
     dplyr,
     sf,
-    httpcache,
-    curl
+    curl,
 Suggests:
     knitr,
     rmarkdown,
     remotes,
     ggplot2,
     covr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
 URL: http://ropengov.github.io/helsinki/, https://github.com/rOpenGov/helsinki
 BugReports: https://github.com/ropengov/helsinki/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
+Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov

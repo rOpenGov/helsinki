@@ -1,110 +1,104 @@
-## get_hsy()
-#' @title Retrieve data from Helsinki Region Environmental Services.
-#' @description Retrieves data from Helsinki Region Environmental Services Authority.
-#' @param which.data A string. Specify the name of the retrieved HSY data set. Options: Vaestotietoruudukko; Rakennustietoruudukko; SeutuRAMAVA_kosa; SeutuRAMAVA_tila. These are documented in HSY data description document (see above).
-#' @param which.year An integer. Specify the year for the data to be retrieved.
-#' @param data.dir A string. Specify a temporary folder for storing downloaded data.
-#' @param verbose logical. Should R report extra information on progress? 
-#' @return Shape object (from SpatialPolygonsDataFrame class)
-#'
-#' @name get_hsy-deprecated
-#' @usage get_hsy(which.data, which.year, data.dir, verbose)
-#' @seealso \code{\link{helsinki-deprecated}}
-#' @keywords internal
-NULL
-
-#' @rdname helsinki-deprecated
-#' @section \code{get_hsy}:
-#' For \code{get_hsy(which.data="Vaestotietoruudukko")}, use \code{\link{get_vaestotietoruudukko}}.
-#' For \code{get_hsy(which.data="Rakennustietoruudukko")}, use \code{\link{get_rakennustietoruudukko}}.
-#'
-#' @export
-get_hsy <- function(which.data=NULL, which.year=2013, data.dir=tempdir(), verbose=TRUE) {
-  
-  # Specify download url
-  if (which.data=="Vaestotietoruudukko") {
-    .Deprecated(new = "get_vaestotietoruudukko", package = "helsinki")
-    message("get_hsy() has been deprecated, use get_vaestotietoruudukko() instead")
-    return(NULL)
-    
-  } else if (which.data=="Rakennustietoruudukko") {
-    .Deprecated(new = "get_rakennustietoruudukko", package = "helsinki")
-    message("get_hsy() has been deprecated, use get_vaestotietoruudukko() instead")
-    return(NULL) 
-    
-  } else if (is.null(which.data)) {
-    .Deprecated("get_feature")
-    message("get_hsy() has been deprecated, use get_feature_list() to browse for available HSY features and get_feature() to download them")
-    return(NULL)
-    
-  } else {
-    .Deprecated("get_feature")
-    message("get_hsy() has been deprecated, use get_feature_list() to browse for available HSY features and get_feature() to download them")
-    return(NULL)
-  }
-    
-}
-
 #' @title Produce an SF object: Vaestotietoruudukko
 #' 
-#' @description Produces an sf object for Väestötietoruudukko (population grid)
+#' @description Produces an sf object for Väestötietoruudukko (population grid).
 #' 
-#' @details Additional data not available here can be manually downloaded from HRI website: https://hri.fi/data/fi/dataset/vaestotietoruudukko
+#' @details Additional data not available here can be manually downloaded from 
+#' HRI website: <https://hri.fi/data/fi/dataset/vaestotietoruudukko>
 #' 
-#' Years 2015-2019 are tested to work at the time of development. 
+#' Years 1997-2003 and 2008-2021 are tested to work at the time of development.
+#' Datasets from years 2015-2021 are downloaded from HSY WFS API and datasets
+#' for other years are downloaded as zip files from HRI website. The format of
+#' the output might be a bit different between datasets downloaded from the WFS 
+#' API and datasets downloaded from HRI website.
+#' 
 #' Additional years may be added in the future and older datasets may be removed
-#' from the API. 
+#' from the API. See package NEWS for more information.
 #' 
-#' The current datasets can be listed with get_feature_list()
-#' or select_feature(). 
+#' The current datasets can be listed with [get_feature_list()]
+#' or [select_feature()].
 #' 
-#' @param year year as numeric from range 2015:2019
+#' @param year a single year as numeric between 1997-2003 and 2008:2021. 
+#' If NULL (default), the function will return the latest available dataset.
 #'
 #' @return sf object
 #'
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
+#' 
+#' @importFrom sf read_sf
+#' @importFrom utils unzip download.file
 #'
 #' @examples
 #' \dontrun{
-#' pop_grid <- get_vaestotietoruudukko(year = 2017)
+#' pop_grid <- get_vaestotietoruudukko(year = 2021)
 #' }
 #'
 #' @export
 get_vaestotietoruudukko <- function(year = NULL) {
   namespace_title <- "asuminen_ja_maankaytto:Vaestotietoruudukko"
   base_url <- "https://kartta.hsy.fi/geoserver/wfs"
-  valid_years <- 2015:2020
+  valid_years <- c(1997:2003, 2008:2021)
+  missing_years <- 2004:2007
+  wfs_valid_years <- 2015:2021
   
   if (is.null(year)) {
-    message(paste0("year = NULL! Retrieving feature from year ", max(valid_years)))
+    message(paste("year = NULL! Retrieving feature from latest available year:", 
+                   max(valid_years)))
     year <- max(valid_years)
   }
   
   if (!(year %in% valid_years)) {
-    message(paste0("It is strongly suggested to use a valid year from range: 2015-2019. 
-                   Using other years may result in an error."))
+    message(paste0("It is strongly suggested to use a valid year from range: ", 
+                  min(valid_years), "-", max(valid_years),
+                  " (excluding years ", min(missing_years), "-", 
+                  max(missing_years),"). ",
+                  "Using other years will most probably result in an error."))
   }
   
-  selection <- paste(namespace_title, year, sep = "_")
-  
-  feature <- get_feature(base.url = base_url, typename = selection)
-  feature
+  if (year %in% wfs_valid_years) {
+    selection <- paste(namespace_title, year, sep = "_")
+    
+    feature <- get_feature(base.url = base_url, typename = selection)
+    return(feature)
+  } else {
+    metadata <- get_hri_dataset_metadata("vaestotietoruudukko")
+    p <- c(year, "shp")
+    matching_rows <- sapply(p, grep, metadata$resources$name)
+    desired_file_index <- intersect(matching_rows[[1]], matching_rows[[2]])
+    url <- metadata$resources$url[desired_file_index]
+    
+    td <- tempdir()
+    tf <- tempfile(tmpdir=td, fileext=".zip")
+    utils::download.file(url, tf)
+    target_directory <- paste(td, "shapefiles", sep = "/")
+    utils::unzip(tf, exdir=target_directory)
+    feature <- sf::read_sf(target_directory)
+    return(feature)
+  }
 }
 
 #' @title Produce an SF object: Rakennustietoruudukko
 #' 
-#' @description Produces an sf object for Rakennustietoruudukko (building information grid)
+#' @description Produces an sf object for Rakennustietoruudukko (building 
+#' information grid).
 #' 
-#' @details Additional data not available here can be manually downloaded from HRI website: https://hri.fi/data/fi/dataset/rakennustietoruudukko
+#' @details Additional data not available here can be manually downloaded from 
+#' HRI website: <https://hri.fi/data/fi/dataset/rakennustietoruudukko>
 #' 
-#' Years 2015-2019 are tested to work at the time of development. 
+#' Years 2015-2021 are tested to work at the time of development. 
 #' Additional years may be added in the future and older datasets may be removed
-#' from the API. 
+#' from the API. Datasets from years 2015-2021 are downloaded from HSY WFS API and datasets
+#' for other years are downloaded as zip files from HRI website. The format of
+#' the output might be a bit different between datasets downloaded from the WFS 
+#' API and datasets downloaded from HRI website.
 #' 
-#' The current datasets can be listed with get_feature_list()
-#' or select_feature(). 
+#' Additional years may be added in the future and older datasets may be removed
+#' from the API. See package NEWS for more information.
 #' 
-#' @param year year as numeric from range 2015:2019
+#' The current datasets can be listed with [get_feature_list()]
+#' or [select_feature()]. 
+#' 
+#' @param year year as numeric between 1997-1998 and 2009-2021. 
+#' If NULL (default), the function will return the latest available dataset.
 #'
 #' @return sf object
 #'
@@ -112,14 +106,19 @@ get_vaestotietoruudukko <- function(year = NULL) {
 #' 
 #' @examples
 #' \dontrun{
-#' building_grid <- get_rakennustietoruudukko(year = 2018)
+#' building_grid <- get_rakennustietoruudukko(year = 2021)
 #' }
+#' 
+#' @importFrom sf read_sf
+#' @importFrom utils unzip download.file
 #'
 #' @export
 get_rakennustietoruudukko <- function(year = NULL) {
   namespace_title <- "asuminen_ja_maankaytto:Rakennustietoruudukko"
   base_url <- "https://kartta.hsy.fi/geoserver/wfs"
-  valid_years <- 2015:2020
+  valid_years <- c(1997:1998, 2009:2021)
+  missing_years <- 1999:2008
+  wfs_valid_years <- 2015:2021
   
   if (is.null(year)) {
     message(paste0("year = NULL! Retrieving feature from year ", max(valid_years)))
@@ -127,12 +126,31 @@ get_rakennustietoruudukko <- function(year = NULL) {
   }
   
   if (!(year %in% valid_years)) {
-    message(paste0("It is strongly suggested to use a valid year from range: 2015-2019. 
-                   Using other years may result in an error."))
+    message(paste0("It is strongly suggested to use a valid year from range: ", 
+                   min(valid_years), "-", max(valid_years),
+                   " (excluding years ", min(missing_years), "-", 
+                   max(missing_years),"). ",
+                   "Using other years will most probably result in an error."))
   }
-
-  selection <- paste(namespace_title, year, sep = "_")
   
-  feature <- get_feature(base.url = base_url, typename = selection)
-  feature
+  if (year %in% wfs_valid_years) {
+    selection <- paste(namespace_title, year, sep = "_")
+    
+    feature <- get_feature(base.url = base_url, typename = selection)
+    return(feature)
+  } else {
+    metadata <- get_hri_dataset_metadata("vaestotietoruudukko")
+    p <- c(year, "shp")
+    matching_rows <- sapply(p, grep, metadata$resources$name)
+    desired_file_index <- intersect(matching_rows[[1]], matching_rows[[2]])
+    url <- metadata$resources$url[desired_file_index]
+    
+    td <- tempdir()
+    tf <- tempfile(tmpdir=td, fileext=".zip")
+    utils::download.file(url, tf)
+    target_directory <- paste(td, "shapefiles", sep = "/")
+    utils::unzip(tf, exdir=target_directory)
+    feature <- sf::read_sf(target_directory)
+    return(feature)
+  }
 }

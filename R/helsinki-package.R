@@ -4,9 +4,8 @@
 #' Package: \tab helsinki\cr
 #' Type: \tab Package\cr
 #' Version: \tab See sessionInfo() or DESCRIPTION file\cr
-#' Date: \tab 2013-2021\cr
+#' Date: \tab 2013-2022\cr
 #' License: \tab BSD-2-Clause\cr
-#' LazyLoad: \tab yes\cr
 #' }
 #'
 #' Tools for accessing various open data sources in the Helsinki region in Finland.

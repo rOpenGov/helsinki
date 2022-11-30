@@ -1,3 +1,19 @@
+helsinki 1.0.6 (2022-11-30)
+
+### UPCOMING CHANGES
+
+ * In future versions of this package, core functions such as `get_rakennustietoruudukko()`, `get_vaestotietoruudukko()`, `get_hri_stats()` and `get_city_map()` may need 
+
+### MINOR IMPROVEMENTS
+
+ * Added option to download data from years 1997-1998 and 2009-2014 to `get_rakennustietoruudukko()` and years 1997-2003 and 2008-2014 to `get_vaestotietoruudukko()` via HRI data repository.
+ * Added new internal functions `get_hri_dataset_list()` and `get_hri_dataset_metadata()` to facilitate abovementioned new features and always return up-to-date download URLs for zipped datasets.
+ * Functions relying on HTTP requests should now return informative messages instead of warnings and errors if an internet resource is not available. New internal function `gracefully_fail()` facilitates this.
+ 
+### DEPRECATED AND DEFUNCT
+
+ * Traces of deprecated *get_hsy()* function have now been removed from the package
+
 helsinki 1.0.5 (2021-09-27)
 =========================
 

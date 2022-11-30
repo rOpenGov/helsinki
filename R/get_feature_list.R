@@ -2,10 +2,10 @@
 #' 
 #' @description Basically a neat wrapper for "request=GetCapabilities".
 #' 
-#' @details Lists all <FeatureType> nodes.
+#' @details Lists all `<FeatureType>` nodes.
 #' 
-#' @seealso Use \code{\link{get_feature}} to download feature, 
-#' \code{\link{select_feature}} for menu-driven listing and downloading
+#' @seealso Use [get_feature()] to download feature, 
+#' [select_feature()] for menu-driven listing and downloading
 #' 
 #' @param base.url WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
 #' @param queries desired query for acquiring the list of features, default 
@@ -26,7 +26,7 @@
 #'
 #' @export
 get_feature_list <- function(base.url = NULL, 
-                             queries = "request=GetCapabilities") {
+                             queries = c("request" = "GetCapabilities")) {
   
   if (is.null(base.url)) {
     message("base.url = NULL. Using https://kartta.hsy.fi/geoserver/wfs")
@@ -106,3 +106,40 @@ select_feature <- function(base.url = NULL, get = FALSE) {
   }
 }
 
+#' @title List HRI datasets
+#' 
+#' @details This function lists all available HRI datasets.
+#' 
+#' @importFrom jsonlite fromJSON
+#' @keywords internal
+get_hri_dataset_list <- function() {
+  url <- "https://hri.fi/data/api/3/action/package_list"
+  package_list <- jsonlite::fromJSON(url)
+  result <- package_list$result
+  result
+}
+
+#' @title Get HRI dataset metadata
+#' 
+#' @details This function fetches metadata for HRI datasets.
+#' 
+#' @importFrom jsonlite fromJSON
+#' @keywords internal
+get_hri_dataset_metadata <- function(id) {
+  datasets <- get_hri_dataset_list()
+  
+  if (is.null(id)) {
+    stop("function id is NULL. Please input a valid id")
+  }
+  
+  if (!(id %in% datasets)) {
+    stop("function id not available in HRI. Please input a valid id")
+  }
+  
+  url <- "https://hri.fi/data/api/action/package_show?id="
+  url <- paste0(url, id)
+
+  dataset_metadata <- jsonlite::fromJSON(url)
+  result <- dataset_metadata$result
+  result
+}

@@ -4,12 +4,12 @@
 \alias{get_feature_list}
 \title{Print all available Features}
 \usage{
-get_feature_list(base.url = NULL, queries = "request=GetCapabilities")
+get_feature_list(base.url = NULL, queries = c(request = "GetCapabilities"))
 }
 \arguments{
 \item{base.url}{WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"}
 
-\item{queries}{desired query for acquiring the list of features, default 
+\item{queries}{desired query for acquiring the list of features, default
 is "request=GetCapabilities"}
 }
 \value{
@@ -19,7 +19,7 @@ data frame
 Basically a neat wrapper for "request=GetCapabilities".
 }
 \details{
-Lists all <FeatureType> nodes.
+Lists all \verb{<FeatureType>} nodes.
 }
 \examples{
 \dontrun{
@@ -28,9 +28,9 @@ dat <- get_feature_list(base.url = "https://kartta.hsy.fi/geoserver/wfs")
 
 }
 \seealso{
-Use \code{\link{get_feature}} to download feature, 
-\code{\link{select_feature}} for menu-driven listing and downloading
+Use \code{\link[=get_feature]{get_feature()}} to download feature,
+\code{\link[=select_feature]{select_feature()}} for menu-driven listing and downloading
 }
 \author{
-Pyry Kantanen <pyry.kantanen@gmail.com>
+Pyry Kantanen \href{mailto:pyry.kantanen@gmail.com}{pyry.kantanen@gmail.com}
 }

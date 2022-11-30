@@ -1,8 +1,9 @@
 #' @title Helsinki Region Infoshare statistics API
 #'
-#' @description Retrieves data from the Helsinki Region Infoshare (HRI) statistics API:
-#' http://dev.hel.fi/stats/.
-#' Currently provides access to the 'aluesarja't data: http://www.aluesarjat.fi/.
+#' @description Retrieves data from the Helsinki Region Infoshare (HRI) 
+#' statistics API: <http://dev.hel.fi/stats/>.
+#' Currently provides access to the *aluesarjat* data: 
+#' <http://www.aluesarjat.fi/>.
 #' 
 #' @details Current implementation is very simple.
 #' You can either get the list of resources with query="",
@@ -10,12 +11,16 @@
 #' three-dimensional array form.
 #'
 #' @param query A string, specifying the dataset to query
-#' @param verbose logical. Should R report extra information on progress? Default is TRUE
+#' @param verbose logical. Should R report extra information on progress? 
+#' Default is TRUE
 #' @return multi-dimensional array
 #'
 #' @references See citation("helsinki") 
 #' @author Juuso Parkkinen \email{louhos@@googlegroups.com}
-#' @examples stats_array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
+#' @examples 
+#' \dontrun{
+#' stats_array <- get_hri_stats("aluesarjat_a03s_hki_vakiluku_aidinkieli")
+#' }
 #' 
 #' @seealso See \url{https://dev.hel.fi/apis/statistics/}{dev.hel.fi website} and 
 #' \url{http://dev.hel.fi/stats/}{API documentation} (in Finnish)
@@ -28,25 +33,25 @@ get_hri_stats <- function (query="", verbose=TRUE) {
 
   ## TODO
   # implement grepping for resources? as in eurostat
-  if (verbose)
-    message("Accessing Helsinki Region Infoshare statistics API...")
-  
+  if (verbose) {
+    message("Accessing Helsinki Region Infoshare statistics API...\n")
+  }
+
   # Use the regional statistics API
   api_url <- "http://dev.hel.fi/stats/resources/"
-  # For resources list
-  if (query=="")
+  if (query=="") {
+    # For resources list
     query_url <- paste0(api_url, query)
-  # For a specific resource, use jsonstat
-  else
+  } else {
+    # For a specific resource, use jsonstat
     query_url <- paste0(api_url, query, "/jsonstat")
+  }
+
+  graceful_result <- gracefully_fail(query_url)
   
-  # Check whether url available
-  conn<-url(query_url)
-  doesnotexist<-inherits(try(suppressWarnings(readLines(conn)),silent=TRUE),"try-error")
-  close(conn)
-  if (doesnotexist) {
-    warning(paste("Sorry! Url", query_url, "not available! Returning NULL"))
-    return(NULL)
+  if (is.null(graceful_result)) {
+    message("Please check your settings or function parameters \n")
+    invisible(return(NULL))
   }
   
   # Access data with httr
@@ -61,14 +66,14 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     resources <- names(res_list[["_embedded"]])
     names(resources) <- sapply(res_list[["_embedded"]], function(x) x$metadata$label)
     if (verbose)
-      message("Retrieved list of available resources.")
+      message("Retrieved list of available resources \n")
     return(resources)
     
   } else {
     
     ## Process jsonstat results into an array
-    # For info about jsontstat, see http://json-stat.org/format/
-    # Possible R package ot use: https://github.com/ajschumacher/rjstat
+    # For info about jsonstat, see http://json-stat.org/format/
+    # Possible R package of use: https://github.com/ajschumacher/rjstat
     
     # Process dimensions metadata
     dims <- res_list$dataset$dimension$size
@@ -92,8 +97,9 @@ get_hri_stats <- function (query="", verbose=TRUE) {
     res.array <- array(data=as.numeric(res_list$dataset$value), 
                        dim=rev(dims), 
                        dimnames=rev(dimnames))
-    if (verbose)
+    if (verbose){
       message("Retrieved resource '",query,"'")
+    }
     return(res.array)
   }
   #   # Test that it works

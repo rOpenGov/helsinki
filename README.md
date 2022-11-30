@@ -1,17 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# helsinki - Helsinki open data R tools <a href="https://ropengov.github.io/hetu/"><img src="man/figures/logo.png" align="right" height="139"/></a>
+# helsinki - Helsinki open data R tools <a href="https://ropengov.github.io/helsinki/"><img src="man/figures/logo.png" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
-[![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
+[![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](https://ropengov.org/)
 [![R build
 status](https://github.com/rOpenGov/helsinki/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/helsinki/actions)
 [![CRAN Status
 Badge](https://www.r-pkg.org/badges/version/helsinki)](https://www.r-pkg.org/pkg/helsinki)
-[![Codecov test
-coverage](https://codecov.io/gh/rOpenGov/helsinki/branch/master/graph/badge.svg)](https://codecov.io/gh/rOpenGov/helsinki?branch=master)
 [![Downloads
 total](http://cranlogs.r-pkg.org/badges/grand-total/helsinki)](https://cran.r-project.org/package=helsinki)
 [![Downloads
@@ -69,15 +67,15 @@ page](http://ropengov.github.io/helsinki/articles/helsinki_tutorial.html).
 
 You are welcome to contact us:
 
-  - [Submit suggestions and bug
-    reports](https://github.com/ropengov/helsinki/issues) (provide the
-    output of `sessionInfo()` and `packageVersion("helsinki")` and
-    preferably provide a [reproducible
-    example](http://adv-r.had.co.nz/Reproducibility.html))
-  - [Send a pull request](https://github.com/ropengov/helsinki/)
-  - [Star us on the Github page](https://github.com/ropengov/helsinki/)
-  - [See our website](http://ropengov.org/community/) for additional
-    contact information
+- [Submit suggestions and bug
+  reports](https://github.com/ropengov/helsinki/issues) (provide the
+  output of `sessionInfo()` and `packageVersion("helsinki")` and
+  preferably provide a [reproducible
+  example](http://adv-r.had.co.nz/Reproducibility.html))
+- [Send a pull request](https://github.com/ropengov/helsinki/)
+- [Star us on the Github page](https://github.com/ropengov/helsinki/)
+- [See our website](https://ropengov.org/community/) for additional
+  contact information
 
 ## Acknowledgements
 
@@ -89,5 +87,5 @@ Lahti](https://github.com/antagomir). helsinki - Helsinki open data R
 tools. URL: <http://ropengov.github.io/helsinki/>
 
 We are grateful to all
-[contributors](https://github.com/rOpenGov/helsinki/graphs/contributors)\!
-This project is part of [rOpenGov](http://ropengov.org).
+[contributors](https://github.com/rOpenGov/helsinki/graphs/contributors)!
+This project is part of [rOpenGov](https://ropengov.org).

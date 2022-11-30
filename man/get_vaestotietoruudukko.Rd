@@ -7,30 +7,37 @@
 get_vaestotietoruudukko(year = NULL)
 }
 \arguments{
-\item{year}{year as numeric from range 2015:2019}
+\item{year}{a single year as numeric between 1997-2003 and 2008:2021.
+If NULL (default), the function will return the latest available dataset.}
 }
 \value{
 sf object
 }
 \description{
-Produces an sf object for Väestötietoruudukko (population grid)
+Produces an sf object for Väestötietoruudukko (population grid).
 }
 \details{
-Additional data not available here can be manually downloaded from HRI website: https://hri.fi/data/fi/dataset/vaestotietoruudukko
+Additional data not available here can be manually downloaded from
+HRI website: \url{https://hri.fi/data/fi/dataset/vaestotietoruudukko}
 
-Years 2015-2019 are tested to work at the time of development. 
+Years 1997-2003 and 2008-2021 are tested to work at the time of development.
+Datasets from years 2015-2021 are downloaded from HSY WFS API and datasets
+for other years are downloaded as zip files from HRI website. The format of
+the output might be a bit different between datasets downloaded from the WFS
+API and datasets downloaded from HRI website.
+
 Additional years may be added in the future and older datasets may be removed
-from the API. 
+from the API. See package NEWS for more information.
 
-The current datasets can be listed with get_feature_list()
-or select_feature().
+The current datasets can be listed with \code{\link[=get_feature_list]{get_feature_list()}}
+or \code{\link[=select_feature]{select_feature()}}.
 }
 \examples{
 \dontrun{
-pop_grid <- get_vaestotietoruudukko(year = 2017)
+pop_grid <- get_vaestotietoruudukko(year = 2021)
 }
 
 }
 \author{
-Pyry Kantanen <pyry.kantanen@gmail.com>
+Pyry Kantanen \href{mailto:pyry.kantanen@gmail.com}{pyry.kantanen@gmail.com}
 }

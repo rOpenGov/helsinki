@@ -23,6 +23,6 @@ and then immediately read back in into a sf object.
 For internal use, not exported.
 }
 \author{
-Joona Lehtomäki <joona.lehtomaki@iki.fi>
+Joona Lehtomäki \href{mailto:joona.lehtomaki@iki.fi}{joona.lehtomaki@iki.fi}
 }
 \keyword{utilities}

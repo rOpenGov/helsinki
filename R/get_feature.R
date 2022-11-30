@@ -26,6 +26,9 @@ get_feature <- function(base.url = "https://kartta.hsy.fi/geoserver/wfs",
                      request = "getFeature", 
                      typeName = typename)
   feature <- wfs_api(base.url = base.url, queries = user_input)
+  if (is.null(feature)) {
+    return(invisible(NULL))
+  }
   sf_obj <- to_sf(feature)
   if (is.na(sf::st_crs(sf_obj))) {
     if (!is.null(CRS)) {

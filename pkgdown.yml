@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   helsinki_tutorial: helsinki_tutorial.html
-last_built: 2022-11-30T15:30Z
+last_built: 2022-11-30T16:09Z
 urls:
   reference: https://ropengov.github.io/helsinki/reference
   article: https://ropengov.github.io/helsinki/articles

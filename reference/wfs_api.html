@@ -57,7 +57,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">wfs_api</span><span class="op">(</span>base.url <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">queries</span>, timeout.s <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">wfs_api</span><span class="op">(</span>base.url <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">queries</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -77,8 +77,10 @@ Kantanen) from RStudio community member kvasilopoulos. Many thanks!</p>
 <dd><p>List of query parameters</p></dd>
 
 
-<dt>timeout.s</dt>
-<dd><p>timeout in seconds, passed onto <code><a href="gracefully_fail.html">gracefully_fail()</a></code></p></dd>
+<dt>...</dt>
+<dd><p>For passing parameters to embedded functions, for example
+<em>timeout.s</em> (timeout in seconds) in the case of <strong>gracefully_fail()</strong>
+internal function</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -112,44 +114,14 @@ Pyry Kantanen</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="fu">wfs_api</span><span class="op">(</span>base.url <span class="op">=</span> <span class="st">"https://kartta.hsy.fi/geoserver/wfs"</span>, </span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu">wfs_api</span><span class="op">(</span>base.url <span class="op">=</span> <span class="st">"https://kartta.hsy.fi/geoserver/wfs"</span>, </span></span>
 <span class="r-in"><span>          queries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"service"</span> <span class="op">=</span> <span class="st">"WFS"</span>, </span></span>
 <span class="r-in"><span>          <span class="st">"version"</span> <span class="op">=</span> <span class="st">"1.0.0"</span>, </span></span>
 <span class="r-in"><span>          <span class="st">"request"</span> <span class="op">=</span> <span class="st">"getFeature"</span>, </span></span>
 <span class="r-in"><span>          <span class="st">"typeName"</span> <span class="op">=</span> <span class="st">"ilmanlaatu:Ilmanlaatu_nyt"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>          <span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Requesting response from: https://kartta.hsy.fi/geoserver/wfs?service=WFS&amp;version=1.0.0&amp;request=getFeature&amp;typeName=ilmanlaatu%3AIlmanlaatu_nyt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $url</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://kartta.hsy.fi/geoserver/wfs?service=WFS&amp;version=1.0.0&amp;request=getFeature&amp;typeName=ilmanlaatu%3AIlmanlaatu_nyt"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $response</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Response [https://kartta.hsy.fi/geoserver/wfs?service=WFS&amp;version=1.0.0&amp;request=getFeature&amp;typeName=ilmanlaatu%3AIlmanlaatu_nyt]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-11-30 15:30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Status: 200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Content-Type: text/xml; subtype=gml/2.1.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 10.4 kB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $content</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> {xml_document}</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;FeatureCollection schemaLocation="http://www.opengis.net/wfs https://kartta.hsy.fi/geoserver/schemas/wfs/1.0.0/WFS-basic.xsd www.hsy.fi/ilmanlaatu https://kartta.hsy.fi/geoserver/wfs?service=WFS&amp;version=1.0.0&amp;request=DescribeFeatureType&amp;typeName=ilmanlaatu%3AIlmanlaatu_nyt" xmlns="http://www.opengis.net/wfs" xmlns:wfs="http://www.opengis.net/wfs" xmlns:gml="http://www.opengis.net/gml" xmlns:ilmanlaatu="www.hsy.fi/ilmanlaatu" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] &lt;gml:boundedBy&gt;\n  &lt;gml:null&gt;unknown&lt;/gml:null&gt;\n&lt;/gml:boundedBy&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14] &lt;gml:featureMember&gt;\n  &lt;ilmanlaatu:Ilmanlaatu_nyt fid="Ilmanlaatu_nyt.fi ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "wfs_api"</span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span>                     </span></span>
 </code></pre></div>
     </div>

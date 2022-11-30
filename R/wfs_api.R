@@ -17,7 +17,9 @@
 #'
 #' @param base.url WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
 #' @param queries List of query parameters
-#' @param timeout.s timeout in seconds, passed onto [gracefully_fail()]
+#' @param ... For passing parameters to embedded functions, for example 
+#' *timeout.s* (timeout in seconds) in the case of **gracefully_fail()** 
+#' internal function
 #'
 #' @return wfs_api (S3) object with the following attributes:
 #'        \describe{
@@ -30,19 +32,21 @@
 #'    Pyry Kantanen
 #'
 #' @examples
+#' \dontrun{
 #'   wfs_api(base.url = "https://kartta.hsy.fi/geoserver/wfs", 
 #'           queries = c("service" = "WFS", 
 #'           "version" = "1.0.0", 
 #'           "request" = "getFeature", 
 #'           "typeName" = "ilmanlaatu:Ilmanlaatu_nyt")
 #'           )
+#' }
 #'                      
 #' @importFrom xml2 read_xml xml_text xml_has_attr xml_children
 #' @importFrom httr GET timeout user_agent modify_url http_error message_for_status
 #' @importFrom curl has_internet
 #'                      
 #' @export
-wfs_api <- function(base.url = NULL, queries, timeout.s = NULL) {
+wfs_api <- function(base.url = NULL, queries, ...) {
   
   if (!is.character(base.url)){
     base.url <- as.character(base.url)
@@ -80,7 +84,7 @@ wfs_api <- function(base.url = NULL, queries, timeout.s = NULL) {
   # Print out the URL
   message("Requesting response from: ", url)
   
-  graceful_result <- gracefully_fail(url, timeout.s = NULL)
+  graceful_result <- gracefully_fail(url)
   
   if (is.null(graceful_result)) {
     message("Please check your settings or function parameters \n")

@@ -11,14 +11,16 @@ Source of the original RStudio community discussion:
 \url{https://community.rstudio.com/t/internet-resources-should-fail-gracefully/49199}
 }
 \usage{
-wfs_api(base.url = NULL, queries, timeout.s = NULL)
+wfs_api(base.url = NULL, queries, ...)
 }
 \arguments{
 \item{base.url}{WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"}
 
 \item{queries}{List of query parameters}
 
-\item{timeout.s}{timeout in seconds, passed onto \code{\link[=gracefully_fail]{gracefully_fail()}}}
+\item{...}{For passing parameters to embedded functions, for example
+\emph{timeout.s} (timeout in seconds) in the case of \strong{gracefully_fail()}
+internal function}
 }
 \value{
 wfs_api (S3) object with the following attributes:
@@ -40,12 +42,14 @@ This is a low-level function intended to be used by other higher level
 functions in the package.
 }
 \examples{
+\dontrun{
   wfs_api(base.url = "https://kartta.hsy.fi/geoserver/wfs", 
           queries = c("service" = "WFS", 
           "version" = "1.0.0", 
           "request" = "getFeature", 
           "typeName" = "ilmanlaatu:Ilmanlaatu_nyt")
           )
+}
                      
 }
 \author{

@@ -197,7 +197,7 @@ The main takeaway is that "suuralue" is the highest-level division and "pienalue
 
 As promised earlier in [API Access](#api-access), the following example gives an idea on how to visualize waterpost locations (and, of course, other types of spatial data as well) on capital region map.
 
-```{r mapping_example1}
+```{r mapping_example1, eval = FALSE}
 helsinki <- get_city_map(city = "helsinki", level = "suuralue")
 espoo <- get_city_map(city = "espoo", level = "suuralue")
 vantaa <- get_city_map(city = "vantaa", level = "suuralue")

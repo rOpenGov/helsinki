@@ -3,7 +3,7 @@
 #' @description Retrieves data from the Helsinki Region Infoshare (HRI) 
 #' statistics API: <http://dev.hel.fi/stats/>.
 #' Currently provides access to the *aluesarjat* data: 
-#' <http://www.aluesarjat.fi/>.
+#' <https://stat.hel.fi/pxweb/fi/Aluesarjat/>.
 #' 
 #' @details Current implementation is very simple.
 #' You can either get the list of resources with query="",

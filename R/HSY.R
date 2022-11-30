@@ -61,11 +61,16 @@ get_vaestotietoruudukko <- function(year = NULL) {
     return(feature)
   } else {
     metadata <- get_hri_dataset_metadata("vaestotietoruudukko")
+    
+    if (is.null(metadata)) {
+      message("Please check your settings or function parameters \n")
+      return(invisible(NULL))
+    }
+    
     p <- c(year, "shp")
     matching_rows <- sapply(p, grep, metadata$resources$name)
     desired_file_index <- intersect(matching_rows[[1]], matching_rows[[2]])
     url <- metadata$resources$url[desired_file_index]
-    
     td <- tempdir()
     tf <- tempfile(tmpdir=td, fileext=".zip")
     utils::download.file(url, tf)
@@ -140,6 +145,12 @@ get_rakennustietoruudukko <- function(year = NULL) {
     return(feature)
   } else {
     metadata <- get_hri_dataset_metadata("vaestotietoruudukko")
+    
+    if (is.null(metadata)) {
+      message("Please check your settings or function parameters \n")
+      return(invisible(NULL))
+    }
+    
     p <- c(year, "shp")
     matching_rows <- sapply(p, grep, metadata$resources$name)
     desired_file_index <- intersect(matching_rows[[1]], matching_rows[[2]])

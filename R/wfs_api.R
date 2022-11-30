@@ -43,6 +43,10 @@
 #'                      
 #' @export
 wfs_api <- function(base.url = NULL, queries, timeout.s = NULL) {
+  
+  if (!is.character(base.url)){
+    base.url <- as.character(base.url)
+  }
 
   if (is.null(base.url)) {
     stop("base.url = NULL. Please input a valid WFS url")

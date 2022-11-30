@@ -19,7 +19,7 @@ multi-dimensional array
 Retrieves data from the Helsinki Region Infoshare (HRI)
 statistics API: \url{http://dev.hel.fi/stats/}.
 Currently provides access to the \emph{aluesarjat} data:
-\url{http://www.aluesarjat.fi/}.
+\url{https://stat.hel.fi/pxweb/fi/Aluesarjat/}.
 }
 \details{
 Current implementation is very simple.

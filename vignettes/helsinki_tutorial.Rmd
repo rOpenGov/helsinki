@@ -63,9 +63,9 @@ The package has basic functions for interacting with WFS APIs, courtesy of [FMI2
 All available features of a given API can be easily listed with the `get_feature_list()` function. The API functions can, however, be used with a wide variety of different `base.url` parameters.
 
 ```{r wfs1}
-url <- "https://kartta.hsy.fi/geoserver/wfs"
+input_url <- "https://kartta.hsy.fi/geoserver/wfs"
 
-hsy_features <- get_feature_list(base.url = url)
+hsy_features <- get_feature_list(base.url = input_url)
 # Select only features which are related to water utilities and services
 hsy_vesihuolto <- hsy_features[which(hsy_features$Namespace == "vesihuolto"),]
 hsy_vesihuolto
@@ -76,10 +76,18 @@ feature_of_interest <- "vesihuolto:VH_Vesipostit_HSY"
 When the wanted feature and its Name (in other words: Namespace:Title combination) is known, it can be downloaded with `get_feature()` by providing the correct `base.url` and the Name as the `typename` parameter.
 
 ```{r wfs2}
+input_url <- "https://kartta.hsy.fi/geoserver/wfs"
+feature_of_interest <- "vesihuolto:VH_Vesipostit_HSY"
+
 # downloading a feature
-waterposts <- get_feature(base.url = url, typename = feature_of_interest)
+waterposts <- get_feature(base.url = input_url, typename = feature_of_interest)
+
 # Visualizing the location of waterposts
-plot(waterposts$geom)
+if (exists("waterposts")) {
+  if (!is.null(waterposts)) {
+    plot(waterposts$geom)
+  }
+}
 ```
 
 Dots on a blank canvas do not make much sense and therefore helsinki-package has `get_city_map()` function for downloading city district boundaries. An example of this is provided in the [Helsinki region district maps](#helsinki-region-district-maps) section of this vignette.
@@ -87,12 +95,14 @@ Dots on a blank canvas do not make much sense and therefore helsinki-package has
 Helsinki-package provides an easy-to-use menu-driven `select_feature()` function that effectively combines `get_feature_list()` and `get_feature()`. At default it only returns the Name of the wanted function, but if `get` parameter is set to TRUE, it returns an sf_object which can be easily visualized.
 
 ```{r wfs3, eval = FALSE}
+input_url <- "https://kartta.hsy.fi/geoserver/wfs"
+
 # Interactive example with select_feature
-selected_feature <- select_feature(base.url = url)
-feature <- get_feature(base.url = url, typename = selected_feature)
+selected_feature <- select_feature(base.url = input_url)
+feature <- get_feature(base.url = input_url, typename = selected_feature)
 
 # Skipping a redundant step with parameter get = TRUE
-feature <- select_feature(base.url = url, get = TRUE)
+feature <- select_feature(base.url = input_url, get = TRUE)
 ```
 
 ### Helsinki Region Environmental Services HSY open data
@@ -110,8 +120,10 @@ pop_grid <- get_vaestotietoruudukko(year = 2018)
 building_grid <- get_rakennustietoruudukko(year = 2020)
 
 # Logarithmic scales to make the visualizations more discernible
-ggplot(pop_grid) + geom_sf(aes(colour=log(asukkaita), fill=log(asukkaita)))
-ggplot(building_grid) + geom_sf(aes(colour=log(kerala_yht), fill=log(kerala_yht)))
+if (!all(is.null(pop_grid), is.null(building_grid))) {
+  ggplot(pop_grid) + geom_sf(aes(colour=log(asukkaita), fill=log(asukkaita)))
+  ggplot(building_grid) + geom_sf(aes(colour=log(kerala_yht), fill=log(kerala_yht)))
+}
 ```
 
 With the previous version of the helsinki package, years 2015 to 2020 were supported. In 2022 a new year was added, 2011, demonstrating how the API may be updated more regularly than the package. The `get_feature_list()` function can be used to download datasets that are not baked into included functions. 
@@ -124,8 +136,10 @@ library(ggplot2)
 pop_grid2 <- get_vaestotietoruudukko(year = 2011)
 building_grid2 <- get_rakennustietoruudukko(year = 2011)
 
-ggplot(pop_grid2) + geom_sf(aes(colour=log(ASUKKAITA), fill=log(ASUKKAITA)))
-ggplot(building_grid2) + geom_sf(aes(colour=log(ASVALJYYS), fill=log(ASVALJYYS)))
+if (!all(is.null(pop_grid2), is.null(building_grid2))) {
+  ggplot(pop_grid2) + geom_sf(aes(colour=log(ASUKKAITA), fill=log(ASUKKAITA)))
+  ggplot(building_grid2) + geom_sf(aes(colour=log(ASVALJYYS), fill=log(ASVALJYYS)))
+}
 ```
 
 While easy enough to build, specialized functions such as these are probably not something that power users want to rely on in their work flows. They also add more manual phases to package maintenance and therefore are probably not the direction we're heading in the future. If you feel differently about this and there is a dataset that gets a lot of use, feel free to drop us a suggestion in [GitHub](https://github.com/rOpenGov/helsinki/issues).
@@ -191,22 +205,26 @@ kauniainen <- get_city_map(city = "kauniainen", level = "suuralue")
 
 library(ggplot2)
 
-ggplot() +
-  geom_sf(data = helsinki) +
-  geom_sf(data = espoo) +
-  geom_sf(data = vantaa) +
-  geom_sf(data = kauniainen) +
-  geom_sf(data = waterposts)
+if (!all(is.null(helsinki), is.null(espoo), is.null(vantaa), is.null(kauniainen), is.null(waterposts))) {
+  ggplot() +
+    geom_sf(data = helsinki) +
+    geom_sf(data = espoo) +
+    geom_sf(data = vantaa) +
+    geom_sf(data = kauniainen) +
+    geom_sf(data = waterposts)
+}
 ```
 
 In addition, it is possible to download "aanestysalue" (voting district) divisions for the city of Helsinki. Currently this data is not available for other cities and it must be accessed from other sources.
 
 ```{r mapping_example2, eval=FALSE}
-library(sf)
 map <- get_city_map(city = "helsinki", level = "suuralue")
-plot(sf::st_geometry(map))
-
 voting_district <- get_city_map(city = "helsinki", level = "aanestysalue")
+```
+
+```{r mapping_example2_plot, eval=FALSE}
+library(sf)
+plot(sf::st_geometry(map))
 plot(sf::st_geometry(voting_district))
 ```
 
@@ -214,22 +232,20 @@ For other cities than Helsinki voting districts are currently not available.
 
 ## Helsinki Region Infoshare statistics API
 
-Function `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/).
+Function `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare statistics API](http://dev.hel.fi/stats/). Specify a dataset to retrieve. In this specific example we will download the first item on the stats_list object. The output is a three-dimensional array.
 
 ```{r hri_stats1, message=FALSE, warning=FALSE}
 # Retrieve list of available data
 stats_list <- get_hri_stats(query="")
 # Show first results
 head(stats_list)
-```
 
-Specify a dataset to retrieve. In this specific example we will download the first item on the stats_list object. The output is a three-dimensional array.
-
-```{r hri_stats2, message=FALSE, warning=FALSE}
-# Retrieve a specific dataset
-stats_res <- get_hri_stats(query=stats_list[1])
-# Show the structure of the results
-str(stats_res)
+if (!is.null(stats_list)) {
+  # Retrieve a specific dataset
+  stats_res <- get_hri_stats(query=stats_list[1])
+  # Show the structure of the results
+  str(stats_res)
+}
 ```
 
 ## Licensing and Citations

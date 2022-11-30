@@ -34,6 +34,12 @@ get_feature_list <- function(base.url = NULL,
   }
   
   resp <- wfs_api(base.url = base.url, queries = queries)
+
+  if (is.null(resp)) {
+    message("Please check your settings or function parameters \n")
+    return(invisible(NULL))
+  }
+  
   content <- resp$content
   
   # For some reason this seems to be a necessary step for xml_find_all to work
@@ -114,6 +120,14 @@ select_feature <- function(base.url = NULL, get = FALSE) {
 #' @keywords internal
 get_hri_dataset_list <- function() {
   url <- "https://hri.fi/data/api/3/action/package_list"
+  
+  graceful_result <- gracefully_fail(url, timeout.s = NULL)
+  
+  if (is.null(graceful_result)) {
+    message("Please check your settings or function parameters \n")
+    return(invisible(NULL))
+  }
+  
   package_list <- jsonlite::fromJSON(url)
   result <- package_list$result
   result
@@ -127,6 +141,11 @@ get_hri_dataset_list <- function() {
 #' @keywords internal
 get_hri_dataset_metadata <- function(id) {
   datasets <- get_hri_dataset_list()
+  
+  if (is.null(datasets)) {
+    message("Please check your settings or function parameters \n")
+    return(invisible(NULL))
+  }
   
   if (is.null(id)) {
     stop("function id is NULL. Please input a valid id")

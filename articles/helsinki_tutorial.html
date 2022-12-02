@@ -89,7 +89,7 @@
                         <h4 data-toc-skip class="author">Juuso
 Parkkinen, Pyry Kantanen</h4>
             
-            <h4 data-toc-skip class="date">2022-11-30</h4>
+            <h4 data-toc-skip class="date">2022-12-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/helsinki/blob/HEAD/vignettes/helsinki_tutorial.Rmd" class="external-link"><code>vignettes/helsinki_tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>helsinki_tutorial.Rmd</code></div>
@@ -280,7 +280,7 @@ contains data from the <a href="https://palvelukartta.hel.fi/fi/" class="externa
 <span><span class="co"># Study results: 47 variables in the data frame</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">search_puisto</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 4</span></span>
-<span><span class="co">#&gt;  $ count   : int 2610</span></span>
+<span><span class="co">#&gt;  $ count   : int 2611</span></span>
 <span><span class="co">#&gt;  $ next    : chr "http://api.hel.fi/servicemap/v2/search/?page=2&amp;q=puisto"</span></span>
 <span><span class="co">#&gt;  $ previous: NULL</span></span>
 <span><span class="co">#&gt;  $ results :'data.frame':    20 obs. of  29 variables:</span></span></code></pre></div>
@@ -340,7 +340,7 @@ from the first page of search results.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">search_puisto</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 4</span></span>
-<span><span class="co">#&gt;  $ count   : int 2610</span></span>
+<span><span class="co">#&gt;  $ count   : int 2611</span></span>
 <span><span class="co">#&gt;  $ next    : chr "http://api.hel.fi/servicemap/v2/search/?page=3&amp;page_size=30&amp;q=puisto"</span></span>
 <span><span class="co">#&gt;  $ previous: chr "http://api.hel.fi/servicemap/v2/search/?page_size=30&amp;q=puisto"</span></span>
 <span><span class="co">#&gt;  $ results :'data.frame':    30 obs. of  29 variables:</span></span>
@@ -432,26 +432,26 @@ Events API</a>.</p>
 <span><span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"event"</span><span class="op">)</span></span>
 <span><span class="co"># Get names for the first 20 results</span></span>
 <span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span></span>
-<span><span class="co">#&gt;  [1] "Den Besynnerliga Händelsen Med Hunden Om Natten"</span></span>
-<span><span class="co">#&gt;  [2] "Tatu Ja Patu Helsingissä"                       </span></span>
-<span><span class="co">#&gt;  [3] NA                                               </span></span>
-<span><span class="co">#&gt;  [4] "Once + Replik!"                                 </span></span>
-<span><span class="co">#&gt;  [5] "Saikkua, Kiitos! Osa 3"                         </span></span>
-<span><span class="co">#&gt;  [6] "Bolla"                                          </span></span>
-<span><span class="co">#&gt;  [7] "Turvamies"                                      </span></span>
-<span><span class="co">#&gt;  [8] "Niin Kuin Taivaassa"                            </span></span>
-<span><span class="co">#&gt;  [9] "Paahtimo"                                       </span></span>
-<span><span class="co">#&gt; [10] "Everstinna"                                     </span></span>
-<span><span class="co">#&gt; [11] "Lapset"                                         </span></span>
-<span><span class="co">#&gt; [12] "Club Act!One"                                   </span></span>
-<span><span class="co">#&gt; [13] "Kiviä Taskussa"                                 </span></span>
-<span><span class="co">#&gt; [14] "Baskervillen Koira"                             </span></span>
-<span><span class="co">#&gt; [15] "Lapset"                                         </span></span>
-<span><span class="co">#&gt; [16] "Niin Kuin Taivaassa"                            </span></span>
-<span><span class="co">#&gt; [17] "Kiviä Taskussa"                                 </span></span>
-<span><span class="co">#&gt; [18] "Lapset"                                         </span></span>
-<span><span class="co">#&gt; [19] "Niin Kuin Taivaassa"                            </span></span>
-<span><span class="co">#&gt; [20] NA</span></span>
+<span><span class="co">#&gt;  [1] "Musiikin teematorstait Herttoniemen kirjastossa"</span></span>
+<span><span class="co">#&gt;  [2] "Oodin Oneshot-roolipelikerho"                   </span></span>
+<span><span class="co">#&gt;  [3] "Vantaan Jazzyhdistyksen lukupiiri"              </span></span>
+<span><span class="co">#&gt;  [4] "Oodin Oneshot-roolipelikerho"                   </span></span>
+<span><span class="co">#&gt;  [5] "Oodin Oneshot-roolipelikerho"                   </span></span>
+<span><span class="co">#&gt;  [6] "Vantaan Jazzyhdistyksen lukupiiri"              </span></span>
+<span><span class="co">#&gt;  [7] "Oodin Oneshot-roolipelikerho"                   </span></span>
+<span><span class="co">#&gt;  [8] "Oodin Oneshot-roolipelikerho"                   </span></span>
+<span><span class="co">#&gt;  [9] "Vantaan Jazzyhdistyksen lukupiiri"              </span></span>
+<span><span class="co">#&gt; [10] "Oodin Oneshot-roolipelikerho"                   </span></span>
+<span><span class="co">#&gt; [11] "Oodin Oneshot-roolipelikerho"                   </span></span>
+<span><span class="co">#&gt; [12] "Vantaan Jazzyhdistyksen lukupiiri"              </span></span>
+<span><span class="co">#&gt; [13] "Oodin Oneshot-roolipelikerho"                   </span></span>
+<span><span class="co">#&gt; [14] "Lautapelikerho"                                 </span></span>
+<span><span class="co">#&gt; [15] "Oodin Oneshot-roolipelikerho"                   </span></span>
+<span><span class="co">#&gt; [16] "Lautapelikerho"                                 </span></span>
+<span><span class="co">#&gt; [17] "Lautapelikerho"                                 </span></span>
+<span><span class="co">#&gt; [18] "Oodin Oneshot-roolipelikerho"                   </span></span>
+<span><span class="co">#&gt; [19] "Lautapelikerho"                                 </span></span>
+<span><span class="co">#&gt; [20] "Lautapelikerho"</span></span>
 <span><span class="co"># See what kind of data is given for events</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "id"                          "location"                   </span></span>

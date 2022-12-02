@@ -3,7 +3,7 @@ helsinki 1.0.6 (2022-11-30)
 
 ### UPCOMING CHANGES
 
- * In future versions of this package, core functions such as `get_rakennustietoruudukko()`, `get_vaestotietoruudukko()`, `get_hri_stats()` and `get_city_map()` may need 
+ * In future versions of this package, functions such as `get_rakennustietoruudukko()`, `get_vaestotietoruudukko()`, `get_hri_stats()` and `get_city_map()` may be changed from their current implementation due to expected changes in their relevant APIs.
 
 ### MINOR IMPROVEMENTS
 

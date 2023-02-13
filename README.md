@@ -22,14 +22,11 @@ GitHub](https://img.shields.io/github/stars/ropengov/helsinki.svg?style=social)]
 Twitter](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
 <!-- badges: end -->
 
-The goal of helsinki package is to provide tools in R to access and
-download open data from City of Helsinki and the Helsinki metropolitan
-area - the Finnish capital region.
+The goal of helsinki package is to provide tools in R to access and download open data from City of Helsinki and the Helsinki metropolitan area - the Finnish capital region.
 
 ## Installation
 
-You can install the released version of helsinki from
-[CRAN](https://CRAN.R-project.org) with:
+You can install the released version of helsinki from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("helsinki")
@@ -51,8 +48,7 @@ Loading the package:
 library(helsinki)
 ```
 
-List available features from Helsinki Region Environmental Services HSY
-WFS API and then download the 15th feature from that list:
+List available features from Helsinki Region Environmental Services HSY WFS API and then download the 15th feature from that list:
 
 ``` r
 url <- "https://kartta.hsy.fi/geoserver/wfs"
@@ -60,8 +56,7 @@ hsy_features <- get_feature_list(base.url = url)
 get_feature(base.url = url, typename = hsy_features$Name[15])
 ```
 
-For more examples, check the [tutorial
-page](http://ropengov.github.io/helsinki/articles/helsinki_tutorial.html).
+For more examples, check the [tutorial page](http://ropengov.github.io/helsinki/articles/helsinki_tutorial.html).
 
 ## Contributing
 
@@ -79,13 +74,8 @@ You are welcome to contact us:
 
 ## Acknowledgements
 
-**Kindly cite this work** as follows: [Juuso
-Parkkinen](https://github.com/ouzor), [Joona
-Lehtomäki](https://github.com/jlehtoma), [Pyry
-Kantanen](https://github.com/pitkant), and [Leo
-Lahti](https://github.com/antagomir). helsinki - Helsinki open data R
-tools. URL: <http://ropengov.github.io/helsinki/>
+**Kindly cite this work** as follows: [Juuso Parkkinen](https://github.com/ouzor), [Joona Lehtomäki](https://github.com/jlehtoma), [Pyry Kantanen](https://github.com/pitkant), and [Leo Lahti](https://github.com/antagomir). helsinki - Helsinki open data R tools. URL: <http://ropengov.github.io/helsinki/>
 
-We are grateful to all
-[contributors](https://github.com/rOpenGov/helsinki/graphs/contributors)!
-This project is part of [rOpenGov](https://ropengov.org).
+Alternatively, run citation("helsinki") in your R environment after installing this package or "Cite this repository" section in the GitHub repository.
+
+We are grateful to all [contributors](https://github.com/rOpenGov/helsinki/graphs/contributors)! This project is part of [rOpenGov](https://ropengov.org).

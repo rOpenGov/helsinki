@@ -1,3 +1,6 @@
+# GHA workflow and pkgdev package courtesy of @dieghernan
+# Unaltered workflow example: https://github.com/dieghernan/pkgdev/blob/main/.github/workflows/update-docs.yaml
+
 on:
   push:
     paths: ['README.Rmd']

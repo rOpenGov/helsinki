@@ -75,6 +75,8 @@ You are welcome to contact us:
 
 **Kindly cite this work** as follows: [Juuso Parkkinen](https://github.com/ouzor), [Joona Lehtomäki](https://github.com/jlehtoma), [Pyry Kantanen](https://github.com/pitkant), and [Leo Lahti](https://github.com/antagomir). helsinki - Helsinki open data R tools. URL: [http://ropengov.github.io/helsinki/](http://ropengov.github.io/helsinki/)
 
+Alternatively, run `citation("helsinki")` in your R environment after installing this package or see the "Cite this repository" section of the package's GitHub repository.
+
 We are grateful to all [contributors](https://github.com/rOpenGov/helsinki/graphs/contributors)! This project is part of [rOpenGov](https://ropengov.org).
 
 [github-watch-badge]: https://img.shields.io/github/watchers/ropengov/helsinki.svg?style=social

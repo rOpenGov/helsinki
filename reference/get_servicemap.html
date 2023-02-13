@@ -129,11 +129,13 @@ the search can be narrowed down with parameters such as:</p><ul><li><p>"q" compl
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="co"># A data.frame with 47 variables</span></span></span>
-<span class="r-in"><span><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu">get_servicemap</span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu">get_servicemap</span><span class="op">(</span>query <span class="op">=</span> <span class="st">"search"</span>, q <span class="op">=</span> <span class="st">"puisto"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># A data.frame with 7 variables</span></span></span>
-<span class="r-in"><span><span class="va">search_padel</span> <span class="op">&lt;-</span> <span class="fu">get_servicemap</span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, input<span class="op">=</span><span class="st">"padel"</span>, </span></span>
-<span class="r-in"><span>only<span class="op">=</span><span class="st">"unit.name, unit.location.coordinates, unit.street_address"</span>, </span></span>
-<span class="r-in"><span>municipality<span class="op">=</span><span class="st">"helsinki"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">search_padel</span> <span class="op">&lt;-</span> <span class="fu">get_servicemap</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  query <span class="op">=</span> <span class="st">"search"</span>, input <span class="op">=</span> <span class="st">"padel"</span>,</span></span>
+<span class="r-in"><span>  only <span class="op">=</span> <span class="st">"unit.name, unit.location.coordinates, unit.street_address"</span>,</span></span>
+<span class="r-in"><span>  municipality <span class="op">=</span> <span class="st">"helsinki"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

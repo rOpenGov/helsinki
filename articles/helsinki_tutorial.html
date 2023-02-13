@@ -135,7 +135,7 @@ parameters.</p>
 <span></span>
 <span><span class="va">hsy_features</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_feature_list.html">get_feature_list</a></span><span class="op">(</span>base.url <span class="op">=</span> <span class="va">input_url</span><span class="op">)</span></span>
 <span><span class="co"># Select only features which are related to water utilities and services</span></span>
-<span><span class="va">hsy_vesihuolto</span> <span class="op">&lt;-</span> <span class="va">hsy_features</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">hsy_features</span><span class="op">$</span><span class="va">Namespace</span> <span class="op">==</span> <span class="st">"vesihuolto"</span><span class="op">)</span>,<span class="op">]</span></span>
+<span><span class="va">hsy_vesihuolto</span> <span class="op">&lt;-</span> <span class="va">hsy_features</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">hsy_features</span><span class="op">$</span><span class="va">Namespace</span> <span class="op">==</span> <span class="st">"vesihuolto"</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="va">hsy_vesihuolto</span></span>
 <span><span class="co">#&gt;                                                    Name</span></span>
 <span><span class="co">#&gt; 110                        vesihuolto:VH_Vesipostit_HSY</span></span>
@@ -234,8 +234,10 @@ grid).</p>
 <span></span>
 <span><span class="co"># Logarithmic scales to make the visualizations more discernible</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">pop_grid</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">building_grid</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pop_grid</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">building_grid</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pop_grid</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">asukkaita</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">building_grid</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">kerala_yht</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="helsinki_tutorial_files/figure-html/hsy_examples-1.png" width="525"></p>
 <p>With the previous version of the helsinki package, years 2015 to 2020
@@ -256,8 +258,10 @@ names and larger grid squares and so on.</p>
 <span><span class="va">building_grid2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_rakennustietoruudukko.html">get_rakennustietoruudukko</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2011</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">pop_grid2</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">building_grid2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pop_grid2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASUKKAITA</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASUKKAITA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">building_grid2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASVALJYYS</span><span class="op">)</span>, fill<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASVALJYYS</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pop_grid2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASUKKAITA</span><span class="op">)</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASUKKAITA</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">building_grid2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASVALJYYS</span><span class="op">)</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASVALJYYS</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <p><img src="helsinki_tutorial_files/figure-html/hsy_examples2-1.png" width="525"></p>
 <p>While easy enough to build, specialized functions such as these are
@@ -276,7 +280,7 @@ data from city of Helsinki <a href="http://api.hel.fi/servicemap/v2/" class="ext
 contains data from the <a href="https://palvelukartta.hel.fi/fi/" class="external-link">Service Map</a>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Search for "puisto" (park) (specify q="query")</span></span>
-<span><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span><span class="op">)</span></span>
+<span><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"search"</span>, q <span class="op">=</span> <span class="st">"puisto"</span><span class="op">)</span></span>
 <span><span class="co"># Study results: 47 variables in the data frame</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">search_puisto</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 4</span></span>
@@ -336,7 +340,7 @@ from the first page of search results.</p>
 <p>More results could be retrieved and viewed by giving additional
 <code>search</code> parameters.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"search"</span>, q<span class="op">=</span><span class="st">"puisto"</span>, page_size <span class="op">=</span> <span class="fl">30</span>, page <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"search"</span>, q <span class="op">=</span> <span class="st">"puisto"</span>, page_size <span class="op">=</span> <span class="fl">30</span>, page <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">search_puisto</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 4</span></span>
@@ -427,29 +431,29 @@ data from the new <a href="http://api.hel.fi/linkedevents/v1/" class="external-l
 Events API</a>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Search for current events</span></span>
-<span><span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">"event"</span><span class="op">)</span></span>
+<span><span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"event"</span><span class="op">)</span></span>
 <span><span class="co"># Get names for the first 20 results</span></span>
 <span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span></span>
-<span><span class="co">#&gt;  [1] "Bridgekerho"                                  </span></span>
-<span><span class="co">#&gt;  [2] "Maaginen open mic"                            </span></span>
-<span><span class="co">#&gt;  [3] "Tapiola Language Café"                        </span></span>
-<span><span class="co">#&gt;  [4] "Novellikoukku"                                </span></span>
-<span><span class="co">#&gt;  [5] "Suuri Soturikissailta"                        </span></span>
-<span><span class="co">#&gt;  [6] "Neulekerho"                                   </span></span>
-<span><span class="co">#&gt;  [7] "Soturikissaklubi"                             </span></span>
-<span><span class="co">#&gt;  [8] "Paloheinän kirjaston lukupiiri"               </span></span>
-<span><span class="co">#&gt;  [9] "Töölön kirjaston lukukoira"                   </span></span>
-<span><span class="co">#&gt; [10] "Avoimet kirjoittatreffit"                     </span></span>
-<span><span class="co">#&gt; [11] "Puhutaan!"                                    </span></span>
-<span><span class="co">#&gt; [12] "Kirjailija Juhani Karila"                     </span></span>
-<span><span class="co">#&gt; [13] "Lukukoira Nella"                              </span></span>
-<span><span class="co">#&gt; [14] "Maaginen ilta"                                </span></span>
-<span><span class="co">#&gt; [15] "Maaginen ilta Itäkeskuksen kirjastossa"       </span></span>
-<span><span class="co">#&gt; [16] "Oodin maaginen ilta"                          </span></span>
-<span><span class="co">#&gt; [17] "Studion käytön opastus"                       </span></span>
-<span><span class="co">#&gt; [18] "Kirjavaraston avoimet ovet"                   </span></span>
-<span><span class="co">#&gt; [19] "Kuuntelupiiri: Hyvä komppi - rumpalit svengaa"</span></span>
-<span><span class="co">#&gt; [20] NA</span></span>
+<span><span class="co">#&gt;  [1] "Taidetta taaperoille"                 </span></span>
+<span><span class="co">#&gt;  [2] "MiniPunttis-tapahtuma – Talviloma"    </span></span>
+<span><span class="co">#&gt;  [3] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt;  [4] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt;  [5] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt;  [6] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt;  [7] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt;  [8] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt;  [9] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt; [10] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt; [11] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt; [12] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt; [13] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt; [14] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt; [15] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt; [16] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt; [17] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt; [18] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt; [19] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt; [20] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
 <span><span class="co"># See what kind of data is given for events</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "id"                          "location"                   </span></span>
@@ -536,7 +540,7 @@ download the first item on the stats_list object. The output is a
 three-dimensional array.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Retrieve list of available data</span></span>
-<span><span class="va">stats_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
+<span><span class="va">stats_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
 <span><span class="co"># Show first results</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">stats_list</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                                      NULL </span></span>
@@ -554,7 +558,7 @@ three-dimensional array.</p>
 <span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">stats_list</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="co"># Retrieve a specific dataset</span></span>
-<span>  <span class="va">stats_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query<span class="op">=</span><span class="va">stats_list</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">stats_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_hri_stats.html">get_hri_stats</a></span><span class="op">(</span>query <span class="op">=</span> <span class="va">stats_list</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
 <span>  <span class="co"># Show the structure of the results</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">stats_res</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>

@@ -33,3 +33,7 @@ docs
 ^pkgdown$
 ^codecov\.yml$
 ^README\.Rmd$
+^revdep$
+^codemeta\.json$
+^CITATION\.cff$
+^CRAN-SUBMISSION$

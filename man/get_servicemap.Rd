@@ -66,11 +66,13 @@ For more detailed explanation, see \url{https://dev.hel.fi/apis/service-map-back
 \examples{
 \dontrun{
 # A data.frame with 47 variables
-search_puisto <- get_servicemap(query="search", q="puisto")
+search_puisto <- get_servicemap(query = "search", q = "puisto")
 # A data.frame with 7 variables
-search_padel <- get_servicemap(query="search", input="padel", 
-only="unit.name, unit.location.coordinates, unit.street_address", 
-municipality="helsinki")
+search_padel <- get_servicemap(
+  query = "search", input = "padel",
+  only = "unit.name, unit.location.coordinates, unit.street_address",
+  municipality = "helsinki"
+)
 }
 
 }

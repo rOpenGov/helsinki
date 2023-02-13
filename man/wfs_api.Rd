@@ -43,14 +43,17 @@ functions in the package.
 }
 \examples{
 \dontrun{
-  wfs_api(base.url = "https://kartta.hsy.fi/geoserver/wfs", 
-          queries = c("service" = "WFS", 
-          "version" = "1.0.0", 
-          "request" = "getFeature", 
-          "typeName" = "ilmanlaatu:Ilmanlaatu_nyt")
-          )
+wfs_api(
+  base.url = "https://kartta.hsy.fi/geoserver/wfs",
+  queries = c(
+    "service" = "WFS",
+    "version" = "1.0.0",
+    "request" = "getFeature",
+    "typeName" = "ilmanlaatu:Ilmanlaatu_nyt"
+  )
+)
 }
-                     
+
 }
 \author{
 Joona Lehtomäki \href{mailto:joona.lehtomaki@iki.fi}{joona.lehtomaki@iki.fi}, Kostas Vasilopoulos,

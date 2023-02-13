@@ -47,7 +47,7 @@ For more detailed explanation, see \url{http://api.hel.fi/linkedevents/v1/}.
 }
 \examples{
 \dontrun{
-events <- get_linkedevents(query="search", q="teatteri", start="2020-01-01")
+events <- get_linkedevents(query = "search", q = "teatteri", start = "2020-01-01")
 }
 
 }

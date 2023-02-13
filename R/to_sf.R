@@ -1,5 +1,5 @@
 #' @title Transform to sf-object
-#' 
+#'
 #' @description Transform a wfs_api object into a sf object.
 #'
 #' @details FMI API response object's XML (GML) content is temporarily wrtitten on disk
@@ -25,11 +25,11 @@ to_sf <- function(api_obj) {
   # Get response content
   content <- api_obj$content
   # Write the content to disk
-  destfile <- paste(tempfile(), ".gml", sep = '')
+  destfile <- paste(tempfile(), ".gml", sep = "")
   xml2::write_xml(content, destfile)
-  
+
   # Read the temporary GML file back in
   features <- sf::st_read(destfile, quiet = TRUE)
-  
+
   return(features)
 }

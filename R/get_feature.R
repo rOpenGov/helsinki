@@ -1,11 +1,11 @@
 #' @title Produce an SF object
-#' 
+#'
 #' @description Produces an sf object for easy visualization
-#' 
-#' @seealso Use \code{\link{get_feature_list}} to list all available features 
-#' for a given WFS, \code{\link{select_feature}} for listing and selecting a 
+#'
+#' @seealso Use \code{\link{get_feature_list}} to list all available features
+#' for a given WFS, \code{\link{select_feature}} for listing and selecting a
 #' feature
-#' 
+#'
 #' @param base.url WFS url, for example "https://kartta.hsy.fi/geoserver/wfs"
 #' @param typename accepts feature names, e.g. "asuminen_ja_maankaytto:1000m_verkostobufferi"
 #' No short form titles here, e.g. "1000m_verkostobufferi"!
@@ -14,17 +14,19 @@
 #' @return sf object
 #'
 #' @author Pyry Kantanen <pyry.kantanen@@gmail.com>
-#' 
+#'
 #' @importFrom sf st_crs
 #'
 #' @export
-get_feature <- function(base.url = "https://kartta.hsy.fi/geoserver/wfs", 
+get_feature <- function(base.url = "https://kartta.hsy.fi/geoserver/wfs",
                         typename = "asuminen_ja_maankaytto:Vaestotietoruudukko_2015",
                         CRS = 3879) {
-  user_input <- list(service = "WFS", 
-                     version = "1.1.0", 
-                     request = "getFeature", 
-                     typeName = typename)
+  user_input <- list(
+    service = "WFS",
+    version = "1.1.0",
+    request = "getFeature",
+    typeName = typename
+  )
   feature <- wfs_api(base.url = base.url, queries = user_input)
   if (is.null(feature)) {
     return(invisible(NULL))

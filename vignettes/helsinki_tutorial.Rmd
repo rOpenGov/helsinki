@@ -17,9 +17,9 @@ NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  message = FALSE, 
+  message = FALSE,
   warning = FALSE,
-  fig.height = 7, 
+  fig.height = 7,
   fig.width = 7,
   dpi = 75,
   purl = NOT_CRAN,
@@ -67,7 +67,7 @@ input_url <- "https://kartta.hsy.fi/geoserver/wfs"
 
 hsy_features <- get_feature_list(base.url = input_url)
 # Select only features which are related to water utilities and services
-hsy_vesihuolto <- hsy_features[which(hsy_features$Namespace == "vesihuolto"),]
+hsy_vesihuolto <- hsy_features[which(hsy_features$Namespace == "vesihuolto"), ]
 hsy_vesihuolto
 # We select our feature of interest from this list: Location of waterposts
 feature_of_interest <- "vesihuolto:VH_Vesipostit_HSY"
@@ -121,8 +121,10 @@ building_grid <- get_rakennustietoruudukko(year = 2020)
 
 # Logarithmic scales to make the visualizations more discernible
 if (!all(is.null(pop_grid), is.null(building_grid))) {
-  ggplot(pop_grid) + geom_sf(aes(colour=log(asukkaita), fill=log(asukkaita)))
-  ggplot(building_grid) + geom_sf(aes(colour=log(kerala_yht), fill=log(kerala_yht)))
+  ggplot(pop_grid) +
+    geom_sf(aes(colour = log(asukkaita), fill = log(asukkaita)))
+  ggplot(building_grid) +
+    geom_sf(aes(colour = log(kerala_yht), fill = log(kerala_yht)))
 }
 ```
 
@@ -137,8 +139,10 @@ pop_grid2 <- get_vaestotietoruudukko(year = 2011)
 building_grid2 <- get_rakennustietoruudukko(year = 2011)
 
 if (!all(is.null(pop_grid2), is.null(building_grid2))) {
-  ggplot(pop_grid2) + geom_sf(aes(colour=log(ASUKKAITA), fill=log(ASUKKAITA)))
-  ggplot(building_grid2) + geom_sf(aes(colour=log(ASVALJYYS), fill=log(ASVALJYYS)))
+  ggplot(pop_grid2) +
+    geom_sf(aes(colour = log(ASUKKAITA), fill = log(ASUKKAITA)))
+  ggplot(building_grid2) +
+    geom_sf(aes(colour = log(ASVALJYYS), fill = log(ASVALJYYS)))
 }
 ```
 
@@ -150,7 +154,7 @@ Function `get_servicemap()` retrieves regional service data from city of Helsink
 
 ```{r servicemap, message=FALSE, warning=FALSE}
 # Search for "puisto" (park) (specify q="query")
-search_puisto <- get_servicemap(query="search", q="puisto")
+search_puisto <- get_servicemap(query = "search", q = "puisto")
 # Study results: 47 variables in the data frame
 str(search_puisto, max.level = 1)
 ```
@@ -168,7 +172,7 @@ names(search_puisto$results)
 More results could be retrieved and viewed by giving additional `search` parameters.
 
 ```{r search_example2}
-search_puisto <- get_servicemap(query="search", q="puisto", page_size = 30, page = 2)
+search_puisto <- get_servicemap(query = "search", q = "puisto", page_size = 30, page = 2)
 
 str(search_puisto)
 search_puisto$results$name.fi
@@ -180,7 +184,7 @@ Function `get_linkedevents()` retrieves regional event data from the new [Linked
 
 ```{r linkedevents, message=FALSE, warning=FALSE}
 # Search for current events
-events <- get_linkedevents(query="event")
+events <- get_linkedevents(query = "event")
 # Get names for the first 20 results
 events$data$name$fi
 # See what kind of data is given for events
@@ -236,13 +240,13 @@ Function `get_hri_stats()` retrieves data from the [Helsinki Region Infoshare st
 
 ```{r hri_stats1, message=FALSE, warning=FALSE}
 # Retrieve list of available data
-stats_list <- get_hri_stats(query="")
+stats_list <- get_hri_stats(query = "")
 # Show first results
 head(stats_list)
 
 if (!is.null(stats_list)) {
   # Retrieve a specific dataset
-  stats_res <- get_hri_stats(query=stats_list[1])
+  stats_res <- get_hri_stats(query = stats_list[1])
   # Show the structure of the results
   str(stats_res)
 }

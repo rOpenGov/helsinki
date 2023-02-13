@@ -29,10 +29,10 @@ jobs:
             dieghernan/pkgdev
           needs: website
 
-      - name: Update docs
+      - name: Update README and .cff file
         run: |
 
-          pkgdev::update_docs()
+          pkgdev::update_docs(url_update = FALSE, create_codemeta = FALSE, create_cff = TRUE, build_readme = TRUE, verbose = FALSE, precompute = FALSE)
 
         shell: Rscript {0}
 

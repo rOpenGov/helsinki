@@ -7,7 +7,6 @@
 *.tar.gz
 *.Rcheck
 .Rproj.user
-helsinki.Rproj
 *.RData
 .DS_Store
 doc

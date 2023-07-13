@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto_Mono-0.4.5/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto_Mono-0.4.6/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Helsinki open data R tools">
@@ -89,7 +89,7 @@
                         <h4 data-toc-skip class="author">Juuso
 Parkkinen, Pyry Kantanen</h4>
             
-            <h4 data-toc-skip class="date">2023-02-13</h4>
+            <h4 data-toc-skip class="date">2023-07-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/helsinki/blob/HEAD/vignettes/helsinki_tutorial.Rmd" class="external-link"><code>vignettes/helsinki_tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>helsinki_tutorial.Rmd</code></div>
@@ -138,39 +138,37 @@ parameters.</p>
 <span><span class="va">hsy_vesihuolto</span> <span class="op">&lt;-</span> <span class="va">hsy_features</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="va">hsy_features</span><span class="op">$</span><span class="va">Namespace</span> <span class="op">==</span> <span class="st">"vesihuolto"</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="va">hsy_vesihuolto</span></span>
 <span><span class="co">#&gt;                                                    Name</span></span>
-<span><span class="co">#&gt; 110                        vesihuolto:VH_Vesipostit_HSY</span></span>
-<span><span class="co">#&gt; 264                 vesihuolto:vesihuollon_toimipisteet</span></span>
-<span><span class="co">#&gt; 266               vesihuolto:vh_hulevesiviemaroity_alue</span></span>
-<span><span class="co">#&gt; 267  vesihuolto:vh_hva_alustavat_laajenemisalueet_21_22</span></span>
-<span><span class="co">#&gt; 268      vesihuolto:vh_hva_hulevesiviemaroity_alue_2020</span></span>
-<span><span class="co">#&gt; 269                   vesihuolto:vh_hva_laajennusalueet</span></span>
-<span><span class="co">#&gt; 270              vesihuolto:vh_hva_laajennusalueet_2020</span></span>
-<span><span class="co">#&gt; 271      vesihuolto:vh_jatevesi_matkaaika_puhdistamolle</span></span>
-<span><span class="co">#&gt; 272      vesihuolto:vh_muut_vesihuollon_toiminta_alueet</span></span>
-<span><span class="co">#&gt; 273                   vesihuolto:vh_sekaviemarointialue</span></span>
-<span><span class="co">#&gt; 274              vesihuolto:vh_sekaviemarointialue_2020</span></span>
-<span><span class="co">#&gt; 275 vesihuolto:vh_sekaviemarointialue_eriytettavat_2020</span></span>
-<span><span class="co">#&gt; 276                         vesihuolto:vh_toiminta_alue</span></span>
-<span><span class="co">#&gt; 277              vesihuolto:vh_toiminta_alue_talousvesi</span></span>
-<span><span class="co">#&gt; 278 vesihuolto:vh_toiminta_alueen_alustava_laajeneminen</span></span>
-<span><span class="co">#&gt; 286               vesihuolto:ylimaarainen_verkostopaine</span></span>
+<span><span class="co">#&gt; 126                        vesihuolto:VH_Vesipostit_HSY</span></span>
+<span><span class="co">#&gt; 281                 vesihuolto:vesihuollon_toimipisteet</span></span>
+<span><span class="co">#&gt; 283               vesihuolto:vh_hulevesiviemaroity_alue</span></span>
+<span><span class="co">#&gt; 284  vesihuolto:vh_hva_alustavat_laajenemisalueet_21_22</span></span>
+<span><span class="co">#&gt; 285             vesihuolto:vh_hva_laajeneminen_alustava</span></span>
+<span><span class="co">#&gt; 286                   vesihuolto:vh_hva_laajennusalueet</span></span>
+<span><span class="co">#&gt; 287              vesihuolto:vh_hva_laajennusalueet_2020</span></span>
+<span><span class="co">#&gt; 288               vesihuolto:vh_hva_sekaviemarointialue</span></span>
+<span><span class="co">#&gt; 289           vesihuolto:vh_hva_sva_eriyttamiskelpoiset</span></span>
+<span><span class="co">#&gt; 290      vesihuolto:vh_muut_vesihuollon_toiminta_alueet</span></span>
+<span><span class="co">#&gt; 291              vesihuolto:vh_sekaviemarointialue_2020</span></span>
+<span><span class="co">#&gt; 292 vesihuolto:vh_sekaviemarointialue_eriytettavat_2020</span></span>
+<span><span class="co">#&gt; 293                         vesihuolto:vh_toiminta_alue</span></span>
+<span><span class="co">#&gt; 294              vesihuolto:vh_toiminta_alue_talousvesi</span></span>
+<span><span class="co">#&gt; 295 vesihuolto:vh_toiminta_alueen_alustava_laajeneminen</span></span>
 <span><span class="co">#&gt;                                        Title  Namespace</span></span>
-<span><span class="co">#&gt; 110                        VH_Vesipostit_HSY vesihuolto</span></span>
-<span><span class="co">#&gt; 264                 vesihuollon_toimipisteet vesihuolto</span></span>
-<span><span class="co">#&gt; 266               vh_hulevesiviemaroity_alue vesihuolto</span></span>
-<span><span class="co">#&gt; 267  vh_hva_alustavat_laajenemisalueet_21_22 vesihuolto</span></span>
-<span><span class="co">#&gt; 268      vh_hva_hulevesiviemaroity_alue_2020 vesihuolto</span></span>
-<span><span class="co">#&gt; 269                   vh_hva_laajennusalueet vesihuolto</span></span>
-<span><span class="co">#&gt; 270              vh_hva_laajennusalueet_2020 vesihuolto</span></span>
-<span><span class="co">#&gt; 271      vh_jatevesi_matkaaika_puhdistamolle vesihuolto</span></span>
-<span><span class="co">#&gt; 272      vh_muut_vesihuollon_toiminta_alueet vesihuolto</span></span>
-<span><span class="co">#&gt; 273                   vh_sekaviemarointialue vesihuolto</span></span>
-<span><span class="co">#&gt; 274              vh_sekaviemarointialue_2020 vesihuolto</span></span>
-<span><span class="co">#&gt; 275 vh_sekaviemarointialue_eriytettavat_2020 vesihuolto</span></span>
-<span><span class="co">#&gt; 276                         vh_toiminta_alue vesihuolto</span></span>
-<span><span class="co">#&gt; 277              vh_toiminta_alue_talousvesi vesihuolto</span></span>
-<span><span class="co">#&gt; 278 vh_toiminta_alueen_alustava_laajeneminen vesihuolto</span></span>
-<span><span class="co">#&gt; 286               ylimaarainen_verkostopaine vesihuolto</span></span>
+<span><span class="co">#&gt; 126                        VH_Vesipostit_HSY vesihuolto</span></span>
+<span><span class="co">#&gt; 281                 vesihuollon_toimipisteet vesihuolto</span></span>
+<span><span class="co">#&gt; 283               vh_hulevesiviemaroity_alue vesihuolto</span></span>
+<span><span class="co">#&gt; 284  vh_hva_alustavat_laajenemisalueet_21_22 vesihuolto</span></span>
+<span><span class="co">#&gt; 285             vh_hva_laajeneminen_alustava vesihuolto</span></span>
+<span><span class="co">#&gt; 286                   vh_hva_laajennusalueet vesihuolto</span></span>
+<span><span class="co">#&gt; 287              vh_hva_laajennusalueet_2020 vesihuolto</span></span>
+<span><span class="co">#&gt; 288               vh_hva_sekaviemarointialue vesihuolto</span></span>
+<span><span class="co">#&gt; 289           vh_hva_sva_eriyttamiskelpoiset vesihuolto</span></span>
+<span><span class="co">#&gt; 290      vh_muut_vesihuollon_toiminta_alueet vesihuolto</span></span>
+<span><span class="co">#&gt; 291              vh_sekaviemarointialue_2020 vesihuolto</span></span>
+<span><span class="co">#&gt; 292 vh_sekaviemarointialue_eriytettavat_2020 vesihuolto</span></span>
+<span><span class="co">#&gt; 293                         vh_toiminta_alue vesihuolto</span></span>
+<span><span class="co">#&gt; 294              vh_toiminta_alue_talousvesi vesihuolto</span></span>
+<span><span class="co">#&gt; 295 vh_toiminta_alueen_alustava_laajeneminen vesihuolto</span></span>
 <span><span class="co"># We select our feature of interest from this list: Location of waterposts</span></span>
 <span><span class="va">feature_of_interest</span> <span class="op">&lt;-</span> <span class="st">"vesihuolto:VH_Vesipostit_HSY"</span></span></code></pre></div>
 <p>When the wanted feature and its Name (in other words: Namespace:Title
@@ -284,10 +282,10 @@ contains data from the <a href="https://palvelukartta.hel.fi/fi/" class="externa
 <span><span class="co"># Study results: 47 variables in the data frame</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">search_puisto</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 4</span></span>
-<span><span class="co">#&gt;  $ count   : int 2582</span></span>
+<span><span class="co">#&gt;  $ count   : int 3375</span></span>
 <span><span class="co">#&gt;  $ next    : chr "http://api.hel.fi/servicemap/v2/search/?page=2&amp;q=puisto"</span></span>
 <span><span class="co">#&gt;  $ previous: NULL</span></span>
-<span><span class="co">#&gt;  $ results :'data.frame':    20 obs. of  29 variables:</span></span></code></pre></div>
+<span><span class="co">#&gt;  $ results :'data.frame':    20 obs. of  33 variables:</span></span></code></pre></div>
 <p>We can see that this search returns a large number of results, over
 2000. The results are returned as pages, where each page has 20 results
 by default. By giving no additional search parameters, we get 20 results
@@ -295,12 +293,12 @@ from the first page of search results.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get names for the first 20 results</span></span>
 <span><span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name.fi</span></span>
-<span><span class="co">#&gt;  [1] "Puistopolun peruskoulu"              "Puistolan peruskoulu"               </span></span>
-<span><span class="co">#&gt;  [3] "Kankarepuiston peruskoulu"           "Pihkapuiston ala-asteen koulu"      </span></span>
-<span><span class="co">#&gt;  [5] "Kaupunkiympäristön asiakaspalvelu"   "Puistolanraitin ala-asteen koulu"   </span></span>
-<span><span class="co">#&gt;  [7] "Juvanpuiston nuorisotila"            "Puistolan kirjasto"                 </span></span>
-<span><span class="co">#&gt;  [9] "Kilonpuiston koulu"                  "Kytöpuiston koulu"                  </span></span>
-<span><span class="co">#&gt; [11] "Juvanpuiston koulu"                  "Jalavapuiston koulu"                </span></span>
+<span><span class="co">#&gt;  [1] "Puistopolun peruskoulu"              "Kaupunkiympäristön asiakaspalvelu"  </span></span>
+<span><span class="co">#&gt;  [3] "Puistolan peruskoulu"                "Kankarepuiston peruskoulu"          </span></span>
+<span><span class="co">#&gt;  [5] "Juvanpuiston nuorisotila"            "Puistolan kirjasto"                 </span></span>
+<span><span class="co">#&gt;  [7] "Kilonpuiston koulu"                  "Pihkapuiston ala-asteen koulu"      </span></span>
+<span><span class="co">#&gt;  [9] "Kytöpuiston koulu"                   "Juvanpuiston koulu"                 </span></span>
+<span><span class="co">#&gt; [11] "Puistolanraitin ala-asteen koulu"    "Jalavapuiston koulu"                </span></span>
 <span><span class="co">#&gt; [13] "Tapiolan asukaspuisto"               "Mankkaan asukaspuisto"              </span></span>
 <span><span class="co">#&gt; [15] "Karakallion asukaspuisto"            "Leppävaaran asukaspuisto"           </span></span>
 <span><span class="co">#&gt; [17] "Perkkaan asukaspuisto"               "Kivenlahden asukaspuisto"           </span></span>
@@ -320,9 +318,9 @@ from the first page of search results.</p>
 <span><span class="co">#&gt; [10] "accessibility_shortcoming_count.rollator"         </span></span>
 <span><span class="co">#&gt; [11] "accessibility_shortcoming_count.stroller"         </span></span>
 <span><span class="co">#&gt; [12] "accessibility_shortcoming_count.wheelchair"       </span></span>
-<span><span class="co">#&gt; [13] "accessibility_shortcoming_count.hearing_aid"      </span></span>
-<span><span class="co">#&gt; [14] "accessibility_shortcoming_count.reduced_mobility" </span></span>
-<span><span class="co">#&gt; [15] "accessibility_shortcoming_count.visually_impaired"</span></span>
+<span><span class="co">#&gt; [13] "accessibility_shortcoming_count.reduced_mobility" </span></span>
+<span><span class="co">#&gt; [14] "accessibility_shortcoming_count.visually_impaired"</span></span>
+<span><span class="co">#&gt; [15] "accessibility_shortcoming_count.hearing_aid"      </span></span>
 <span><span class="co">#&gt; [16] "contract_type.id"                                 </span></span>
 <span><span class="co">#&gt; [17] "contract_type.description.fi"                     </span></span>
 <span><span class="co">#&gt; [18] "contract_type.description.sv"                     </span></span>
@@ -335,8 +333,12 @@ from the first page of search results.</p>
 <span><span class="co">#&gt; [25] "department.street_address.fi"                     </span></span>
 <span><span class="co">#&gt; [26] "department.street_address.sv"                     </span></span>
 <span><span class="co">#&gt; [27] "department.street_address.en"                     </span></span>
-<span><span class="co">#&gt; [28] "location.type"                                    </span></span>
-<span><span class="co">#&gt; [29] "location.coordinates"</span></span></code></pre></div>
+<span><span class="co">#&gt; [28] "root_department.id"                               </span></span>
+<span><span class="co">#&gt; [29] "root_department.name.fi"                          </span></span>
+<span><span class="co">#&gt; [30] "root_department.name.sv"                          </span></span>
+<span><span class="co">#&gt; [31] "root_department.name.en"                          </span></span>
+<span><span class="co">#&gt; [32] "location.type"                                    </span></span>
+<span><span class="co">#&gt; [33] "location.coordinates"</span></span></code></pre></div>
 <p>More results could be retrieved and viewed by giving additional
 <code>search</code> parameters.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
@@ -344,83 +346,87 @@ from the first page of search results.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">search_puisto</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 4</span></span>
-<span><span class="co">#&gt;  $ count   : int 2582</span></span>
+<span><span class="co">#&gt;  $ count   : int 3375</span></span>
 <span><span class="co">#&gt;  $ next    : chr "http://api.hel.fi/servicemap/v2/search/?page=3&amp;page_size=30&amp;q=puisto"</span></span>
 <span><span class="co">#&gt;  $ previous: chr "http://api.hel.fi/servicemap/v2/search/?page_size=30&amp;q=puisto"</span></span>
-<span><span class="co">#&gt;  $ results :'data.frame':    30 obs. of  27 variables:</span></span>
-<span><span class="co">#&gt;   ..$ id                                               : int [1:30] 64122 64123 13 25 30 132 161 166 200 201 ...</span></span>
+<span><span class="co">#&gt;  $ results :'data.frame':    30 obs. of  31 variables:</span></span>
+<span><span class="co">#&gt;   ..$ id                                               : int [1:30] 134 136 141 161 166 177 189 199 200 201 ...</span></span>
 <span><span class="co">#&gt;   ..$ object_type                                      : chr [1:30] "unit" "unit" "unit" "unit" ...</span></span>
-<span><span class="co">#&gt;   ..$ municipality                                     : chr [1:30] "espoo" "espoo" "helsinki" "helsinki" ...</span></span>
-<span><span class="co">#&gt;   ..$ name.fi                                          : chr [1:30] "Hiirisuon asukaspuisto" "Järvenperän asukaspuisto" "Leikkipuisto Kannelmäki" "Leikkipuisto Piika" ...</span></span>
-<span><span class="co">#&gt;   ..$ name.sv                                          : chr [1:30] "Hiirisuon asukaspuisto" "Järvenperän asukaspuisto" "Lekparken Kannelmäki" "Lekparken Piika" ...</span></span>
-<span><span class="co">#&gt;   ..$ name.en                                          : chr [1:30] "Hiirisuon asukaspuisto" "Järvenperän asukaspuisto" "Playground Kannelmäki" "Playground Piika" ...</span></span>
-<span><span class="co">#&gt;   ..$ street_address.fi                                : chr [1:30] "Pohjoisentie 1" "Kulloonmäentie 20" "Kanneltie 1a" "Arentikuja 5" ...</span></span>
-<span><span class="co">#&gt;   ..$ street_address.sv                                : chr [1:30] "Norrmarksvägen 1" "Kullobackavägen 20" "Kantelevägen 1a" "Arrendegränden 5" ...</span></span>
-<span><span class="co">#&gt;   ..$ street_address.en                                : chr [1:30] "Pohjoisentie 1" "Kulloonmäentie 20" "Kanneltie 1a" "Arentikuja 5" ...</span></span>
-<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.rollator         : int [1:30] NA NA 4 4 NA NA 1 2 3 6 ...</span></span>
-<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.stroller         : int [1:30] NA NA 1 1 NA NA NA NA NA 1 ...</span></span>
-<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.wheelchair       : int [1:30] NA NA 4 4 NA NA 1 2 4 6 ...</span></span>
-<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.hearing_aid      : int [1:30] NA NA 1 1 NA NA 1 1 NA NA ...</span></span>
-<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.reduced_mobility : int [1:30] NA NA 4 2 NA NA 1 2 2 2 ...</span></span>
-<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.visually_impaired: int [1:30] NA NA 8 4 NA NA 2 5 4 5 ...</span></span>
+<span><span class="co">#&gt;   ..$ municipality                                     : chr [1:30] "helsinki" "helsinki" "helsinki" "helsinki" ...</span></span>
+<span><span class="co">#&gt;   ..$ name.fi                                          : chr [1:30] "Leikkipuisto Linja" "Leikkipuisto Intia" "Leikkipuisto Sanna" "Leikkipuisto Taivallahti" ...</span></span>
+<span><span class="co">#&gt;   ..$ name.sv                                          : chr [1:30] "Lekparken Linja" "Lekparken Intia" "Lekparken Sanna" "Lekparken Taivallahti" ...</span></span>
+<span><span class="co">#&gt;   ..$ name.en                                          : chr [1:30] "Playground Linja" "Playground Intia" "Playground Sanna" "Playground Taivallahti" ...</span></span>
+<span><span class="co">#&gt;   ..$ street_address.fi                                : chr [1:30] "Toinen linja 6" "Intiankatu 44" "Pasilan puistotie 8" "Pohjoinen Hesperiankatu 22" ...</span></span>
+<span><span class="co">#&gt;   ..$ street_address.sv                                : chr [1:30] "Andra linjen 6" "Indiagatan 44" "Böle parkväg 8" "Norra Hesperiagatan 22" ...</span></span>
+<span><span class="co">#&gt;   ..$ street_address.en                                : chr [1:30] "Toinen linja 6" "Intiankatu 44" "Pasilan puistotie 8" "Pohjoinen Hesperiankatu 22" ...</span></span>
+<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.rollator         : int [1:30] 3 4 6 1 2 2 4 6 3 6 ...</span></span>
+<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.stroller         : int [1:30] 1 1 NA NA NA NA NA NA NA 1 ...</span></span>
+<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.wheelchair       : int [1:30] 3 4 6 1 2 2 4 6 4 6 ...</span></span>
+<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.hearing_aid      : int [1:30] 1 1 1 1 1 NA NA NA NA NA ...</span></span>
+<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.reduced_mobility : int [1:30] 1 4 2 1 2 2 1 4 2 2 ...</span></span>
+<span><span class="co">#&gt;   ..$ accessibility_shortcoming_count.visually_impaired: int [1:30] 3 5 5 2 5 2 4 4 4 5 ...</span></span>
 <span><span class="co">#&gt;   ..$ contract_type.id                                 : chr [1:30] "MUNICIPAL_SERVICE" "MUNICIPAL_SERVICE" "MUNICIPAL_SERVICE" "MUNICIPAL_SERVICE" ...</span></span>
-<span><span class="co">#&gt;   ..$ contract_type.description.fi                     : chr [1:30] "kunnallinen palvelu, Kasvun ja oppimisen toimiala, Espoo" "kunnallinen palvelu, Kasvun ja oppimisen toimiala, Espoo" "kunnallinen palvelu, Kasvatuksen ja koulutuksen toimiala, Helsingin kaupunki" "kunnallinen palvelu, Kasvatuksen ja koulutuksen toimiala, Helsingin kaupunki" ...</span></span>
-<span><span class="co">#&gt;   ..$ contract_type.description.sv                     : chr [1:30] "kommunal tjänst, Sektorn för fostran och lärande, Esbo" "kommunal tjänst, Sektorn för fostran och lärande, Esbo" "kommunal tjänst, Fostrans- och utbildningssektorn, Helsingfors stad" "kommunal tjänst, Fostrans- och utbildningssektorn, Helsingfors stad" ...</span></span>
-<span><span class="co">#&gt;   ..$ contract_type.description.en                     : chr [1:30] "municipal service, Growth and Learning Sector, Espoo" "municipal service, Growth and Learning Sector, Espoo" "municipal service, Education Division, City of Helsinki" "municipal service, Education Division, City of Helsinki" ...</span></span>
-<span><span class="co">#&gt;   ..$ department.id                                    : int [1:30] 64 64 146 146 103 200 190 190 176 176 ...</span></span>
+<span><span class="co">#&gt;   ..$ contract_type.description.fi                     : chr [1:30] "kunnallinen palvelu, Kasvatuksen ja koulutuksen toimiala, Helsingin kaupunki" "kunnallinen palvelu, Kasvatuksen ja koulutuksen toimiala, Helsingin kaupunki" "kunnallinen palvelu, Kasvatuksen ja koulutuksen toimiala, Helsingin kaupunki" "kunnallinen palvelu, Kasvatuksen ja koulutuksen toimiala, Helsingin kaupunki" ...</span></span>
+<span><span class="co">#&gt;   ..$ contract_type.description.sv                     : chr [1:30] "kommunal tjänst, Fostrans- och utbildningssektorn, Helsingfors stad" "kommunal tjänst, Fostrans- och utbildningssektorn, Helsingfors stad" "kommunal tjänst, Fostrans- och utbildningssektorn, Helsingfors stad" "kommunal tjänst, Fostrans- och utbildningssektorn, Helsingfors stad" ...</span></span>
+<span><span class="co">#&gt;   ..$ contract_type.description.en                     : chr [1:30] "municipal service, Education Division, City of Helsinki" "municipal service, Education Division, City of Helsinki" "municipal service, Education Division, City of Helsinki" "municipal service, Education Division, City of Helsinki" ...</span></span>
+<span><span class="co">#&gt;   ..$ department.id                                    : chr [1:30] "d4f4c64c-3a46-4ac8-93d2-fa6d4a0dcdb5" "d4f4c64c-3a46-4ac8-93d2-fa6d4a0dcdb5" "d4f4c64c-3a46-4ac8-93d2-fa6d4a0dcdb5" "c311e2ea-8705-4168-a3e0-3677fede1546" ...</span></span>
 <span><span class="co">#&gt;   ..$ department.street_address                        : logi [1:30] NA NA NA NA NA NA ...</span></span>
-<span><span class="co">#&gt;   ..$ department.municipality                          : chr [1:30] "espoo" "espoo" "helsinki" "helsinki" ...</span></span>
-<span><span class="co">#&gt;   ..$ department.name.fi                               : chr [1:30] "Kasvun ja oppimisen toimiala, Espoo" "Kasvun ja oppimisen toimiala, Espoo" "Varhaiskasvatus ja esiopetus, alue 2, Läntinen" "Varhaiskasvatus ja esiopetus, alue 2, Läntinen" ...</span></span>
-<span><span class="co">#&gt;   ..$ department.name.sv                               : chr [1:30] "Sektorn för fostran och lärande, Esbo" "Sektorn för fostran och lärande, Esbo" "Varhaiskasvatus ja esiopetus, alue 2" "Varhaiskasvatus ja esiopetus, alue 2" ...</span></span>
-<span><span class="co">#&gt;   ..$ department.name.en                               : chr [1:30] "Growth and Learning Sector, Espoo" "Growth and Learning Sector, Espoo" "Early childhood education and preschool education Area 2" "Early childhood education and preschool education Area 2" ...</span></span>
+<span><span class="co">#&gt;   ..$ department.municipality                          : chr [1:30] "helsinki" "helsinki" "helsinki" "helsinki" ...</span></span>
+<span><span class="co">#&gt;   ..$ department.name.fi                               : chr [1:30] "Varhaiskasvatus ja esiopetus, alue 3, Keskinen" "Varhaiskasvatus ja esiopetus, alue 3, Keskinen" "Varhaiskasvatus ja esiopetus, alue 3, Keskinen" "Varhaiskasvatus ja esiopetus, alue1, Eteläinen" ...</span></span>
+<span><span class="co">#&gt;   ..$ department.name.sv                               : chr [1:30] "Varhaiskasvatus ja esiopetus, alue 3" "Varhaiskasvatus ja esiopetus, alue 3" "Varhaiskasvatus ja esiopetus, alue 3" "Varhaiskasvatus ja esiopetus, alue 1" ...</span></span>
+<span><span class="co">#&gt;   ..$ department.name.en                               : chr [1:30] "Early childhood education and preschool education, Area 3" "Early childhood education and preschool education, Area 3" "Early childhood education and preschool education, Area 3" "Early childhood education and preschool education, Area 1" ...</span></span>
+<span><span class="co">#&gt;   ..$ root_department.id                               : chr [1:30] "83e74666-0836-4c1d-948a-4b34a8b90301" "83e74666-0836-4c1d-948a-4b34a8b90301" "83e74666-0836-4c1d-948a-4b34a8b90301" "83e74666-0836-4c1d-948a-4b34a8b90301" ...</span></span>
+<span><span class="co">#&gt;   ..$ root_department.name.fi                          : chr [1:30] "Helsingin kaupunki" "Helsingin kaupunki" "Helsingin kaupunki" "Helsingin kaupunki" ...</span></span>
+<span><span class="co">#&gt;   ..$ root_department.name.sv                          : chr [1:30] "Helsingfors stad" "Helsingfors stad" "Helsingfors stad" "Helsingfors stad" ...</span></span>
+<span><span class="co">#&gt;   ..$ root_department.name.en                          : chr [1:30] "City of Helsinki" "City of Helsinki" "City of Helsinki" "City of Helsinki" ...</span></span>
 <span><span class="co">#&gt;   ..$ location.type                                    : chr [1:30] "Point" "Point" "Point" "Point" ...</span></span>
 <span><span class="co">#&gt;   ..$ location.coordinates                             :List of 30</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 24.7 60.3</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 24.7 60.2</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 24.9 60.2</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 24.9 60.2</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 24.9 60.2</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 24.9 60.2</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 24.9 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 24.9 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.2</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.2</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.2</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.2</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.2</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.3</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.3</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.3</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.3</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.3</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 24.9 60.2</span></span>
 <span><span class="co">#&gt;   .. ..$ : num [1:2] 24.9 60.2</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.2</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.3</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.3</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.3</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.3</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.4</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 24.7 60.2</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 25.1 60.2</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.2</span></span>
-<span><span class="co">#&gt;   .. ..$ : num [1:2] 25 60.3</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 24.9 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 24.9 60.2</span></span>
+<span><span class="co">#&gt;   .. ..$ : num [1:2] 24.9 60.2</span></span>
 <span><span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name.fi</span></span>
-<span><span class="co">#&gt;  [1] "Hiirisuon asukaspuisto"          "Järvenperän asukaspuisto"       </span></span>
-<span><span class="co">#&gt;  [3] "Leikkipuisto Kannelmäki"         "Leikkipuisto Piika"             </span></span>
-<span><span class="co">#&gt;  [5] "Leikkipuisto Maunula"            "Leikkipuisto Brahe"             </span></span>
-<span><span class="co">#&gt;  [7] "Leikkipuisto Taivallahti"        "Leikkipuisto Seppä"             </span></span>
-<span><span class="co">#&gt;  [9] "Leikkipuisto Orava"              "Leikkipuisto Roihuvuori"        </span></span>
-<span><span class="co">#&gt; [11] "Leikkipuisto Kiiltotähti"        "Leikkipuisto Rusthollari"       </span></span>
-<span><span class="co">#&gt; [13] "Leikkipuisto Myllynsiipi"        "Leikkipuisto Iso-Antti"         </span></span>
-<span><span class="co">#&gt; [15] "Leikkipuisto Kesanto"            "Leikkipuisto Kankarepuisto"     </span></span>
-<span><span class="co">#&gt; [17] "Leikkipuisto Strömberg"          "Leikkipuisto Isonneva"          </span></span>
-<span><span class="co">#&gt; [19] "Leikkipuisto Lohikäärmepuisto"   "Leikkipuisto Viikkari"          </span></span>
-<span><span class="co">#&gt; [21] "Puistolan palvelutalo"           "Koillisen terveysasema/Puistola"</span></span>
-<span><span class="co">#&gt; [23] "Leikkipuisto Arabia"             "Näätäpuiston päiväkoti"         </span></span>
-<span><span class="co">#&gt; [25] "Latupuiston päiväkoti"           "Ilvespuiston päiväkoti"         </span></span>
-<span><span class="co">#&gt; [27] "Olarin asukaspuisto"             "Leikkipuisto Lampi"             </span></span>
-<span><span class="co">#&gt; [29] "Syötävä puisto"                  "Leikkipuisto Kotinummi"</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] "Leikkipuisto Linja"         "Leikkipuisto Intia"        </span></span>
+<span><span class="co">#&gt;  [3] "Leikkipuisto Sanna"         "Leikkipuisto Taivallahti"  </span></span>
+<span><span class="co">#&gt;  [5] "Leikkipuisto Seppä"         "Leikkipuisto Santahamina"  </span></span>
+<span><span class="co">#&gt;  [7] "Leikkipuisto Tuorinniemi"   "Leikkipuisto Hilleri"      </span></span>
+<span><span class="co">#&gt;  [9] "Leikkipuisto Orava"         "Leikkipuisto Roihuvuori"   </span></span>
+<span><span class="co">#&gt; [11] "Leikkipuisto Kiiltotähti"   "Leikkipuisto Rudolf"       </span></span>
+<span><span class="co">#&gt; [13] "Leikkipuisto Rusthollari"   "Leikkipuisto Myllynsiipi"  </span></span>
+<span><span class="co">#&gt; [15] "Leikkipuisto Iso-Antti"     "Leikkipuisto Mellunmäki"   </span></span>
+<span><span class="co">#&gt; [17] "Leikkipuisto Mustakivi"     "Leikkipuisto Traktori"     </span></span>
+<span><span class="co">#&gt; [19] "Leikkipuisto Filpus"        "Leikkipuisto Maasälpä"     </span></span>
+<span><span class="co">#&gt; [21] "Leikkipuisto Salpausselkä"  "Leikkipuisto Linnunrata"   </span></span>
+<span><span class="co">#&gt; [23] "Leikkipuisto Kesanto"       "Leikkipuisto Tapuli"       </span></span>
+<span><span class="co">#&gt; [25] "Leikkipuisto Kankarepuisto" "Leikkipuisto Ulvila"       </span></span>
+<span><span class="co">#&gt; [27] "Leikkipuisto Viiri"         "Leikkipuisto Strömberg"    </span></span>
+<span><span class="co">#&gt; [29] "Leikkipuisto Munkki"        "Leikkipuisto Laurinniitty"</span></span></code></pre></div>
 <p>As we could see from above example, the returned data frame had 30
 observations with 29 variables. At full width this output can be messy
 to handle in R console. One possible option would be to turn it into a
@@ -434,26 +440,26 @@ Events API</a>.</p>
 <span><span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"event"</span><span class="op">)</span></span>
 <span><span class="co"># Get names for the first 20 results</span></span>
 <span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span></span>
-<span><span class="co">#&gt;  [1] "Taidetta taaperoille"                 </span></span>
-<span><span class="co">#&gt;  [2] "MiniPunttis-tapahtuma – Talviloma"    </span></span>
-<span><span class="co">#&gt;  [3] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt;  [4] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt;  [5] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt;  [6] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt;  [7] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt;  [8] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt;  [9] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt; [10] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt; [11] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt; [12] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt; [13] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt; [14] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt; [15] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt; [16] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt; [17] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt; [18] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt; [19] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
-<span><span class="co">#&gt; [20] "Taidejumppa – anna taiteen liikuttaa!"</span></span>
+<span><span class="co">#&gt;  [1] "Satutuokio lauantaisin"                                       </span></span>
+<span><span class="co">#&gt;  [2] "Lasten perjantaileffa"                                        </span></span>
+<span><span class="co">#&gt;  [3] "SPR:n kielikahvila"                                           </span></span>
+<span><span class="co">#&gt;  [4] "Voimaa etäjumpasta: Kevyt etäselkäjumppa"                     </span></span>
+<span><span class="co">#&gt;  [5] "Vauvojen ja taaperoiden lorutuokio"                           </span></span>
+<span><span class="co">#&gt;  [6] "Pelataan lautapelejä (aikuisille ja nuorille)"                </span></span>
+<span><span class="co">#&gt;  [7] "Harrastelijasoittajien jamit – avoin ryhmä"                   </span></span>
+<span><span class="co">#&gt;  [8] "Ogeli-live: Viimeinen pihalla yksin"                          </span></span>
+<span><span class="co">#&gt;  [9] "Töölön kirjaston lukupiiri"                                   </span></span>
+<span><span class="co">#&gt; [10] "Maunulan dekkarilukupiiri"                                    </span></span>
+<span><span class="co">#&gt; [11] "Novellkafé"                                                   </span></span>
+<span><span class="co">#&gt; [12] "Käsityöpiiri Koukku"                                          </span></span>
+<span><span class="co">#&gt; [13] "Kielikahvila e-Ekstra Skypessä"                               </span></span>
+<span><span class="co">#&gt; [14] "Punaisen Ristin LäksyHelppi"                                  </span></span>
+<span><span class="co">#&gt; [15] "Aina ollu tääl. Suomiräp 4.0"                                 </span></span>
+<span><span class="co">#&gt; [16] "Edunvalvontavaltuutus turvaamassa tulevaisuutta: luento"      </span></span>
+<span><span class="co">#&gt; [17] NA                                                             </span></span>
+<span><span class="co">#&gt; [18] "Kallion kielikahvila"                                         </span></span>
+<span><span class="co">#&gt; [19] "Läksykerho 3. - 4. luokkalaisille"                            </span></span>
+<span><span class="co">#&gt; [20] "Drawing Time is here. Pick up a pencil and let’s get drawing!"</span></span>
 <span><span class="co"># See what kind of data is given for events</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "id"                          "location"                   </span></span>
@@ -582,25 +588,24 @@ website for more information.</p>
 <h4 id="citing-the-r-package">Citing the R package<a class="anchor" aria-label="anchor" href="#citing-the-r-package"></a>
 </h4>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">citation</span>(<span class="st">"helsinki"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>Kindly cite the helsinki R package as follows<span class="sc">:</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  Juuso Parkkinen, Joona Lehtomaki, Pyry Kantanen, and Leo Lahti</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">2022</span>). helsinki R package. R package version <span class="dv">1</span>.<span class="fl">0.6</span> URL<span class="sc">:</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>Misc{,</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">=</span> {helsinki R package},</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    author <span class="ot">=</span> {Juuso Parkkinen and Joona Lehtomaki and Pyry Kantanen and Leo Lahti},</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki},</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2022</span>},</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    note <span class="ot">=</span> {R package version <span class="dv">1</span>.<span class="fl">0.6</span>},</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>Many thanks <span class="cf">for</span> all contributors<span class="sc">!</span> For more info, see<span class="sc">:</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki</span></code></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Kindly cite the helsinki R package as follows<span class="sc">:</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  Juuso Parkkinen, Joona Lehtomaki, Pyry Kantanen, and Leo Lahti</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">2022</span>). helsinki R package. R package version <span class="dv">1</span>.<span class="fl">0.6</span> URL<span class="sc">:</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>A BibTeX entry <span class="cf">for</span> LaTeX users is</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>Misc{,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">=</span> {helsinki R package},</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    author <span class="ot">=</span> {Juuso Parkkinen and Joona Lehtomaki and Pyry Kantanen and Leo Lahti},</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki},</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    year <span class="ot">=</span> {<span class="dv">2022</span>},</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    note <span class="ot">=</span> {R package version <span class="dv">1</span>.<span class="fl">0.6</span>},</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>Many thanks <span class="cf">for</span> all contributors<span class="sc">!</span> For more info, see<span class="sc">:</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>rOpenGov<span class="sc">/</span>helsinki</span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="session-info">Session info<a class="anchor" aria-label="anchor" href="#session-info"></a>
@@ -608,13 +613,13 @@ website for more information.</p>
 <p>This vignette was created with</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; R version 4.2.2 (2022-10-31)</span></span>
+<span><span class="co">#&gt; R version 4.3.1 (2023-06-16)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span><span class="co">#&gt; Running under: Ubuntu 22.04.1 LTS</span></span>
+<span><span class="co">#&gt; Running under: Ubuntu 22.04.2 LTS</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
-<span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span></span>
-<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span></span>
+<span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
+<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; locale:</span></span>
 <span><span class="co">#&gt;  [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span></span>
@@ -622,29 +627,32 @@ website for more information.</p>
 <span><span class="co">#&gt;  [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          </span></span>
 <span><span class="co">#&gt; [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span></span>
 <span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; time zone: UTC</span></span>
+<span><span class="co">#&gt; tzcode source: system (glibc)</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; attached base packages:</span></span>
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] ggplot2_3.4.0  helsinki_1.0.6</span></span>
+<span><span class="co">#&gt; [1] ggplot2_3.4.2  helsinki_1.0.6</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;  [1] tidyselect_1.2.0   xfun_0.37          bslib_0.4.2        purrr_1.0.1       </span></span>
-<span><span class="co">#&gt;  [5] sf_1.0-9           colorspace_2.1-0   vctrs_0.5.2        generics_0.1.3    </span></span>
-<span><span class="co">#&gt;  [9] htmltools_0.5.4    yaml_2.3.7         utf8_1.2.3         rlang_1.0.6       </span></span>
-<span><span class="co">#&gt; [13] e1071_1.7-13       pkgdown_2.0.7      jquerylib_0.1.4    pillar_1.8.1      </span></span>
-<span><span class="co">#&gt; [17] glue_1.6.2         withr_2.5.0        DBI_1.1.3          lifecycle_1.0.3   </span></span>
-<span><span class="co">#&gt; [21] stringr_1.5.0      munsell_0.5.0      gtable_0.3.1       ragg_1.2.5        </span></span>
-<span><span class="co">#&gt; [25] memoise_2.0.1      evaluate_0.20      labeling_0.4.2     knitr_1.42        </span></span>
-<span><span class="co">#&gt; [29] fastmap_1.1.0      curl_5.0.0         class_7.3-20       fansi_1.0.4       </span></span>
-<span><span class="co">#&gt; [33] highr_0.10         Rcpp_1.0.10        KernSmooth_2.23-20 scales_1.2.1      </span></span>
-<span><span class="co">#&gt; [37] classInt_0.4-8     cachem_1.0.6       desc_1.4.2         jsonlite_1.8.4    </span></span>
-<span><span class="co">#&gt; [41] farver_2.1.1       systemfonts_1.0.4  fs_1.6.1           textshaping_0.3.6 </span></span>
-<span><span class="co">#&gt; [45] digest_0.6.31      stringi_1.7.12     dplyr_1.1.0        rprojroot_2.0.3   </span></span>
-<span><span class="co">#&gt; [49] grid_4.2.2         cli_3.6.0          tools_4.2.2        magrittr_2.0.3    </span></span>
-<span><span class="co">#&gt; [53] sass_0.4.5         proxy_0.4-27       tibble_3.1.8       pkgconfig_2.0.3   </span></span>
-<span><span class="co">#&gt; [57] xml2_1.3.3         rmarkdown_2.20     httr_1.4.4         R6_2.5.1          </span></span>
-<span><span class="co">#&gt; [61] units_0.8-1        compiler_4.2.2</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] sass_0.4.6         utf8_1.2.3         generics_0.1.3     xml2_1.3.5        </span></span>
+<span><span class="co">#&gt;  [5] class_7.3-22       KernSmooth_2.23-21 stringi_1.7.12     digest_0.6.33     </span></span>
+<span><span class="co">#&gt;  [9] magrittr_2.0.3     evaluate_0.21      grid_4.3.1         fastmap_1.1.1     </span></span>
+<span><span class="co">#&gt; [13] rprojroot_2.0.3    jsonlite_1.8.7     e1071_1.7-13       DBI_1.1.3         </span></span>
+<span><span class="co">#&gt; [17] httr_1.4.6         purrr_1.0.1        fansi_1.0.4        scales_1.2.1      </span></span>
+<span><span class="co">#&gt; [21] textshaping_0.3.6  jquerylib_0.1.4    cli_3.6.1          rlang_1.1.1       </span></span>
+<span><span class="co">#&gt; [25] units_0.8-2        munsell_0.5.0      withr_2.5.0        cachem_1.0.8      </span></span>
+<span><span class="co">#&gt; [29] yaml_2.3.7         tools_4.3.1        memoise_2.0.1      dplyr_1.1.2       </span></span>
+<span><span class="co">#&gt; [33] colorspace_2.1-0   curl_5.0.1         vctrs_0.6.3        R6_2.5.1          </span></span>
+<span><span class="co">#&gt; [37] proxy_0.4-27       lifecycle_1.0.3    classInt_0.4-9     stringr_1.5.0     </span></span>
+<span><span class="co">#&gt; [41] fs_1.6.2           ragg_1.2.5         pkgconfig_2.0.3    desc_1.4.2        </span></span>
+<span><span class="co">#&gt; [45] gtable_0.3.3       pkgdown_2.0.7      pillar_1.9.0       bslib_0.5.0       </span></span>
+<span><span class="co">#&gt; [49] glue_1.6.2         Rcpp_1.0.11        sf_1.0-14          systemfonts_1.0.4 </span></span>
+<span><span class="co">#&gt; [53] highr_0.10         xfun_0.39          tibble_3.2.1       tidyselect_1.2.0  </span></span>
+<span><span class="co">#&gt; [57] knitr_1.43         farver_2.1.1       htmltools_0.5.5    labeling_0.4.2    </span></span>
+<span><span class="co">#&gt; [61] rmarkdown_2.23     compiler_4.3.1</span></span></code></pre></div>
 </div>
 </div>
 </div>

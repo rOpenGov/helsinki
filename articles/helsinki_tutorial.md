@@ -213,7 +213,11 @@ API](http://api.hel.fi/servicemap/v2/), that contains data from the
 search_puisto <- get_servicemap(query = "search", q = "puisto")
 # Study results: 47 variables in the data frame
 str(search_puisto, max.level = 1)
-#>  NULL
+#> List of 4
+#>  $ count   : int 4758
+#>  $ next    : chr "http://api.hel.fi/servicemap/v2/search/?page=2&q=puisto"
+#>  $ previous: NULL
+#>  $ results :'data.frame':    20 obs. of  33 variables:
 ```
 
 We can see that this search returns a large number of results, over
@@ -224,11 +228,62 @@ from the first page of search results.
 ``` r
 # Get names for the first 20 results
 search_puisto$results$name.fi
-#> NULL
+#>  [1] "Puistopolun peruskoulu"              
+#>  [2] "Kankarepuiston peruskoulu"           
+#>  [3] "Puistolan peruskoulu"                
+#>  [4] "Pihkapuiston ala-asteen koulu"       
+#>  [5] "Kaupunkiympäristön asiakaspalvelu"   
+#>  [6] "Puistolanraitin ala-asteen koulu"    
+#>  [7] "Puistolan kirjasto"                  
+#>  [8] "Juvanpuiston nuorisotila"            
+#>  [9] "Kilonpuiston koulu"                  
+#> [10] "Kytöpuiston koulu"                   
+#> [11] "Pirkkolan liikuntapuisto / Uimahalli"
+#> [12] "Juvanpuiston koulu"                  
+#> [13] "Jalavapuiston koulu"                 
+#> [14] "Tapiolan asukaspuisto"               
+#> [15] "Mankkaan asukaspuisto"               
+#> [16] "Karakallion asukaspuisto"            
+#> [17] "Leppävaaran asukaspuisto"            
+#> [18] "Perkkaan asukaspuisto"               
+#> [19] "Kivenlahden asukaspuisto"            
+#> [20] "Pisan asukaspuisto"
 
 # See what kind of data is given for services
 names(search_puisto$results)
-#> NULL
+#>  [1] "id"                                               
+#>  [2] "object_type"                                      
+#>  [3] "municipality"                                     
+#>  [4] "name.fi"                                          
+#>  [5] "name.sv"                                          
+#>  [6] "name.en"                                          
+#>  [7] "street_address.fi"                                
+#>  [8] "street_address.sv"                                
+#>  [9] "street_address.en"                                
+#> [10] "accessibility_shortcoming_count.rollator"         
+#> [11] "accessibility_shortcoming_count.wheelchair"       
+#> [12] "accessibility_shortcoming_count.hearing_aid"      
+#> [13] "accessibility_shortcoming_count.reduced_mobility" 
+#> [14] "accessibility_shortcoming_count.visually_impaired"
+#> [15] "accessibility_shortcoming_count.stroller"         
+#> [16] "contract_type.id"                                 
+#> [17] "contract_type.description.fi"                     
+#> [18] "contract_type.description.sv"                     
+#> [19] "contract_type.description.en"                     
+#> [20] "department.id"                                    
+#> [21] "department.municipality"                          
+#> [22] "department.name.fi"                               
+#> [23] "department.name.en"                               
+#> [24] "department.name.sv"                               
+#> [25] "department.street_address.fi"                     
+#> [26] "department.street_address.sv"                     
+#> [27] "department.street_address.en"                     
+#> [28] "root_department.id"                               
+#> [29] "root_department.name.fi"                          
+#> [30] "root_department.name.sv"                          
+#> [31] "root_department.name.en"                          
+#> [32] "location.type"                                    
+#> [33] "location.coordinates"
 ```
 
 More results could be retrieved and viewed by giving additional `search`

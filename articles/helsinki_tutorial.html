@@ -250,7 +250,11 @@ contains data from the <a href="https://palvelukartta.hel.fi/fi/" class="externa
 <span><span class="va">search_puisto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_servicemap.html">get_servicemap</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"search"</span>, q <span class="op">=</span> <span class="st">"puisto"</span><span class="op">)</span></span>
 <span><span class="co"># Study results: 47 variables in the data frame</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">search_puisto</span>, max.level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  NULL</span></span></code></pre></div>
+<span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ count   : int 4758</span></span>
+<span><span class="co">#&gt;  $ next    : chr "http://api.hel.fi/servicemap/v2/search/?page=2&amp;q=puisto"</span></span>
+<span><span class="co">#&gt;  $ previous: NULL</span></span>
+<span><span class="co">#&gt;  $ results :'data.frame':    20 obs. of  33 variables:</span></span></code></pre></div>
 <p>We can see that this search returns a large number of results, over
 2000. The results are returned as pages, where each page has 20 results
 by default. By giving no additional search parameters, we get 20 results
@@ -258,11 +262,62 @@ from the first page of search results.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get names for the first 20 results</span></span>
 <span><span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">$</span><span class="va">name.fi</span></span>
-<span><span class="co">#&gt; NULL</span></span>
+<span><span class="co">#&gt;  [1] "Puistopolun peruskoulu"              </span></span>
+<span><span class="co">#&gt;  [2] "Kankarepuiston peruskoulu"           </span></span>
+<span><span class="co">#&gt;  [3] "Puistolan peruskoulu"                </span></span>
+<span><span class="co">#&gt;  [4] "Pihkapuiston ala-asteen koulu"       </span></span>
+<span><span class="co">#&gt;  [5] "Kaupunkiympäristön asiakaspalvelu"   </span></span>
+<span><span class="co">#&gt;  [6] "Puistolanraitin ala-asteen koulu"    </span></span>
+<span><span class="co">#&gt;  [7] "Puistolan kirjasto"                  </span></span>
+<span><span class="co">#&gt;  [8] "Juvanpuiston nuorisotila"            </span></span>
+<span><span class="co">#&gt;  [9] "Kilonpuiston koulu"                  </span></span>
+<span><span class="co">#&gt; [10] "Kytöpuiston koulu"                   </span></span>
+<span><span class="co">#&gt; [11] "Pirkkolan liikuntapuisto / Uimahalli"</span></span>
+<span><span class="co">#&gt; [12] "Juvanpuiston koulu"                  </span></span>
+<span><span class="co">#&gt; [13] "Jalavapuiston koulu"                 </span></span>
+<span><span class="co">#&gt; [14] "Tapiolan asukaspuisto"               </span></span>
+<span><span class="co">#&gt; [15] "Mankkaan asukaspuisto"               </span></span>
+<span><span class="co">#&gt; [16] "Karakallion asukaspuisto"            </span></span>
+<span><span class="co">#&gt; [17] "Leppävaaran asukaspuisto"            </span></span>
+<span><span class="co">#&gt; [18] "Perkkaan asukaspuisto"               </span></span>
+<span><span class="co">#&gt; [19] "Kivenlahden asukaspuisto"            </span></span>
+<span><span class="co">#&gt; [20] "Pisan asukaspuisto"</span></span>
 <span></span>
 <span><span class="co"># See what kind of data is given for services</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">search_puisto</span><span class="op">$</span><span class="va">results</span><span class="op">)</span></span>
-<span><span class="co">#&gt; NULL</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] "id"                                               </span></span>
+<span><span class="co">#&gt;  [2] "object_type"                                      </span></span>
+<span><span class="co">#&gt;  [3] "municipality"                                     </span></span>
+<span><span class="co">#&gt;  [4] "name.fi"                                          </span></span>
+<span><span class="co">#&gt;  [5] "name.sv"                                          </span></span>
+<span><span class="co">#&gt;  [6] "name.en"                                          </span></span>
+<span><span class="co">#&gt;  [7] "street_address.fi"                                </span></span>
+<span><span class="co">#&gt;  [8] "street_address.sv"                                </span></span>
+<span><span class="co">#&gt;  [9] "street_address.en"                                </span></span>
+<span><span class="co">#&gt; [10] "accessibility_shortcoming_count.rollator"         </span></span>
+<span><span class="co">#&gt; [11] "accessibility_shortcoming_count.wheelchair"       </span></span>
+<span><span class="co">#&gt; [12] "accessibility_shortcoming_count.hearing_aid"      </span></span>
+<span><span class="co">#&gt; [13] "accessibility_shortcoming_count.reduced_mobility" </span></span>
+<span><span class="co">#&gt; [14] "accessibility_shortcoming_count.visually_impaired"</span></span>
+<span><span class="co">#&gt; [15] "accessibility_shortcoming_count.stroller"         </span></span>
+<span><span class="co">#&gt; [16] "contract_type.id"                                 </span></span>
+<span><span class="co">#&gt; [17] "contract_type.description.fi"                     </span></span>
+<span><span class="co">#&gt; [18] "contract_type.description.sv"                     </span></span>
+<span><span class="co">#&gt; [19] "contract_type.description.en"                     </span></span>
+<span><span class="co">#&gt; [20] "department.id"                                    </span></span>
+<span><span class="co">#&gt; [21] "department.municipality"                          </span></span>
+<span><span class="co">#&gt; [22] "department.name.fi"                               </span></span>
+<span><span class="co">#&gt; [23] "department.name.en"                               </span></span>
+<span><span class="co">#&gt; [24] "department.name.sv"                               </span></span>
+<span><span class="co">#&gt; [25] "department.street_address.fi"                     </span></span>
+<span><span class="co">#&gt; [26] "department.street_address.sv"                     </span></span>
+<span><span class="co">#&gt; [27] "department.street_address.en"                     </span></span>
+<span><span class="co">#&gt; [28] "root_department.id"                               </span></span>
+<span><span class="co">#&gt; [29] "root_department.name.fi"                          </span></span>
+<span><span class="co">#&gt; [30] "root_department.name.sv"                          </span></span>
+<span><span class="co">#&gt; [31] "root_department.name.en"                          </span></span>
+<span><span class="co">#&gt; [32] "location.type"                                    </span></span>
+<span><span class="co">#&gt; [33] "location.coordinates"</span></span></code></pre></div>
 <p>More results could be retrieved and viewed by giving additional
 <code>search</code> parameters.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">

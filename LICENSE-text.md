@@ -1,0 +1,4 @@
+# License
+
+    YEAR: 2010-2021
+    COPYRIGHT HOLDER: Juuso Parkkinen, Leo Lahti, Joona Lehtomaki, Pyry Kantanen

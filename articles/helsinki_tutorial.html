@@ -68,7 +68,7 @@
                         <h4 data-toc-skip class="author">Juuso
 Parkkinen, Pyry Kantanen</h4>
             
-            <h4 data-toc-skip class="date">2026-02-17</h4>
+            <h4 data-toc-skip class="date">2026-02-26</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/helsinki/blob/master/vignettes/helsinki_tutorial.Rmd" class="external-link"><code>vignettes/helsinki_tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>helsinki_tutorial.Rmd</code></div>
@@ -230,7 +230,6 @@ names and larger grid squares and so on.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">building_grid2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASVALJYYS</span><span class="op">)</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">ASVALJYYS</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p><img src="helsinki_tutorial_files/figure-html/hsy_examples2-1.png" class="r-plt" alt="" width="525"></p>
 <p>While easy enough to build, specialized functions such as these are
 probably not something that power users want to rely on in their work
 flows. They also add more manual phases to package maintenance and
@@ -434,16 +433,26 @@ Events API</a>.</p>
 <span><span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_linkedevents.html">get_linkedevents</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"event"</span><span class="op">)</span></span>
 <span><span class="co"># Get names for the first 20 results</span></span>
 <span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">name</span><span class="op">$</span><span class="va">fi</span></span>
-<span><span class="co">#&gt;  [1] "Hurri Ja Tosi Hurri K-18"    "Antigone"                   </span></span>
-<span><span class="co">#&gt;  [3] "Somatic Sitcom Ensi-Ilta"    "&amp; Julia"                    </span></span>
-<span><span class="co">#&gt;  [5] NA                            "Out Of Order"               </span></span>
-<span><span class="co">#&gt;  [7] "Komedia Pankkiryöstöstä"     "Kurtturuusut"               </span></span>
-<span><span class="co">#&gt;  [9] "Status Quo"                  "Tuula Ja Pirkko"            </span></span>
-<span><span class="co">#&gt; [11] "Hildur"                      NA                           </span></span>
-<span><span class="co">#&gt; [13] ""                            "Aleksi Suomesta"            </span></span>
-<span><span class="co">#&gt; [15] "Let'S Play Business"         "Veljeni Leijonamieli"       </span></span>
-<span><span class="co">#&gt; [17] "Kuka Kaappasi Auringon"      "Esteetön Kulissikierros"    </span></span>
-<span><span class="co">#&gt; [19] "Mollin Iltahepuli"           "Seniorisoppa Kevätkonsertti"</span></span>
+<span><span class="co">#&gt;  [1] "Lunnan palvelut tutuksi – tule mukaan matalan kynnyksen tapahtumaan!"</span></span>
+<span><span class="co">#&gt;  [2] "Hurri Ja Tosi Hurri K-18"                                            </span></span>
+<span><span class="co">#&gt;  [3] "Antigone"                                                            </span></span>
+<span><span class="co">#&gt;  [4] "Somatic Sitcom Ensi-Ilta"                                            </span></span>
+<span><span class="co">#&gt;  [5] "&amp; Julia"                                                             </span></span>
+<span><span class="co">#&gt;  [6] NA                                                                    </span></span>
+<span><span class="co">#&gt;  [7] "Out Of Order"                                                        </span></span>
+<span><span class="co">#&gt;  [8] "Komedia Pankkiryöstöstä"                                             </span></span>
+<span><span class="co">#&gt;  [9] "Kurtturuusut"                                                        </span></span>
+<span><span class="co">#&gt; [10] "Status Quo"                                                          </span></span>
+<span><span class="co">#&gt; [11] "Tuula Ja Pirkko"                                                     </span></span>
+<span><span class="co">#&gt; [12] "Hildur"                                                              </span></span>
+<span><span class="co">#&gt; [13] NA                                                                    </span></span>
+<span><span class="co">#&gt; [14] ""                                                                    </span></span>
+<span><span class="co">#&gt; [15] "Aleksi Suomesta"                                                     </span></span>
+<span><span class="co">#&gt; [16] "Let'S Play Business"                                                 </span></span>
+<span><span class="co">#&gt; [17] "Veljeni Leijonamieli"                                                </span></span>
+<span><span class="co">#&gt; [18] "Kuka Kaappasi Auringon"                                              </span></span>
+<span><span class="co">#&gt; [19] "Esteetön Kulissikierros"                                             </span></span>
+<span><span class="co">#&gt; [20] "Mollin Iltahepuli"</span></span>
 <span><span class="co"># See what kind of data is given for events</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">events</span><span class="op">$</span><span class="va">data</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "id"                          "has_user_editable_resources"</span></span>
@@ -463,10 +472,10 @@ Events API</a>.</p>
 <span><span class="co">#&gt; [29] "deleted"                     "maximum_attendee_capacity"  </span></span>
 <span><span class="co">#&gt; [31] "minimum_attendee_capacity"   "enrolment_start_time"       </span></span>
 <span><span class="co">#&gt; [33] "enrolment_end_time"          "local"                      </span></span>
-<span><span class="co">#&gt; [35] "replaced_by"                 "provider"                   </span></span>
-<span><span class="co">#&gt; [37] "info_url"                    "location_extra_info"        </span></span>
-<span><span class="co">#&gt; [39] "provider_contact_info"       "short_description"          </span></span>
-<span><span class="co">#&gt; [41] "description"                 "name"                       </span></span>
+<span><span class="co">#&gt; [35] "replaced_by"                 "info_url"                   </span></span>
+<span><span class="co">#&gt; [37] "short_description"           "location_extra_info"        </span></span>
+<span><span class="co">#&gt; [39] "description"                 "name"                       </span></span>
+<span><span class="co">#&gt; [41] "provider_contact_info"       "provider"                   </span></span>
 <span><span class="co">#&gt; [43] "@id"                         "@context"                   </span></span>
 <span><span class="co">#&gt; [45] "@type"</span></span></code></pre></div>
 </div>
@@ -609,7 +618,7 @@ website for more information.</p>
 <span><span class="co">#&gt;  [1] sass_0.4.10        generics_0.1.4     class_7.3-23       xml2_1.5.2        </span></span>
 <span><span class="co">#&gt;  [5] KernSmooth_2.23-26 digest_0.6.39      magrittr_2.0.4     evaluate_1.0.5    </span></span>
 <span><span class="co">#&gt;  [9] grid_4.5.2         RColorBrewer_1.1-3 fastmap_1.2.0      jsonlite_2.0.0    </span></span>
-<span><span class="co">#&gt; [13] e1071_1.7-17       DBI_1.2.3          httr_1.4.8         purrr_1.2.1       </span></span>
+<span><span class="co">#&gt; [13] e1071_1.7-17       DBI_1.3.0          httr_1.4.8         purrr_1.2.1       </span></span>
 <span><span class="co">#&gt; [17] scales_1.4.0       textshaping_1.0.4  jquerylib_0.1.4    cli_3.6.5         </span></span>
 <span><span class="co">#&gt; [21] rlang_1.1.7        units_1.0-0        withr_3.0.2        cachem_1.1.0      </span></span>
 <span><span class="co">#&gt; [25] yaml_2.3.12        tools_4.5.2        dplyr_1.2.0        curl_7.0.0        </span></span>
@@ -617,7 +626,7 @@ website for more information.</p>
 <span><span class="co">#&gt; [33] classInt_0.4-11    fs_1.6.6           htmlwidgets_1.6.4  ragg_1.5.0        </span></span>
 <span><span class="co">#&gt; [37] pkgconfig_2.0.3    desc_1.4.3         pkgdown_2.2.0      pillar_1.11.1     </span></span>
 <span><span class="co">#&gt; [41] bslib_0.10.0       gtable_0.3.6       glue_1.8.0         Rcpp_1.1.1        </span></span>
-<span><span class="co">#&gt; [45] sf_1.0-24          systemfonts_1.3.1  xfun_0.56          tibble_3.3.1      </span></span>
+<span><span class="co">#&gt; [45] sf_1.1-0           systemfonts_1.3.1  xfun_0.56          tibble_3.3.1      </span></span>
 <span><span class="co">#&gt; [49] tidyselect_1.2.1   knitr_1.51         farver_2.1.2       htmltools_0.5.9   </span></span>
 <span><span class="co">#&gt; [53] labeling_0.4.3     rmarkdown_2.30     compiler_4.5.2     S7_0.2.1</span></span></code></pre></div>
 </div>

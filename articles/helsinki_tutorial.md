@@ -190,8 +190,6 @@ if (!all(is.null(pop_grid2), is.null(building_grid2))) {
 }
 ```
 
-![](helsinki_tutorial_files/figure-html/hsy_examples2-1.png)
-
 While easy enough to build, specialized functions such as these are
 probably not something that power users want to rely on in their work
 flows. They also add more manual phases to package maintenance and
@@ -408,16 +406,26 @@ API](http://api.hel.fi/linkedevents/v1/).
 events <- get_linkedevents(query = "event")
 # Get names for the first 20 results
 events$data$name$fi
-#>  [1] "Hurri Ja Tosi Hurri K-18"    "Antigone"                   
-#>  [3] "Somatic Sitcom Ensi-Ilta"    "& Julia"                    
-#>  [5] NA                            "Out Of Order"               
-#>  [7] "Komedia Pankkiryöstöstä"     "Kurtturuusut"               
-#>  [9] "Status Quo"                  "Tuula Ja Pirkko"            
-#> [11] "Hildur"                      NA                           
-#> [13] ""                            "Aleksi Suomesta"            
-#> [15] "Let'S Play Business"         "Veljeni Leijonamieli"       
-#> [17] "Kuka Kaappasi Auringon"      "Esteetön Kulissikierros"    
-#> [19] "Mollin Iltahepuli"           "Seniorisoppa Kevätkonsertti"
+#>  [1] "Lunnan palvelut tutuksi – tule mukaan matalan kynnyksen tapahtumaan!"
+#>  [2] "Hurri Ja Tosi Hurri K-18"                                            
+#>  [3] "Antigone"                                                            
+#>  [4] "Somatic Sitcom Ensi-Ilta"                                            
+#>  [5] "& Julia"                                                             
+#>  [6] NA                                                                    
+#>  [7] "Out Of Order"                                                        
+#>  [8] "Komedia Pankkiryöstöstä"                                             
+#>  [9] "Kurtturuusut"                                                        
+#> [10] "Status Quo"                                                          
+#> [11] "Tuula Ja Pirkko"                                                     
+#> [12] "Hildur"                                                              
+#> [13] NA                                                                    
+#> [14] ""                                                                    
+#> [15] "Aleksi Suomesta"                                                     
+#> [16] "Let'S Play Business"                                                 
+#> [17] "Veljeni Leijonamieli"                                                
+#> [18] "Kuka Kaappasi Auringon"                                              
+#> [19] "Esteetön Kulissikierros"                                             
+#> [20] "Mollin Iltahepuli"
 # See what kind of data is given for events
 names(events$data)
 #>  [1] "id"                          "has_user_editable_resources"
@@ -437,10 +445,10 @@ names(events$data)
 #> [29] "deleted"                     "maximum_attendee_capacity"  
 #> [31] "minimum_attendee_capacity"   "enrolment_start_time"       
 #> [33] "enrolment_end_time"          "local"                      
-#> [35] "replaced_by"                 "provider"                   
-#> [37] "info_url"                    "location_extra_info"        
-#> [39] "provider_contact_info"       "short_description"          
-#> [41] "description"                 "name"                       
+#> [35] "replaced_by"                 "info_url"                   
+#> [37] "short_description"           "location_extra_info"        
+#> [39] "description"                 "name"                       
+#> [41] "provider_contact_info"       "provider"                   
 #> [43] "@id"                         "@context"                   
 #> [45] "@type"
 ```
@@ -594,7 +602,7 @@ sessionInfo()
 #>  [1] sass_0.4.10        generics_0.1.4     class_7.3-23       xml2_1.5.2        
 #>  [5] KernSmooth_2.23-26 digest_0.6.39      magrittr_2.0.4     evaluate_1.0.5    
 #>  [9] grid_4.5.2         RColorBrewer_1.1-3 fastmap_1.2.0      jsonlite_2.0.0    
-#> [13] e1071_1.7-17       DBI_1.2.3          httr_1.4.8         purrr_1.2.1       
+#> [13] e1071_1.7-17       DBI_1.3.0          httr_1.4.8         purrr_1.2.1       
 #> [17] scales_1.4.0       textshaping_1.0.4  jquerylib_0.1.4    cli_3.6.5         
 #> [21] rlang_1.1.7        units_1.0-0        withr_3.0.2        cachem_1.1.0      
 #> [25] yaml_2.3.12        tools_4.5.2        dplyr_1.2.0        curl_7.0.0        
@@ -602,7 +610,7 @@ sessionInfo()
 #> [33] classInt_0.4-11    fs_1.6.6           htmlwidgets_1.6.4  ragg_1.5.0        
 #> [37] pkgconfig_2.0.3    desc_1.4.3         pkgdown_2.2.0      pillar_1.11.1     
 #> [41] bslib_0.10.0       gtable_0.3.6       glue_1.8.0         Rcpp_1.1.1        
-#> [45] sf_1.0-24          systemfonts_1.3.1  xfun_0.56          tibble_3.3.1      
+#> [45] sf_1.1-0           systemfonts_1.3.1  xfun_0.56          tibble_3.3.1      
 #> [49] tidyselect_1.2.1   knitr_1.51         farver_2.1.2       htmltools_0.5.9   
 #> [53] labeling_0.4.3     rmarkdown_2.30     compiler_4.5.2     S7_0.2.1
 ```

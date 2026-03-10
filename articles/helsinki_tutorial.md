@@ -53,27 +53,27 @@ hsy_features <- get_feature_list(base.url = input_url)
 hsy_vesihuolto <- hsy_features[which(hsy_features$Namespace == "vesihuolto"), ]
 hsy_vesihuolto
 #>                                                    Name
-#> 184                        vesihuolto:VH_Vesipostit_HSY
-#> 333                 vesihuolto:vesihuollon_toimipisteet
-#> 335               vesihuolto:vh_hulevesiviemaroity_alue
-#> 336             vesihuolto:vh_hva_laajeneminen_alustava
-#> 337               vesihuolto:vh_hva_sekaviemarointialue
-#> 338           vesihuolto:vh_hva_sva_eriyttamiskelpoiset
-#> 339      vesihuolto:vh_muut_vesihuollon_toiminta_alueet
-#> 340                         vesihuolto:vh_toiminta_alue
-#> 341              vesihuolto:vh_toiminta_alue_talousvesi
-#> 342 vesihuolto:vh_toiminta_alueen_alustava_laajeneminen
+#> 185                        vesihuolto:VH_Vesipostit_HSY
+#> 334                 vesihuolto:vesihuollon_toimipisteet
+#> 336               vesihuolto:vh_hulevesiviemaroity_alue
+#> 337             vesihuolto:vh_hva_laajeneminen_alustava
+#> 338               vesihuolto:vh_hva_sekaviemarointialue
+#> 339           vesihuolto:vh_hva_sva_eriyttamiskelpoiset
+#> 340      vesihuolto:vh_muut_vesihuollon_toiminta_alueet
+#> 341                         vesihuolto:vh_toiminta_alue
+#> 342              vesihuolto:vh_toiminta_alue_talousvesi
+#> 343 vesihuolto:vh_toiminta_alueen_alustava_laajeneminen
 #>                                        Title  Namespace
-#> 184                        VH_Vesipostit_HSY vesihuolto
-#> 333                 vesihuollon_toimipisteet vesihuolto
-#> 335               vh_hulevesiviemaroity_alue vesihuolto
-#> 336             vh_hva_laajeneminen_alustava vesihuolto
-#> 337               vh_hva_sekaviemarointialue vesihuolto
-#> 338           vh_hva_sva_eriyttamiskelpoiset vesihuolto
-#> 339      vh_muut_vesihuollon_toiminta_alueet vesihuolto
-#> 340                         vh_toiminta_alue vesihuolto
-#> 341              vh_toiminta_alue_talousvesi vesihuolto
-#> 342 vh_toiminta_alueen_alustava_laajeneminen vesihuolto
+#> 185                        VH_Vesipostit_HSY vesihuolto
+#> 334                 vesihuollon_toimipisteet vesihuolto
+#> 336               vh_hulevesiviemaroity_alue vesihuolto
+#> 337             vh_hva_laajeneminen_alustava vesihuolto
+#> 338               vh_hva_sekaviemarointialue vesihuolto
+#> 339           vh_hva_sva_eriyttamiskelpoiset vesihuolto
+#> 340      vh_muut_vesihuollon_toiminta_alueet vesihuolto
+#> 341                         vh_toiminta_alue vesihuolto
+#> 342              vh_toiminta_alue_talousvesi vesihuolto
+#> 343 vh_toiminta_alueen_alustava_laajeneminen vesihuolto
 # We select our feature of interest from this list: Location of waterposts
 feature_of_interest <- "vesihuolto:VH_Vesipostit_HSY"
 ```
@@ -190,6 +190,8 @@ if (!all(is.null(pop_grid2), is.null(building_grid2))) {
 }
 ```
 
+![](helsinki_tutorial_files/figure-html/hsy_examples2-1.png)
+
 While easy enough to build, specialized functions such as these are
 probably not something that power users want to rely on in their work
 flows. They also add more manual phases to package maintenance and
@@ -212,7 +214,7 @@ search_puisto <- get_servicemap(query = "search", q = "puisto")
 # Study results: 47 variables in the data frame
 str(search_puisto, max.level = 1)
 #> List of 4
-#>  $ count   : int 4758
+#>  $ count   : int 4781
 #>  $ next    : chr "http://api.hel.fi/servicemap/v2/search/?page=2&q=puisto"
 #>  $ previous: NULL
 #>  $ results :'data.frame':    20 obs. of  33 variables:
@@ -292,11 +294,11 @@ search_puisto <- get_servicemap(query = "search", q = "puisto", page_size = 30, 
 
 str(search_puisto)
 #> List of 4
-#>  $ count   : int 4758
+#>  $ count   : int 4781
 #>  $ next    : chr "http://api.hel.fi/servicemap/v2/search/?page=3&page_size=30&q=puisto"
 #>  $ previous: chr "http://api.hel.fi/servicemap/v2/search/?page_size=30&q=puisto"
 #>  $ results :'data.frame':    30 obs. of  31 variables:
-#>   ..$ id                                               : int [1:30] 1946 18972 19804 20267 20327 20351 20355 20378 20379 64023 ...
+#>   ..$ id                                               : int [1:30] 1946 18972 19804 20267 20327 20351 20355 20378 20379 62675 ...
 #>   ..$ object_type                                      : chr [1:30] "unit" "unit" "unit" "unit" ...
 #>   ..$ municipality                                     : chr [1:30] "helsinki" "vantaa" "vantaa" "espoo" ...
 #>   ..$ name.fi                                          : chr [1:30] "Puistolan palvelutalo" "Näätäpuiston päiväkoti" "Ilvespuiston päiväkoti" "Matinkylän asukaspuisto" ...
@@ -316,11 +318,11 @@ str(search_puisto)
 #>   ..$ contract_type.description.sv                     : chr [1:30] "kommunal tjänst, Social-, hälsovårds- och räddningssektorn, Helsingfors stad" "kommunal tjänst, Verksamhetsområdet för fostran och lärande, Vanda" "kommunal tjänst, Verksamhetsområdet för fostran och lärande, Vanda" "kommunal tjänst, Sektorn för fostran och lärande, Esbo" ...
 #>   ..$ contract_type.description.en                     : chr [1:30] "municipal service, The Social Services, Health Care and Rescue Services Division, City of Helsinki" "municipal service, Education and Learning Department, Vantaa" "municipal service, Education and Learning Department, Vantaa" "municipal service, Growth and Learning Sector, Espoo" ...
 #>   ..$ department.id                                    : chr [1:30] "fff7cfd5-9161-4dad-aa0c-0706a8a63b26" "ab4f37d0-3e53-462e-ad40-c73b57e3e39e" "ab4f37d0-3e53-462e-ad40-c73b57e3e39e" "d8dab34f-a68f-4244-b906-84e7f651b8e1" ...
+#>   ..$ department.street_address                        : logi [1:30] NA NA NA NA NA NA ...
 #>   ..$ department.municipality                          : chr [1:30] "helsinki" "vantaa" "vantaa" "espoo" ...
 #>   ..$ department.name.fi                               : chr [1:30] "Sosiaali-, terveys- ja pelastustoimiala" "Varhaiskasvatus" "Varhaiskasvatus" "Kasvun ja oppimisen toimiala, Espoo" ...
 #>   ..$ department.name.sv                               : chr [1:30] "Social-, hälsovårds- och räddningssektorn" "Småbarnspedagogik" "Småbarnspedagogik" "Sektorn för fostran och lärande, Esbo" ...
 #>   ..$ department.name.en                               : chr [1:30] "The Social Services, Health Care and Rescue Services Division" "Early Childhood Education" "Early Childhood Education" "Growth and Learning Sector, Espoo" ...
-#>   ..$ department.street_address.fi                     : chr [1:30] NA NA NA NA ...
 #>   ..$ root_department.id                               : chr [1:30] "83e74666-0836-4c1d-948a-4b34a8b90301" "6d78f89c-9fd7-41d9-84e0-4b78c0fa25ce" "6d78f89c-9fd7-41d9-84e0-4b78c0fa25ce" "520a4492-cb78-498b-9c82-86504de88dce" ...
 #>   ..$ root_department.name.fi                          : chr [1:30] "Helsingin kaupunki" "Vantaan kaupunki" "Vantaan kaupunki" "Espoon kaupunki" ...
 #>   ..$ root_department.name.sv                          : chr [1:30] "Helsingfors stad" "Vanda stad" "Vanda stad" "Esbo stad" ...
@@ -336,58 +338,58 @@ str(search_puisto)
 #>   .. ..$ : num [1:2] 24.7 60.1
 #>   .. ..$ : num [1:2] 24.6 60.2
 #>   .. ..$ : num [1:2] 24.7 60.2
+#>   .. ..$ : num [1:2] 25 60.3
+#>   .. ..$ : num [1:2] 25.1 60.3
 #>   .. ..$ : num [1:2] 25.1 60.3
 #>   .. ..$ : num [1:2] 24.7 60.3
 #>   .. ..$ : num [1:2] 24.7 60.2
+#>   .. ..$ : num [1:2] 25.1 60.2
+#>   .. ..$ : num [1:2] 25 60.2
+#>   .. ..$ : num [1:2] 25 60.2
+#>   .. ..$ : num [1:2] 25 60.2
+#>   .. ..$ : num [1:2] 25 60.2
+#>   .. ..$ : num [1:2] 25 60.2
 #>   .. ..$ : num [1:2] 24.9 60.2
-#>   .. ..$ : num [1:2] 24.5 60.3
+#>   .. ..$ : num [1:2] 25 60.2
+#>   .. ..$ : num [1:2] 25.1 60.2
+#>   .. ..$ : num [1:2] 24.9 60.2
+#>   .. ..$ : num [1:2] 24.9 60.3
 #>   .. ..$ : num [1:2] 25.1 60.3
-#>   .. ..$ : num [1:2] 25 60.3
-#>   .. ..$ : num [1:2] 25.1 60.3
-#>   .. ..$ : num [1:2] 25.1 60.3
-#>   .. ..$ : num [1:2] 25.1 60.3
-#>   .. ..$ : num [1:2] 25 60.3
+#>   .. ..$ : num [1:2] 24.9 60.2
 #>   .. ..$ : num [1:2] 25 60.3
 #>   .. ..$ : num [1:2] 25.1 60.2
-#>   .. ..$ : num [1:2] 24.7 60.2
-#>   .. ..$ : num [1:2] 25.1 60.4
-#>   .. ..$ : num [1:2] 24.9 60.2
-#>   .. ..$ : num [1:2] 25.1 60.3
-#>   .. ..$ : num [1:2] 25 60.2
-#>   .. ..$ : num [1:2] 24.6 60.2
-#>   .. ..$ : num [1:2] 24.8 60.2
-#>   .. ..$ : num [1:2] 24.7 60.2
+#>   .. ..$ : num [1:2] 25.1 60.2
 search_puisto$results$name.fi
-#>  [1] "Puistolan palvelutalo"                    
-#>  [2] "Näätäpuiston päiväkoti"                   
-#>  [3] "Ilvespuiston päiväkoti"                   
-#>  [4] "Matinkylän asukaspuisto"                  
-#>  [5] "Viherkallion asukaspuisto"                
-#>  [6] "Latokasken asukaspuisto"                  
-#>  [7] "Soukan asukaspuisto"                      
-#>  [8] "Kylätalo Palttinan asukaspuisto"          
-#>  [9] "Suvelan asukaspuisto"                     
-#> [10] "Kierrätyskeskus Porttipuisto"             
-#> [11] "Hiirisuon asukaspuisto"                   
-#> [12] "Järvenperän asukaspuisto"                 
-#> [13] "Päiväkoti Postipuisto"                    
-#> [14] "Hotelli Nuuksio"                          
-#> [15] "Kierrätyskeskus Porttipuisto"             
-#> [16] "Koillisen terveysasema/Puistola"          
-#> [17] "Hepopuiston päiväkoti"                    
-#> [18] "Latupuiston päiväkoti"                    
-#> [19] "Vaaralanpuiston päiväkoti"                
-#> [20] "Kämmekkäpuiston päiväkoti"                
-#> [21] "Urheilupuiston päiväkoti"                 
-#> [22] "Keihäspuiston päiväkoti"                  
-#> [23] "Olarin asukaspuisto"                      
-#> [24] "Siimapuiston päiväkoti"                   
-#> [25] "Kannelmäen liikuntapuisto / Ulkokuntosali"
-#> [26] "Ravurinpuiston päiväkoti"                 
-#> [27] "Syötävä puisto"                           
-#> [28] "Poijupuiston vastaanottokoti"             
-#> [29] "Opiskeluhuolto, Westendinpuiston koulu"   
-#> [30] "Opiskeluhuolto, Jalavapuiston koulu"
+#>  [1] "Puistolan palvelutalo"                                                                                                                                     
+#>  [2] "Näätäpuiston päiväkoti"                                                                                                                                    
+#>  [3] "Ilvespuiston päiväkoti"                                                                                                                                    
+#>  [4] "Matinkylän asukaspuisto"                                                                                                                                   
+#>  [5] "Viherkallion asukaspuisto"                                                                                                                                 
+#>  [6] "Latokasken asukaspuisto"                                                                                                                                   
+#>  [7] "Soukan asukaspuisto"                                                                                                                                       
+#>  [8] "Kylätalo Palttinan asukaspuisto"                                                                                                                           
+#>  [9] "Suvelan asukaspuisto"                                                                                                                                      
+#> [10] "Iltapäivätoiminta / Puistolan peruskoulu / POY, Kasvatuksen ja koulutuksen toimiala (pidennetty oppivelvollisuus)"                                         
+#> [11] "Iltapäivätoiminta / Puistolanraitin ala-aste / Toiminta-alueittain järjestettävä opetus, Kasvatuksen ja koulutuksen toimiala (vaativan tuen erityisopetus)"
+#> [12] "Kierrätyskeskus Porttipuisto"                                                                                                                              
+#> [13] "Hiirisuon asukaspuisto"                                                                                                                                    
+#> [14] "Järvenperän asukaspuisto"                                                                                                                                  
+#> [15] "Iltapäivätoiminta / Puistopolun peruskoulu / Vaativan tuen erityisopetus, Kasvatuksen ja koulutuksen toimiala (vaativan tuen erityisopetus)"               
+#> [16] "Iltapäivätoiminta / Leikkipuisto Arabia"                                                                                                                   
+#> [17] "Iltapäivätoiminta / Leikkipuisto Brahe"                                                                                                                    
+#> [18] "Iltapäivätoiminta / Leikkipuisto Etupelto"                                                                                                                 
+#> [19] "Iltapäivätoiminta / Leikkipuisto Filpus"                                                                                                                   
+#> [20] "Iltapäivätoiminta / Leikkipuisto Hilleri"                                                                                                                  
+#> [21] "Iltapäivätoiminta / Leikkipuisto Ida"                                                                                                                      
+#> [22] "Iltapäivätoiminta / Leikkipuisto Intia"                                                                                                                    
+#> [23] "Iltapäivätoiminta / Leikkipuisto Iso-Antti"                                                                                                                
+#> [24] "Iltapäivätoiminta / Leikkipuisto Isoneva"                                                                                                                  
+#> [25] "Iltapäivätoiminta / Leikkipuisto Torpparinmäki"                                                                                                            
+#> [26] "Iltapäivätoiminta / Leikkipuisto Kankarepuisto"                                                                                                            
+#> [27] "Iltapäivätoiminta / Leikkipuisto Kannelmäki"                                                                                                               
+#> [28] "Iltapäivätoiminta / Leikkipuisto Kesanto"                                                                                                                  
+#> [29] "Iltapäivätoiminta / Leikkipuisto Kiiltotähti"                                                                                                              
+#> [30] "Iltapäivätoiminta / Leikkipuisto Kipinäpuisto"
 ```
 
 As we could see from above example, the returned data frame had 30
@@ -406,26 +408,16 @@ API](http://api.hel.fi/linkedevents/v1/).
 events <- get_linkedevents(query = "event")
 # Get names for the first 20 results
 events$data$name$fi
-#>  [1] "Lunnan palvelut tutuksi – tule mukaan matalan kynnyksen tapahtumaan!"
-#>  [2] "Hurri Ja Tosi Hurri K-18"                                            
-#>  [3] "Antigone"                                                            
-#>  [4] "Somatic Sitcom Ensi-Ilta"                                            
-#>  [5] "& Julia"                                                             
-#>  [6] NA                                                                    
-#>  [7] "Out Of Order"                                                        
-#>  [8] "Komedia Pankkiryöstöstä"                                             
-#>  [9] "Kurtturuusut"                                                        
-#> [10] "Status Quo"                                                          
-#> [11] "Tuula Ja Pirkko"                                                     
-#> [12] "Hildur"                                                              
-#> [13] NA                                                                    
-#> [14] ""                                                                    
-#> [15] "Aleksi Suomesta"                                                     
-#> [16] "Let'S Play Business"                                                 
-#> [17] "Veljeni Leijonamieli"                                                
-#> [18] "Kuka Kaappasi Auringon"                                              
-#> [19] "Esteetön Kulissikierros"                                             
-#> [20] "Mollin Iltahepuli"
+#>  [1] "Lukukoira Noppa"             "Lukukoira Noppa"            
+#>  [3] "Lukukoira Noppa"             "Lukukoira Noppa"            
+#>  [5] "Lukukoira Noppa"             "Englanninkielinen lukupiiri"
+#>  [7] "Englanninkielinen lukupiiri" "Englanninkielinen lukupiiri"
+#>  [9] "Englanninkielinen lukupiiri" "Englanninkielinen lukupiiri"
+#> [11] "Piano day Helsinki 2026"     "KauhuCon 2026"              
+#> [13] "Lasten lauantaileffa"        "Lasten lauantaileffa"       
+#> [15] "Lasten lauantaileffa"        "Lasten lauantaileffa"       
+#> [17] "Lasten lauantaileffa"        "Lasten lauantaileffa"       
+#> [19] "Lasten lauantaileffa"        "Lasten lauantaileffa"
 # See what kind of data is given for events
 names(events$data)
 #>  [1] "id"                          "has_user_editable_resources"
@@ -445,10 +437,10 @@ names(events$data)
 #> [29] "deleted"                     "maximum_attendee_capacity"  
 #> [31] "minimum_attendee_capacity"   "enrolment_start_time"       
 #> [33] "enrolment_end_time"          "local"                      
-#> [35] "replaced_by"                 "info_url"                   
-#> [37] "short_description"           "location_extra_info"        
-#> [39] "description"                 "name"                       
-#> [41] "provider_contact_info"       "provider"                   
+#> [35] "replaced_by"                 "short_description"          
+#> [37] "name"                        "description"                
+#> [39] "provider"                    "provider_contact_info"      
+#> [41] "info_url"                    "location_extra_info"        
 #> [43] "@id"                         "@context"                   
 #> [45] "@type"
 ```
@@ -603,14 +595,14 @@ sessionInfo()
 #>  [5] KernSmooth_2.23-26 digest_0.6.39      magrittr_2.0.4     evaluate_1.0.5    
 #>  [9] grid_4.5.2         RColorBrewer_1.1-3 fastmap_1.2.0      jsonlite_2.0.0    
 #> [13] e1071_1.7-17       DBI_1.3.0          httr_1.4.8         purrr_1.2.1       
-#> [17] scales_1.4.0       textshaping_1.0.4  jquerylib_0.1.4    cli_3.6.5         
+#> [17] scales_1.4.0       textshaping_1.0.5  jquerylib_0.1.4    cli_3.6.5         
 #> [21] rlang_1.1.7        units_1.0-0        withr_3.0.2        cachem_1.1.0      
 #> [25] yaml_2.3.12        tools_4.5.2        dplyr_1.2.0        curl_7.0.0        
 #> [29] vctrs_0.7.1        R6_2.6.1           proxy_0.4-29       lifecycle_1.0.5   
-#> [33] classInt_0.4-11    fs_1.6.6           htmlwidgets_1.6.4  ragg_1.5.0        
+#> [33] classInt_0.4-11    fs_1.6.7           htmlwidgets_1.6.4  ragg_1.5.1        
 #> [37] pkgconfig_2.0.3    desc_1.4.3         pkgdown_2.2.0      pillar_1.11.1     
 #> [41] bslib_0.10.0       gtable_0.3.6       glue_1.8.0         Rcpp_1.1.1        
-#> [45] sf_1.1-0           systemfonts_1.3.1  xfun_0.56          tibble_3.3.1      
+#> [45] sf_1.1-0           systemfonts_1.3.2  xfun_0.56          tibble_3.3.1      
 #> [49] tidyselect_1.2.1   knitr_1.51         farver_2.1.2       htmltools_0.5.9   
 #> [53] labeling_0.4.3     rmarkdown_2.30     compiler_4.5.2     S7_0.2.1
 ```

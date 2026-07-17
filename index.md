@@ -10,12 +10,14 @@ You can install the released version of helsinki from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
+
 install.packages("helsinki")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
+
 # install.packages("remotes)
 library(remotes)
 remotes::install_github("ropengov/helsinki")
@@ -26,6 +28,7 @@ remotes::install_github("ropengov/helsinki")
 Loading the package:
 
 ``` r
+
 library(helsinki)
 ```
 
@@ -33,6 +36,7 @@ List available features from Helsinki Region Environmental Services HSY
 WFS API and then download the 15th feature from that list:
 
 ``` r
+
 url <- "https://kartta.hsy.fi/geoserver/wfs"
 hsy_features <- get_feature_list(base.url = url)
 get_feature(base.url = url, typename = hsy_features$Name[15])

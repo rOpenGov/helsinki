@@ -15,12 +15,14 @@ packages and related blog posts, see the
 Release version for most users:
 
 ``` r
+
 install.packages("helsinki")
 ```
 
 Development version for developers and other interested parties:
 
 ``` r
+
 library(remotes)
 remotes::install_github("ropengov/helsinki")
 ```
@@ -28,6 +30,7 @@ remotes::install_github("ropengov/helsinki")
 Load the package.
 
 ``` r
+
 library(helsinki)
 ```
 
@@ -46,6 +49,7 @@ function. The API functions can, however, be used with a wide variety of
 different `base.url` parameters.
 
 ``` r
+
 input_url <- "https://kartta.hsy.fi/geoserver/wfs"
 
 hsy_features <- get_feature_list(base.url = input_url)
@@ -53,27 +57,27 @@ hsy_features <- get_feature_list(base.url = input_url)
 hsy_vesihuolto <- hsy_features[which(hsy_features$Namespace == "vesihuolto"), ]
 hsy_vesihuolto
 #>                                                    Name
-#> 185                        vesihuolto:VH_Vesipostit_HSY
-#> 334                 vesihuolto:vesihuollon_toimipisteet
-#> 336               vesihuolto:vh_hulevesiviemaroity_alue
-#> 337             vesihuolto:vh_hva_laajeneminen_alustava
-#> 338               vesihuolto:vh_hva_sekaviemarointialue
-#> 339           vesihuolto:vh_hva_sva_eriyttamiskelpoiset
-#> 340      vesihuolto:vh_muut_vesihuollon_toiminta_alueet
-#> 341                         vesihuolto:vh_toiminta_alue
-#> 342              vesihuolto:vh_toiminta_alue_talousvesi
-#> 343 vesihuolto:vh_toiminta_alueen_alustava_laajeneminen
+#> 205                        vesihuolto:VH_Vesipostit_HSY
+#> 361                 vesihuolto:vesihuollon_toimipisteet
+#> 363               vesihuolto:vh_hulevesiviemaroity_alue
+#> 364             vesihuolto:vh_hva_laajeneminen_alustava
+#> 365               vesihuolto:vh_hva_sekaviemarointialue
+#> 366           vesihuolto:vh_hva_sva_eriyttamiskelpoiset
+#> 367      vesihuolto:vh_muut_vesihuollon_toiminta_alueet
+#> 368                         vesihuolto:vh_toiminta_alue
+#> 369              vesihuolto:vh_toiminta_alue_talousvesi
+#> 370 vesihuolto:vh_toiminta_alueen_alustava_laajeneminen
 #>                                        Title  Namespace
-#> 185                        VH_Vesipostit_HSY vesihuolto
-#> 334                 vesihuollon_toimipisteet vesihuolto
-#> 336               vh_hulevesiviemaroity_alue vesihuolto
-#> 337             vh_hva_laajeneminen_alustava vesihuolto
-#> 338               vh_hva_sekaviemarointialue vesihuolto
-#> 339           vh_hva_sva_eriyttamiskelpoiset vesihuolto
-#> 340      vh_muut_vesihuollon_toiminta_alueet vesihuolto
-#> 341                         vh_toiminta_alue vesihuolto
-#> 342              vh_toiminta_alue_talousvesi vesihuolto
-#> 343 vh_toiminta_alueen_alustava_laajeneminen vesihuolto
+#> 205                        VH_Vesipostit_HSY vesihuolto
+#> 361                 vesihuollon_toimipisteet vesihuolto
+#> 363               vh_hulevesiviemaroity_alue vesihuolto
+#> 364             vh_hva_laajeneminen_alustava vesihuolto
+#> 365               vh_hva_sekaviemarointialue vesihuolto
+#> 366           vh_hva_sva_eriyttamiskelpoiset vesihuolto
+#> 367      vh_muut_vesihuollon_toiminta_alueet vesihuolto
+#> 368                         vh_toiminta_alue vesihuolto
+#> 369              vh_toiminta_alue_talousvesi vesihuolto
+#> 370 vh_toiminta_alueen_alustava_laajeneminen vesihuolto
 # We select our feature of interest from this list: Location of waterposts
 feature_of_interest <- "vesihuolto:VH_Vesipostit_HSY"
 ```
@@ -85,6 +89,7 @@ by providing the correct `base.url` and the Name as the `typename`
 parameter.
 
 ``` r
+
 input_url <- "https://kartta.hsy.fi/geoserver/wfs"
 feature_of_interest <- "vesihuolto:VH_Vesipostit_HSY"
 
@@ -119,6 +124,7 @@ parameter is set to TRUE, it returns an sf_object which can be easily
 visualized.
 
 ``` r
+
 input_url <- "https://kartta.hsy.fi/geoserver/wfs"
 
 # Interactive example with select_feature
@@ -146,6 +152,7 @@ functionalities from `get_hsy()` function:
 (building information grid).
 
 ``` r
+
 library(ggplot2)
 
 pop_grid <- get_vaestotietoruudukko(year = 2018)
@@ -177,6 +184,7 @@ slightly from those downloaded via API and have different column names
 and larger grid squares and so on.
 
 ``` r
+
 library(ggplot2)
 
 pop_grid2 <- get_vaestotietoruudukko(year = 2011)
@@ -209,12 +217,13 @@ API](http://api.hel.fi/servicemap/v2/), that contains data from the
 [Service Map](https://palvelukartta.hel.fi/fi/).
 
 ``` r
+
 # Search for "puisto" (park) (specify q="query")
 search_puisto <- get_servicemap(query = "search", q = "puisto")
 # Study results: 47 variables in the data frame
 str(search_puisto, max.level = 1)
 #> List of 4
-#>  $ count   : int 4781
+#>  $ count   : int 4470
 #>  $ next    : chr "http://api.hel.fi/servicemap/v2/search/?page=2&q=puisto"
 #>  $ previous: NULL
 #>  $ results :'data.frame':    20 obs. of  33 variables:
@@ -226,18 +235,19 @@ by default. By giving no additional search parameters, we get 20 results
 from the first page of search results.
 
 ``` r
+
 # Get names for the first 20 results
 search_puisto$results$name.fi
 #>  [1] "Puistopolun peruskoulu"              
-#>  [2] "Kankarepuiston peruskoulu"           
-#>  [3] "Puistolan peruskoulu"                
-#>  [4] "Pihkapuiston ala-asteen koulu"       
-#>  [5] "Kaupunkiympäristön asiakaspalvelu"   
-#>  [6] "Puistolanraitin ala-asteen koulu"    
-#>  [7] "Puistolan kirjasto"                  
-#>  [8] "Juvanpuiston nuorisotila"            
-#>  [9] "Kilonpuiston koulu"                  
-#> [10] "Kytöpuiston koulu"                   
+#>  [2] "Kaupunkiympäristön asiakaspalvelu"   
+#>  [3] "Kankarepuiston peruskoulu"           
+#>  [4] "Puistolan peruskoulu"                
+#>  [5] "Puistolan kirjasto"                  
+#>  [6] "Juvanpuiston nuorisotila"            
+#>  [7] "Pihkapuiston ala-asteen koulu"       
+#>  [8] "Kilonpuiston koulu"                  
+#>  [9] "Kytöpuiston koulu"                   
+#> [10] "Puistolanraitin ala-asteen koulu"    
 #> [11] "Pirkkolan liikuntapuisto / Uimahalli"
 #> [12] "Juvanpuiston koulu"                  
 #> [13] "Jalavapuiston koulu"                 
@@ -247,7 +257,7 @@ search_puisto$results$name.fi
 #> [17] "Leppävaaran asukaspuisto"            
 #> [18] "Perkkaan asukaspuisto"               
 #> [19] "Kivenlahden asukaspuisto"            
-#> [20] "Pisan asukaspuisto"
+#> [20] "Latokasken asukaspuisto"
 
 # See what kind of data is given for services
 names(search_puisto$results)
@@ -262,9 +272,9 @@ names(search_puisto$results)
 #>  [9] "street_address.en"                                
 #> [10] "accessibility_shortcoming_count.rollator"         
 #> [11] "accessibility_shortcoming_count.wheelchair"       
-#> [12] "accessibility_shortcoming_count.hearing_aid"      
-#> [13] "accessibility_shortcoming_count.reduced_mobility" 
-#> [14] "accessibility_shortcoming_count.visually_impaired"
+#> [12] "accessibility_shortcoming_count.reduced_mobility" 
+#> [13] "accessibility_shortcoming_count.visually_impaired"
+#> [14] "accessibility_shortcoming_count.hearing_aid"      
 #> [15] "accessibility_shortcoming_count.stroller"         
 #> [16] "contract_type.id"                                 
 #> [17] "contract_type.description.fi"                     
@@ -290,106 +300,107 @@ More results could be retrieved and viewed by giving additional `search`
 parameters.
 
 ``` r
+
 search_puisto <- get_servicemap(query = "search", q = "puisto", page_size = 30, page = 2)
 
 str(search_puisto)
 #> List of 4
-#>  $ count   : int 4781
+#>  $ count   : int 4470
 #>  $ next    : chr "http://api.hel.fi/servicemap/v2/search/?page=3&page_size=30&q=puisto"
 #>  $ previous: chr "http://api.hel.fi/servicemap/v2/search/?page_size=30&q=puisto"
 #>  $ results :'data.frame':    30 obs. of  31 variables:
-#>   ..$ id                                               : int [1:30] 1946 18972 19804 20267 20327 20351 20355 20378 20379 62675 ...
+#>   ..$ id                                               : int [1:30] 71213 71248 71522 71625 1946 18972 19804 20267 20327 64023 ...
 #>   ..$ object_type                                      : chr [1:30] "unit" "unit" "unit" "unit" ...
-#>   ..$ municipality                                     : chr [1:30] "helsinki" "vantaa" "vantaa" "espoo" ...
-#>   ..$ name.fi                                          : chr [1:30] "Puistolan palvelutalo" "Näätäpuiston päiväkoti" "Ilvespuiston päiväkoti" "Matinkylän asukaspuisto" ...
-#>   ..$ name.sv                                          : chr [1:30] "Parkstads servicehus" "Näätäpuiston päiväkoti" "Ilvespuiston päiväkoti" "Mattby invånarpark" ...
-#>   ..$ name.en                                          : chr [1:30] "Puistola assisted living facility" "Näätäpuiston päiväkoti" "Ilvespuiston päiväkoti" "Matinkylä residents' park" ...
-#>   ..$ street_address.fi                                : chr [1:30] "Aksiisipolku 1 B" "Siilireitti 12" "Ilvestie 2" "Matinraitti 12" ...
-#>   ..$ street_address.sv                                : chr [1:30] "Accisstigen 1 B" "Igelkottsrutten 12" "Lovägen 2" "Mattstråket 12" ...
-#>   ..$ street_address.en                                : chr [1:30] "Aksiisipolku 1 B" "Siilireitti 12" "Ilvestie 2" "Matinraitti 12" ...
-#>   ..$ accessibility_shortcoming_count.rollator         : int [1:30] 3 7 2 3 6 5 6 3 4 NA ...
-#>   ..$ accessibility_shortcoming_count.wheelchair       : int [1:30] 3 7 2 7 6 5 7 3 10 NA ...
-#>   ..$ accessibility_shortcoming_count.hearing_aid      : int [1:30] 1 1 1 1 1 1 1 1 1 NA ...
-#>   ..$ accessibility_shortcoming_count.reduced_mobility : int [1:30] 1 4 1 4 4 3 3 3 2 NA ...
-#>   ..$ accessibility_shortcoming_count.visually_impaired: int [1:30] 6 5 2 7 5 6 7 3 19 NA ...
-#>   ..$ accessibility_shortcoming_count.stroller         : int [1:30] NA 1 NA NA 2 NA NA 1 NA NA ...
-#>   ..$ contract_type.id                                 : chr [1:30] "MUNICIPAL_SERVICE" "MUNICIPAL_SERVICE" "MUNICIPAL_SERVICE" "MUNICIPAL_SERVICE" ...
-#>   ..$ contract_type.description.fi                     : chr [1:30] "kunnallinen palvelu, Sosiaali-, terveys- ja pelastustoimiala, Helsingin kaupunki" "kunnallinen palvelu, Kasvatuksen ja oppimisen toimiala, Vantaa" "kunnallinen palvelu, Kasvatuksen ja oppimisen toimiala, Vantaa" "kunnallinen palvelu, Kasvun ja oppimisen toimiala, Espoo" ...
-#>   ..$ contract_type.description.sv                     : chr [1:30] "kommunal tjänst, Social-, hälsovårds- och räddningssektorn, Helsingfors stad" "kommunal tjänst, Verksamhetsområdet för fostran och lärande, Vanda" "kommunal tjänst, Verksamhetsområdet för fostran och lärande, Vanda" "kommunal tjänst, Sektorn för fostran och lärande, Esbo" ...
-#>   ..$ contract_type.description.en                     : chr [1:30] "municipal service, The Social Services, Health Care and Rescue Services Division, City of Helsinki" "municipal service, Education and Learning Department, Vantaa" "municipal service, Education and Learning Department, Vantaa" "municipal service, Growth and Learning Sector, Espoo" ...
-#>   ..$ department.id                                    : chr [1:30] "fff7cfd5-9161-4dad-aa0c-0706a8a63b26" "ab4f37d0-3e53-462e-ad40-c73b57e3e39e" "ab4f37d0-3e53-462e-ad40-c73b57e3e39e" "d8dab34f-a68f-4244-b906-84e7f651b8e1" ...
-#>   ..$ department.street_address                        : logi [1:30] NA NA NA NA NA NA ...
-#>   ..$ department.municipality                          : chr [1:30] "helsinki" "vantaa" "vantaa" "espoo" ...
-#>   ..$ department.name.fi                               : chr [1:30] "Sosiaali-, terveys- ja pelastustoimiala" "Varhaiskasvatus" "Varhaiskasvatus" "Kasvun ja oppimisen toimiala, Espoo" ...
-#>   ..$ department.name.sv                               : chr [1:30] "Social-, hälsovårds- och räddningssektorn" "Småbarnspedagogik" "Småbarnspedagogik" "Sektorn för fostran och lärande, Esbo" ...
-#>   ..$ department.name.en                               : chr [1:30] "The Social Services, Health Care and Rescue Services Division" "Early Childhood Education" "Early Childhood Education" "Growth and Learning Sector, Espoo" ...
-#>   ..$ root_department.id                               : chr [1:30] "83e74666-0836-4c1d-948a-4b34a8b90301" "6d78f89c-9fd7-41d9-84e0-4b78c0fa25ce" "6d78f89c-9fd7-41d9-84e0-4b78c0fa25ce" "520a4492-cb78-498b-9c82-86504de88dce" ...
-#>   ..$ root_department.name.fi                          : chr [1:30] "Helsingin kaupunki" "Vantaan kaupunki" "Vantaan kaupunki" "Espoon kaupunki" ...
-#>   ..$ root_department.name.sv                          : chr [1:30] "Helsingfors stad" "Vanda stad" "Vanda stad" "Esbo stad" ...
-#>   ..$ root_department.name.en                          : chr [1:30] "City of Helsinki" "City of Vantaa" "City of Vantaa" "City of Espoo" ...
+#>   ..$ municipality                                     : chr [1:30] "lohja" "lohja" "raasepori" "tuusula" ...
+#>   ..$ name.fi                                          : chr [1:30] "Ekopiste / Ekopunkt Rantakantti (Aurlahti), Rantapuisto 23" "Rinki-ekopiste, Puistokatu / Harmajankatu" "Rinki-ekopiste, Ajurinpuisto 2 / Candelininkatu" "Rinki-ekopiste, Puistokuja 2 / Keskustie 8" ...
+#>   ..$ name.sv                                          : chr [1:30] "Ekopiste / Ekopunkt Rantakantti (Aurlahti), Rantapuisto 23" "Rinki-ekopiste, Puistokatu / Harmajankatu" "Rinki-ekopiste, Ajurinpuisto 2 / Candelininkatu" "Rinki-ekopiste, Puistokuja 2 / Keskustie 8" ...
+#>   ..$ name.en                                          : chr [1:30] "Ekopiste / Ekopunkt Rantakantti (Aurlahti), Rantapuisto 23" "Rinki-ekopiste, Puistokatu / Harmajankatu" "Rinki-ekopiste, Ajurinpuisto 2 / Candelininkatu" "Rinki-ekopiste, Puistokuja 2 / Keskustie 8" ...
+#>   ..$ street_address.fi                                : chr [1:30] "Rantapuisto 23" "Puistokatu / Harmajankatu" "Ajurinpuisto 2 / Candelininkatu" "Puistokuja 2 / Keskustie 8" ...
+#>   ..$ street_address.sv                                : chr [1:30] "Strandparken 23" NA "Formansallen 2 / Candelininkatu" "Puistokuja 2 / Keskustie 8" ...
+#>   ..$ street_address.en                                : chr [1:30] "Rantapuisto 23" "Puistokatu / Harmajankatu" "Ajurinpuisto 2 / Candelininkatu" "Puistokuja 2 / Keskustie 8" ...
+#>   ..$ accessibility_shortcoming_count.rollator         : int [1:30] NA NA NA NA 3 7 2 3 6 NA ...
+#>   ..$ accessibility_shortcoming_count.wheelchair       : int [1:30] NA NA NA NA 3 7 2 7 6 NA ...
+#>   ..$ accessibility_shortcoming_count.hearing_aid      : int [1:30] NA NA NA NA 1 1 1 1 1 NA ...
+#>   ..$ accessibility_shortcoming_count.reduced_mobility : int [1:30] NA NA NA NA 1 4 1 4 4 NA ...
+#>   ..$ accessibility_shortcoming_count.visually_impaired: int [1:30] NA NA NA NA 6 5 2 7 5 NA ...
+#>   ..$ accessibility_shortcoming_count.stroller         : int [1:30] NA NA NA NA NA 1 NA NA 2 NA ...
+#>   ..$ contract_type.id                                 : chr [1:30] "NOT_DISPLAYED" "NOT_DISPLAYED" "NOT_DISPLAYED" "NOT_DISPLAYED" ...
+#>   ..$ contract_type.description.fi                     : chr [1:30] NA NA NA NA ...
+#>   ..$ contract_type.description.sv                     : chr [1:30] NA NA NA NA ...
+#>   ..$ contract_type.description.en                     : chr [1:30] NA NA NA NA ...
+#>   ..$ department.id                                    : chr [1:30] "b293903b-79ec-42f4-ad7e-d852bac16303" "b293903b-79ec-42f4-ad7e-d852bac16303" "b293903b-79ec-42f4-ad7e-d852bac16303" "b293903b-79ec-42f4-ad7e-d852bac16303" ...
+#>   ..$ department.municipality                          : chr [1:30] NA NA NA NA ...
+#>   ..$ department.name.fi                               : chr [1:30] "JLY Jätelaitosyhdistys ry" "JLY Jätelaitosyhdistys ry" "JLY Jätelaitosyhdistys ry" "JLY Jätelaitosyhdistys ry" ...
+#>   ..$ department.name.sv                               : chr [1:30] "JLY - Avfallsverksföreningen rf" "JLY - Avfallsverksföreningen rf" "JLY - Avfallsverksföreningen rf" "JLY - Avfallsverksföreningen rf" ...
+#>   ..$ department.name.en                               : chr [1:30] "JLY - Finnish Solid Waste Association" "JLY - Finnish Solid Waste Association" "JLY - Finnish Solid Waste Association" "JLY - Finnish Solid Waste Association" ...
+#>   ..$ department.street_address.fi                     : chr [1:30] "Salomonkatu 17 A" "Salomonkatu 17 A" "Salomonkatu 17 A" "Salomonkatu 17 A" ...
+#>   ..$ root_department.id                               : chr [1:30] "b293903b-79ec-42f4-ad7e-d852bac16303" "b293903b-79ec-42f4-ad7e-d852bac16303" "b293903b-79ec-42f4-ad7e-d852bac16303" "b293903b-79ec-42f4-ad7e-d852bac16303" ...
+#>   ..$ root_department.name.fi                          : chr [1:30] "JLY Jätelaitosyhdistys ry" "JLY Jätelaitosyhdistys ry" "JLY Jätelaitosyhdistys ry" "JLY Jätelaitosyhdistys ry" ...
+#>   ..$ root_department.name.sv                          : chr [1:30] "JLY - Avfallsverksföreningen rf" "JLY - Avfallsverksföreningen rf" "JLY - Avfallsverksföreningen rf" "JLY - Avfallsverksföreningen rf" ...
+#>   ..$ root_department.name.en                          : chr [1:30] "JLY - Finnish Solid Waste Association" "JLY - Finnish Solid Waste Association" "JLY - Finnish Solid Waste Association" "JLY - Finnish Solid Waste Association" ...
 #>   ..$ location.type                                    : chr [1:30] "Point" "Point" "Point" "Point" ...
 #>   ..$ location.coordinates                             :List of 30
+#>   .. ..$ : num [1:2] 24.1 60.3
+#>   .. ..$ : num [1:2] 24.1 60.2
+#>   .. ..$ : num [1:2] 23.4 60
+#>   .. ..$ : num [1:2] 25 60.6
 #>   .. ..$ : num [1:2] 25 60.3
 #>   .. ..$ : num [1:2] 25.1 60.3
 #>   .. ..$ : num [1:2] 25.1 60.4
 #>   .. ..$ : num [1:2] 24.7 60.2
 #>   .. ..$ : num [1:2] 24.7 60.2
+#>   .. ..$ : num [1:2] 25.1 60.3
+#>   .. ..$ : num [1:2] 24.5 60.3
+#>   .. ..$ : num [1:2] 25.1 60.3
+#>   .. ..$ : num [1:2] 25 60.2
+#>   .. ..$ : num [1:2] 25 60.3
+#>   .. ..$ : num [1:2] 25.1 60.3
+#>   .. ..$ : num [1:2] 25.1 60.3
+#>   .. ..$ : num [1:2] 25.1 60.3
+#>   .. ..$ : num [1:2] 25 60.3
+#>   .. ..$ : num [1:2] 25 60.3
+#>   .. ..$ : num [1:2] 25.1 60.2
 #>   .. ..$ : num [1:2] 24.7 60.2
-#>   .. ..$ : num [1:2] 24.7 60.1
+#>   .. ..$ : num [1:2] 25.1 60.4
+#>   .. ..$ : num [1:2] 24.9 60.2
+#>   .. ..$ : num [1:2] 25.1 60.3
+#>   .. ..$ : num [1:2] 25.1 60.3
+#>   .. ..$ : num [1:2] 25 60.2
 #>   .. ..$ : num [1:2] 24.6 60.2
+#>   .. ..$ : num [1:2] 24.8 60.2
 #>   .. ..$ : num [1:2] 24.7 60.2
-#>   .. ..$ : num [1:2] 25 60.3
-#>   .. ..$ : num [1:2] 25.1 60.3
-#>   .. ..$ : num [1:2] 25.1 60.3
-#>   .. ..$ : num [1:2] 24.7 60.3
-#>   .. ..$ : num [1:2] 24.7 60.2
-#>   .. ..$ : num [1:2] 25.1 60.2
-#>   .. ..$ : num [1:2] 25 60.2
-#>   .. ..$ : num [1:2] 25 60.2
-#>   .. ..$ : num [1:2] 25 60.2
-#>   .. ..$ : num [1:2] 25 60.2
-#>   .. ..$ : num [1:2] 25 60.2
-#>   .. ..$ : num [1:2] 24.9 60.2
-#>   .. ..$ : num [1:2] 25 60.2
-#>   .. ..$ : num [1:2] 25.1 60.2
-#>   .. ..$ : num [1:2] 24.9 60.2
-#>   .. ..$ : num [1:2] 24.9 60.3
-#>   .. ..$ : num [1:2] 25.1 60.3
-#>   .. ..$ : num [1:2] 24.9 60.2
-#>   .. ..$ : num [1:2] 25 60.3
-#>   .. ..$ : num [1:2] 25.1 60.2
-#>   .. ..$ : num [1:2] 25.1 60.2
+#>   .. ..$ : num [1:2] 24.8 60.3
 search_puisto$results$name.fi
-#>  [1] "Puistolan palvelutalo"                                                                                                                                     
-#>  [2] "Näätäpuiston päiväkoti"                                                                                                                                    
-#>  [3] "Ilvespuiston päiväkoti"                                                                                                                                    
-#>  [4] "Matinkylän asukaspuisto"                                                                                                                                   
-#>  [5] "Viherkallion asukaspuisto"                                                                                                                                 
-#>  [6] "Latokasken asukaspuisto"                                                                                                                                   
-#>  [7] "Soukan asukaspuisto"                                                                                                                                       
-#>  [8] "Kylätalo Palttinan asukaspuisto"                                                                                                                           
-#>  [9] "Suvelan asukaspuisto"                                                                                                                                      
-#> [10] "Iltapäivätoiminta / Puistolan peruskoulu / POY, Kasvatuksen ja koulutuksen toimiala (pidennetty oppivelvollisuus)"                                         
-#> [11] "Iltapäivätoiminta / Puistolanraitin ala-aste / Toiminta-alueittain järjestettävä opetus, Kasvatuksen ja koulutuksen toimiala (vaativan tuen erityisopetus)"
-#> [12] "Kierrätyskeskus Porttipuisto"                                                                                                                              
-#> [13] "Hiirisuon asukaspuisto"                                                                                                                                    
-#> [14] "Järvenperän asukaspuisto"                                                                                                                                  
-#> [15] "Iltapäivätoiminta / Puistopolun peruskoulu / Vaativan tuen erityisopetus, Kasvatuksen ja koulutuksen toimiala (vaativan tuen erityisopetus)"               
-#> [16] "Iltapäivätoiminta / Leikkipuisto Arabia"                                                                                                                   
-#> [17] "Iltapäivätoiminta / Leikkipuisto Brahe"                                                                                                                    
-#> [18] "Iltapäivätoiminta / Leikkipuisto Etupelto"                                                                                                                 
-#> [19] "Iltapäivätoiminta / Leikkipuisto Filpus"                                                                                                                   
-#> [20] "Iltapäivätoiminta / Leikkipuisto Hilleri"                                                                                                                  
-#> [21] "Iltapäivätoiminta / Leikkipuisto Ida"                                                                                                                      
-#> [22] "Iltapäivätoiminta / Leikkipuisto Intia"                                                                                                                    
-#> [23] "Iltapäivätoiminta / Leikkipuisto Iso-Antti"                                                                                                                
-#> [24] "Iltapäivätoiminta / Leikkipuisto Isoneva"                                                                                                                  
-#> [25] "Iltapäivätoiminta / Leikkipuisto Torpparinmäki"                                                                                                            
-#> [26] "Iltapäivätoiminta / Leikkipuisto Kankarepuisto"                                                                                                            
-#> [27] "Iltapäivätoiminta / Leikkipuisto Kannelmäki"                                                                                                               
-#> [28] "Iltapäivätoiminta / Leikkipuisto Kesanto"                                                                                                                  
-#> [29] "Iltapäivätoiminta / Leikkipuisto Kiiltotähti"                                                                                                              
-#> [30] "Iltapäivätoiminta / Leikkipuisto Kipinäpuisto"
+#>  [1] "Ekopiste / Ekopunkt Rantakantti (Aurlahti), Rantapuisto 23"
+#>  [2] "Rinki-ekopiste, Puistokatu / Harmajankatu"                 
+#>  [3] "Rinki-ekopiste, Ajurinpuisto 2 / Candelininkatu"           
+#>  [4] "Rinki-ekopiste, Puistokuja 2 / Keskustie 8"                
+#>  [5] "Puistolan palvelutalo"                                     
+#>  [6] "Näätäpuiston päiväkoti"                                    
+#>  [7] "Ilvespuiston päiväkoti"                                    
+#>  [8] "Matinkylän asukaspuisto"                                   
+#>  [9] "Viherkallion asukaspuisto"                                 
+#> [10] "Kierrätyskeskus Porttipuisto"                              
+#> [11] "Hotelli Nuuksio"                                           
+#> [12] "Kierrätyskeskus Porttipuisto"                              
+#> [13] "Leikkipuisto Mäkitorppa"                                   
+#> [14] "Koillisen terveysasema/Puistola"                           
+#> [15] "Hepopuiston päiväkoti"                                     
+#> [16] "Latupuiston päiväkoti"                                     
+#> [17] "Vaaralanpuiston päiväkoti"                                 
+#> [18] "Kämmekkäpuiston päiväkoti"                                 
+#> [19] "Urheilupuiston päiväkoti"                                  
+#> [20] "Keihäspuiston päiväkoti"                                   
+#> [21] "Olarin asukaspuisto"                                       
+#> [22] "Siimapuiston päiväkoti"                                    
+#> [23] "Kannelmäen liikuntapuisto / Ulkokuntosali"                 
+#> [24] "Ravurinpuiston päiväkoti"                                  
+#> [25] "Päiväkoti Kankarepuisto"                                   
+#> [26] "Syötävä puisto"                                            
+#> [27] "Poijupuiston vastaanottokoti"                              
+#> [28] "Opiskeluhuolto, Westendinpuiston koulu"                    
+#> [29] "Opiskeluhuolto, Jalavapuiston koulu"                       
+#> [30] "Opiskeluhuolto, Juvanpuiston koulu"
 ```
 
 As we could see from above example, the returned data frame had 30
@@ -404,20 +415,31 @@ retrieves regional event data from the new [Linked Events
 API](http://api.hel.fi/linkedevents/v1/).
 
 ``` r
+
 # Search for current events
 events <- get_linkedevents(query = "event")
 # Get names for the first 20 results
 events$data$name$fi
-#>  [1] "Lukukoira Noppa"             "Lukukoira Noppa"            
-#>  [3] "Lukukoira Noppa"             "Lukukoira Noppa"            
-#>  [5] "Lukukoira Noppa"             "Englanninkielinen lukupiiri"
-#>  [7] "Englanninkielinen lukupiiri" "Englanninkielinen lukupiiri"
-#>  [9] "Englanninkielinen lukupiiri" "Englanninkielinen lukupiiri"
-#> [11] "Piano day Helsinki 2026"     "KauhuCon 2026"              
-#> [13] "Lasten lauantaileffa"        "Lasten lauantaileffa"       
-#> [15] "Lasten lauantaileffa"        "Lasten lauantaileffa"       
-#> [17] "Lasten lauantaileffa"        "Lasten lauantaileffa"       
-#> [19] "Lasten lauantaileffa"        "Lasten lauantaileffa"
+#>  [1] "No-No"                                        
+#>  [2] "Seniorisoppa Joulukonsertti"                  
+#>  [3] "Iikka Kivi - Protestinauru Stand Up Show K-18"
+#>  [4] "Elolliset"                                    
+#>  [5] "Kotijoukot"                                   
+#>  [6] "De Obehöriga"                                 
+#>  [7] "Fretti Mercury Etsii Onnea"                   
+#>  [8] "Birds Of Paradise Ensi-Ilta"                  
+#>  [9] "Nauravan Kulkurin Tarina"                     
+#> [10] "& Julia"                                      
+#> [11] "Kurtturuusut"                                 
+#> [12] "Club Act!One"                                 
+#> [13] "Kiviä Taskussa"                               
+#> [14] "& Julia"                                      
+#> [15] "Elolliset"                                    
+#> [16] "& Julia"                                      
+#> [17] "No-No"                                        
+#> [18] "Nauravan Kulkurin Tarina"                     
+#> [19] "No-No"                                        
+#> [20] "Nauravan Kulkurin Tarina"
 # See what kind of data is given for events
 names(events$data)
 #>  [1] "id"                          "has_user_editable_resources"
@@ -437,10 +459,10 @@ names(events$data)
 #> [29] "deleted"                     "maximum_attendee_capacity"  
 #> [31] "minimum_attendee_capacity"   "enrolment_start_time"       
 #> [33] "enrolment_end_time"          "local"                      
-#> [35] "replaced_by"                 "short_description"          
-#> [37] "name"                        "description"                
-#> [39] "provider"                    "provider_contact_info"      
-#> [41] "info_url"                    "location_extra_info"        
+#> [35] "replaced_by"                 "location_extra_info"        
+#> [37] "short_description"           "name"                       
+#> [39] "info_url"                    "provider_contact_info"      
+#> [41] "provider"                    "description"                
 #> [43] "@id"                         "@context"                   
 #> [45] "@type"
 ```
@@ -468,6 +490,7 @@ gives an idea on how to visualize waterpost locations (and, of course,
 other types of spatial data as well) on capital region map.
 
 ``` r
+
 helsinki <- get_city_map(city = "helsinki", level = "suuralue")
 espoo <- get_city_map(city = "espoo", level = "suuralue")
 vantaa <- get_city_map(city = "vantaa", level = "suuralue")
@@ -490,11 +513,13 @@ divisions for the city of Helsinki. Currently this data is not available
 for other cities and it must be accessed from other sources.
 
 ``` r
+
 map <- get_city_map(city = "helsinki", level = "suuralue")
 voting_district <- get_city_map(city = "helsinki", level = "aanestysalue")
 ```
 
 ``` r
+
 library(sf)
 plot(sf::st_geometry(map))
 plot(sf::st_geometry(voting_district))
@@ -513,6 +538,7 @@ specific example we will download the first item on the stats_list
 object. The output is a three-dimensional array.
 
 ``` r
+
 # Retrieve list of available data
 stats_list <- get_hri_stats(query = "")
 # Show first results
@@ -566,10 +592,11 @@ https://github.com/rOpenGov/helsinki
 This vignette was created with
 
 ``` r
+
 sessionInfo()
-#> R version 4.5.2 (2025-10-31)
+#> R version 4.6.1 (2026-06-24)
 #> Platform: x86_64-pc-linux-gnu
-#> Running under: Ubuntu 24.04.3 LTS
+#> Running under: Ubuntu 24.04.4 LTS
 #> 
 #> Matrix products: default
 #> BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
@@ -588,21 +615,22 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] ggplot2_4.0.2  helsinki_1.0.6
+#> [1] ggplot2_4.0.3  helsinki_1.0.6
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] sass_0.4.10        generics_0.1.4     class_7.3-23       xml2_1.5.2        
-#>  [5] KernSmooth_2.23-26 digest_0.6.39      magrittr_2.0.4     evaluate_1.0.5    
-#>  [9] grid_4.5.2         RColorBrewer_1.1-3 fastmap_1.2.0      jsonlite_2.0.0    
-#> [13] e1071_1.7-17       DBI_1.3.0          httr_1.4.8         purrr_1.2.1       
-#> [17] scales_1.4.0       textshaping_1.0.5  jquerylib_0.1.4    cli_3.6.5         
-#> [21] rlang_1.1.7        units_1.0-0        withr_3.0.2        cachem_1.1.0      
-#> [25] yaml_2.3.12        tools_4.5.2        dplyr_1.2.0        curl_7.0.0        
-#> [29] vctrs_0.7.1        R6_2.6.1           proxy_0.4-29       lifecycle_1.0.5   
-#> [33] classInt_0.4-11    fs_1.6.7           htmlwidgets_1.6.4  ragg_1.5.1        
-#> [37] pkgconfig_2.0.3    desc_1.4.3         pkgdown_2.2.0      pillar_1.11.1     
-#> [41] bslib_0.10.0       gtable_0.3.6       glue_1.8.0         Rcpp_1.1.1        
-#> [45] sf_1.1-0           systemfonts_1.3.2  xfun_0.56          tibble_3.3.1      
-#> [49] tidyselect_1.2.1   knitr_1.51         farver_2.1.2       htmltools_0.5.9   
-#> [53] labeling_0.4.3     rmarkdown_2.30     compiler_4.5.2     S7_0.2.1
+#>  [1] sass_0.4.10        generics_0.1.4     class_7.3-23       xml2_1.6.0        
+#>  [5] KernSmooth_2.23-26 digest_0.6.39      magrittr_2.0.5     evaluate_1.0.5    
+#>  [9] grid_4.6.1         RColorBrewer_1.1-3 fastmap_1.2.0      jsonlite_2.0.0    
+#> [13] e1071_1.7-17       DBI_1.3.0          httr_1.4.8         purrr_1.2.2       
+#> [17] scales_1.4.0       textshaping_1.0.5  jquerylib_0.1.4    cli_3.6.6         
+#> [21] rlang_1.3.0        units_1.0-1        withr_3.0.3        cachem_1.1.0      
+#> [25] yaml_2.3.12        otel_0.2.0         tools_4.6.1        dplyr_1.2.1       
+#> [29] curl_7.1.0         vctrs_0.7.3        R6_2.6.1           proxy_0.4-29      
+#> [33] lifecycle_1.0.5    classInt_0.4-11    fs_2.1.0           htmlwidgets_1.6.4 
+#> [37] ragg_1.5.2         pkgconfig_2.0.3    desc_1.4.3         pkgdown_2.2.1     
+#> [41] pillar_1.11.1      bslib_0.11.0       gtable_0.3.6       glue_1.8.1        
+#> [45] Rcpp_1.1.2         sf_1.1-1           systemfonts_1.3.2  xfun_0.60         
+#> [49] tibble_3.3.1       tidyselect_1.2.1   knitr_1.51         farver_2.1.2      
+#> [53] htmltools_0.5.9    labeling_0.4.3     rmarkdown_2.31     compiler_4.6.1    
+#> [57] S7_0.2.2
 ```
